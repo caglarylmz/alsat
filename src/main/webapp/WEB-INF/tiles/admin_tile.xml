@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <!-- Base Definition -->
+    <definition name="admin_template"
+                template="/WEB-INF/views/templates/admin_template.jsp">
+        <put-attribute name="navbar"
+                       value="/WEB-INF/views/layouts/admin/navbar.jsp"/>
+        <put-attribute name="sidebar"
+                       value="/WEB-INF/views/layouts/admin/sidebar.jsp"></put-attribute>
+        <put-attribute name="footer"
+                       value="/WEB-INF/views/layouts/admin/footer.jsp"></put-attribute>
+        <put-attribute name="content" value=""/>
+    </definition>
+    <!-- Dashboard -->
+    <definition name="admin.dashboard.index"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/dashboard/index.jsp"></put-attribute>
+    </definition>
+    <!-- account -->
+    <definition name="admin.account.index"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/account/index.jsp"></put-attribute>
+    </definition>
+    <definition name="admin.account.edit"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/account/edit.jsp"></put-attribute>
+    </definition>
+    <definition name="admin.account.profile"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/account/profile.jsp"></put-attribute>
+    </definition>
+    <!-- account -->
+    <!-- Category -->
+    <definition name="admin.category.index"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/category/index.jsp"/>
+    </definition>
+    <definition name="admin.category.edit"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/category/edit.jsp"/>
+    </definition>
+    <!-- Category -->
+    <!-- SubCategory -->
+    <definition name="admin.category.subcategory"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/category/subcategory.jsp"/>
+    </definition>
+    <definition name="admin.category.editsubcategory"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/category/editsubcategory.jsp"/>
+    </definition>
+    <!-- SubCategory -->
+    <!-- Advert -->
+    <definition name="admin.advert.index"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/advert/index.jsp"/>
+    </definition>
+    <definition name="admin.advert.add" extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/advert/add.jsp"/>
+    </definition>
+    <definition name="admin.advert.add_detail"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/advert/add_detail.jsp"/>
+    </definition>
+    <definition name="admin.advert.edit"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/advert/edit.jsp"/>
+    </definition>
+    <definition name="admin.advert.detail"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/advert/detail.jsp"/>
+    </definition>
+    <!-- Advert -->
+
+    <!-- Photo -->
+    <definition name="admin.photo.photos_of_advert"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/photo/photos_of_advert.jsp"/>
+    </definition>
+    <definition name="admin.photo.edit" extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/photo/edit.jsp"/>
+    </definition>
+
+    <!-- Tip -->
+    <definition name="admin.tip.tips_of_category"
+                extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/tip/tips_of_category.jsp"/>
+    </definition>
+    <definition name="admin.tip.edit" extends="admin_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/tip/edit.jsp"/>
+    </definition>
+
+    <!-- Empty Definition <definition name="admin_empty_template" template="/WEB-INF/views/templates/admin_empty_template.jsp">
+        <put-attribute name="content" value="" /> </definition> <definition name="admin.login.index"
+        extends="admin_empty_template"> <put-attribute name="content" value="/WEB-INF/views/admin/login/index.jsp"></put-attribute>
+        </definition> <definition name="admin.login.accessDenied" extends="admin_empty_template">
+        <put-attribute name="content" value="/WEB-INF/views/admin/login/accessDenied.jsp"></put-attribute>
+        </definition> -->
+
+</tiles-definitions>

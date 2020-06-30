@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <!-- Base Definition -->
+    <definition name="user_template"
+                template="/WEB-INF/views/templates/user_template.jsp">
+        <put-attribute name="navbar"
+                       value="/WEB-INF/views/layouts/user/navbar.jsp"/>
+        <put-attribute name="sidebar"
+                       value="/WEB-INF/views/layouts/user/sidebar.jsp"></put-attribute>
+        <put-attribute name="footer"
+                       value="/WEB-INF/views/layouts/user/footer.jsp"></put-attribute>
+        <put-attribute name="content" value=""/>
+    </definition>
+    <!-- Dashboard -->
+    <definition name="user.dashboard.index"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/dashboard/index.jsp"></put-attribute>
+    </definition>
+    <!-- account -->
+    <definition name="user.account.profile"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/account/profile.jsp"></put-attribute>
+    </definition>
+    <!-- Category -->
+    <definition name="user.category.index"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/category/index.jsp"/>
+    </definition>
+    <definition name="user.category.edit"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/category/edit.jsp"/>
+    </definition>
+    <!-- SubCategory -->
+    <definition name="user.category.subcategory"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/category/subcategory.jsp"/>
+    </definition>
+    <definition name="user.category.editsubcategory"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/category/editsubcategory.jsp"/>
+    </definition>
+
+    <!-- Advert -->
+    <definition name="user.advert.index"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/advert/index.jsp"/>
+    </definition>
+    <definition name="user.advert.add"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/advert/add.jsp"/>
+    </definition>
+    <definition name="user.advert.add_detail"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/advert/add_detail.jsp"/>
+    </definition>
+    <definition name="user.advert.edit"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/advert/edit.jsp"/>
+    </definition>
+    <definition name="user.advert.detail"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/advert/detail.jsp"/>
+    </definition>
+
+
+    <!-- Photo -->
+    <definition name="user.photo.photos_of_advert"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/photo/photos_of_advert.jsp"/>
+    </definition>
+    <definition name="user.photo.edit"
+                extends="user_template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/user/photo/edit.jsp"/>
+    </definition>
+
+
+</tiles-definitions>
