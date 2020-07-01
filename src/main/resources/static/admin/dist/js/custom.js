@@ -155,7 +155,7 @@ $(document).ready(function () {
         // alert(catId)
         $.ajax({
             type: 'GET',
-            url: '/alsat/api/category/' + catId + '/subs',
+            url: '/api/category/' + catId + '/subs',
             success: function (result) {
                 var res = $.parseJSON(JSON.stringify(result));
                 // alert(res[0].name) console.log(res);
@@ -191,7 +191,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'GET',
-            url: '/alsat/api/category/' + catId + '/subs',
+            url: '/api/category/' + catId + '/subs',
             success: function (result) {
                 var res = $.parseJSON(JSON.stringify(result));
                 //console.log(res);
@@ -242,7 +242,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'GET',
-            url: '/alsat/api/category/' + catId + '/subs',
+            url: '/api/category/' + catId + '/subs',
             success: function (result) {
                 var res = $.parseJSON(JSON.stringify(result));
                 //console.log(res);
@@ -292,7 +292,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'GET',
-            url: '/alsat/api/category/' + catId + '/subs',
+            url: '/api/category/' + catId + '/subs',
             success: function (result) {
                 var res = $.parseJSON(JSON.stringify(result));
                 //console.log(res);
@@ -340,7 +340,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'GET',
-            url: '/alsat/api/category/' + catId + '/subs',
+            url: '/api/category/' + catId + '/subs',
             success: function (result) {
                 var res = $.parseJSON(JSON.stringify(result));
                 //console.log(res);
@@ -387,7 +387,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'GET',
-            url: '/alsat/api/category/' + catId + '/subs',
+            url: '/api/category/' + catId + '/subs',
             success: function (result) {
                 var res = $.parseJSON(JSON.stringify(result));
                 //console.log(res);
@@ -437,7 +437,7 @@ $(document).ready(function () {
         var detay = '';
         $.ajax({
             type: 'GET',
-            url: '/alsat/admin/advert/details/' + selectedCat,
+            url: '/admin/advert/details/' + selectedCat,
             success: function (result) {
                 var res = $.parseJSON(JSON.stringify(result));
                 var tips = res[0];
