@@ -82,8 +82,8 @@
 											<li><a href="#">İlanlarım</a></li>
 											<li><a href="#">Favorilerim</a></li>
 											<li><a href="#">Satışlarım</a></li>
-											<li><a href="#">Profilim</a></li>
-											<li><a href="#">Çıkış Yap</a></li>
+											<li><a href="${pageContext.request.contextPath}/admin/account/profile">Profilim</a></li>
+											<li><a href="${pageContext.request.contextPath}/uye/process-logout">Çıkış Yap</a></li>
 										</sec:authorize>
 										<sec:authorize access="hasRole('ROLE_USER')">
 											<li><a
@@ -92,8 +92,8 @@
 											<li><a href="#">İlanlarım</a></li>
 											<li><a href="#">Favorilerim</a></li>
 											<li><a href="#">Satışlarım</a></li>
-											<li><a href="#">Profilim</a></li>
-											<li><a href="#">Çıkış Yap</a></li>
+											<li><a href="${pageContext.request.contextPath}/user/account/profile">Profilim</a></li>
+											<li><a href="${pageContext.request.contextPath}/uye/process-logout">Çıkış Yap</a></li>
 										</sec:authorize>
 									</ul></li>
 
