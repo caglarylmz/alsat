@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+        <!-- Base Definition -->
+        <definition name="main_template" template="/WEB-INF/views/templates/main/main_template.jsp">
+                <put-attribute name="header" value="/WEB-INF/views/layouts/main/navbar.jsp" />
+                <put-attribute name="topbar" value="/WEB-INF/views/layouts/main/topbar.jsp" />
+                <put-attribute name="sidebar" value="/WEB-INF/views/layouts/main/sidebar.jsp"></put-attribute>
+
+                <put-attribute name="content" value="" />
+        </definition>
+        <!-- Index -->
+        <definition name="main.index" extends="main_template">
+                <put-attribute name="content" value="/WEB-INF/views/main/index.jsp"></put-attribute>
+        </definition>
+
+        <!-- MainCategory Definition-->
+        <definition name="main_template_main" template="/WEB-INF/views/templates/main_template_main.jsp">
+                <put-attribute name="header" value="/WEB-INF/views/layouts/main/navbar.jsp" />
+                <put-attribute name="topbar" value="/WEB-INF/views/layouts/main/topbar.jsp" />
+                <put-attribute name="sidebar" value="/WEB-INF/views/layouts/main/sidebar.jsp"></put-attribute>
+
+                <put-attribute name="content" value="" />
+        </definition>
+
+        <!-- Index -->
+        <definition name="main.index" extends="main_template">
+                <put-attribute name="content" value="/WEB-INF/views/main/index.jsp"></put-attribute>
+        </definition>
+
+
+</tiles-definitions>

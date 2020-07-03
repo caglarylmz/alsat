@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oriontech.alsat.models.Account;
+import com.oriontech.alsat.models.Role;
 import com.oriontech.alsat.services.AccountService;
+import com.oriontech.alsat.services.RoleService;
 
 @Controller
 @RequestMapping("uye")
@@ -23,6 +25,7 @@ public class LoginController {
 
 	@Autowired
 	AccountService accountService;
+	@Autowired RoleService roleService;
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
@@ -56,6 +59,7 @@ public class LoginController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute("account") @Valid Account account, BindingResult result,
 			RedirectAttributes redirectAttributes) {
+
 		if(result.hasErrors()) {
 			return "home.login.register";
 		}
@@ -75,6 +79,7 @@ public class LoginController {
 			return "redirect:/uye/register";
 		}
 		account.setPassword(encoder.encode(account.getPassword()));
+		account.setRole(roleService.getRole(3));
 		accountService.save(account);
 
 		return "redirect:/uye/login";

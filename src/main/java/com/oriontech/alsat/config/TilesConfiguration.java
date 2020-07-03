@@ -2,13 +2,13 @@ package com.oriontech.alsat.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
 @Configuration
-public class TilesConfiguration extends WebMvcConfigurerAdapter{
+public class TilesConfiguration implements WebMvcConfigurer{
 	
 	@Bean
 	public UrlBasedViewResolver urlBasedViewResolver() {
@@ -24,6 +24,9 @@ public class TilesConfiguration extends WebMvcConfigurerAdapter{
 				"/WEB-INF/tiles/admin_tile.xml",
 				"/WEB-INF/tiles/home_tile.xml",
 				"/WEB-INF/tiles/user_tile.xml",
+				"/WEB-INF/tiles/main_tile.xml",
+
+
 		});
         tilesConfigurer.setCheckRefresh(true);
 		return tilesConfigurer;

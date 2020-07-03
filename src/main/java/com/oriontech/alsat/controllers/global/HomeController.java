@@ -6,11 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.oriontech.alsat.controllers.admin.CategoryController;
-import com.oriontech.alsat.models.Advert;
-import com.oriontech.alsat.models.Category;
 import com.oriontech.alsat.services.AdvertService;
 import com.oriontech.alsat.services.CategoryService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,20 +21,19 @@ public class HomeController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	String index(ModelMap modelMap) {
-		modelMap.put("isHome", true);
+		modelMap.put("isMain", true);
 		modelMap.put("parentCategories", categoryService.findParentCategoriesWithStatus(true));
 		modelMap.put("latestAdverts", advertService.latestAdverts());
 
-		return "home.index";
+		return "main.index";
 	}
 
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "category/{id}")
 	public String categoryAdverts(@PathVariable("id") long id, ModelMap modelMap) {
-		modelMap.put("parentCategories", categoryService.findParentCategoriesWithStatus(true));
-		
-		
-		modelMap.put("latestAdverts", advertService.categoryAdverts(id));
-		return "home.index";
+		modelMap.put("categories", categoryService.findSubcategoriesById(id));
+		modelMap.put("isMain", false);
+		modelMap.put("categoriesAdverts", advertService.categoryAdverts(id));
+		return "main.index";
 	}
 
 }

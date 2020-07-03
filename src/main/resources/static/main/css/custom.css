@@ -1,0 +1,25 @@
+#top .dropdown-item{
+    color: black;
+    margin: 0px;
+}
+  
+#sidebar-body{
+    padding: 10;
+}
+#content .card.sidebar-menu ul.nav.category-menu {
+    margin-bottom: 5px;
+}
+
+#content .card.sidebar-menu ul.nav ul li a {
+    position: relative;
+    font-weight: normal;
+    text-transform: none !important;
+    display: block;
+    padding: 5px 15px;
+    padding-left: 30px;
+    font-size: 0.738rem;
+    color: #555;
+}
+#content .product {
+    margin-bottom: 10px;
+}

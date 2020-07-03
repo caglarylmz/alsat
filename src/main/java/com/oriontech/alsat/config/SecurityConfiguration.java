@@ -57,6 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers("/admin/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 		.antMatchers("/user/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+		.antMatchers("/h2-console/**").permitAll()
 		.antMatchers("/").permitAll()
 		.and()
 		.formLogin()
@@ -91,6 +92,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.deleteCookies("JSESSIONID").and().exceptionHandling().accessDeniedPage("/admin-panel/accessDenied");*/
 
 		http.authorizeRequests().antMatchers("/").permitAll();
+		http.headers().frameOptions().disable();
 		/*
 		.antMatcher("/user/**").authorizeRequests().antMatchers("/user/**")
 		.access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")

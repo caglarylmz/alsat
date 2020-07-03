@@ -411,7 +411,7 @@ $(document).ready(function () {
                 }
             },
             error: function (msg) {
-                console.log("failed");
+                console.log("msg");
             }
         });
     });

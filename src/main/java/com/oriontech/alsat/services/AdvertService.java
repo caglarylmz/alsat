@@ -1,11 +1,13 @@
 package com.oriontech.alsat.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oriontech.alsat.models.Advert;
+import com.oriontech.alsat.models.Category;
 import com.oriontech.alsat.repositories.AdvertRepository;
 
 @Service
@@ -16,7 +18,7 @@ public class AdvertService {
 	AccountService accountService;
 	@Autowired
 	CategoryService categoryService;
-	
+
 	public Iterable<Advert> findAll() {
 		return advertRepository.findAll();
 	}
@@ -40,9 +42,23 @@ public class AdvertService {
 	public List<Advert> userAdverts(String username) {
 		return advertRepository.userAdverts(accountService.findByUsername(username).getId());
 	}
+
 	public List<Advert> categoryAdverts(Long categoryId) {
-		//return advertRepository.categoryAdverts(categoryId);
+		// return advertRepository.categoryAdverts(categoryId);
 		return categoryService.findById(categoryId).getAdverts();
 	}
-	
+
+	public List<Advert> categoryAndChildsAdverts(Long categoryId) {
+		List<Advert> allAdverts = new ArrayList<>();
+
+		allAdverts.addAll(categoryService.findById(categoryId).getAdverts());
+		if (categoryService.findById(categoryId).getSubCategories().size() > 0) {
+			for (Category category : categoryService.findById(categoryId).getSubCategories()) {
+				allAdverts.addAll(category.getAdverts());
+			}
+		}
+
+		return allAdverts;
+	}
+
 }

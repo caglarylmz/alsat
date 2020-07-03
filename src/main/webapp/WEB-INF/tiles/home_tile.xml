@@ -1,64 +1,46 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
-        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-    <!-- Base Definition -->
-    <definition name="home_template"
-                template="/WEB-INF/views/templates/home_template.jsp">
-        <put-attribute name="header"
-                       value="/WEB-INF/views/layouts/home/header.jsp"/>
-        <put-attribute name="sidebar"
-                       value="/WEB-INF/views/layouts/home/sidebar.jsp"></put-attribute>
-        <put-attribute name="footer"
-                       value="/WEB-INF/views/layouts/home/footer.jsp"></put-attribute>
-        <put-attribute name="content" value=""/>
-    </definition>
-    <!-- Index -->
-    <definition name="home.index" extends="home_template">
-        <put-attribute name="content"
-                       value="/WEB-INF/views/home/index.jsp"></put-attribute>
-    </definition>
+        <!-- Base Definition -->
+        <definition name="home_template" template="/WEB-INF/views/templates/home_template.jsp">
+                <put-attribute name="header" value="/WEB-INF/views/layouts/home/header.jsp" />
+                <put-attribute name="sidebar" value="/WEB-INF/views/layouts/home/sidebar.jsp"></put-attribute>
+                <put-attribute name="footer" value="/WEB-INF/views/layouts/home/footer.jsp"></put-attribute>
+                <put-attribute name="content" value="" />
+        </definition>
+        <!-- Index -->
+        <definition name="home.index" extends="home_template">
+                <put-attribute name="content" value="/WEB-INF/views/home/index.jsp"></put-attribute>
+        </definition>
 
-    <!-- Advert Definition -->
-    <definition name="home_template_advert"
-                template="/WEB-INF/views/templates/home_template_advert.jsp">
-        <put-attribute name="header"
-                       value="/WEB-INF/views/layouts/home/header.jsp"/>
+        <!-- Advert Definition -->
+        <definition name="home_template_advert" template="/WEB-INF/views/templates/home_template_advert.jsp">
+                <put-attribute name="header" value="/WEB-INF/views/layouts/home/header.jsp" />
 
-        <put-attribute name="footer"
-                       value="/WEB-INF/views/layouts/home/footer.jsp"></put-attribute>
-        <put-attribute name="content" value=""/>
-    </definition>
-    <definition name="home.advert.details" extends="home_template_advert">
-        <put-attribute name="content"
-                       value="/WEB-INF/views/home/advert/details.jsp"></put-attribute>
-    </definition>
+                <put-attribute name="footer" value="/WEB-INF/views/layouts/home/footer.jsp"></put-attribute>
+                <put-attribute name="content" value="" />
+        </definition>
+        <definition name="home.advert.details" extends="home_template_advert">
+                <put-attribute name="content" value="/WEB-INF/views/home/advert/details.jsp"></put-attribute>
+        </definition>
 
 
-    <!-- Empty Definition-->
-    <definition name="home_empty_template"
-                template="/WEB-INF/views/templates/home_empty_template.jsp">
-        <put-attribute name="header"
-                       value="/WEB-INF/views/layouts/home/header.jsp"/>
-        <put-attribute name="content" value=""/>
-    </definition>
+        <!-- Empty Definition-->
+        <definition name="home_empty_template" template="/WEB-INF/views/templates/home_empty_template.jsp">
+                <put-attribute name="header" value="/WEB-INF/views/layouts/home/header.jsp" />
+                <put-attribute name="content" value="" />
+        </definition>
 
-    <definition name="home.login.index"
-                extends="home_empty_template">
-        <put-attribute name="content"
-                       value="/WEB-INF/views/home/login/index.jsp"></put-attribute>
-    </definition>
-    <definition name="home.login.register"
-                extends="home_empty_template">
-        <put-attribute name="content"
-                       value="/WEB-INF/views/home/login/register.jsp"></put-attribute>
-    </definition>
-    <definition name="home.login.accessDenied"
-                extends="home_empty_template">
-        <put-attribute name="content"
-                       value="/WEB-INF/views/home/login/accessDenied.jsp"></put-attribute>
-    </definition>
+        <definition name="home.login.index" extends="home_empty_template">
+                <put-attribute name="content" value="/WEB-INF/views/home/login/index.jsp"></put-attribute>
+        </definition>
+        <definition name="home.login.register" extends="home_empty_template">
+                <put-attribute name="content" value="/WEB-INF/views/home/login/register.jsp"></put-attribute>
+        </definition>
+        <definition name="home.login.accessDenied" extends="home_empty_template">
+                <put-attribute name="content" value="/WEB-INF/views/home/login/accessDenied.jsp"></put-attribute>
+        </definition>
 
 
 </tiles-definitions>

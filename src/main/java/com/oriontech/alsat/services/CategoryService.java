@@ -42,7 +42,8 @@ public class CategoryService {
 		return categoryRepository.findAllCategoriesWithStatus(status);
 	}
 
-	public List<Category> findSubcategoriesById(long parentCategoryId) {
+	public List<Category> findSubcategoriesById(long parentCategoryId) { 
+
 		return categoryRepository.findSubcategoriesById(parentCategoryId);
 	}
 
