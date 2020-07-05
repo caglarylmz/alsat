@@ -92,7 +92,7 @@ public class DbSeeder implements CommandLineRunner {
 		Category parentBuyukBas = new Category();
 		parentBuyukBas.setName("Büyükbaş Hayvan");
 		parentBuyukBas.setStatus(true);
-		parentBuyukBas.setIcon("buyukbas.jpg");
+		parentBuyukBas.setIcon("buyukbas.png");
 		categoryRepository.save(parentBuyukBas);
 
 		Category sigir = new Category();
@@ -185,7 +185,7 @@ public class DbSeeder implements CommandLineRunner {
 		Category parentKurbanlik = new Category();
 		parentKurbanlik.setName("Kurbanlık Hayvan");
 		parentKurbanlik.setStatus(true);
-		parentKurbanlik.setIcon("kurbanlık.png");
+		parentKurbanlik.setIcon("kurbanlik.png");
 		categoryRepository.save(parentKurbanlik);
 
 		Category buyukbas = new Category();
@@ -222,7 +222,7 @@ public class DbSeeder implements CommandLineRunner {
 		Category parentKanatli = new Category();
 		parentKanatli.setName("Kanatlı Hayvanlar");
 		parentKanatli.setStatus(true);
-		parentKanatli.setIcon("kanatlı.png");
+		parentKanatli.setIcon("kanatli.png");
 		categoryRepository.save(parentKanatli);
 
 		Category hindi = new Category();
@@ -307,7 +307,7 @@ public class DbSeeder implements CommandLineRunner {
 		Category tesisler = new Category();
 		tesisler.setName("Tesisler");
 		tesisler.setStatus(true);
-		tesisler.setIcon("tesis.jpg");
+		tesisler.setIcon("tesis.png");
 		categoryRepository.save(tesisler);
 
 		Category satilikTesis = new Category();

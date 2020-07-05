@@ -20,8 +20,8 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
 	@Query("from Category where status = :status")
 	public List<Category> findAllCategoriesWithStatus(@Param("status") boolean status);
 	
-	@Query("from Category where parent_category_id =:parent_category_id")
-	public List<Category> findSubcategoriesById(@Param("parent_category_id") long parent_category_id); 
+	@Query("from Category where parent_id =:parent_id")
+	public List<Category> findSubcategoriesById(@Param("parent_id") long parent_id); 
 		
 	
 

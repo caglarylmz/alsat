@@ -54,7 +54,7 @@
 					</c:if>
 				</a>
 				<div class="text">
-					<h3><a href="${pageContext.request.contextPath}/advert/details/${advert.id}"></a>${advert.baslik}
+					<h3><a href="${pageContext.request.contextPath}/advert/details/${advert.id}">${advert.baslik}</a>
 					</h3>
 					<p class=" price">
 						<del></del>${advert.toplamFiyat} ₺
@@ -69,4 +69,3 @@
 
 </div>
 <!-- /.products-->
-</div>

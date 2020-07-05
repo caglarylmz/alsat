@@ -22,6 +22,7 @@ public class HomeController {
 	@RequestMapping(method = RequestMethod.GET)
 	String index(ModelMap modelMap) {
 		modelMap.put("isMain", true);
+		modelMap.put("isSub", false);
 		modelMap.put("parentCategories", categoryService.findParentCategoriesWithStatus(true));
 		modelMap.put("latestAdverts", advertService.latestAdverts());
 
@@ -30,10 +31,23 @@ public class HomeController {
 
 	@GetMapping(value = "category/{id}")
 	public String categoryAdverts(@PathVariable("id") long id, ModelMap modelMap) {
-		modelMap.put("categories", categoryService.findSubcategoriesById(id));
-		modelMap.put("isMain", false);
-		modelMap.put("categoriesAdverts", advertService.categoryAdverts(id));
+
+		if (categoryService.findById(id).getSubCategories() != null
+				&& categoryService.findById(id).getSubCategories().size() > 0) {
+			modelMap.put("isMain", false);
+			modelMap.put("isSub", false);
+			modelMap.put("categories", categoryService.findSubcategoriesById(id));
+			modelMap.put("latestAdverts", advertService.categoryAndChildsAdverts(id));
+		} else {
+			modelMap.put("isMain", false);
+			modelMap.put("isSub", true);
+			modelMap.put("category", categoryService.findById(id));
+			modelMap.put("latestAdverts", advertService.categoryAdverts(id));
+
+		}
+
 		return "main.index";
 	}
 
 }
+

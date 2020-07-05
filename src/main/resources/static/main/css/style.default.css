@@ -58,16 +58,6 @@ h1 {
   position: static !important;
 }
 
-.menu-large .megamenu {
-  padding: 20px;
-  width: 100%;
-  max-width: 1140px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  margin-top: -1px;
-}
-
 .menu-large a.nav-link {
   padding: 7px !important;
   padding-left: 0 !important;
@@ -557,7 +547,7 @@ h1 {
 
 #content .card.sidebar-menu ul.nav.category-menu li a {
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  /*letter-spacing: 0.1em;*/
   font-weight: bold;
   border-radius: 0;
   display: -webkit-box;
@@ -591,7 +581,6 @@ h1 {
   display: block;
   padding: 10px 15px;
   padding-left: 30px;
-  font-size: 0.738rem;
   color: #555;
 }
 
