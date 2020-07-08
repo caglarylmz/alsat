@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oriontech.alsat.models.Advert;
+import com.oriontech.alsat.models.AdvertDetail;
 import com.oriontech.alsat.models.Category;
+import com.oriontech.alsat.models.Tip;
+import com.oriontech.alsat.repositories.AdvertDetailRepository;
 import com.oriontech.alsat.repositories.AdvertRepository;
+import com.oriontech.alsat.repositories.TipRepository;
 
 @Service
 public class AdvertService {
@@ -18,6 +22,10 @@ public class AdvertService {
 	AccountService accountService;
 	@Autowired
 	CategoryService categoryService;
+	@Autowired
+	AdvertDetailRepository advertDetailRepository;
+	@Autowired
+	TipRepository tipRepository;
 
 	public Iterable<Advert> findAll() {
 		return advertRepository.findAll();
@@ -60,5 +68,19 @@ public class AdvertService {
 
 		return allAdverts;
 	}
+
+	public List<Advert> tipsOfAdverts(long tipId) {
+		List<Advert> adverts = new ArrayList<>();
+		for (Advert advert : advertRepository.findAll()) {
+			for (AdvertDetail advertDetail : advert.getAdvertDetails()) {
+				if (advertDetail.getTip().getId() == tipId) {
+					adverts.add(advert);
+				}
+			}
+		}
+		return adverts;
+	}
+
+
 
 }

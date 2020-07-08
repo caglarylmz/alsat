@@ -29,7 +29,7 @@ public class HomeController {
 		return "main.index";
 	}
 
-	@GetMapping(value = "category/{id}")
+	@GetMapping(value = "category/{id}/adverts")
 	public String categoryAdverts(@PathVariable("id") long id, ModelMap modelMap) {
 
 		if (categoryService.findById(id).getSubCategories() != null
@@ -49,5 +49,11 @@ public class HomeController {
 		return "main.index";
 	}
 
-}
+	@GetMapping(value = "tip/{id}/adverts")
+	public String tipAdverts(@PathVariable("id") long id, ModelMap modelMap) {
+		modelMap.put("isTip", true);
+		modelMap.put("latestAdverts", advertService.tipsOfAdverts(id));
 
+		return "main.index";
+	}
+}
