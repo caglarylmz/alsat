@@ -1,33 +1,75 @@
-#top .dropdown-item {
-    color: black;
-    margin: 0px;
+.menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-#sidebar-body {
-    padding: 10;
+.menu .item {
+    overflow: hidden;
 }
 
-#content .card.sidebar-menu ul.nav.category-menu {
-    margin-bottom: 5px;
-}
-
-#content .card.sidebar-menu ul.nav ul li a {
-    position: relative;
-    font-weight: normal;
-    text-transform: none !important;
+.menu .item .btn {
     display: block;
-    padding: 5px 15px;
-    padding-left: 30px;
-    font-size: 0.738rem;
-    color: #555;
+    padding: 6px 20px;
+    background: #4fbfa8;
+    color: white;
+    position: relative;
 }
 
-#content .product {
-    margin-bottom: 10px;
+.menu .item .btn:before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #4fbfa8;
+    left: 20px;
+    bottom: -7px;
+    transform: rotate(45deg);
 }
 
-.badge {
-    font-size: 0.700rem;
-    text-align: center;
+.menu .item .btn i {
+    margin-right: 10px;
+}
+
+.menu .item .smenu {
+    background: white;
+    overflow: hidden;
+}
+
+.menu .item .smenu a {
+    display: block;
+    padding: 5px 26px;
+    color: black;
+    font-size: 14px;
+    margin: 4px 0;
+    position: relative;
+}
+
+.menu .item .smenu a:before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background: #3d9970;
+    left: 0;
+    top: 0;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.menu .item .smenu a:hover:before {
+    opacity: 1;
+}
+
+.menu .item:target .smenu {
+    max-height: 10em;
+}
+
+.adverts #advert-image {
+    width: auto;
+    height: 200px;
 
 }

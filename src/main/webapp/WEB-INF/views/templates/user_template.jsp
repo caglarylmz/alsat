@@ -7,7 +7,6 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 
-
 <!DOCTYPE html>
 <html lang=tr>
 <head>

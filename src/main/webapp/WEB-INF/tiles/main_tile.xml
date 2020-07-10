@@ -6,8 +6,8 @@
         <definition name="main_template" template="/WEB-INF/views/templates/main/main_template.jsp">
                 <put-attribute name="header" value="/WEB-INF/views/layouts/main/navbar.jsp" />
                 <put-attribute name="topbar" value="/WEB-INF/views/layouts/main/topbar.jsp" />
-                <put-attribute name="sidebar" value="/WEB-INF/views/layouts/main/sidebar.jsp"></put-attribute>
-
+                <put-attribute name="sidebar" value="/WEB-INF/views/layouts/main/sidebar.jsp"/>
+                <put-attribute name="footer" value="/WEB-INF/views/layouts/main/footer.jsp"/>
                 <put-attribute name="content" value="" />
         </definition>
         <!-- Index -->

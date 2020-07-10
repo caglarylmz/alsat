@@ -2,17 +2,23 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<nav class="navbar navbar-expand-lg border-bottom navbar-light">
-	<div class="container">
+<div class="container-fluid">
+	<!--	<div class="row">
+		<div class="col-lg-6 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">Günün reklamı</a><a href="#"
+				class="ml-1">Reklam!</a></div>
+		<div class="col-lg-6 text-center text-lg-right">
+			<ul class="menu list-inline mb-0">
+				<li class="list-inline-item"><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+	</div>
+	-->
+	<nav class="navbar navbar-expand-lg border-bottom navbar-light">
 		<a href="/" class="nav-link">
 			<img src="${contextRoot}/resources/assets/images/logo.png" height="40px" />
 		</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-			aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="container-fluid">
+		<a class="d-block d-lg-none" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+		<div class="container">
 			<div class="col-lg-2"></div>
 			<div class="col-lg-6 align-items-center">
 				<form class="my-0">
@@ -68,5 +74,5 @@
 				</ul>
 			</div>
 		</div>
-	</div>
-</nav>
+	</nav>
+</div>
