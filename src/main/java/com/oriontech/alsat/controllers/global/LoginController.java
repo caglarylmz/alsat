@@ -41,7 +41,7 @@ public class LoginController {
 		if (logout != null)
 			modelMap.put("logout", "Çıkış başarılı!");
 
-		return "home.login.index";
+		return "main.secure.login";
 	}
 
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
@@ -53,7 +53,7 @@ public class LoginController {
 	public String register(ModelMap model) {
 		Account account = new Account();
 		model.addAttribute("account", account);
-		return "home.login.register";
+		return "main.secure.register";
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -61,7 +61,7 @@ public class LoginController {
 			RedirectAttributes redirectAttributes) {
 
 		if(result.hasErrors()) {
-			return "home.login.register";
+			return "main.secure.register";
 		}
 		
 		

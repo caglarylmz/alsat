@@ -39,7 +39,7 @@
 		</div>
 		<div class="user-panel mt-2">
 			<a class="btn-block p-0 btn btn-outline-secondary btn-round bg-olive"
-				href="${pageContext.request.contextPath}/uye">İlan ver</a>
+				href="${pageContext.request.contextPath}/admin/advert/add">İlan ver</a>
 		</div>
 	</sec:authorize>
 	<sec:authorize access="!isAuthenticated()">
@@ -49,7 +49,7 @@
 		</div>
 		<div class="user-panel mt-2">
 			<a class="btn-block p-0 btn btn-outline-secondary btn-round bg-olive"
-				href="${pageContext.request.contextPath}/uye">İlan ver</a>
+				href="${pageContext.request.contextPath}/admin/advert/add">İlan ver</a>
 		</div>
 	</sec:authorize>
 	<!-- Sidebar Menu -->

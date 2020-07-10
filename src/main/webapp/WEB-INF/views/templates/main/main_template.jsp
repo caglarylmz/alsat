@@ -87,8 +87,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		src="${pageContext.request.contextPath}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="${pageContext.request.contextPath}/resources/admin/dist/js/adminlte.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/main/vendor/jquery.cookie/jquery.cookie.js"> </script>
-	<script src="${pageContext.request.contextPath}/resources/main/js/front.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/main/js/custom.js"></script>
 
 </body>
