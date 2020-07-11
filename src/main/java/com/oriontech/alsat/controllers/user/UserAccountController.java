@@ -6,14 +6,12 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.oriontech.alsat.models.Account;
 import com.oriontech.alsat.services.AccountService;
-import com.oriontech.alsat.services.RoleService;
 
 @Controller
 @RequestMapping("/user/account")

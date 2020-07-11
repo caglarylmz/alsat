@@ -1,6 +1,5 @@
 package com.oriontech.alsat.models;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,10 +18,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

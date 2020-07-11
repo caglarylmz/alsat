@@ -1,7 +1,6 @@
 package com.oriontech.alsat.controllers.global;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,15 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.oriontech.alsat.models.Category;
 import com.oriontech.alsat.services.AdvertService;
-import com.oriontech.alsat.services.CategoryService;
 
 @Controller
 @RequestMapping("/advert")
 public class HomeAdvertController {
 	@Autowired
 	private AdvertService advertService;
-	@Autowired
-	private CategoryService categoryService;
+
 
 	@GetMapping(value = "details/{id}")
 	public String details(@PathVariable("id") long id, ModelMap model) {

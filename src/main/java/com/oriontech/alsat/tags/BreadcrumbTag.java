@@ -25,13 +25,13 @@ public class BreadcrumbTag extends RequestContextAwareTag {
 
 	@Override
 	protected int doStartTagInternal() throws Exception {
-		List<Category> breadcrumbs = getParentCategoryFromAdvert(this.category);
-		JspWriter writer = pageContext.getOut();
+		final List<Category> breadcrumbs = getParentCategoryFromAdvert(this.category);
+		final JspWriter writer = pageContext.getOut();
 		writer.write("<nav aria-label=\"breadcrumb\">");
 		writer.write("<ol class=\"breadcrumb\">");
-		for (Category category : breadcrumbs) {
+		for (final Category category : breadcrumbs) {
 			writer.write("<li class=\"breadcrumb-item\">");
-			// TODO:tıklanıldığında gidilecek link yazılacak
+			// TODO: tıklanıldığında gidilecek link yazılacak
 			writer.write("<a href=\"" +getRequestContext().getContextPath() + "/"+ category.getId() + "\" >" + category.getName() + "</a>");
 			writer.write("</li>");
 		}
@@ -42,7 +42,7 @@ public class BreadcrumbTag extends RequestContextAwareTag {
 	}
 
 	List<Category> getParentCategoryFromAdvert(Category category) {
-		List<Category> advertsParentsCategories = new ArrayList<>();
+		final List<Category> advertsParentsCategories = new ArrayList<>();
 		advertsParentsCategories.add(category);
 		do {
 			category = category.getParentCategory();

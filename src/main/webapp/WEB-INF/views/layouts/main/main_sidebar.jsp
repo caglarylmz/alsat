@@ -55,9 +55,10 @@
 	<!-- Sidebar Menu -->
 	<nav class="mt-2">
 		<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+			<!--ANA KATEGORİ-->
 			<c:if test="${isMain}">
 				<c:forEach var="c" items="${parentCategories}">
-					<li class="nav-item has-treeview">
+					<li class="nav-item has-treeview menu-open">
 						<a href="#" class="nav-link">
 							<i class="nav-icon fas fa-tachometer-alt"></i>
 							<p>
@@ -65,20 +66,97 @@
 								<i class="right fas fa-angle-left"></i>
 							</p>
 						</a>
-						<ul class="nav nav-treeview">
+						<ul class="nav nav-treeview" >
 							<c:forEach var="c_sub1" items="${c.subCategories}">
 								<li class="nav-item">
-									<a href="../../index.html" class="nav-link">
+									<a href='${pageContext.request.contextPath}/category/${c_sub1.id}/adverts'
+										class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>${c_sub1.name}</p>
+										<span
+											class="badge badge-secondary text-white float-right">${c_sub1.adverts.size()}</span>
 									</a>
 								</li>
 							</c:forEach>
 						</ul>
 					</li>
-
 				</c:forEach>
 			</c:if>
+			<!--ANA KATEGORİ-->
+			<!--ALT KATEGORİ(Alt kategoriye sahip)-->
+			<c:if test="${isHaveSub}">
+				<li class="nav-item has-treeview menu-open">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-tachometer-alt"></i>
+						<p>
+							${categories[0].parentCategory.name}
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview ">
+						<c:forEach var="c" items="${categories}">
+							<li class="nav-item">
+								<a href='${pageContext.request.contextPath}/category/${c.id}/adverts' class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>${c.name}</p>
+									<span
+										class="badge badge-secondary text-white float-right">${c.adverts.size()}</span>
+								</a>
+							</li>
+						</c:forEach>
+					</ul>
+				</li>
+			</c:if>
+			<!--ALT KATEGORİ(Alt kategoriye sahip)-->
+			<!--EN ALT KATEGORİ-->
+			<c:if test="${isSub}">
+				<li class="nav-item has-treeview menu-open">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-tachometer-alt"></i>
+						<p>
+							${category.name}
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<c:forEach var="t" items="${category.tips}">
+							<c:if test="${t.id == tip.id}">
+								<li class="nav-item">
+									<a href='${pageContext.request.contextPath}/tip/${t.id}/adverts'
+										class="nav-link active">
+										<i class="far fa-circle nav-icon"></i>
+										<p>${c.name}${t.name}</p>
+									</a>
+								</li>
+							</c:if>
+							<c:if test="${t.id != tip.id}">
+								<li class="nav-item">
+									<a href='${pageContext.request.contextPath}/tip/${t.id}/adverts' class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>${c.name}${t.name}</p>
+									</a>
+								</li>
+							</c:if>
+
+						</c:forEach>
+					</ul>
+				</li>
+			</c:if>
+			<!--EN ALT KATEGORİ-->
+			<!--TIP
+			<c:if test="${isTip}">
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-tachometer-alt"></i>
+						<p>
+							${tip.name}
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+				</li>
+			</c:if>
+			TIP-->
+
 
 		</ul>
 	</nav>

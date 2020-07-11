@@ -46,16 +46,16 @@
 					<div class="dropdown">
 						<button class="btn btn-outline-primary btn-sm btn-circle" type="button" id="dropdownMenu"
 							data-toggle="dropdown" aria-expanded="false">
-							<i class="fas fa-user-circle fa-2x"></i>
+							<i class="fas fa-user-circle"></i>
 						</button>
-						<div v-if="showPanel" class="dropdown-menu" aria-labelledby="dropdownMenu" aria-expanded="false"
+						<div class="dropdown-menu" aria-labelledby="dropdownMenu" aria-expanded="false"
 							aria-dropeffect="popup">
 							<a href="${pageContext.request.contextPath}/user/dashboard"
-								class="dropdown-item border-bottom">Panel</a>
+								class="dropdown-item border-bottom bg-olive">Panel</a>
 							<a href="${pageContext.request.contextPath}/user/account/profile"
-								class="dropdown-item border-bottom">Profil</a>
+								class="dropdown-item border-bottom bg-olive">Profil</a>
 
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/uye/process-logout">
+							<a class="dropdown-item bg-olive" href="${pageContext.request.contextPath}/uye/process-logout">
 								<i class="fa fa-power-off m-0 mr-2"></i>Çıkış
 							</a>
 						</div>

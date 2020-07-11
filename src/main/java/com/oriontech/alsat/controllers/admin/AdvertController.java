@@ -29,9 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oriontech.alsat.models.Advert;
 import com.oriontech.alsat.models.AdvertDetail;
-import com.oriontech.alsat.models.Category;
 import com.oriontech.alsat.models.Photo;
-import com.oriontech.alsat.models.Tip;
 import com.oriontech.alsat.repositories.AdvertDetailRepository;
 import com.oriontech.alsat.repositories.TipRepository;
 import com.oriontech.alsat.repositories.YasRepository;

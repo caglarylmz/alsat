@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oriontech.alsat.models.Account;
-import com.oriontech.alsat.models.Role;
 import com.oriontech.alsat.services.AccountService;
 import com.oriontech.alsat.services.RoleService;
 

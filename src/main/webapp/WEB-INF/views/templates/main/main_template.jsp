@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-	<title>AdminLTE 3 | Top Navigation + Sidebar</title>
+	<title>AlSat | Ana Sayfa</title>
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet"
@@ -49,8 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-			<!-- Main content -->
-			<div class="content">
+			<!-- Main content --> 
 				<div class="container">
 					<div class="row">
 						<!-- *** SIDEBAR *** -->
@@ -83,8 +82,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 	<script src="${pageContext.request.contextPath}/resources/admin/plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js">
+	</script>
 	<!-- AdminLTE App -->
 	<script src="${pageContext.request.contextPath}/resources/admin/dist/js/adminlte.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/main/js/custom.js"></script>

@@ -4,12 +4,9 @@ import java.util.List;
 
 import javax.servlet.jsp.JspWriter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
 import com.oriontech.alsat.models.Category;
-import com.oriontech.alsat.services.CategoryService;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

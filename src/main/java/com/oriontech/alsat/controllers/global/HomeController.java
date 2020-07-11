@@ -51,7 +51,9 @@ public class HomeController {
 
 	@GetMapping(value = "tip/{id}/adverts")
 	public String tipAdverts(@PathVariable("id") long id, ModelMap modelMap) {
+		modelMap.put("isSub", true);
 		modelMap.put("isTip", true);
+		modelMap.put("category", tipRepository.findById(id).get().getCategory());
 		modelMap.put("tip", tipRepository.findById(id).get());
 		modelMap.put("latestAdverts", advertService.tipsOfAdverts(id));
 

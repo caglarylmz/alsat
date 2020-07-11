@@ -64,6 +64,10 @@
     opacity: 1;
 }
 
+.menu .item .smenu .active {
+    background: #3d9970;
+}
+
 .menu .item:target .smenu {
     max-height: 10em;
 }
