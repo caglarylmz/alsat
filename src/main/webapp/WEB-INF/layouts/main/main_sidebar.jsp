@@ -12,7 +12,7 @@
 			<button class="btn-block p-0" data-toggle="collapse" aria-expanded="false" data-target="#userControls"
 				aria-expanded="false" aria-controls="userControls">
 				<img src="${pageContext.request.contextPath}/resources/assets/images/user.png"
-					class="img-circle elevation-2 mr-2" alt="User Image">Admin
+					class="img-circle elevation-2 mr-2" alt="User Image">${pageContext.request.userPrincipal.name}
 				</a>
 				<div class="collapse" id="userControls">
 					<div class="bg-olive">
@@ -66,7 +66,7 @@
 								<i class="right fas fa-angle-left"></i>
 							</p>
 						</a>
-						<ul class="nav nav-treeview" >
+						<ul class="nav nav-treeview">
 							<c:forEach var="c_sub1" items="${c.subCategories}">
 								<li class="nav-item">
 									<a href='${pageContext.request.contextPath}/category/${c_sub1.id}/adverts'
@@ -123,7 +123,7 @@
 							<c:if test="${t.id == tip.id}">
 								<li class="nav-item">
 									<a href='${pageContext.request.contextPath}/tip/${t.id}/adverts'
-										class="nav-link active">
+										class="nav-link active" style="background-color:#20c997;">
 										<i class="far fa-circle nav-icon"></i>
 										<p>${c.name}${t.name}</p>
 									</a>

@@ -32,8 +32,8 @@
 			<a href="#" class="btn"><i class="fas fa-home"></i>${categories[0].parentCategory.name}</a>
 			<c:forEach var="c" items="${categories}">
 				<div class="smenu">
-					<a class="" href='${pageContext.request.contextPath}/category/${c.id}/adverts'></a>${c.name}<span
-						class="badge badge-secondary text-white float-right">${c.adverts.size()}</span></a>
+					<a class="" href='${pageContext.request.contextPath}/category/${c.id}/adverts'>${c.name}<span
+							class="badge badge-secondary text-white float-right">${c.adverts.size()}</span></a>
 				</div>
 			</c:forEach>
 		</li>
@@ -44,7 +44,8 @@
 <c:if test="${isSub}">
 	<div class="menu">
 		<li class="item">
-			<a class="btn"><i class="fas fa-home"></i>${category.name}</a>
+			<a href='${pageContext.request.contextPath}/category/${category.id}/adverts' class="btn"><i
+					class="fas fa-home"></i>${category.name}</a>
 			<c:forEach var="t" items="${category.tips}">
 				<c:if test="${t.id == tip.id}">
 					<div class="smenu">

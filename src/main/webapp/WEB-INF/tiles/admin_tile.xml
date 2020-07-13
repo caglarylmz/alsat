@@ -3,10 +3,10 @@
 
 <tiles-definitions>
         <!-- Base Definition -->
-        <definition name="admin_template" template="/WEB-INF/views/templates/admin_template.jsp">
-                <put-attribute name="navbar" value="/WEB-INF/views/layouts/admin/navbar.jsp" />
-                <put-attribute name="sidebar" value="/WEB-INF/views/layouts/admin/sidebar.jsp"></put-attribute>
-                <put-attribute name="footer" value="/WEB-INF/views/layouts/admin/footer.jsp"></put-attribute>
+        <definition name="admin_template" template="/WEB-INF/templates/admin_template.jsp">
+                <put-attribute name="navbar" value="/WEB-INF/layouts/admin/navbar.jsp" />
+                <put-attribute name="sidebar" value="/WEB-INF/layouts/admin/sidebar.jsp"></put-attribute>
+                <put-attribute name="footer" value="/WEB-INF/layouts/admin/footer.jsp"></put-attribute>
                 <put-attribute name="content" value="" />
         </definition>
         <!-- Dashboard -->

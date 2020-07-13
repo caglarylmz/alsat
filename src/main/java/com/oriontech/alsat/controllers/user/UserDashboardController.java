@@ -7,12 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("user/dashboard")
 public class UserDashboardController {
-	
+
 	@GetMapping()
 	public String index() {
-		
+
 		return "user.dashboard.index";
 	}
-	
 
 }

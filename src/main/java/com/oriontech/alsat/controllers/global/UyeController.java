@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,11 +21,12 @@ import com.oriontech.alsat.services.RoleService;
 
 @Controller
 @RequestMapping("uye")
-public class LoginController {
+public class UyeController {
 
 	@Autowired
 	AccountService accountService;
-	@Autowired RoleService roleService;
+	@Autowired
+	RoleService roleService;
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
@@ -59,22 +61,21 @@ public class LoginController {
 	public String register(@ModelAttribute("account") @Valid Account account, BindingResult result,
 			RedirectAttributes redirectAttributes) {
 
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "main.secure.register";
 		}
-		
-		
-		if(accountService.existByMail(account.getMail())) {
-			redirectAttributes.addFlashAttribute("msgMail","Email adresi kullanılıyor");
+
+		if (accountService.existByMail(account.getMail())) {
+			redirectAttributes.addFlashAttribute("msgMail", "Email adresi kullanılıyor");
 			return "redirect:/uye/register";
 		}
-		if(accountService.existByUsername(account.getUsername())){
-			redirectAttributes.addFlashAttribute("msgUsername","Username kullanılıyor");
+		if (accountService.existByUsername(account.getUsername())) {
+			redirectAttributes.addFlashAttribute("msgUsername", "Username kullanılıyor");
 			return "redirect:/uye/register";
-		}			  
+		}
 
 		if (!account.getPassword().equals(account.getMatchingPassword())) {
-			redirectAttributes.addFlashAttribute("msgPassword","Şifre eşleşmiyor!");
+			redirectAttributes.addFlashAttribute("msgPassword", "Şifre eşleşmiyor!");
 			return "redirect:/uye/register";
 		}
 		account.setPassword(encoder.encode(account.getPassword()));
@@ -96,15 +97,20 @@ public class LoginController {
 
 	@RequestMapping(value = "welcome", method = RequestMethod.GET)
 	public String welcome() {
-		// Authentication authentication =
-		// SecurityContextHolder.getContext().getAuthentication();
-		/*
-		 * boolean hasUserRole = authentication.getAuthorities().stream() .anyMatch(r ->
-		 * r.getAuthority().equals("ROLE_USER")); boolean hasAdminRole =
-		 * authentication.getAuthorities().stream() .anyMatch(r ->
-		 * r.getAuthority().equals("ROLE_ADMIN"));
-		 */
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		return "redirect:/admin/dashboard";
+		boolean hasUserRole = authentication.getAuthorities().stream()
+				.anyMatch(r -> r.getAuthority().equals("ROLE_USER"));
+		boolean hasAdminRole = authentication.getAuthorities().stream()
+				.anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+
+		if (hasUserRole) {
+			return "redirect:/user/dashboard";
+		} else if (hasAdminRole) {
+			return "redirect:/admin/dashboard";
+		} else {
+			return "redirect:/";
+		}
+
 	}
 }

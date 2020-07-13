@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="mt" uri="http://localhost:8080/alsat/categoryList"%>
+<%@ taglib prefix="br" uri="http://localhost:8080/alsat/tags/breadcrumb"%>
 <%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
@@ -49,32 +49,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-			<!-- Main content --> 
-				<div class="container">
-					<div class="row">
-						<!-- *** SIDEBAR *** -->
-						<div class="col-lg-3 d-none d-lg-block">
-							<tiles:insertAttribute name="sidebar"></tiles:insertAttribute>
-						</div>
-						<!-- *** SIDEBAR *** -->
-						<!-- *** CONTAIN *** -->
-						<div class="col-lg-9 col-12">
-							<!-- *** VIEW *** -->
-							<tiles:insertAttribute name="content"></tiles:insertAttribute>
-							<!-- *** VIEW *** -->
-
-						</div>
-						<!-- *** CONTAIN *** -->
+			<!-- Main content -->
+			<div class="container">
+				<div class="row">
+					<!-- *** SIDEBAR *** -->
+					<div class="col-lg-3 d-none d-lg-block">
+						<tiles:insertAttribute name="sidebar"></tiles:insertAttribute>
 					</div>
-					<!-- /.row -->
-				</div><!-- /.container-fluid -->
-			</div>
-			<!-- /.content -->
-		</div>
-		<!-- /.content-wrapper -->
+					<!-- *** SIDEBAR *** -->
+					
+					<!-- *** CONTAIN *** -->
+					<div class="col-lg-9 col-12">
 
-		<!-- Main Footer -->
-		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+						<!-- *** VIEW *** -->
+						<tiles:insertAttribute name="content"></tiles:insertAttribute>
+						<!-- *** VIEW *** -->
+
+					</div>
+					<!-- *** CONTAIN *** -->
+				</div>
+				<!-- /.row -->
+			</div><!-- /.container-fluid -->
+		</div>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+
+	<!-- Main Footer -->
+	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>
 	<!-- ./wrapper -->
 

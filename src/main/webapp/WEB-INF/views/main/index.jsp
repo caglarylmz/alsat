@@ -3,7 +3,43 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
+
 <div class="adverts">
+	<c:if test="${!isMain}">
+		<c:if test="${isHaveSub}">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/">Ana Sayfa</a></li>
+					<li class="breadcrumb-item active" aria-current="page">${categories[0].parentCategory.name}</li>
+				</ol>
+			</nav>
+		</c:if>
+		<c:if test="${isSub && !isTip}">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/">Home</a></li>
+					<li class="breadcrumb-item"><a
+							href="${pageContext.request.contextPath}/category/${category.parentCategory.id}/adverts">${category.parentCategory.name}</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">${category.name}</li>
+				</ol>
+			</nav>
+		</c:if>
+		<c:if test="${isTip}">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/">Home</a></li>
+					<li class="breadcrumb-item"><a
+							href="${pageContext.request.contextPath}/category/${category.parentCategory.id}/adverts">${category.parentCategory.name}</a>
+					</li>
+					<li class="breadcrumb-item"><a
+							href="${pageContext.request.contextPath}/category/${category.id}/adverts">${category.name}</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">${tip.name}</li>
+				</ol>
+			</nav>
+		</c:if>
+	</c:if>
 	<div class="card card-solid">
 		<div class="card-body pb-0">
 			<div class="row d-flex align-items-stretch">

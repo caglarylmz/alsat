@@ -52,7 +52,7 @@ public class Account {
 	@Transient
 	private String matchingPassword;
 	private String profilePhoto;
-	@Pattern(regexp ="[0-9\\s]{11}")
+	@Pattern(regexp ="[0-9\\s]{11}", message = "Uygun olmayan format.")
 	private String phone;
 	private String adressDetail;
 	private String city;

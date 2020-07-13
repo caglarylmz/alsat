@@ -3,12 +3,12 @@
 
 <tiles-definitions>
         <!-- BASE DEFINITION -->
-        <definition name="main_template" template="/WEB-INF/views/templates/main/main_template.jsp">
-                <put-attribute name="header" value="/WEB-INF/views/layouts/main/navbar.jsp" />
-                <put-attribute name="topbar" value="/WEB-INF/views/layouts/main/topbar.jsp" />
-                <put-attribute name="sidebar" value="/WEB-INF/views/layouts/main/sidebar.jsp" />
-                <put-attribute name="main-sidebar" value="/WEB-INF/views/layouts/main/main_sidebar.jsp" />
-                <put-attribute name="footer" value="/WEB-INF/views/layouts/main/footer.jsp" />
+        <definition name="main_template" template="/WEB-INF/templates/main/main_template.jsp">
+                <put-attribute name="header" value="/WEB-INF/layouts/main/navbar.jsp" />
+                <put-attribute name="topbar" value="/WEB-INF/layouts/main/topbar.jsp" />
+                <put-attribute name="sidebar" value="/WEB-INF/layouts/main/sidebar.jsp" />
+                <put-attribute name="main-sidebar" value="/WEB-INF/layouts/main/main_sidebar.jsp" />
+                <put-attribute name="footer" value="/WEB-INF/layouts/main/footer.jsp" />
                 <put-attribute name="content" value="" />
         </definition>
         <!-- Index -->
@@ -18,9 +18,9 @@
         <!-- BASE DEFINITION -->
 
         <!-- EMPTY DEFINITION-->
-        <definition name="main_empty_template" template="/WEB-INF/views/templates/main/main_empty_template.jsp">
-                <put-attribute name="header" value="/WEB-INF/views/layouts/main/navbar.jsp" />
-                <put-attribute name="footer" value="/WEB-INF/views/layouts/main/footer.jsp" />
+        <definition name="main_empty_template" template="/WEB-INF/templates/main/main_empty_template.jsp">
+                <put-attribute name="header" value="/WEB-INF/layouts/main/navbar.jsp" />
+                <put-attribute name="footer" value="/WEB-INF/layouts/main/footer.jsp" />
                 <put-attribute name="content" value="" />
         </definition>
         <!-- Login-->
