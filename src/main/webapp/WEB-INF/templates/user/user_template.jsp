@@ -62,7 +62,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 					<!-- *** CONTAIN *** -->
 					<div class="col-lg-9 col-12">
-
 						<!-- *** VIEW *** -->
 						<tiles:insertAttribute name="content"></tiles:insertAttribute>
 						<!-- *** VIEW *** -->

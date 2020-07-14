@@ -105,7 +105,7 @@ public class UyeController {
 				.anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
 
 		if (hasUserRole) {
-			return "redirect:/user/dashboard";
+			return "redirect:/user/panel";
 		} else if (hasAdminRole) {
 			return "redirect:/admin/dashboard";
 		} else {

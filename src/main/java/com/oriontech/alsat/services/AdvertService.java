@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.oriontech.alsat.models.Advert;
 import com.oriontech.alsat.models.AdvertDetail;
 import com.oriontech.alsat.models.Category;
-import com.oriontech.alsat.models.Tip;
 import com.oriontech.alsat.repositories.AdvertDetailRepository;
 import com.oriontech.alsat.repositories.AdvertRepository;
 import com.oriontech.alsat.repositories.TipRepository;
@@ -80,7 +79,5 @@ public class AdvertService {
 		}
 		return adverts;
 	}
-
-
 
 }

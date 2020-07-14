@@ -12,8 +12,8 @@
                 <put-attribute name="content" value="" />
         </definition>
         <!-- Index -->
-        <definition name="user.dashboard.index" extends="user_template">
-                <put-attribute name="content" value="/WEB-INF/views/user/dashboard/ozet.jsp"></put-attribute>
+        <definition name="user.panel.ozet" extends="user_template">
+                <put-attribute name="content" value="/WEB-INF/views/user/panel/ozet.jsp"></put-attribute>
         </definition>
         <!-- BASE DEFINITION -->
 
