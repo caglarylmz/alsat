@@ -2,8 +2,7 @@
 	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-
+<!--Breadcrumb-->
 <div class="adverts">
 	<c:if test="${!isMain}">
 		<c:if test="${isHaveSub}">
@@ -40,6 +39,8 @@
 			</nav>
 		</c:if>
 	</c:if>
+	<!--Breadcrumb-->
+	<!--Adverts-->
 	<div class="card card-solid">
 		<div class="card-body pb-0">
 			<div class="row d-flex align-items-stretch">
@@ -107,6 +108,6 @@
 		</div>
 		<!-- /.card-footer -->
 	</div>
-
+	<!--Adverts-->
 
 </div>

@@ -50,12 +50,18 @@
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenu" aria-expanded="false"
 							aria-dropeffect="popup">
-							<a href="${pageContext.request.contextPath}/user/dashboard"
-								class="dropdown-item border-bottom bg-olive">Panel</a>
-							<a href="${pageContext.request.contextPath}/user/account/profile"
-								class="dropdown-item border-bottom bg-olive">Profil</a>
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<a href="${pageContext.request.contextPath}/admin/dashboard"
+									class="dropdown-item border-bottom  btn-outline-primary">Admin Panel</a>								
+							</sec:authorize>
+							<sec:authorize access="hasRole('ROLE_USER')">
+								<a href="${pageContext.request.contextPath}/user/dashboard"
+									class="dropdown-item border-bottom  btn-outline-primary">Panel</a>
+								<a href="${pageContext.request.contextPath}/user/account/profile"
+									class="dropdown-item border-bottom  btn-outline-primary">Profil</a>
+							</sec:authorize>
 
-							<a class="dropdown-item bg-olive"
+							<a class="dropdown-item btn-outline-primary"
 								href="${pageContext.request.contextPath}/uye/process-logout">
 								<i class="fa fa-power-off m-0 mr-2"></i>Çıkış
 							</a>

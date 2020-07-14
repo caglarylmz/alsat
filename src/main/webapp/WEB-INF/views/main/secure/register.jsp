@@ -37,7 +37,7 @@
 					<s:errors path="fullName" />
 				</div>
 				<div class="input-group mb-3">
-					<s:input path="username" type="text" placeholder="Kullanıcı Adı" id="username"
+					<s:input path="username" type="text" placeholder="Kullanıcı Adı" id="username" autocomplete="username"
 						cssClass="form-control" />
 					<div class="input-group-append">
 						<div class="input-group-text">
@@ -50,7 +50,7 @@
 					</c:if>
 				</div>
 				<div class="input-group mb-3">
-					<s:input path="mail" type="email" placeholder="Email" id="mail" required="required"
+					<s:input path="mail" type="email" placeholder="Email" id="mail" required="required" autocomplete="email"
 						cssClass="form-control" />
 					<div class="input-group-append">
 						<div class="input-group-text">
@@ -63,7 +63,7 @@
 					</c:if>
 				</div>
 				<div class="input-group mb-3">
-					<s:password path="password" placeholder="Şifre" id="password" required="required"
+					<s:password path="password" placeholder="Şifre" id="password" required="required" autocomplete="new-password"
 						cssClass="form-control" />
 					<div class="input-group-append">
 						<div class="input-group-text">
@@ -73,7 +73,7 @@
 					<s:errors path="password" />
 				</div>
 				<div class="input-group mb-3">
-					<s:password path="matchingPassword" id="matchingPassword" placeholder="Şifre Doğrula"
+					<s:password path="matchingPassword" id="matchingPassword" placeholder="Şifre Doğrula" autocomplete="new-password"
 						cssClass="form-control" required="required" />
 					<div class="input-group-append">
 						<div class="input-group-text">

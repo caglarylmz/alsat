@@ -27,7 +27,7 @@
 			</c:if>
 			<form action="${pageContext.request.contextPath}/uye/process-login" method="post">
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="Kullanıcı Adı" name="username">
+					<input type="text" class="form-control" placeholder="Kullanıcı Adı" name="username" autocomplete="username">
 					<div class="input-group-append">
 						<div class="input-group-text">
 							<span class="fas fa-user"></span>
@@ -35,7 +35,7 @@
 					</div>
 				</div>
 				<div class="input-group mb-3">
-					<input type="password" class="form-control" placeholder="Password" name="password">
+					<input type="password" class="form-control" placeholder="Password" name="password" autocomplete="current-password">
 					<div class="input-group-append">
 						<div class="input-group-text">
 							<span class="fas fa-lock"></span>

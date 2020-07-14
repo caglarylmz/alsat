@@ -4,11 +4,11 @@
 <tiles-definitions>
         <!-- BASE DEFINITION -->
         <definition name="user_template" template="/WEB-INF/templates/user/user_template.jsp">
-                <put-attribute name="header" value="/WEB-INF/layouts/user/navbar.jsp" />
-                <put-attribute name="topbar" value="/WEB-INF/layouts/user/topbar.jsp" />
+                <put-attribute name="header" value="/WEB-INF/layouts/main/navbar.jsp" />
+                <put-attribute name="topbar" value="/WEB-INF/layouts/main/topbar.jsp" />
                 <put-attribute name="sidebar" value="/WEB-INF/layouts/user/sidebar.jsp" />
                 <put-attribute name="user-sidebar" value="/WEB-INF/layouts/user/user_sidebar.jsp" />
-                <put-attribute name="footer" value="/WEB-INF/layouts/user/footer.jsp" />
+                <put-attribute name="footer" value="/WEB-INF/layouts/main/footer.jsp" />
                 <put-attribute name="content" value="" />
         </definition>
         <!-- Index -->

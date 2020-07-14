@@ -57,7 +57,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<tiles:insertAttribute name="sidebar"></tiles:insertAttribute>
 					</div>
 					<!-- *** SIDEBAR *** -->
-					
+
 					<!-- *** CONTAIN *** -->
 					<div class="col-lg-9 col-12">
 

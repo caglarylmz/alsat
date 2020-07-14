@@ -22,11 +22,11 @@
 .menu .item .btn:before {
     content: "";
     position: absolute;
-    width: 14px;
-    height: 14px;
+    width: 10px;
+    height: 10px;
     background: #4fbfa8;
-    left: 20px;
-    bottom: -7px;
+    left: 15px;
+    bottom: -6px;
     transform: rotate(45deg);
 }
 
@@ -41,10 +41,10 @@
 
 .menu .item .smenu a {
     display: block;
-    padding: 5px 26px;
+    padding: 3px 26px;
     color: black;
     font-size: 14px;
-    margin: 4px 0;
+    margin: 2px 0;
     position: relative;
 }
 
@@ -72,8 +72,39 @@
     max-height: 10em;
 }
 
+.category-icon {
+    text-align: left;
+    position: absolute;
+    height:20px;
+    left: 0;
+    margin-left: 5px;
+}
+
+
+
+
 .adverts #advert-image {
     width: auto;
-    height: 200px;
+    height: 175px;
 
+}
+
+.adverts .card-body {
+    padding: 5px;
+
+}
+
+.adverts .card-footer {
+    padding: 5px;
+
+}
+
+.login-box {
+    display: block;
+    margin: auto;
+}
+
+.register-box {
+    display: block;
+    margin: auto;
 }

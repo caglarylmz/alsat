@@ -10,8 +10,9 @@
 		<c:forEach var="c" items="${parentCategories}">
 			<c:if test="${c.subCategories != null}">
 				<li class="item">
-					<a href='${pageContext.request.contextPath}/category/${c.id}/adverts' class="btn"><i
-							class="fas fa-home"></i>${c.name}</a>
+					<a href='${pageContext.request.contextPath}/category/${c.id}/adverts' class="btn"><span><img
+								src="${pageContext.request.contextPath}/resources/main/img/category/${c.icon}"
+								class="category-icon" style="width: 30px;"></span>${c.name}</a>
 					<div class="smenu">
 						<c:forEach var="c_sub1" items="${c.subCategories}">
 							<a class=""
@@ -44,8 +45,8 @@
 <c:if test="${isSub}">
 	<div class="menu">
 		<li class="item">
-			<a href='${pageContext.request.contextPath}/category/${category.id}/adverts' class="btn"><i
-					class="fas fa-home"></i>${category.name}</a>
+			<a href='${pageContext.request.contextPath}/category/${category.id}/adverts'
+				class="btn">${category.name}</a>
 			<c:forEach var="t" items="${category.tips}">
 				<c:if test="${t.id == tip.id}">
 					<div class="smenu">

@@ -9,26 +9,36 @@
 	<!-- Sidebar user (optional) -->
 	<sec:authorize access="isAuthenticated()">
 		<div class="user-panel mt-2">
-			<button class="btn-block p-0" data-toggle="collapse" aria-expanded="false" data-target="#userControls"
-				aria-expanded="false" aria-controls="userControls">
+			<button class="btn-block p-0  btn-outline-primary" data-toggle="collapse" aria-expanded="false"
+				data-target="#userControls" aria-expanded="false" aria-controls="userControls">
 				<img src="${pageContext.request.contextPath}/resources/assets/images/user.png"
 					class="img-circle elevation-2 mr-2" alt="User Image">${pageContext.request.userPrincipal.name}
 				</a>
 				<div class="collapse" id="userControls">
-					<div class="bg-olive">
+					<div class="bg-light">
 						<ul class="nav nav-pills nav-sidebar flex-column">
-							<li>
-								<a href="${pageContext.request.contextPath}/user/dashboard"
-									class="dropdown-item border-bottom bg-olive">Panel</a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/user/account/profile"
-									class="dropdown-item border-bottom bg-olive"><i
-										class="fa fa-user m-0 mr-2"></i>Profil</a>
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<li>
+									<a href="${pageContext.request.contextPath}/admin/dashboard"
+										class="dropdown-item border-bottom  btn-outline-primary">Panel</a>
+								</li>
 
-							</li>
+							</sec:authorize>
+							<sec:authorize access="hasRole('ROLE_USER')">
+								<li>
+									<a href="${pageContext.request.contextPath}/user/dashboard"
+										class="dropdown-item border-bottom  btn-outline-primary">Panel</a>
+								</li>
+								<li>
+									<a href="${pageContext.request.contextPath}/user/account/profile"
+										class="dropdown-item border-bottom  btn-outline-primary"><i
+											class="fa fa-user m-0 mr-2"></i>Profil</a>
+
+								</li>
+							</sec:authorize>
+
 							<li>
-								<a class="dropdown-item bg-olive"
+								<a class="dropdown-item  btn-outline-primary"
 									href="${pageContext.request.contextPath}/uye/process-logout">
 									<i class="fa fa-power-off m-0 mr-2"></i>Çıkış
 								</a>
@@ -38,17 +48,17 @@
 				</div>
 		</div>
 		<div class="user-panel mt-2">
-			<a class="btn-block p-0 btn btn-outline-secondary btn-round bg-olive"
+			<a class="btn-block p-0 btn btn-round  btn-primary"
 				href="${pageContext.request.contextPath}/admin/advert/add">İlan ver</a>
 		</div>
 	</sec:authorize>
 	<sec:authorize access="!isAuthenticated()">
 		<div class="user-panel mt-2">
-			<a class="btn-block p-0 btn btn-outline-secondary btn-round bg-olive"
+			<a class="btn-block p-0 btn  btn-round btn-outline-primary"
 				href="${pageContext.request.contextPath}/uye">Giriş Yap</a>
 		</div>
 		<div class="user-panel mt-2">
-			<a class="btn-block p-0 btn btn-outline-secondary btn-round bg-olive"
+			<a class="btn-block p-0 btn  btn-round btn-primary"
 				href="${pageContext.request.contextPath}/admin/advert/add">İlan ver</a>
 		</div>
 	</sec:authorize>
@@ -60,7 +70,9 @@
 				<c:forEach var="c" items="${parentCategories}">
 					<li class="nav-item has-treeview menu-open">
 						<a href="#" class="nav-link">
-							<i class="nav-icon fas fa-tachometer-alt"></i>
+							<span><img
+								src="${pageContext.request.contextPath}/resources/main/img/category/${c.icon}"
+								class="nav-icon" style="width: 30px;"></span>
 							<p>
 								${c.name}
 								<i class="right fas fa-angle-left"></i>
@@ -87,7 +99,6 @@
 			<c:if test="${isHaveSub}">
 				<li class="nav-item has-treeview menu-open">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>
 							${categories[0].parentCategory.name}
 							<i class="right fas fa-angle-left"></i>
@@ -112,7 +123,6 @@
 			<c:if test="${isSub}">
 				<li class="nav-item has-treeview menu-open">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>
 							${category.name}
 							<i class="right fas fa-angle-left"></i>

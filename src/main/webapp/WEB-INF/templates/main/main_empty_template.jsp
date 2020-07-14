@@ -27,25 +27,28 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body class="hold-transition layout-top-nav">
-
+<body class="hold-transition sidebar-collapse layout-top-nav">
 	<div class="wrapper">
 		<!-- Navbar -->
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 		<!-- /.navbar -->
+		<!-- Main Sidebar Container -->
+		<aside class="main-sidebar sidebar-light-primary elevation-4">
+
+			<!-- Sidebar -->
+			<!-- /.sidebar -->
+		</aside>
+		<!-- Main Sidebar Container -->
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper login-page">
+		<div class="content-wrapper">
 			<!-- Main content -->
+			<div class="container">
+				<div class="row">
+					<tiles:insertAttribute name="content"></tiles:insertAttribute>
 
+				</div>
 
-			<!-- *** CONTAIN *** -->
-
-			<!-- *** VIEW *** -->
-			<tiles:insertAttribute name="content"></tiles:insertAttribute>
-			<!-- *** VIEW *** -->
-
-
-			<!-- *** CONTAIN *** -->
+			</div>
 
 
 			<!-- /.content -->
@@ -64,7 +67,7 @@
 	<script src="${contextRoot}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="${contextRoot}/resources/admin/dist/js/adminlte.js"></script>
-	<script src="${contextRoot}/resources/admin/dist/js/custom.js"></script>
+	<script src="${contextRoot}/resources/main/js/custom.js"></script>
 
 
 </body>
