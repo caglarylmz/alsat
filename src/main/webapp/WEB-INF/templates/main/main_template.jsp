@@ -24,6 +24,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome-free/css/all.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/dist/css/adminlte.min.css">
+	<!-- Carousel -->
+	<link href="${pageContext.request.contextPath}/resources/eshopper/plugins/lightslider/dist/css/lightslider.min.css"
+		rel="stylesheet">
 	<!-- Custom style -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/style.default.css">
 	<!-- Custom style -->
@@ -86,6 +89,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<!-- Bootstrap 4 -->
 	<script src="${pageContext.request.contextPath}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js">
 	</script>
+	<script
+		src="${pageContext.request.contextPath}/resources/eshopper/plugins/lightslider/dist/js/lightslider.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="${pageContext.request.contextPath}/resources/admin/dist/js/adminlte.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/main/js/custom.js"></script>

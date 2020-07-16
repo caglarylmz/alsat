@@ -20,23 +20,21 @@ public class HomeAdvertController {
 	@Autowired
 	private AdvertService advertService;
 
-
 	@GetMapping(value = "details/{id}")
 	public String details(@PathVariable("id") long id, ModelMap model) {
 
 		model.put("category", advertService.findById(id).getCategory());
 		model.put("advert", advertService.findById(id));
-		return "home.advert.details";
+		return "main.advert.details";
 	}
 
 	List<Category> getParentCategoryFromAdvert(Category category) {
 		List<Category> advertsParentsCategories = new ArrayList<>();
 		advertsParentsCategories.add(category);
-			do {
+		do {
 			category = category.getParentCategory();
-			advertsParentsCategories.add(category);		
-		}
-		while (category.getParentCategory()!=null);
+			advertsParentsCategories.add(category);
+		} while (category.getParentCategory() != null);
 		Collections.reverse(advertsParentsCategories);
 		return advertsParentsCategories;
 	}

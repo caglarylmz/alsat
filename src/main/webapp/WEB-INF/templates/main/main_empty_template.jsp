@@ -21,6 +21,9 @@
 	<link rel="stylesheet" href="${contextRoot}/resources/admin/dist/css/adminlte.min.css">
 	<!-- Custom style -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/style.default.css">
+	<!-- Carousel -->
+	<link href="${pageContext.request.contextPath}/resources/eshopper/plugins/lightslider/dist/css/lightslider.min.css"
+		rel="stylesheet">
 	<!-- Custom style -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/custom.css">
 	<!-- Google Font: Source Sans Pro -->
@@ -30,7 +33,7 @@
 <body class="hold-transition sidebar-collapse layout-top-nav">
 	<div class="wrapper">
 		<!-- Navbar -->
-		<tiles:insertAttribute name="header"></tiles:insertAttribute>
+		<tiles:insertAttribute name="header" />
 		<!-- /.navbar -->
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-light-primary elevation-4">
@@ -44,8 +47,9 @@
 			<!-- Main content -->
 			<div class="container">
 				<div class="row">
-					<tiles:insertAttribute name="content"></tiles:insertAttribute>
-
+					<div class="col-12">
+						<tiles:insertAttribute name="content" />
+					</div>
 				</div>
 
 			</div>
@@ -65,6 +69,8 @@
 	<script src="${contextRoot}/resources/admin/plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
 	<script src="${contextRoot}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/eshopper/plugins/lightslider/dist/js/lightslider.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="${contextRoot}/resources/admin/dist/js/adminlte.js"></script>
 	<script src="${contextRoot}/resources/main/js/custom.js"></script>

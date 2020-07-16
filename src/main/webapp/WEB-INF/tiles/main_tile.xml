@@ -15,6 +15,7 @@
         <definition name="main.index" extends="main_template">
                 <put-attribute name="content" value="/WEB-INF/views/main/index.jsp"></put-attribute>
         </definition>
+        
         <!-- BASE DEFINITION -->
 
         <!-- EMPTY DEFINITION-->
@@ -31,6 +32,10 @@
         <!-- Register-->
         <definition name="main.secure.register" extends="main_empty_template">
                 <put-attribute name="content" value="/WEB-INF/views/main/secure/register.jsp" />
+        </definition>
+         <!-- Advert Detail -->
+         <definition name="main.advert.details" extends="main_empty_template">
+                <put-attribute name="content" value="/WEB-INF/views/main/advert/details.jsp"></put-attribute>
         </definition>
         <!-- EMPTY DEFINITION-->
 

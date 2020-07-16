@@ -11,9 +11,13 @@
                 <put-attribute name="footer" value="/WEB-INF/layouts/main/footer.jsp" />
                 <put-attribute name="content" value="" />
         </definition>
-        <!-- Index -->
+        <!-- Özet -->
         <definition name="user.panel.ozet" extends="user_template">
                 <put-attribute name="content" value="/WEB-INF/views/user/panel/ozet.jsp"></put-attribute>
+        </definition>
+        <!-- İlan -->
+        <definition name="user.advert.index" extends="user_template">
+                <put-attribute name="content" value="/WEB-INF/views/user/advert/index.jsp"></put-attribute>
         </definition>
         <!-- BASE DEFINITION -->
 
