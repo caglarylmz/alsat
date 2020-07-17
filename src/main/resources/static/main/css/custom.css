@@ -1,3 +1,4 @@
+/*SIDEBAR*/
 .menu {
     margin: 0;
     padding: 0;
@@ -72,6 +73,8 @@
     max-height: 10em;
 }
 
+
+
 .category-icon {
     text-align: left;
     position: absolute;
@@ -80,6 +83,9 @@
     margin-left: 5px;
 }
 
+/*SIDEBAR*/
+
+/*ADVERTS PAGE Single Advert Item*/
 .adverts #advert-image {
     width: auto;
     height: 175px;
@@ -106,7 +112,9 @@
     margin: auto;
 }
 
-/*ADVERT DETAILS*/
+/*ADVERTS PAGE Single Advert Item*/
+
+/*ADVERT DETAILS PAGE*/
 
 /*CAROUSEL*/
 .view-product {
@@ -119,4 +127,24 @@
     width: 100%;
 }
 
+/*UserCard*/
+.rating .checked {
+    color: orange;
+    margin: 0px;
+}
 
+.rating .unchecked {
+    color: white;
+    margin: 0px;
+}
+
+.rating .checked-half {
+    color: white;
+    margin: 0px;
+}
+
+/*UserCard*/
+
+
+
+/*ADVERT DETAILS PAGE*/

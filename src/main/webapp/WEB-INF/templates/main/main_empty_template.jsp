@@ -35,12 +35,7 @@
 		<!-- Navbar -->
 		<tiles:insertAttribute name="header" />
 		<!-- /.navbar -->
-		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-light-primary elevation-4">
-
-			<!-- Sidebar -->
-			<!-- /.sidebar -->
-		</aside>
+		<!-- Main Sidebar Container -->	
 		<!-- Main Sidebar Container -->
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">

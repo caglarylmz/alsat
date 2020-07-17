@@ -4,8 +4,9 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="br" uri="http://localhost:8080/alsat/tags/breadcrumb"%>
 
-<c:set var="mainPhoto" value="${advert.getPhotos().stream().filter(p->p.isMainPhoto()).findFirst().orElse(null)}">
-</c:set>
+<c:set var="mainPhoto" value="${advert.getPhotos().stream().filter(p->p.isMainPhoto()).findFirst().orElse(null)}" />
+<fmt:formatNumber var="toplamFiyat" maxFractionDigits="0" type="currency" value="${advert.toplamFiyat}" />
+
 <div class="card card-solid">
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -18,14 +19,26 @@
 			</li>
 		</ol>
 	</nav>
-	<div class="card-header">
-		${advert.baslik}
+	<div class="card-header py-0">
+		<div class="row">
+			<div class="col-8">
+				${advert.baslik}
+			</div>
+			<div class="col-4 ">
+				<button type="button" class="btn btn-sm btn-outline-danger float-right">
+					<i class="far fa-heart"></i> Favori İlanlara ekle
+				</button>
+
+			</div>
+		</div>
+
+
 
 	</div>
 	<div class="card-body">
 		<div class="row">
 			<!--CAROUSEL-->
-			<div class="col-12 col-md-5">
+			<div class="col-12 col-lg-5">
 				<div class="view-product">
 					<c:if test="${advert.photos eq null or advert.photos.size()==0 }">
 						<ul id="imageGallery">
@@ -62,76 +75,99 @@
 			</div>
 			<!--CAROUSEL-->
 			<!--ADVERT DETAIL-->
-			<div class="col-12 col-md-4">
-				<div class="bg-gray py-2 px-3">
-					<h2 class="mb-0"> ${advert.toplamFiyat} ₺ </h2>
+			<div class="col-12 col-lg-7">
+				<div class="row">
+					<!--DETAIL-->
+					<div class="col-12 col-sm-7">
+						<div class="bg-gray py-2 px-3">
+							<h2 class="mb-0">
+								${toplamFiyat}</h2>
+						</div>
+						<ul class="list-group list-group-unbordered mb-3">
+							<li class="list-group-item">
+								<b class="text-dark ml-3">İlan No</b> <a
+									class="text-dark float-right mr-3">${advert.id}</a>
+							</li>
+							<li class="list-group-item">
+								<b class="text-dark ml-3">İlan Tarihi</b> <a class="text-dark float-right mr-3">
+									<fmt:formatDate type="date" value="${advert.createdAt}" />
+								</a>
+							</li>
+							<li class="list-group-item">
+								<b class="text-dark ml-3">İlan Kategori</b> <a
+									class="text-dark float-right mr-3">${advert.category.name}</a>
+							</li>
+							<li class="list-group-item">
+								<b class="text-dark ml-3">Toplam Hayvan Adedi</b> <a
+									class="text-dark float-right mr-3">${advert.toplamAdet}</a>
+							</li>
+							<li class="list-group-item">
+								<b class="text-dark ml-3">Kimden</b> <a
+									class="text-dark float-right mr-3">${advert.kimden}</a>
+							</li>
+						</ul>
+
+					</div>
+					<!--DETAIL-->
+					<!--User Card-->
+					<div class="col-5 d-none d-sm-block">
+						<div class="widget-user-header bg-gray ">
+							<h2 class="widget-user-username py-2 px-3">${advert.account.fullName}</h3>
+						</div>
+						<div class="card-body p-0">
+							<ul class="nav flex-column">
+								<li class="nav-item">
+									<a class="nav-link">
+										Tüm İlanları <span class="float-right badge bg-gray">${advert.account.adverts.size()}</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link">
+										Üyelik Tarihi <span class="float-right badge bg-gray">
+											<fmt:formatDate type="date" value="${advert.account.createdAt}" />
+										</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link">
+										Güvenilirlik
+										<span class="badge  bg-gray float-right rating">
+											<i class="fa fa-star checked" id="one"></i>
+											<i class="fa fa-star checked" id="two"></i>
+											<i class="fa fa-star checked" id="three"></i>
+											<i class="fa fa-star unchecked" id="four"></i>
+											<i class="fa fa-star unchecked" id="five"></i>
+										</span>
+
+									</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="card-footer p-0">
+							<div class="row">
+								<div class="col-12">
+									<button type="button" class="btn btn-block btn-sm btn-outline-danger" id="btn-user">
+										<i class="far fa-heart"></i> Favori Satıcılara ekle
+									</button>
+								</div>
+
+								<div class="col-12">
+									<button type="button" class="btn btn-block btn-sm btn-outline-info" id="btn-user">
+										<i class="fas fa-envelope "></i> İlan Sahibine Soru Sor
+									</button>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+					<!--User Card-->
 				</div>
-				<ul class="list-group list-group-unbordered mb-3">
-					<li class="list-group-item">
-						<b class="text-dark ml-3">İlan No</b> <a class="text-dark float-right mr-3">${advert.id}</a>
-					</li>
-					<li class="list-group-item">
-						<b class="text-dark ml-3">İlan Tarihi</b> <a class="text-dark float-right mr-3">
-							<fmt:formatDate type="date" value="${advert.createdAt}" />
-						</a>
-					</li>
-					<li class="list-group-item">
-						<b class="text-dark ml-3">İlan Kategori</b> <a
-							class="text-dark float-right mr-3">${advert.category.name}</a>
-					</li>
-					<li class="list-group-item">
-						<b class="text-dark ml-3">Toplam Hayvan Adedi</b> <a
-							class="text-dark float-right mr-3">${advert.toplamAdet}</a>
-					</li>
-					<li class="list-group-item">
-						<b class="text-dark ml-3">Kimden</b> <a class="text-dark float-right mr-3">${advert.kimden}</a>
-					</li>
-				</ul>
 
 			</div>
-			<div class="col-12 col-md-3">
-				<div class="card card-widget widget-user-2">
-					<!-- Add the bg color to the header using any of the bg-* classes -->
-					<div class="widget-user-header bg-warning">
-						<h3 class="widget-user-username">${advert.account.fullName}</h3>
-						<h5 class="widget-user-desc">${advert.account.phone}</h5>
+			<!--ADVERT DETAIL-->
 
-					</div>
-					<div class="card-body p-0">
-						<ul class="nav flex-column">
-							<li class="nav-item bg-light">
-								<button class="btn-block btn-danger">Favori Satıcılarıma Ekle</button>
-							</li>
-						</ul>
-						<ul class="nav flex-column">
-							<li class="nav-item">
-								<button class="btn-block btn-info">İlan Sahibine Soru Sor</button>
-							</li>
-						</ul>
-					</div>
-					<div class="card-footer p-0">
-						<ul class="nav flex-column">
-							<li class="nav-item">
-								<a href="#" class="nav-link">
-									Tüm İlanları <span class="float-right badge bg-primary">31</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link">
-									Üyelik Tarihi <span class="float-right badge bg-info">
-										<fmt:formatDate type="date" value="${advert.account.createdAt}" /></span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link">
-									Güvenilirlik <span class="float-right badge bg-success">* * * * *</span>
-								</a>
-							</li>
-
-						</ul>
-					</div>
-				</div>
-			</div>
 		</div>
 		<div class="row mt-4">
 			<nav class="w-100">
@@ -151,13 +187,10 @@
 						<thead>
 
 							<tr>
-								<th style="width: 1%">
-									#
-								</th>
-								<th style="width: 20%">
+								<th style="width: 100%">
 									Tip
-								</th>							
-								<th style="width: 30%">
+								</th>
+								<th style="width: 50%">
 									Adet
 								</th>
 								<th>
@@ -170,16 +203,13 @@
 							<c:forEach var="detail" items="${advert.advertDetails}">
 								<tr>
 									<td>
-										#
-									</td>
-									<td>
 										<a>
 											${detail.tip.name}
 										</a>
 										<br>
 
 									</td>
-									
+
 									<td>
 										<a>
 											${detail.adet}
@@ -189,7 +219,9 @@
 									</td>
 									<td>
 										<a>
-											${detail.fiyat}
+											<fmt:formatNumber maxFractionDigits="0" type="currency"
+												value="${detail.fiyat}" />
+
 										</a>
 										<br>
 
