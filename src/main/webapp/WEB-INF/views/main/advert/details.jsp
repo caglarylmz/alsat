@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="br" uri="http://localhost:8080/alsat/tags/breadcrumb"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
+
 
 <c:set var="mainPhoto" value="${advert.getPhotos().stream().filter(p->p.isMainPhoto()).findFirst().orElse(null)}" />
 <fmt:formatNumber var="toplamFiyat" maxFractionDigits="0" type="currency" value="${advert.toplamFiyat}" />
@@ -25,9 +27,19 @@
 				${advert.baslik}
 			</div>
 			<div class="col-4 ">
-				<button type="button" class="btn btn-sm btn-outline-danger float-right">
-					<i class="far fa-heart"></i> Favori İlanlara ekle
-				</button>
+				<c:if test="${!isLiked}">
+
+					<button type="submit" class="btn btn-sm btn-outline-danger float-right">
+						<i class="far fa-heart"></i> Favori İlanlarıma Ekle
+					</button>
+				</c:if>
+				<c:if test="${isLiked}">
+
+					<button type="submit" class="btn btn-sm btn-danger float-right">
+						<i class="far fa-heart"></i> Favori İlanlarımdan Çıkar
+					</button>
+
+				</c:if>
 
 			</div>
 		</div>
@@ -118,7 +130,8 @@
 							<ul class="nav flex-column">
 								<li class="nav-item">
 									<a class="nav-link">
-										Tüm İlanları <span class="float-right badge bg-gray">${advert.account.adverts.size()}</span>
+										Tüm İlanları <span
+											class="float-right badge bg-gray">${advert.account.adverts.size()}</span>
 									</a>
 								</li>
 								<li class="nav-item">

@@ -1,6 +1,7 @@
 package com.oriontech.alsat;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -449,17 +450,23 @@ public class DbSeeder implements CommandLineRunner {
 		Yas y10 = new Yas("10 ve Üzeri");
 		yasRepository.save(y10);
 
+		List<Account> likedAccounts = new ArrayList<>();
+		likedAccounts.add(user);
+		likedAccounts.add(owner);
 		//
 		Advert adv1 = new Advert("Advert-1", "Advert Açıklaması");
 		adv1.setCategory(sigir);
 		adv1.setAccount(user);
 		adv1.setToplamAdet(20);
 		adv1.setToplamFiyat(8000);
+		adv1.setLikes(likedAccounts);
+
 		Advert adv2 = new Advert("Advert-2", "Advert Açıklaması");
 		adv2.setToplamAdet(10);
 		adv2.setToplamFiyat(5000);
 		adv2.setCategory(sigir);
 		adv2.setAccount(user);
+		adv2.setLikes(likedAccounts);
 		Advert adv3 = new Advert("Advert-3", "Advert Açıklaması");
 		adv3.setTopluSatis(true);
 		adv3.setToplamAdet(200);
@@ -486,6 +493,7 @@ public class DbSeeder implements CommandLineRunner {
 		adv7.setAccount(owner);
 		adv7.setToplamAdet(2000);
 		adv7.setToplamFiyat(2000);
+		adv7.setLikes(likedAccounts);
 
 		advertRepository.save(adv1);
 		advertRepository.save(adv2);

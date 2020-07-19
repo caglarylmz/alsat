@@ -1,7 +1,9 @@
 package com.oriontech.alsat.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -69,6 +72,9 @@ public class Advert {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "advert", cascade = CascadeType.ALL)
 	private List<Photo> photos;
+
+	@ManyToMany
+	List<Account> likes= new ArrayList<Account>();
 
 	/* İlanın ne zaman oluşturulduğu veya update edildiği bilgisini saklıyoruz */
 	@PrePersist
