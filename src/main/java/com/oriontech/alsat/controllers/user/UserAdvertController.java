@@ -14,17 +14,21 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.oriontech.alsat.models.Account;
 import com.oriontech.alsat.models.Advert;
 import com.oriontech.alsat.models.AdvertDetail;
 import com.oriontech.alsat.models.Photo;
@@ -51,8 +55,8 @@ public class UserAdvertController implements ServletContextAware {
 
 	// show adverts
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(Authentication authentication,ModelMap modelMap) {
-		
+	public String index(Authentication authentication, ModelMap modelMap) {
+
 		modelMap.put("adverts", advertService.userAdverts(authentication.getName()));
 		return "user.advert.index";
 	}
@@ -60,26 +64,26 @@ public class UserAdvertController implements ServletContextAware {
 	/*
 	 * addAdvert requestler arasında gönderceğimiz nesne ancak add requesti içinde
 	 * oluşturuyoruz ki her add requestinde yeni bir advert oluşsun
-	 * */
+	 */
 	private Advert addAdvert;
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(ModelMap modelMap) {
-		//init advert
+		// init advert
 		addAdvert = new Advert();
-		
-		modelMap.put("advert", addAdvert);		
+
+		modelMap.put("advert", addAdvert);
 		modelMap.put("parentCats", categoryService.findParentCategoriesWithStatus(true));
 		return "user.advert.add";
 	}
 
 	/*
 	 * form'dan gelen advert verilerini addAdvert'e bind ediyoruz
-	 * */
+	 */
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String add(@ModelAttribute("advert") Advert advert, Principal principal, ModelMap modelMap,
 			@RequestParam(value = "files[]") MultipartFile[] files) {
-		
+
 		addAdvert.setCategory(advert.getCategory());
 		addAdvert.setBaslik(advert.getBaslik());
 		addAdvert.setAciklama(advert.getAciklama());
@@ -90,20 +94,22 @@ public class UserAdvertController implements ServletContextAware {
 		addAdvert.setAccount(accountService.findByUsername(principal.getName()));
 		addAdvert.setStatus(true);
 		advertService.save(addAdvert);
-		
-		//Multipart ile gelen image ları Photo nesnesi olarak oluşturup liste halinde saklıyoruz
-		//Böylece advert'e ekleyebileceğiz
+
+		// Multipart ile gelen image ları Photo nesnesi olarak oluşturup liste halinde
+		// saklıyoruz
+		// Böylece advert'e ekleyebileceğiz
 		List<Photo> photos = new ArrayList<Photo>();
-		/* Sebebini anlayamadım ancak kullandığım bootstratp-fileinput plugini ile ilgili olabilir
-		 * Gönderdiğim dosya sayısından 1 fazla geliyor. İlk gelen uploadFile() metodunda catch'e
-		 * takılıp error veriyor. Böylece orada catch durumunda döndüğüm no-mage.jpg alıyorum.
-		 * Bu yüzden döngüyü 1'dn başlatıyorum  
+		/*
+		 * Sebebini anlayamadım ancak kullandığım bootstratp-fileinput plugini ile
+		 * ilgili olabilir Gönderdiğim dosya sayısından 1 fazla geliyor. İlk gelen
+		 * uploadFile() metodunda catch'e takılıp error veriyor. Böylece orada catch
+		 * durumunda döndüğüm no-mage.jpg alıyorum. Bu yüzden döngüyü 1'dn başlatıyorum
 		 * 
-		 * */
+		 */
 		for (int i = 0; i < files.length; i++) {
 			Photo photo = new Photo();
 			photo.setName(uploadFile(files[i], i));
-			photo.setStatus(true);		
+			photo.setStatus(true);
 			if (i == 0)
 				photo.setMainPhoto(true);
 			photo.setAdvert(addAdvert);
@@ -113,7 +119,7 @@ public class UserAdvertController implements ServletContextAware {
 		addAdvert.setPhotos(photos);
 
 		advertService.save(addAdvert);
-		
+
 		return "user.advert.add_detail";
 	}
 
@@ -123,8 +129,9 @@ public class UserAdvertController implements ServletContextAware {
 		return "user.advert.add_detail";
 	}
 
-	/* AdvertDetail oluşturup addAdvert'e bind ediyorum.
-	 * */
+	/*
+	 * AdvertDetail oluşturup addAdvert'e bind ediyorum.
+	 */
 	@RequestMapping(value = "add-detail", method = RequestMethod.POST)
 	public String add3(@ModelAttribute("advert") Advert advert, RedirectAttributes redirectAttributes) {
 		for (AdvertDetail detail : advert.getAdvertDetails()) {
@@ -176,6 +183,44 @@ public class UserAdvertController implements ServletContextAware {
 	public String detail(@PathVariable("id") long id, ModelMap modelMap) {
 		modelMap.put("advert", advertService.findById(id));
 		return "user.advert.detail";
+	}
+	// TODO:Bu kısım rest ile yapıalrak preventDefult şekliyle reload yapılmadan tasarlanmalı
+	// user add favorites advert
+	@RequestMapping(value = "addFavourites", method = RequestMethod.POST)
+	public String addFavorites(@ModelAttribute("advert") Advert advert, RedirectAttributes redirectAttributes) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Account currentAccount = accountService.findByUsername(authentication.getName());
+		Advert currentAdvert = advertService.findById(advert.getId());
+
+		currentAccount.getAdverts().add(currentAdvert);
+		accountService.save(currentAccount);
+
+		currentAdvert.getLikes().add(currentAccount);
+		advertService.save(currentAdvert);
+
+		redirectAttributes.addFlashAttribute("advert", currentAdvert);
+		redirectAttributes.addFlashAttribute("category", currentAdvert.getCategory());
+
+		return "redirect:/advert/details/" + advert.getId();
+	}
+
+	// user remove favorites advert
+	@RequestMapping(value = "removeFavourites", method = RequestMethod.POST)
+	public String removeFavorites(@ModelAttribute("advert") Advert advert, RedirectAttributes redirectAttributes) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Account currentAccount = accountService.findByUsername(authentication.getName());
+		Advert currentAdvert = advertService.findById(advert.getId());
+
+		currentAccount.getAdverts().remove(currentAdvert);
+		accountService.save(currentAccount);
+
+		currentAdvert.getLikes().remove(currentAccount);
+		advertService.save(currentAdvert);
+
+		redirectAttributes.addFlashAttribute("advert", currentAdvert);
+		redirectAttributes.addFlashAttribute("category", currentAdvert.getCategory());
+
+		return "redirect:/advert/details/" + advert.getId();
 	}
 
 	private String uploadFile(MultipartFile multipartFile, int name) {

@@ -28,17 +28,24 @@
 			</div>
 			<div class="col-4 ">
 				<c:if test="${!isLiked}">
+					<s:form method="post" modelAttribute="advert"
+						action="${pageContext.request.contextPath}/user/advert/addFavourites">
 
-					<button type="submit" class="btn btn-sm btn-outline-danger float-right">
-						<i class="far fa-heart"></i> Favori İlanlarıma Ekle
-					</button>
+						<button type="submit" class="btn btn-sm btn-outline-danger float-right">
+							<i class="far fa-heart"></i> Favori İlanlarıma Ekle
+						</button>
+						<s:hidden path="id" />
+					</s:form>
+
 				</c:if>
 				<c:if test="${isLiked}">
-
-					<button type="submit" class="btn btn-sm btn-danger float-right">
-						<i class="far fa-heart"></i> Favori İlanlarımdan Çıkar
-					</button>
-
+					<s:form method="post" modelAttribute="advert"
+						action="${pageContext.request.contextPath}/user/advert/removeFavourites">
+						<button type="submit" class="btn btn-sm btn-danger float-right">
+							<i class="far fa-heart"></i> Favori İlanlarımdan Çıkar
+						</button>
+						<s:hidden path="id" />
+					</s:form>
 				</c:if>
 
 			</div>

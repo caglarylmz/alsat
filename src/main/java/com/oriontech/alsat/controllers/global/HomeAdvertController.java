@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import com.oriontech.alsat.models.Account;
 import com.oriontech.alsat.models.Advert;
 import com.oriontech.alsat.models.Category;
@@ -47,18 +46,18 @@ public class HomeAdvertController {
 	}
 
 	/*
-	@RequestMapping(value = "details/{id}", method = RequestMethod.POST)
-	@PreAuthorize("isAuthenticated()")
-	public String addOrRemoveLikedAdvert(@PathVariable("id") long id, @ModelAttribute("isLiked") String isLiked) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (isLiked.equals("true")) {
-			advertService.findById(id).getLikes().add(accountService.findByUsername(authentication.getName()));
-		} else {
-			advertService.findById(id).getLikes().remove(accountService.findByUsername(authentication.getName()));
-		}
-		return "redirect:/advert/details/" + id;
-	}
-	*/
+	 * @RequestMapping(value = "details/{id}", method = RequestMethod.POST)
+	 * 
+	 * @PreAuthorize("isAuthenticated()") public String
+	 * addOrRemoveLikedAdvert(@PathVariable("id") long
+	 * id, @ModelAttribute("isLiked") String isLiked) { Authentication
+	 * authentication = SecurityContextHolder.getContext().getAuthentication(); if
+	 * (isLiked.equals("true")) {
+	 * advertService.findById(id).getLikes().add(accountService.findByUsername(
+	 * authentication.getName())); } else {
+	 * advertService.findById(id).getLikes().remove(accountService.findByUsername(
+	 * authentication.getName())); } return "redirect:/advert/details/" + id; }
+	 */
 	List<Category> getParentCategoryFromAdvert(Category category) {
 		List<Category> advertsParentsCategories = new ArrayList<>();
 		advertsParentsCategories.add(category);
