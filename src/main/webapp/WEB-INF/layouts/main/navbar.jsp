@@ -52,10 +52,10 @@
 							aria-dropeffect="popup">
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<a href="${pageContext.request.contextPath}/admin/dashboard"
-									class="dropdown-item border-bottom  btn-outline-primary">Admin Panel</a>								
+									class="dropdown-item border-bottom  btn-outline-primary">Admin Panel</a>
 							</sec:authorize>
 							<sec:authorize access="hasRole('ROLE_USER')">
-								<a href="${pageContext.request.contextPath}/user/dashboard"
+								<a href="${pageContext.request.contextPath}/user/panel"
 									class="dropdown-item border-bottom  btn-outline-primary">Panel</a>
 								<a href="${pageContext.request.contextPath}/user/account/profile"
 									class="dropdown-item border-bottom  btn-outline-primary">Profil</a>

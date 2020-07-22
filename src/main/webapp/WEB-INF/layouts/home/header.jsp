@@ -87,7 +87,7 @@
 										</sec:authorize>
 										<sec:authorize access="hasRole('ROLE_USER')">
 											<li><a
-												href="${pageContext.request.contextPath}/user/dashboard">Benim
+												href="${pageContext.request.contextPath}/user/panel">Benim
 													Alanım</a></li>
 											<li><a href="#">İlanlarım</a></li>
 											<li><a href="#">Favorilerim</a></li>
