@@ -49,7 +49,7 @@
 						value="${advert.getPhotos().stream().filter(p->p.isMainPhoto()).findFirst().orElse(null)}">
 					</c:set>
 					<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-						<div class="card bg-ligh">
+						<div class="card bg-light">
 							<div class="card-body">
 								<div class="row">
 									<div class="col-12 text-center">
