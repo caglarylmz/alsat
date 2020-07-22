@@ -26,7 +26,7 @@
 							</sec:authorize>
 							<sec:authorize access="hasRole('ROLE_USER')">
 								<li>
-									<a href="${pageContext.request.contextPath}/user/dashboard"
+									<a href="${pageContext.request.contextPath}/user/panel"
 										class="dropdown-item border-bottom  btn-outline-primary">Panel</a>
 								</li>
 								<li>

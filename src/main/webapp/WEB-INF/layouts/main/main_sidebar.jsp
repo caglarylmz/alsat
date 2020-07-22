@@ -70,9 +70,8 @@
 				<c:forEach var="c" items="${parentCategories}">
 					<li class="nav-item has-treeview menu-open">
 						<a href="#" class="nav-link">
-							<span><img
-								src="${pageContext.request.contextPath}/resources/main/img/category/${c.icon}"
-								class="nav-icon" style="width: 30px;"></span>
+							<span><img src="${pageContext.request.contextPath}/resources/main/img/category/${c.icon}"
+									class="nav-icon" style="width: 30px;"></span>
 							<p>
 								${c.name}
 								<i class="right fas fa-angle-left"></i>
