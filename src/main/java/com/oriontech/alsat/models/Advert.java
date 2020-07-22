@@ -74,6 +74,7 @@ public class Advert {
 	private List<Photo> photos;
 
 	@ManyToMany
+	@JsonIgnore
 	List<Account> likes= new ArrayList<Account>();
 
 	/* İlanın ne zaman oluşturulduğu veya update edildiği bilgisini saklıyoruz */

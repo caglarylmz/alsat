@@ -24,14 +24,16 @@
 	<div class="card-header py-0">
 		<div class="row">
 			<div class="col-8">
-				${advert.baslik}
+				<a class="nav-link">
+					<b>${advert.baslik} </b>
+				</a>
 			</div>
-			<div class="col-4 ">
+			<div class="col-4">
 				<c:if test="${!isLiked}">
 					<s:form method="post" modelAttribute="advert"
 						action="${pageContext.request.contextPath}/user/advert/addFavourites">
 
-						<button type="submit" class="btn btn-sm btn-outline-danger float-right">
+						<button type="submit" class="btn btn-sm btn-outline-danger float-right nav-link">
 							<i class="far fa-heart"></i> Favori İlanlarıma Ekle
 						</button>
 						<s:hidden path="id" />
@@ -41,7 +43,7 @@
 				<c:if test="${isLiked}">
 					<s:form method="post" modelAttribute="advert"
 						action="${pageContext.request.contextPath}/user/advert/removeFavourites">
-						<button type="submit" class="btn btn-sm btn-danger float-right">
+						<button type="submit" class="btn btn-sm btn-danger float-right nav-link">
 							<i class="far fa-heart"></i> Favori İlanlarımdan Çıkar
 						</button>
 						<s:hidden path="id" />
@@ -129,28 +131,37 @@
 					</div>
 					<!--DETAIL-->
 					<!--User Card-->
-					<div class="col-5 d-none d-sm-block">
+					<div class="col-5 d-none d-sm-block" id="advert-user-card">
 						<div class="widget-user-header bg-gray ">
 							<h2 class="widget-user-username py-2 px-3">${advert.account.fullName}</h3>
+
+						</div>
+						<div class="info-box">
+							<span class="info-box-icon bg-info text-center"><i class="fas fa-phone"></i></span>
+
+							<div class="info-box-content">
+								<span class="info-box-number">555-831-78-24</span>
+							</div>
+							<!-- /.info-box-content -->
 						</div>
 						<div class="card-body p-0">
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a class="nav-link">
-										Tüm İlanları <span
+									<a class="nav-link "><b>
+											Tüm İlanları</b> <span
 											class="float-right badge bg-gray">${advert.account.adverts.size()}</span>
 									</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link">
-										Üyelik Tarihi <span class="float-right badge bg-gray">
+										<b>Üyelik Tarihi </b><span class="float-right badge bg-gray">
 											<fmt:formatDate type="date" value="${advert.account.createdAt}" />
 										</span>
 									</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link">
-										Güvenilirlik
+										<b>Güvenilirlik</b>
 										<span class="badge  bg-gray float-right rating">
 											<i class="fa fa-star checked" id="one"></i>
 											<i class="fa fa-star checked" id="two"></i>

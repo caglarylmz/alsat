@@ -148,3 +148,19 @@
 
 
 /*ADVERT DETAILS PAGE*/
+
+#advert-user-card .info-box{
+    height: 40px!important;
+    min-height: 40px!important;
+    margin-bottom: auto;
+}
+#advert-user-card .info-box-icon{
+    width: 30px!important;
+    font-size: 14px!important;
+}
+
+#advert-user-card .info-box-content{
+    padding: 1px!important;
+    padding-left: 10px!important;
+
+}

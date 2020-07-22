@@ -72,8 +72,7 @@ public class Account {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "account", cascade = CascadeType.ALL)
 	private List<Advert> adverts = new ArrayList<Advert>();
 
-	@ManyToMany
-	List<Advert> likedAdverts = new ArrayList<Advert>();
+
 
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date createdAt;
