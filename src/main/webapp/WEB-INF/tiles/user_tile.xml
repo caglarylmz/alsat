@@ -15,10 +15,7 @@
         <definition name="user.panel.ozet" extends="user_template">
                 <put-attribute name="content" value="/WEB-INF/views/user/panel/ozet.jsp"></put-attribute>
         </definition>
-        <!-- İlan -->
-        <definition name="user.advert.index" extends="user_template">
-                <put-attribute name="content" value="/WEB-INF/views/user/advert/index.jsp"></put-attribute>
-        </definition>
+        
         <!-- BASE DEFINITION -->
 
 </tiles-definitions>

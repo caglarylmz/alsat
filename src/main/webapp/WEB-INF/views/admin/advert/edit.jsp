@@ -14,7 +14,7 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb secondary-color">
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/admin/dashboard"><i
+							href="${pageContext.request.contextPath}/admin/panel"><i
 								class="menu-icon icon-home4"></i></a></li>
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/admin/category">Kategori</a></li>

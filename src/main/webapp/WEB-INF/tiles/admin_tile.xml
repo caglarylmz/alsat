@@ -3,15 +3,15 @@
 
 <tiles-definitions>
         <!-- Base Definition -->
-        <definition name="admin_template" template="/WEB-INF/templates/admin_template.jsp">
+        <definition name="admin_template" template="/WEB-INF/templates/admin/admin_template.jsp">
                 <put-attribute name="navbar" value="/WEB-INF/layouts/admin/navbar.jsp" />
                 <put-attribute name="sidebar" value="/WEB-INF/layouts/admin/sidebar.jsp"></put-attribute>
                 <put-attribute name="footer" value="/WEB-INF/layouts/admin/footer.jsp"></put-attribute>
                 <put-attribute name="content" value="" />
         </definition>
         <!-- Dashboard -->
-        <definition name="admin.dashboard.index" extends="admin_template">
-                <put-attribute name="content" value="/WEB-INF/views/admin/dashboard/index.jsp"></put-attribute>
+        <definition name="admin.panel.index" extends="admin_template">
+                <put-attribute name="content" value="/WEB-INF/views/admin/panel/index.jsp"></put-attribute>
         </definition>
         <!-- account -->
         <definition name="admin.account.index" extends="admin_template">
@@ -73,6 +73,7 @@
         <definition name="admin.tip.edit" extends="admin_template">
                 <put-attribute name="content" value="/WEB-INF/views/admin/tip/edit.jsp" />
         </definition>
+        <!-- Base Definition -->
 
         <!-- Empty Definition <definition name="admin_empty_template" template="/WEB-INF/views/templates/admin_empty_template.jsp">
         <put-attribute name="content" value="" /> </definition> <definition name="admin.login.index"

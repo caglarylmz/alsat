@@ -77,7 +77,7 @@
 									<ul class="dropdown-menu" aria-labelledby="userDropDown">
 										<sec:authorize access="hasRole('ROLE_ADMIN')">
 											<li><a
-												href="${pageContext.request.contextPath}/admin/dashboard">Benim
+												href="${pageContext.request.contextPath}/admin/panel">Benim
 													Alanım</a></li>
 											<li><a href="#">İlanlarım</a></li>
 											<li><a href="#">Favorilerim</a></li>

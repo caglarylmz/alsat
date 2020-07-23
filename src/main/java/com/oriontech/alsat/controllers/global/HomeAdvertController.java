@@ -2,6 +2,7 @@ package com.oriontech.alsat.controllers.global;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.oriontech.alsat.models.Account;
 import com.oriontech.alsat.models.Advert;
+import com.oriontech.alsat.models.AdvertViews;
 import com.oriontech.alsat.models.Category;
 import com.oriontech.alsat.services.AccountService;
 import com.oriontech.alsat.services.AdvertService;
@@ -32,6 +34,7 @@ public class HomeAdvertController {
 
 	@GetMapping(value = "details/{id}")
 	public String details(@PathVariable("id") long id, ModelMap model) {
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		// we are checking an authenticated user before trying to access it
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -40,8 +43,15 @@ public class HomeAdvertController {
 		} else {
 			model.put("isLiked", false);
 		}
+
+		Advert advert = advertService.findById(id);
+
+		AdvertViews view = new AdvertViews(advert);
+		advert.getViews().add(view);
+		advertService.save(advert);
+
 		model.put("category", advertService.findById(id).getCategory());
-		model.put("advert", advertService.findById(id));
+		model.put("advert", advert);
 		return "main.advert.details";
 	}
 

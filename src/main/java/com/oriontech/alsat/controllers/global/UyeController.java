@@ -107,7 +107,7 @@ public class UyeController {
 		if (hasUserRole) {
 			return "redirect:/user/panel";
 		} else if (hasAdminRole) {
-			return "redirect:/admin/dashboard";
+			return "redirect:/admin/panel";
 		} else {
 			return "redirect:/";
 		}

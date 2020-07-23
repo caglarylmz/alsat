@@ -19,7 +19,7 @@
 						<ul class="nav nav-pills nav-sidebar flex-column">
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<li>
-									<a href="${pageContext.request.contextPath}/admin/dashboard"
+									<a href="${pageContext.request.contextPath}/admin/panel"
 										class="dropdown-item border-bottom  btn-outline-primary">Panel</a>
 								</li>
 

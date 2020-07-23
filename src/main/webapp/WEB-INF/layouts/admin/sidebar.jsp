@@ -21,7 +21,7 @@
 			<ul class="nav nav-pills nav-sidebar flex-column"
 				data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item"><a
-					href="${pageContext.request.contextPath}/admin/dashboard"
+					href="${pageContext.request.contextPath}/admin/panel"
 					class="nav-link"> <i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>Panel</p>
 				</a></li>
@@ -29,21 +29,21 @@
 					<li class="nav-item"><a
 						href="${pageContext.request.contextPath}/admin/account"
 						class="nav-link"> <i class="nav-icon fas fa-users"></i></i>
-							<p>Users</p>
+							<p>Kullanıcı Yönetimi</p>
 					</a></li>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<li class="nav-item"><a
 						href="${pageContext.request.contextPath}/admin/category"
 						class="nav-link"> <i class="nav-icon fas fa-th-list"></i>
-							<p>Kategori</p>
+							<p>Kategori Yönetimi</p>
 					</a></li>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<li class="nav-item"><a
 						href="${pageContext.request.contextPath}/admin/advert"
 						class="nav-link"> <i class="nav-icon fas fa-ad"></i>
-							<p>İlan</p>
+							<p>İlan Yönetimi</p>
 					</a></li>
 				</sec:authorize>
 				<li class="nav-item"><a
@@ -53,14 +53,14 @@
 				</a></li>
 				<li class="nav-item"><a
 					href="${pageContext.request.contextPath}/admin/account/profile"
-					class="nav-link"> <i class="nav-icon fas fa-user"></i>
+					class="nav-link"> <i class=" nav-icon fas fa-inbox"></i>
 						<p>Mesajlarım</p>
 				</a></li>
 
 				<li class="nav-item"><a
 					href="${pageContext.request.contextPath}/admin/account/profile"
 					class="nav-link"> <i class="nav-icon fas fa-user"></i>
-						<p>Profil</p>
+						<p>Profilim</p>
 				</a></li>
 
 				<li class="nav-item"><a

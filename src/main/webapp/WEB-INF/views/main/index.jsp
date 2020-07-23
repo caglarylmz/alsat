@@ -42,6 +42,20 @@
 	<!--Breadcrumb-->
 	<!--Adverts-->
 	<div class="card card-solid">
+		<div class="card-header py-0">
+			<div class="row">
+				<div class="col-8">
+					<a class="nav-link text-left">
+						Ana Sayfa - Vitrin
+					</a>
+				</div>
+				<div class="col-4 float-right">
+					<a class="nav-link text-right">
+						Tüm Vitrin İlanları
+					</a>
+				</div>
+			</div>
+		</div>
 		<div class="card-body pb-0">
 			<div class="row d-flex align-items-stretch">
 				<c:forEach var="advert" items="${latestAdverts}">
