@@ -471,6 +471,9 @@ public class DbSeeder implements CommandLineRunner {
 		adv2.setAccount(user);
 		adv2.setLikes(likedAccounts);
 
+
+		/*
+		Heroku error java.text.ParseException: Unparseable date: "20-Temmuz-2020"
 		// görüntülenme sayısı
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
 		Date date1 = simpleDateFormat.parse("20-Temmuz-2020");
@@ -483,7 +486,7 @@ public class DbSeeder implements CommandLineRunner {
 		adv2.getViews().add(views1);
 		adv2.getViews().add(views2);
 		//
-
+*/
 		Advert adv3 = new Advert("Advert-3", "Advert Açıklaması");
 		adv3.setTopluSatis(true);
 		adv3.setToplamAdet(200);
