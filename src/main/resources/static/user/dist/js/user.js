@@ -1,21 +1,14 @@
 $(document).ready(
 	function () {
-
-		// chart y ekseni son 1 hatfa
-		const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
-			"Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"
-		];
-		var currentTime = new Date();	
-		var labels = [];
-		for(let i=0 ;i<7;i++ ){
-			labels.push(currentTime.getDate()-i+ " " +  monthNames[currentTime.getMonth()]);
-		}
+		var lastAdvert = '';
+		var views = [];
+		const labels = [];
+		const viewdAts = [];
 
 		// Sales graph chart
-		var salesGraphChartCanvas = $('#line-chart').get(0).getContext('2d');
+		var advertGraphChartCanvas = $('#line-chart').get(0).getContext('2d');
 		//$('#revenue-chart').get(0).getContext('2d');
-
-		var salesGraphChartData = {
+		var advertGraphChartData = {
 			labels: labels,
 			datasets: [
 				{
@@ -24,17 +17,17 @@ $(document).ready(
 					borderWidth: 2,
 					lineTension: 0,
 					spanGaps: true,
-					borderColor: '#efefef',
+					borderColor: '#007bff',
 					pointRadius: 3,
 					pointHoverRadius: 7,
-					pointColor: '#efefef',
-					pointBackgroundColor: '#efefef',
-					data: [1, 2, 1, 3, 3,  2, 0]
+					pointColor: '#007bff',
+					pointBackgroundColor: '#007bff',
+					data: viewdAts
 				}
 			]
 		};
 
-		var salesGraphChartOptions = {
+		var advertGraphChartOptions = {
 			maintainAspectRatio: false,
 			responsive: true,
 			legend: {
@@ -43,18 +36,19 @@ $(document).ready(
 			scales: {
 				xAxes: [{
 					ticks: {
-						fontColor: '#efefef',
+						fontColor: '#343a40',
 					},
 					gridLines: {
 						display: false,
-						color: '#efefef',
+						color: '#343a40',
 						drawBorder: false,
 					}
 				}],
 				yAxes: [{
 					ticks: {
 						stepSize: 1,
-						fontColor: '#efefef',
+						fontColor: '#343a40',
+						beginAtZero: true
 					},
 					gridLines: {
 						display: true,
@@ -66,11 +60,30 @@ $(document).ready(
 		};
 
 		// This will get the first returned node in the jQuery collection.
-		var salesGraphChart = new Chart(salesGraphChartCanvas, {
+		var advertGraphChart = new Chart(advertGraphChartCanvas, {
 			type: 'line',
-			data: salesGraphChartData,
-			options: salesGraphChartOptions
+			data: advertGraphChartData,
+			options: advertGraphChartOptions
 		});
 
+
+		$.ajax({
+			type: 'GET',
+			url: '/api/adverts/user',
+			success: function (result) {
+				var res = $.parseJSON(JSON.stringify(result));
+				lastAdvert = res[res.length - 1];
+				views = lastAdvert.views;
+				for (let index = 0; index < views.length; index++) {
+					labels.push(views[index].viewedAt.substring(0, views[index].viewedAt.length - 5));
+					viewdAts.push(views[index].howManyViewedAt);
+				}
+
+				advertGraphChart.update();
+			},
+			error: function (msg) {
+				console.log("failed");
+			}
+		});
 
 	});

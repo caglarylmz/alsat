@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -26,16 +27,18 @@ public class AdvertViews {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Date viewedAt;
+    private String viewedAt;
+    private int howManyViewedAt;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "advert_id")
     @JsonIgnore
     private Advert advert;
 
-    public AdvertViews(Advert advert){
+    public AdvertViews(Advert advert, String viewedAt){
         this.advert=advert;
-        this.viewedAt = new Date();
+        this.viewedAt = viewedAt;
+        this.howManyViewedAt=1;
 
     }
 

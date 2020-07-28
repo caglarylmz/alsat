@@ -78,7 +78,6 @@ public class Advert {
 	List<Account> likes = new ArrayList<>();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "advert", cascade = CascadeType.ALL)
-	@JsonIgnore
 	List<AdvertViews> views = new ArrayList<>();
 
 	/* İlanın ne zaman oluşturulduğu veya update edildiği bilgisini saklıyoruz */

@@ -1,7 +1,9 @@
 package com.oriontech.alsat;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.oriontech.alsat.models.Account;
 import com.oriontech.alsat.models.Advert;
 import com.oriontech.alsat.models.AdvertDetail;
+import com.oriontech.alsat.models.AdvertViews;
 import com.oriontech.alsat.models.Category;
 import com.oriontech.alsat.models.Irk;
 import com.oriontech.alsat.models.Role;
@@ -467,6 +470,20 @@ public class DbSeeder implements CommandLineRunner {
 		adv2.setCategory(sigir);
 		adv2.setAccount(user);
 		adv2.setLikes(likedAccounts);
+
+		// görüntülenme sayısı
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
+		Date date1 = simpleDateFormat.parse("20-Temmuz-2020");
+		Date date2 = simpleDateFormat.parse("25-Temmuz-2020");
+		String d1Adv2 = simpleDateFormat.format(date1);
+		String d2Adv2 = simpleDateFormat.format(date2);
+		AdvertViews views1 = new AdvertViews(adv2, d1Adv2);
+		views1.setHowManyViewedAt(10);
+		AdvertViews views2 = new AdvertViews(adv2, d2Adv2);
+		adv2.getViews().add(views1);
+		adv2.getViews().add(views2);
+		//
+
 		Advert adv3 = new Advert("Advert-3", "Advert Açıklaması");
 		adv3.setTopluSatis(true);
 		adv3.setToplamAdet(200);

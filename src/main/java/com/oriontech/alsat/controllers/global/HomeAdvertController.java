@@ -1,5 +1,6 @@
 package com.oriontech.alsat.controllers.global;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -20,6 +21,7 @@ import com.oriontech.alsat.models.Account;
 import com.oriontech.alsat.models.Advert;
 import com.oriontech.alsat.models.AdvertViews;
 import com.oriontech.alsat.models.Category;
+import com.oriontech.alsat.repositories.AdvertViewsRepository;
 import com.oriontech.alsat.services.AccountService;
 import com.oriontech.alsat.services.AdvertService;
 
@@ -31,6 +33,8 @@ public class HomeAdvertController {
 	private AdvertService advertService;
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private AdvertViewsRepository advertViewsRepository;
 
 	@GetMapping(value = "details/{id}")
 	public String details(@PathVariable("id") long id, ModelMap model) {
@@ -44,14 +48,38 @@ public class HomeAdvertController {
 			model.put("isLiked", false);
 		}
 
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
+		Date date = new Date();
+		String now = simpleDateFormat.format(date);
+
 		Advert advert = advertService.findById(id);
 
-		AdvertViews view = new AdvertViews(advert);
-		advert.getViews().add(view);
-		advertService.save(advert);
+		for (AdvertViews views : advertViewsRepository.findAdvertViewsFromAdvert(advert.getId())) {
+			if (views.getViewedAt().equals(now)) {
+				advertViewsRepository.findById(views.getId()).get().setHowManyViewedAt(views.getHowManyViewedAt() + 1);
+				System.out.println(now);
+			} else {
+				AdvertViews advertViews = new AdvertViews(advert, now);
+				advertViewsRepository.save(advertViews);
+			}
+		}
+
+		/*
+		 * if (advert.getViews() == null || advert.getViews().size() == 0) {
+		 * advertViewsRepository.save(advertViews); advert.getViews().add(advertViews);
+		 * } else { List<AdvertViews> advertViewsFromAdvert =
+		 * advertViewsRepository.findAdvertViewsFromAdvert(advert.getId()); for (int i =
+		 * 0; i < advertViewsFromAdvert.size(); i++) { if
+		 * (advertViewsFromAdvert.get(i).getViewedAt().equals(advertViews.getViewedAt())
+		 * ) { advertViewsFromAdvert.get(i)
+		 * .setHowManyViewedAt(advertViewsFromAdvert.get(i).getHowManyViewedAt() + 1);
+		 * advertViewsRepository.saveAll(advertViewsFromAdvert); } else {
+		 * advertViewsRepository.save(advertViews); advert.getViews().add(advertViews);
+		 * } }
+		 */
 
 		model.put("category", advertService.findById(id).getCategory());
-		model.put("advert", advert);
+		model.put("advert", advertService.findById(id));
 		return "main.advert.details";
 	}
 

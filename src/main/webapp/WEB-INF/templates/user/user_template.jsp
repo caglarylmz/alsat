@@ -28,8 +28,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/dist/css/adminlte.min.css">
 	<!-- ChartJS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/plugins/chart.js/Chart.min.css">
-	<!-- JQVMap -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/plugins/jqvmap/jqvmap.min.css">
 	<!-- Custom style -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/style.default.css">
 	<!-- Custom style -->
@@ -93,13 +91,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	</script>
 	<!-- ChartJS -->
 	<script src="${pageContext.request.contextPath}/resources/user/plugins/chart.js/Chart.min.js"></script>
-	<!-- Sparkline -->
-	<script src="${pageContext.request.contextPath}/resources/user/plugins/sparklines/sparkline.js"></script>
-	<!-- JQVMap -->
-	<script src="${pageContext.request.contextPath}/resources/user/plugins/jqvmap/jquery.vmap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/user/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-	<!-- jQuery Knob Chart -->
-	<script src="${pageContext.request.contextPath}/resources/user/plugins/jquery-knob/jquery.knob.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="${pageContext.request.contextPath}/resources/user/dist/js/adminlte.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/user/dist/js/user.js"></script>
