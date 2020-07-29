@@ -1,9 +1,11 @@
 $(document).ready(
 	function () {
 
+		/**Popover */
 		$('[data-toggle="popover"]').popover({
 			trigger: 'hover'
 		});
+		/**Popover */
 
 		/**USER PANEL CHART ADVERT */
 		var lastAdvert = '';
