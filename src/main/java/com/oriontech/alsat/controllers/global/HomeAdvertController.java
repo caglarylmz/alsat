@@ -21,9 +21,9 @@ import com.oriontech.alsat.models.Account;
 import com.oriontech.alsat.models.Advert;
 import com.oriontech.alsat.models.AdvertViews;
 import com.oriontech.alsat.models.Category;
-import com.oriontech.alsat.repositories.AdvertViewsRepository;
 import com.oriontech.alsat.services.AccountService;
 import com.oriontech.alsat.services.AdvertService;
+import com.oriontech.alsat.services.AdvertViewsService;
 
 // TODO : add remoce favorite advert from account
 @Controller
@@ -34,7 +34,7 @@ public class HomeAdvertController {
 	@Autowired
 	private AccountService accountService;
 	@Autowired
-	private AdvertViewsRepository advertViewsRepository;
+	private AdvertViewsService advertViewsService;
 
 	@GetMapping(value = "details/{id}")
 	public String details(@PathVariable("id") long id, ModelMap model) {
@@ -48,21 +48,35 @@ public class HomeAdvertController {
 			model.put("isLiked", false);
 		}
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 		Date date = new Date();
 		String now = simpleDateFormat.format(date);
 
 		Advert advert = advertService.findById(id);
 
-		for (AdvertViews views : advertViewsRepository.findAdvertViewsFromAdvert(advert.getId())) {
-			if (views.getViewedAt().equals(now)) {
-				advertViewsRepository.findById(views.getId()).get().setHowManyViewedAt(views.getHowManyViewedAt() + 1);
-				System.out.println(now);
-			} else {
-				AdvertViews advertViews = new AdvertViews(advert, now);
-				advertViewsRepository.save(advertViews);
+		List<AdvertViews> advertViews = advertViewsService.findAdvertViewsFromAdvert(advert.getId());
+
+		boolean hasExisted = false;
+		int adverViewIndex = 0;
+		for (int i = 0; i < advertViews.size(); i++) {
+			if (advertViews.get(i).getViewedAt().equalsIgnoreCase(now)) {
+				adverViewIndex = i;
+
+				hasExisted = true;
 			}
+			advert.setViews(advertViews);
 		}
+		if (hasExisted) {
+			advertViews.get(adverViewIndex)
+					.setHowManyViewedAt(advertViews.get(adverViewIndex).getHowManyViewedAt() + 1);
+			advert.setViews(advertViews);
+		} else {
+			AdvertViews aViews = new AdvertViews(advert, now);
+			advertViews.add(aViews);
+			advert.setViews(advertViews);
+
+		}
+		advertService.save(advert);
 
 		/*
 		 * if (advert.getViews() == null || advert.getViews().size() == 0) {
@@ -79,7 +93,7 @@ public class HomeAdvertController {
 		 */
 
 		model.put("category", advertService.findById(id).getCategory());
-		model.put("advert", advertService.findById(id));
+		model.put("advert", advert);
 		return "main.advert.details";
 	}
 

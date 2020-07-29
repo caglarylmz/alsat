@@ -1,5 +1,11 @@
 $(document).ready(
 	function () {
+
+		$('[data-toggle="popover"]').popover({
+			trigger: 'hover'
+		});
+
+		/**USER PANEL CHART ADVERT */
 		var lastAdvert = '';
 		var views = [];
 		const labels = [];

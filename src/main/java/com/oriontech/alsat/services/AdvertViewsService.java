@@ -1,0 +1,32 @@
+package com.oriontech.alsat.services;
+
+import java.util.List;
+
+import com.oriontech.alsat.models.AdvertViews;
+import com.oriontech.alsat.repositories.AdvertViewsRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AdvertViewsService {
+    @Autowired
+    AdvertViewsRepository advertViewsRepository;
+
+    public List<AdvertViews> findAdvertViewsFromAdvert(long advertId) {
+        return advertViewsRepository.findAdvertViewsFromAdvert(advertId);
+    }
+
+    public int totalCountViewsFromAdvert(long advertId) {
+        int totalcountViews = 0;
+        List<AdvertViews> advertViews = advertViewsRepository.findAdvertViewsFromAdvert(advertId);
+
+        for (AdvertViews views : advertViews) {
+            totalcountViews += views.getHowManyViewedAt();
+        }
+
+        return totalcountViews;
+
+    }
+
+}

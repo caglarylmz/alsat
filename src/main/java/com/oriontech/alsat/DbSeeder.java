@@ -471,11 +471,11 @@ public class DbSeeder implements CommandLineRunner {
 		adv2.setAccount(user);
 		adv2.setLikes(likedAccounts);
 
-
 		/*
-		Heroku error java.text.ParseException: Unparseable date: "20-Temmuz-2020"
+		 * Heroku error java.text.ParseException: Unparseable date: "20-Temmuz-2020"
+		 */
 		// görüntülenme sayısı
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 		Date date1 = simpleDateFormat.parse("20-Temmuz-2020");
 		Date date2 = simpleDateFormat.parse("25-Temmuz-2020");
 		String d1Adv2 = simpleDateFormat.format(date1);
@@ -486,7 +486,7 @@ public class DbSeeder implements CommandLineRunner {
 		adv2.getViews().add(views1);
 		adv2.getViews().add(views2);
 		//
-*/
+
 		Advert adv3 = new Advert("Advert-3", "Advert Açıklaması");
 		adv3.setTopluSatis(true);
 		adv3.setToplamAdet(200);
