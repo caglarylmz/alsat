@@ -73,9 +73,13 @@ public class Advert {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "advert", cascade = CascadeType.ALL)
 	private List<Photo> photos;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "likedAdverts")
 	@JsonIgnore
 	List<Account> likes = new ArrayList<>();
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "advert", cascade = CascadeType.ALL)
+	@JsonIgnore
+	List<AdvertMessage> messages = new ArrayList<>();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "advert", cascade = CascadeType.ALL)
 	List<AdvertViews> views = new ArrayList<>();

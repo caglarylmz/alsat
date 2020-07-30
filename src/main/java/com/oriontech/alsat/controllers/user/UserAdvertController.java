@@ -184,7 +184,9 @@ public class UserAdvertController implements ServletContextAware {
 		modelMap.put("advert", advertService.findById(id));
 		return "user.advert.detail";
 	}
-	// TODO:Bu kısım rest ile yapıalrak preventDefult şekliyle reload yapılmadan tasarlanmalı
+
+	// TODO:Bu kısım rest ile yapılarak preventDefult şekliyle reload yapılmadan
+	// tasarlanmalı
 	// user add favorites advert
 	@RequestMapping(value = "addFavourites", method = RequestMethod.POST)
 	public String addFavorites(@ModelAttribute("advert") Advert advert, RedirectAttributes redirectAttributes) {
@@ -192,14 +194,14 @@ public class UserAdvertController implements ServletContextAware {
 		Account currentAccount = accountService.findByUsername(authentication.getName());
 		Advert currentAdvert = advertService.findById(advert.getId());
 
-		currentAccount.getAdverts().add(currentAdvert);
+		currentAccount.getLikedAdverts().add(currentAdvert);
 		accountService.save(currentAccount);
 
-		currentAdvert.getLikes().add(currentAccount);
-		advertService.save(currentAdvert);
+		// currentAdvert.getLikes().add(currentAccount);
+		// advertService.save(currentAdvert);
 
-		redirectAttributes.addFlashAttribute("advert", currentAdvert);
-		redirectAttributes.addFlashAttribute("category", currentAdvert.getCategory());
+		redirectAttributes.addFlashAttribute("advert", advertService.findById(advert.getId()));
+		redirectAttributes.addFlashAttribute("category", advertService.findById(advert.getId()).getCategory());
 
 		return "redirect:/advert/details/" + advert.getId();
 	}
@@ -211,14 +213,14 @@ public class UserAdvertController implements ServletContextAware {
 		Account currentAccount = accountService.findByUsername(authentication.getName());
 		Advert currentAdvert = advertService.findById(advert.getId());
 
-		currentAccount.getAdverts().remove(currentAdvert);
+		currentAccount.getLikedAdverts().remove(currentAdvert);
 		accountService.save(currentAccount);
 
-		currentAdvert.getLikes().remove(currentAccount);
-		advertService.save(currentAdvert);
+		// currentAdvert.getLikes().remove(currentAccount);
+		// advertService.save(currentAdvert);
 
-		redirectAttributes.addFlashAttribute("advert", currentAdvert);
-		redirectAttributes.addFlashAttribute("category", currentAdvert.getCategory());
+		redirectAttributes.addFlashAttribute("advert", advertService.findById(advert.getId()));
+		redirectAttributes.addFlashAttribute("category", advertService.findById(advert.getId()).getCategory());
 
 		return "redirect:/advert/details/" + advert.getId();
 	}

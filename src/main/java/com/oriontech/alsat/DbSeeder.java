@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.UIDefaults.ActiveValue;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.oriontech.alsat.models.Account;
 import com.oriontech.alsat.models.Advert;
 import com.oriontech.alsat.models.AdvertDetail;
+import com.oriontech.alsat.models.AdvertMessage;
 import com.oriontech.alsat.models.AdvertViews;
 import com.oriontech.alsat.models.Category;
 import com.oriontech.alsat.models.Irk;
@@ -22,6 +25,7 @@ import com.oriontech.alsat.models.Tip;
 import com.oriontech.alsat.models.Yas;
 import com.oriontech.alsat.repositories.AccountRepository;
 import com.oriontech.alsat.repositories.AdvertDetailRepository;
+import com.oriontech.alsat.repositories.AdvertMessageRespository;
 import com.oriontech.alsat.repositories.AdvertRepository;
 import com.oriontech.alsat.repositories.CategoryRepository;
 import com.oriontech.alsat.repositories.IrkRepository;
@@ -43,6 +47,7 @@ public class DbSeeder implements CommandLineRunner {
 	private final TipRepository tipRepository;
 	private final IrkRepository irkRepository;
 	private final YasRepository yasRepository;
+	private final AdvertMessageRespository advertMessageRespository;
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	@Override
@@ -453,23 +458,26 @@ public class DbSeeder implements CommandLineRunner {
 		Yas y10 = new Yas("10 ve Üzeri");
 		yasRepository.save(y10);
 
-		List<Account> likedAccounts = new ArrayList<>();
-		likedAccounts.add(user);
-		likedAccounts.add(owner);
+		// List<Account> likedAccounts = new ArrayList<>();
+		// likedAccounts.add(user);
+		// likedAccounts.add(owner);
 		//
+
+		
+
 		Advert adv1 = new Advert("Advert-1", "Advert Açıklaması");
 		adv1.setCategory(sigir);
 		adv1.setAccount(user);
 		adv1.setToplamAdet(20);
 		adv1.setToplamFiyat(8000);
-		adv1.setLikes(likedAccounts);
+		// adv1.setLikes(likedAccounts);
 
 		Advert adv2 = new Advert("Advert-2", "Advert Açıklaması");
 		adv2.setToplamAdet(10);
 		adv2.setToplamFiyat(5000);
 		adv2.setCategory(sigir);
 		adv2.setAccount(user);
-		adv2.setLikes(likedAccounts);
+		// adv2.setLikes(likedAccounts);
 
 		/*
 		 * Heroku error java.text.ParseException: Unparseable date: "20-Temmuz-2020"
@@ -513,7 +521,7 @@ public class DbSeeder implements CommandLineRunner {
 		adv7.setAccount(owner);
 		adv7.setToplamAdet(2000);
 		adv7.setToplamFiyat(2000);
-		adv7.setLikes(likedAccounts);
+		// adv7.setLikes(likedAccounts);
 
 		advertRepository.save(adv1);
 		advertRepository.save(adv2);
@@ -542,6 +550,19 @@ public class DbSeeder implements CommandLineRunner {
 		advertDetailRepository.save(dtl7);
 		advertDetailRepository.save(dtl8);
 		advertDetailRepository.save(dtl9);
+
+		user.getLikedAdverts().add(adv1);
+		user.getLikedAdverts().add(adv2);
+		user.getLikedAdverts().add(adv3);
+
+		accountRepository.save(user);
+
+		AdvertMessage message = new AdvertMessage();
+		message.setAccount(admin);
+		message.setMessage("message");
+		message.setAccount(admin);
+		message.setAdvert(adv1);
+		advertMessageRespository.save(message);
 	}
 
 }

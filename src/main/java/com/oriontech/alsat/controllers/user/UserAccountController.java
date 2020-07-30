@@ -19,12 +19,10 @@ public class UserAccountController {
 	@Autowired
 	AccountService accountService;
 
-
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 
-	
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public String profile(Authentication authentication, ModelMap accountModel) {
 		accountModel.put("account", accountService.findByUsername(authentication.getName()));
@@ -43,7 +41,6 @@ public class UserAccountController {
 		currentAccount.setTown(account.getTown());
 		currentAccount.setCity(account.getCity());
 		currentAccount.setPhone(account.getPhone());
-		
 
 		accountService.save(currentAccount);
 		return "redirect:/user/account/profile";

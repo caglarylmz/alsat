@@ -48,6 +48,7 @@ public class HomeAdvertController {
 			model.put("isLiked", false);
 		}
 
+		/** İlanın aynı gün içinde kaç defa görünmtülendiğini tutuyoruz */
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 		Date date = new Date();
 		String now = simpleDateFormat.format(date);
@@ -77,20 +78,7 @@ public class HomeAdvertController {
 
 		}
 		advertService.save(advert);
-
-		/*
-		 * if (advert.getViews() == null || advert.getViews().size() == 0) {
-		 * advertViewsRepository.save(advertViews); advert.getViews().add(advertViews);
-		 * } else { List<AdvertViews> advertViewsFromAdvert =
-		 * advertViewsRepository.findAdvertViewsFromAdvert(advert.getId()); for (int i =
-		 * 0; i < advertViewsFromAdvert.size(); i++) { if
-		 * (advertViewsFromAdvert.get(i).getViewedAt().equals(advertViews.getViewedAt())
-		 * ) { advertViewsFromAdvert.get(i)
-		 * .setHowManyViewedAt(advertViewsFromAdvert.get(i).getHowManyViewedAt() + 1);
-		 * advertViewsRepository.saveAll(advertViewsFromAdvert); } else {
-		 * advertViewsRepository.save(advertViews); advert.getViews().add(advertViews);
-		 * } }
-		 */
+		/** İlanın aynı gün içinde kaç defa görünmtülendiğini tutuyoruz */
 
 		model.put("category", advertService.findById(id).getCategory());
 		model.put("advert", advert);
@@ -122,14 +110,22 @@ public class HomeAdvertController {
 	}
 
 	boolean isLikedAdvert(Advert currentAdvert, Account currentAccount) {
-		Iterator<Account> iterator = currentAdvert.getLikes().iterator();
+
+		for (Advert ad : currentAccount.getLikedAdverts()) {
+			if(ad.getId().equals(currentAdvert.getId())){
+				return true;
+			}
+		}
+		return false;
+
+		/*Iterator<Account> iterator = currentAdvert.getLikes().iterator();
 		while (iterator.hasNext()) {
 			Account account = iterator.next();
 			if (account.equals(currentAccount)) {
 				return true;
 			}
 		}
-		return false;
+		return false;*/
 	}
 
 }

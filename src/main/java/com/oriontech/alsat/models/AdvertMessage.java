@@ -36,12 +36,12 @@ public class AdvertMessage {
     @NotBlank
     private String message;
     private boolean status;
-    private boolean readed;
+    private boolean read;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "account_id")
     @JsonIgnore
-    private Account account;
+    private Account Account;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "advert_id")
@@ -54,7 +54,7 @@ public class AdvertMessage {
     /* İlanın ne zaman oluşturulduğu veya update edildiği bilgisini saklıyoruz */
     @PrePersist
     protected void prePersist() {
-        this.readed = false;
+        this.read = false;
         this.status = true;
         if (this.createdAt == null)
             createdAt = new Date();

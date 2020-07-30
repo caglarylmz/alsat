@@ -4,23 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -63,6 +53,15 @@ public class Account {
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "account", cascade = CascadeType.ALL)
 	private List<Advert> adverts = new ArrayList<Advert>();
+
+	@ManyToMany
+	@JoinTable(name = "advert_like", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "advert_id"))
+	@JsonIgnore
+	private List<Advert> likedAdverts = new ArrayList<>();
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "advert", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<AdvertMessage> messages = new ArrayList<>();
 
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date createdAt;

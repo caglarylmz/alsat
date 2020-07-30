@@ -31,14 +31,26 @@ public class UserPanelController {
 	@GetMapping()
 	public String index(Authentication authentication, ModelMap model) {
 		List<Advert> userAdverts = advertService.userAdverts(authentication.getName());
-		model.put("totalViewCount",
-				advertViewsService.totalCountViewsFromAdvert(advertService.userAdverts(authentication.getName())
-						.get(advertService.userAdverts(authentication.getName()).size() - 1).getId()));
-		model.put("user_adverts", userAdverts);
-		model.put("adverts_length", userAdverts.size());
-		model.put("last_advert", advertService.userAdverts(authentication.getName())
-				.get(advertService.userAdverts(authentication.getName()).size() - 1));
 
+		int totalMessageCount = 0;
+
+		for (Advert advert : userAdverts) {
+			totalMessageCount += advert.getMessages().size();
+		}
+
+		if (userAdverts.size() > 0) {
+			model.put("totalMessageCount", totalMessageCount);
+			model.put("totalViewCount",
+					advertViewsService.totalCountViewsFromAdvert(advertService.userAdverts(authentication.getName())
+							.get(advertService.userAdverts(authentication.getName()).size() - 1).getId()));
+			model.put("user_adverts", userAdverts);
+
+			model.put("last_advert", advertService.userAdverts(authentication.getName())
+					.get(advertService.userAdverts(authentication.getName()).size() - 1));
+
+		}
+		model.put("adverts_length", userAdverts.size());
+		model.put("user", accountService.findByUsername(authentication.getName()));
 		return "user.panel.ozet";
 	}
 

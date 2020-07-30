@@ -27,7 +27,7 @@
 		<!-- small box -->
 		<div class="small-box bg-danger">
 			<div class="inner">
-				<h3>${user.likedAdverts.size()}</h3>
+				<h3>65</h3>
 
 				<p>Favori İlanlarınız</p>
 			</div>
@@ -42,7 +42,7 @@
 		<!-- small box -->
 		<div class="small-box bg-secondary">
 			<div class="inner">
-				<h3>${totalMessageCount}</h3>
+				<h3>44</h3>
 
 				<p>İlanlarınıza Gelen Mesajlar</p>
 			</div>
@@ -113,7 +113,7 @@
 								</a>
 								<a class="btn-light p-1" href="#" data-container="body" data-toggle="popover"
 									data-placement="bottom" data-content="Favori Sayısı">
-									<i class="far fa-heart mx-1"></i>${last_advert.likes.size()}
+									<i class="far fa-star mx-1"></i>${last_advert.likes.size()}
 								</a>
 								<a class="btn-light p-1" href="#" data-container="body" data-toggle="popover"
 									data-placement="bottom" data-content="Mesaj Sayısı">
