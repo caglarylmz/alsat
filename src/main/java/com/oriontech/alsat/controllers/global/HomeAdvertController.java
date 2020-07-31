@@ -1,6 +1,9 @@
 package com.oriontech.alsat.controllers.global;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -51,8 +54,8 @@ public class HomeAdvertController {
 
 		/** İlanın aynı gün içinde kaç defa görünmtülendiğini tutuyoruz */
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-		Date date = new Date();
-		String now = simpleDateFormat.format(date);
+		LocalDate date = LocalDate.now();
+		String now = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
 
 		Advert advert = advertService.findById(id);
 

@@ -1,6 +1,9 @@
 package com.oriontech.alsat;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -474,8 +477,25 @@ public class DbSeeder implements CommandLineRunner {
 		adv2.setAccount(user);
 		// adv2.setLikes(likedAccounts);
 
+		LocalDate date1 = LocalDate.of(2020, Month.JULY, 20);
+		String d1Adv2 = date1.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+		AdvertViews views1 = new AdvertViews(adv2, d1Adv2);
+		views1.setHowManyViewedAt(10);
+		adv2.getViews().add(views1);
+
+		LocalDate date2 = LocalDate.of(2020, Month.JULY, 22);
+		String d2Adv2 = date2.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+		AdvertViews views2 = new AdvertViews(adv2, d2Adv2);
+		views2.setHowManyViewedAt(5);
+		adv2.getViews().add(views2);
+
+		LocalDate date3 = LocalDate.of(2020, Month.JULY, 30);
+		String d2Adv3 = date3.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+		AdvertViews views3 = new AdvertViews(adv2, d2Adv3);
+		views3.setHowManyViewedAt(13);
+		adv2.getViews().add(views3);
 		/*
-		 * Heroku error java.text.ParseException: Unparseable date: "20-Temmuz-2020"
+		 * /* Heroku error java.text.ParseException: Unparseable date: "20-Temmuz-2020"
 		 */
 		// görüntülenme sayısı
 		// SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
