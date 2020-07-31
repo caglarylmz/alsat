@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +39,7 @@ public class PhotoController implements ServletContextAware {
 	AdvertService advertService;
 
 	@RequestMapping(value = "advert/{id}", method = RequestMethod.GET)
-	public String photosOfAdvert(@PathVariable("id") long id, ModelMap modelMap) {
+	public String photosOfAdvert(@PathVariable("id") String id, ModelMap modelMap) {
 		Advert advert = advertService.findById(id);
 		Photo photo = new Photo();
 		photo.setStatus(true);

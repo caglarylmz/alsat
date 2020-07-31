@@ -50,14 +50,14 @@
 					</c:if>
 				</div>
 				<div class="input-group mb-3">
-					<s:input path="mail" type="email" placeholder="Email" id="mail" required="required" autocomplete="email"
+					<s:input path="email" type="email" placeholder="Email" id="email" required="required" autocomplete="email"
 						cssClass="form-control" />
 					<div class="input-group-append">
 						<div class="input-group-text">
 							<span class="fas fa-envelope"></span>
 						</div>
 					</div>
-					<s:errors path="mail" />
+					<s:errors path="email" />
 					<c:if test="${msgMail!=null}">
 						<label>${msgMail}</label>
 					</c:if>

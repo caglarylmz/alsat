@@ -108,8 +108,8 @@ public class AccountController implements ServletContextAware {
 			}
 		}
 
-		if (!account.getMail().equals(currentAccount.getMail())) {
-			if (accountService.existByMail(account.getMail())) {
+		if (!account.getEmail().equals(currentAccount.getEmail())) {
+			if (accountService.existByEmail(account.getEmail())) {
 				redirectAttributes.addFlashAttribute("errorMsg", "Mail kullanılıyor");
 				return "redirect:/admin/account/profile";
 			}
@@ -160,8 +160,8 @@ public class AccountController implements ServletContextAware {
 			}
 		}
 
-		if (!account.getMail().equals(currentAccount.getMail())) {
-			if (accountService.existByMail(account.getMail())) {
+		if (!account.getEmail().equals(currentAccount.getEmail())) {
+			if (accountService.existByEmail(account.getEmail())) {
 				redirectAttributes.addFlashAttribute("msg", "Mail kullanılıyor");
 				return "redirect:/admin/account/profile";
 			}

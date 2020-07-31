@@ -2,11 +2,8 @@ package com.oriontech.alsat;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
-import javax.swing.UIDefaults.ActiveValue;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -463,16 +460,14 @@ public class DbSeeder implements CommandLineRunner {
 		// likedAccounts.add(owner);
 		//
 
-		
-
-		Advert adv1 = new Advert("Advert-1", "Advert Açıklaması");
+		Advert adv1 = new Advert("Advert-1", "Advert Açıklaması 1");
 		adv1.setCategory(sigir);
 		adv1.setAccount(user);
 		adv1.setToplamAdet(20);
 		adv1.setToplamFiyat(8000);
 		// adv1.setLikes(likedAccounts);
 
-		Advert adv2 = new Advert("Advert-2", "Advert Açıklaması");
+		Advert adv2 = new Advert("Advert-2", "Advert Açıklaması 2");
 		adv2.setToplamAdet(10);
 		adv2.setToplamFiyat(5000);
 		adv2.setCategory(sigir);
@@ -483,40 +478,40 @@ public class DbSeeder implements CommandLineRunner {
 		 * Heroku error java.text.ParseException: Unparseable date: "20-Temmuz-2020"
 		 */
 		// görüntülenme sayısı
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-		Date date1 = simpleDateFormat.parse("20-Temmuz-2020");
-		Date date2 = simpleDateFormat.parse("25-Temmuz-2020");
-		String d1Adv2 = simpleDateFormat.format(date1);
-		String d2Adv2 = simpleDateFormat.format(date2);
-		AdvertViews views1 = new AdvertViews(adv2, d1Adv2);
-		views1.setHowManyViewedAt(10);
-		AdvertViews views2 = new AdvertViews(adv2, d2Adv2);
-		adv2.getViews().add(views1);
-		adv2.getViews().add(views2);
+		// SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+		// Date date1 = simpleDateFormat.parse("20-Temmuz-2020");
+		// Date date2 = simpleDateFormat.parse("25-Temmuz-2020");
+		// String d1Adv2 = simpleDateFormat.format(date1);
+		// String d2Adv2 = simpleDateFormat.format(date2);
+		// AdvertViews views1 = new AdvertViews(adv2, d1Adv2);
+		// views1.setHowManyViewedAt(10);
+		// AdvertViews views2 = new AdvertViews(adv2, d2Adv2);
+		// adv2.getViews().add(views1);
+		// adv2.getViews().add(views2);
 		//
 
-		Advert adv3 = new Advert("Advert-3", "Advert Açıklaması");
+		Advert adv3 = new Advert("Advert-3", "Advert Açıklaması 3");
 		adv3.setTopluSatis(true);
 		adv3.setToplamAdet(200);
 		adv3.setToplamFiyat(6000);
 		adv3.setCategory(arpa);
 		adv3.setAccount(owner);
-		Advert adv4 = new Advert("Advert-4", "Advert Açıklaması");
+		Advert adv4 = new Advert("Advert-4", "Advert Açıklaması 4");
 		adv4.setCategory(keci);
 		adv4.setAccount(owner);
 		adv4.setToplamAdet(5);
 		adv4.setToplamFiyat(3000);
-		Advert adv5 = new Advert("Advert-5", "Advert Açıklaması");
+		Advert adv5 = new Advert("Advert-5", "Advert Açıklaması 5");
 		adv5.setCategory(tavuk);
 		adv5.setAccount(owner);
 		adv5.setToplamAdet(100);
 		adv5.setToplamFiyat(8000);
-		Advert adv6 = new Advert("Advert-6", "Advert Açıklaması");
+		Advert adv6 = new Advert("Advert-6", "Advert Açıklaması 6");
 		adv6.setCategory(satilikBuyukbas);
 		adv6.setAccount(owner);
 		adv6.setToplamAdet(1);
 		adv6.setToplamFiyat(16000);
-		Advert adv7 = new Advert("Advert-7", "Advert Açıklaması");
+		Advert adv7 = new Advert("Advert-7", "Advert Açıklaması 7");
 		adv7.setCategory(fabrikaYemi);
 		adv7.setAccount(owner);
 		adv7.setToplamAdet(2000);

@@ -1,6 +1,7 @@
 package com.oriontech.alsat.services;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.oriontech.alsat.models.AdvertViews;
 import com.oriontech.alsat.repositories.AdvertViewsRepository;
@@ -13,11 +14,11 @@ public class AdvertViewsService {
     @Autowired
     AdvertViewsRepository advertViewsRepository;
 
-    public List<AdvertViews> findAdvertViewsFromAdvert(long advertId) {
+    public List<AdvertViews> findAdvertViewsFromAdvert(String advertId) {
         return advertViewsRepository.findAdvertViewsFromAdvert(advertId);
     }
 
-    public int totalCountViewsFromAdvert(long advertId) {
+    public int totalCountViewsFromAdvert(String advertId) {
         int totalcountViews = 0;
         List<AdvertViews> advertViews = advertViewsRepository.findAdvertViewsFromAdvert(advertId);
 

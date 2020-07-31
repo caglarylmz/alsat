@@ -65,7 +65,7 @@
 							<tr>
 								<td style="vertical-align: middle;">${a.fullName }</td>
 								<td style="vertical-align: middle;">${a.username }</td>
-								<td style="vertical-align: middle;">${a.mail }</td>
+								<td style="vertical-align: middle;">${a.email }</td>
 								<td style="vertical-align: middle;">${a.role.name }</td>							
 								<td align="center"><input type="checkbox" class="switch"
 									${a.status ? 'checked' :''} /></td>

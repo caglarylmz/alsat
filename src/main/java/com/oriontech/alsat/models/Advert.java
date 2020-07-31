@@ -3,9 +3,10 @@ package com.oriontech.alsat.models;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,11 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.oriontech.alsat.config.DateFormatIdGenerator;
+import com.oriontech.alsat.config.IdGenerator;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,8 +40,16 @@ import lombok.Setter;
 @Entity
 public class Advert {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "advert_seq")
+	@GenericGenerator(name = "advert_seq", strategy = "com.oriontech.alsat.config.IdGenerator", parameters = {
+			//@Parameter(name = IdGenerator.INCREMENT_PARAM, value = "100"),
+			@Parameter(name = IdGenerator.VALUE_PREFIX_PARAMETER, value = "ADV"),
+			@Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+	// @GenericGenerator(name = "advert_seq", strategy =
+	// "com.oriontech.alsat.config.DateFormatIdGenarator", parameters = {
+	// @Parameter(name = DateFormatIdGenerator.INCREMENT_PARAM, value = "100") })
+	@Column(name = "id", updatable = false, nullable = false)
+	private String id;
 	private String baslik;
 	@Lob
 	private String aciklama;

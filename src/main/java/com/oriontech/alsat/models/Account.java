@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "username", "mail" }))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "username", "email" }))
 public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class Account {
 	private String username;
 	@NotEmpty(message = "Email boş bırakılamaz.")
 	@Email(message = "Hatalı email.")
-	private String mail;
+	private String email;
 	private String password;
 	@Transient
 	private String matchingPassword;
@@ -84,9 +84,9 @@ public class Account {
 		this.updatedAt = new Date();
 	}
 
-	public Account(String username, String password, String mail) {
+	public Account(String username, String password, String email) {
 		this.username = username;
-		this.mail = mail;
+		this.email = email;
 		this.password = password;
 		this.status = true;
 	}

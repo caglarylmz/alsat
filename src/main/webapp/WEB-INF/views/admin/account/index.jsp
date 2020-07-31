@@ -61,7 +61,7 @@
 							<tr>
 								<td style="vertical-align: middle;">${a.fullName }</td>
 								<td style="vertical-align: middle;">${a.username }</td>
-								<td style="vertical-align: middle;">${a.mail }</td>
+								<td style="vertical-align: middle;">${a.email }</td>
 								<td style="vertical-align: middle;">${a.role.name }</td>
 								<td align="center"><input type="checkbox" class="switch"
 									${a.status ? 'checked' :''} /></td>
@@ -139,8 +139,8 @@
 							<div class="row ">
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label for="mail">Email</label>
-										<s:input path="mail" type="email" name="mail"
+										<label for="email">Email</label>
+										<s:input path="email" type="email" name="email"
 											class="form-control" required="required" />
 									</div>
 								</div>

@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,7 +38,7 @@ public class HomeAdvertController {
 	private AdvertViewsService advertViewsService;
 
 	@GetMapping(value = "details/{id}")
-	public String details(@PathVariable("id") long id, ModelMap model) {
+	public String details(@PathVariable("id") String id, ModelMap model) {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		// we are checking an authenticated user before trying to access it

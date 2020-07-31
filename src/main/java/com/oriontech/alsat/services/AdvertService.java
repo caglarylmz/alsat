@@ -2,6 +2,7 @@ package com.oriontech.alsat.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class AdvertService {
 		return advertRepository.findAll();
 	}
 
-	public Advert findById(Long id) {
+	public Advert findById(String id) {
 		return advertRepository.findById(id).get();
 	}
 
@@ -38,7 +39,7 @@ public class AdvertService {
 		return advertRepository.save(advert);
 	}
 
-	public void deleteById(Long id) {
+	public void deleteById(String id) {
 		advertRepository.deleteById(id);
 	}
 

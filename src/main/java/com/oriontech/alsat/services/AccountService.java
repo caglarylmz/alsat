@@ -33,16 +33,16 @@ public class AccountService implements UserDetailsService {
 		return new User(account.getUsername(), account.getPassword(), grantedAuthorities);
 	}
 
-	public UserDetails loadUserByMail(String mail) throws UsernameNotFoundException {
-		Account account = (Account) accountRepository.findByMail(mail).get();
+	public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
+		Account account = (Account) accountRepository.findByEmail(email).get();
 
 		if (account == null)
-			throw new UsernameNotFoundException("Mail not found for " + mail);
+			throw new UsernameNotFoundException("Mail not found for " + email);
 
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
 		grantedAuthorities.add(new SimpleGrantedAuthority(account.getRole().getName()));
 
-		return new User(account.getMail(), account.getPassword(), grantedAuthorities);
+		return new User(account.getEmail(), account.getPassword(), grantedAuthorities);
 	}
 
 	public Account findByUsername(String username) {
@@ -66,8 +66,8 @@ public class AccountService implements UserDetailsService {
 	public boolean existByUsername(String username)  {
 		return accountRepository.existsByUsername(username);
 	}
-	public boolean existByMail(String mail) {
-		return accountRepository.existsByMail(mail);
+	public boolean existByEmail(String email) {
+		return accountRepository.existsByEmail(email);
 	}
 	
 	public void deleteById(Long id) {

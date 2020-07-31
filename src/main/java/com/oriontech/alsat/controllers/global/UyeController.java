@@ -65,7 +65,7 @@ public class UyeController {
 			return "main.secure.register";
 		}
 
-		if (accountService.existByMail(account.getMail())) {
+		if (accountService.existByEmail(account.getEmail())) {
 			redirectAttributes.addFlashAttribute("msgMail", "Email adresi kullanılıyor");
 			return "redirect:/uye/register";
 		}

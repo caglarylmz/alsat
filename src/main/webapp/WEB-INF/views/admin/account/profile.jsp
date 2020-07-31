@@ -67,8 +67,8 @@
 					<div class="row ">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="mail">Email</label>
-								<s:input path="mail" type="email" name="mail"
+								<label for="email">Email</label>
+								<s:input path="email" type="email" name="email"
 									class="form-control" required="required" />
 							</div>
 						</div>

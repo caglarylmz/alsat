@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
@@ -146,7 +147,7 @@ public class UserAdvertController implements ServletContextAware {
 
 	// Delete Advert
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-	public String delete(@PathVariable("id") long id, RedirectAttributes redirectAttributes, ModelMap modelMap) {
+	public String delete(@PathVariable("id") String id, RedirectAttributes redirectAttributes, ModelMap modelMap) {
 		Advert deleteAdvert = advertService.findById(id);
 		try {
 			advertDetailRepository.deleteAll(deleteAdvert.getAdvertDetails());
@@ -162,7 +163,7 @@ public class UserAdvertController implements ServletContextAware {
 
 	// show edit category form
 	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable("id") long id, ModelMap modelMap) {
+	public String edit(@PathVariable("id") String id, ModelMap modelMap) {
 		modelMap.put("advert", advertService.findById(id));
 		return "user.advert.edit";
 	}
@@ -180,7 +181,7 @@ public class UserAdvertController implements ServletContextAware {
 
 	// show details category form
 	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
-	public String detail(@PathVariable("id") long id, ModelMap modelMap) {
+	public String detail(@PathVariable("id") String id, ModelMap modelMap) {
 		modelMap.put("advert", advertService.findById(id));
 		return "user.advert.detail";
 	}

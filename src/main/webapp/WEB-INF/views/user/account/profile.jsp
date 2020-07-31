@@ -47,8 +47,8 @@
 				
 				<!-- email -->
 				<div class="form-group">
-					<label for="mail">Mail</label>
-					<s:input path="mail" cssClass="form-control" id="mail"
+					<label for="email">Email</label>
+					<s:input path="email" cssClass="form-control" id="email"
 						required="true" />
 				</div>
 				<!-- first name -->

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.oriontech.alsat.models.Advert;
 
 @Repository
-public interface AdvertRepository extends CrudRepository<Advert, Long> {
+public interface AdvertRepository extends CrudRepository<Advert, String> {
 
 	@Query(value = "SELECT * from advert WHERE status = :status ORDER BY updated_at DESC LIMIT :n ", nativeQuery = true)
 	public List<Advert> latestAdverts(@Param("status") boolean status, @Param("n") int n);

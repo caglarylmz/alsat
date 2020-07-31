@@ -10,10 +10,10 @@ import com.oriontech.alsat.models.Account;
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Long>{
 	public Optional<Account> findByUsername(String username);
-	public Optional<Account> findByMail(String mail);
+	public Optional<Account> findByEmail(String email);
 	public Optional<Account> findById(Long id);
 	boolean existsByUsername(String username);
-	boolean existsByMail(String mail);
+	boolean existsByEmail(String email);
 	
 	
 

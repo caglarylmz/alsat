@@ -55,7 +55,7 @@ public class RestAccountController {
 		if (!account.getPassword().isEmpty())
 			currentAccount.setPassword(passwordEncoder().encode(account.getPassword()));
 		currentAccount.setUsername(account.getUsername());
-		currentAccount.setMail(account.getMail());
+		currentAccount.setEmail(account.getEmail());
 		currentAccount.setFullName(account.getFullName());
 		currentAccount.setAdressDetail(account.getAdressDetail());
 		currentAccount.setTown(account.getTown());
