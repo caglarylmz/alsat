@@ -71,15 +71,15 @@
 											class="text-center">
 											<c:if test="${photo.name eq null}">
 												<img src="${pageContext.request.contextPath}/uploads/no_image.jpg"
-													id="advert-image" class="img-fluid">
+													alt="" id="advert-image" class="img-fluid">
 											</c:if>
 											<c:if test="${photo.name eq 'no_image.jpg'}">
 												<img src="${pageContext.request.contextPath}/uploads/${photo.name}"
-													id="advert-image" class="img-fluid">
+													alt="" id="advert-image" class="img-fluid">
 											</c:if>
 											<c:if test="${photo.name ne 'no_image.jpg' and photo.name ne null}">
 												<img src="${pageContext.request.contextPath}/uploads/advert_images/${photo.name}"
-													id="advert-image" class="img-fluid">
+													alt="" id="advert-image" class="img-fluid">
 											</c:if>
 										</a>
 									</div>

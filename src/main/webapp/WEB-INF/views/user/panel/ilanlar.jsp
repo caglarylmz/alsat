@@ -3,183 +3,224 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:formatNumber var="toplamFiyat" maxFractionDigits="0" type="currency" value="${last_advert.toplamFiyat}" />
-<c:set var="mainPhoto"
-	value="${last_advert.getPhotos().stream().filter(p->p.isMainPhoto()).findFirst().orElse(null)}" />
-
-<!--CARDS-->
 <div class="row">
-	<div class="col-lg-4 col-6">
-		<!-- small box -->
-		<div class="small-box bg-info">
-			<div class="inner">
-				<h3>${adverts_length}</h3>
-
-				<p>Aktif İlan Sayısı</p>
-			</div>
-			<div class="icon">
-				<i class="fas fa-ad"></i>
-			</div>
-			<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-		</div>
+	<div class="col-12">
+		<c:if test="${active}">
+			<h3>Yayındaki İlanlarım</h3>
+		</c:if>
+		<c:if test="${!active}">
+			<h3>Pasif İlanlarım</h3>
+		</c:if>
 	</div>
-	<div class="col-lg-4 col-6">
-		<!-- small box -->
-		<div class="small-box bg-danger">
-			<div class="inner">
-				<h3>65</h3>
-
-				<p>Favori İlanlarınız</p>
-			</div>
-			<div class="icon">
-				<i class="fas fa-heart"></i>
-			</div>
-			<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-		</div>
-	</div>
-	<!-- ./col -->
-	<div class="col-lg-4 col-6">
-		<!-- small box -->
-		<div class="small-box bg-secondary">
-			<div class="inner">
-				<h3>44</h3>
-
-				<p>İlanlarınıza Gelen Mesajlar</p>
-			</div>
-			<div class="icon">
-				<i class="fas fa-envelope"></i>
-			</div>
-			<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-		</div>
-	</div>
-	<!-- ./col -->
-
 </div>
-<!--CARDS-->
+
 <!--LATEST ADVERT-->
-<c:if test="${adverts_length>0}">
+<c:if test="${!user_adverts.isEmpty()}">
 	<div class="row">
 		<div class="card">
+			<!--CARD HEADER-->
 			<div class="card-header">
-				Son Yayına Aldığım İlan
-			</div>
-			<div class="card-body">
-				<div class="invoice p-3 mb-3">
-					<!-- title row -->
-					<div class="row">
-						<div class="col-12">
-							<h4>
-								<a href="${pageContext.request.contextPath}/advert/details/${last_advert.id}"
-									class="text-secondary">
-									${last_advert.baslik}
-									<span class="float-right text-danger">${toplamFiyat}</span>
-								</a>
-							</h4>
-						</div>
-						<!-- /.col -->
-					</div>
-					<!-- info row -->
-					<div class="row invoice-info">
-						<div class="col-2 invoice-col">
-							<address>
-								<div class="col-12 text-center">
-									<a href="${pageContext.request.contextPath}/advert/details/${last_advert.id}"
-										style="background-color: grey;" class="text-center">
-										<c:if test="${photo.name eq null}">
-											<img src="${pageContext.request.contextPath}/uploads/no_image.jpg"
-												id="advert-image" class="img-fluid">
-										</c:if>
-										<c:if test="${photo.name eq 'no_image.jpg'}">
-											<img src="${pageContext.request.contextPath}/uploads/${photo.name}"
-												id="advert-image" class="img-fluid">
-										</c:if>
-										<c:if test="${photo.name ne 'no_image.jpg' and photo.name ne null}">
-											<img src="${pageContext.request.contextPath}/uploads/advert_images/${photo.name}"
-												id="advert-image" class="img-fluid">
-										</c:if>
-										<span class="text-light">İlan No: ${last_advert.id}</span>
-									</a>
-								</div>
-							</address>
-						</div>
-						<!-- /.col -->
-						<div class="col-5 invoice-col">
-							<address>
-								${last_advert.category.name}<i
-									class="fas fa-caret-right mx-1"></i>${last_advert.category.tips.get(0).name}<br><br>
-								<a class="btn-light p-1" href="#" data-container="body" data-toggle="popover"
-									data-placement="bottom" data-content="Görüntülenme Sayısı">
-									<i class="far fa-eye mx-1"></i>${totalViewCount}
-								</a>
-								<a class="btn-light p-1" href="#" data-container="body" data-toggle="popover"
-									data-placement="bottom" data-content="Favori Sayısı">
-									<i class="far fa-star mx-1"></i>${last_advert.likes.size()}
-								</a>
-								<a class="btn-light p-1" href="#" data-container="body" data-toggle="popover"
-									data-placement="bottom" data-content="Mesaj Sayısı">
-									<i class="far fa-envelope mx-1"></i>${last_advert.likes.size()}
-								</a><br>
-							</address>
-
-						</div>
-						<div class="col-5 invoice-col">
-							<address>
-								adres <br>
-								<fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-									value="${last_advert.createdAt}" /><br>
-								<fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-									value="${last_advert.updatedAt}" /><br>
-								yayından kalkacağı tarih<br>
-							</address>
-
-						</div>
-						<!-- /.col -->
-						<div class="col-12">
-							<button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i>
-								İşlemler
-							</button>
-							<button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-								<i class="fas fa-download"></i> Doping
-							</button>
-						</div>
-					</div>
-					<!-- /.row -->
-
-					<!-- LINE CHART -->
-					<div class="row">
-						<div class="col-12">
-							<div class="card bg-gradient-light">
-								<div class="card-header border-0">
-									<h3 class="card-title">
-										<i class="fas fa-th mr-1"></i>
-										Son İlana Ait Görüntülenme Sayıları
-									</h3>
-
-
-								</div>
-								<div class="card-body">
-									<div class="chart">
-										<canvas id="line-chart"
-											style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-									</div>
-								</div>
+				<div class="row">
+					<div class="col-12">
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" placeholder="İlan No veya Kelime İle Ara"
+								aria-label="Ara">
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" type="button">Ara</button>
 							</div>
-							<!-- /.card-footer -->
+						</div>
+					</div>
+					<div class="col-12">
+						<c:if test="${active}">
+							<address class="float-left">Toplam ${user_adverts.size()} adet aktif ilanınız bulunmaktadır
+							</address>
+						</c:if>
+						<c:if test="${!active}">
+							<address class="float-left">Toplam ${user_adverts.size()} adet pasif ilanınız bulunmaktadır
+							</address>
+						</c:if>
+						<div class="float-right">
+							<select class="form-control" id="exampleFormControlSelect1">
+								<option>İlan Tarihine Göre (Artan)</option>
+								<option>İlan Tarihine Göre (Azalan)</option>
+								<option>Fiyata Göre (Artan)</option>
+								<option>Fiyata Göre (Azalan)</option>
+								<option>Bildirime Göre</option>
+							</select>
 						</div>
 					</div>
 				</div>
 			</div>
+			<!--CARD HEADER-->
+			<!--Advert TABLE-->
+			<div class="card-body">
+				<c:forEach var="a" items="${user_adverts}">
+					<fmt:formatNumber var="toplamFiyat" maxFractionDigits="0" type="currency"
+						value="${a.toplamFiyat}" />
+					<c:set var="mainPhoto"
+						value="${a.getPhotos().stream().filter(p->p.isMainPhoto()).findFirst().orElse(null)}" />
+					<div class="invoice p-3 mb-3 advert-card">
+						<!-- title row -->
+						<div class="row">
+							<div class="col-12">
+								<h4>
+									<a href="${pageContext.request.contextPath}/advert/details/${a.id}"
+										class="text-secondary">
+										${a.baslik}
+										<span class="float-right text-danger">${toplamFiyat}</span>
+									</a>
+								</h4>
+							</div>
+							<!-- /.col -->
+						</div>
+						<!-- info row -->
+						<div class="row invoice-info">
+							<div class="col-md-3 col-sm-6 invoice-col">
+								<address class="address">
+									<div class="col-12 text-center">
+										<a href="${pageContext.request.contextPath}/advert/details/${a.id}"
+											class="text-center btn-block">
+											<c:if test="${photo.name eq null}">
+												<img src="${pageContext.request.contextPath}/uploads/no_image.jpg"
+													alt="" id="advert-image" class="img-fluid">
+											</c:if>
+											<c:if test="${photo.name eq 'no_image.jpg'}">
+												<img src="${pageContext.request.contextPath}/uploads/${photo.name}"
+													alt="" id="advert-image" class="img-fluid">
+											</c:if>
+											<c:if test="${photo.name ne 'no_image.jpg' and photo.name ne null}">
+												<img src="${pageContext.request.contextPath}/uploads/advert_images/${photo.name}"
+													alt="" id="advert-image" class="img-fluid">
+											</c:if>
+
+										</a>
+										<span>İlan No: ${a.id}</span>
+									</div>
+								</address>
+							</div>
+							<!-- /.col -->
+							<div class="col-md-5 col-sm-6 invoice-col">
+								<address class="address">
+									${a.category.name}<i
+										class="fas fa-caret-right mx-1"></i>${a.category.tips.get(0).name}<br><br>
+									Yayınlanma Tarihi :
+									<fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+										value="${a.createdAt}" /><br>
+									Son Yayınlanma Tarihi :
+									<fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+										value="${a.updatedAt}" /><br><br>
+									<a class="btn-light p-1" href="#" data-container="body" data-toggle="popover"
+										data-placement="bottom" data-content="Görüntülenme Sayısı">
+										<i class="far fa-eye mx-1"></i>${a.views.size()}
+									</a>
+									<a class="btn-light p-1" href="#" data-container="body" data-toggle="popover"
+										data-placement="bottom" data-content="Favori Sayısı">
+										<i class="far fa-star mx-1"></i>${a.likes.size()}
+									</a>
+									<a class="btn-light p-1" href="#" data-container="body" data-toggle="popover"
+										data-placement="bottom" data-content="Mesaj Sayısı">
+										<i class="far fa-envelope mx-1"></i>${a.likes.size()}
+									</a><br>
+								</address>
+
+							</div>
+							<div class="col-md-4 col-sm-12 invoice-col">
+								<div class="col-12">
+									<c:if test="${active}">
+										<button type="button" class="btn btn-secondary btn-sm float-left">
+											İlanı Öne Çıkar
+										</button>
+									</c:if>
+									<c:if test="${!active}">
+										<button type="button" class="btn btn-secondary btn-sm float-left">
+											İlanı Yayına Al
+										</button>
+									</c:if>
+									<div class="btn-group float-right" role="group">
+										<button id="btnGroupDrop1" type="button"
+											class="btn btn-primary btn-sm  dropdown-toggle" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											İşlemler
+										</button>
+										<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+											<a class="dropdown-item" href="#">Düzenle</a>
+											<a class="dropdown-item" href="#">İlan Tarihi Güncelle</a>
+											<a class="dropdown-item" href="#">Görüntülenme Raporu</a>
+											<c:if test="${active}">
+												<a class="dropdown-item" href="#">Yayından Kaldır</a>
+
+											</c:if>
+											<c:if test="${!active}">
+												<a class="dropdown-item" href="#">Yayına Al</a>
+
+											</c:if>
+											<a class="dropdown-item" href="#">İlana Not Ekle</a>
+
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<!-- /.col -->
+
+						</div>
+						<!-- /.row -->
+
+
+					</div>
+
+				</c:forEach>
+				<!--Advert TABLE-->
+			</div>
 		</div>
 	</div>
 </c:if>
-<c:if test="${adverts_length==0}">
+<c:if test="${user_adverts.isEmpty()}">
 	<div class="row">
 		<div class="card">
+			<!--CARD HEADER-->
 			<div class="card-header">
-				Son Yayına Aldığım İlan
+				<div class="row">
+					<div class="col-12">
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" placeholder="İlan No veya Kelime İle Ara"
+								aria-label="Ara">
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" type="button">Ara</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-12">
+						<c:if test="${active}">
+							<address class="float-left">Toplam ${user_adverts.size()} adet aktif ilanınız bulunmaktadır
+							</address>
+						</c:if>
+						<c:if test="${!active}">
+							<address class="float-left">Toplam ${user_adverts.size()} adet pasif ilanınız bulunmaktadır
+							</address>
+						</c:if>
+						<div class="float-right">
+							<select class="form-control" id="exampleFormControlSelect1">
+								<option>İlan Tarihine Göre (Artan)</option>
+								<option>İlan Tarihine Göre (Azalan)</option>
+								<option>Fiyata Göre (Artan)</option>
+								<option>Fiyata Göre (Azalan)</option>
+								<option>Bildirime Göre</option>
+							</select>
+						</div>
+					</div>
+				</div>
 			</div>
+			<!--CARD HEADER-->
 			<div class="card-body">
-				<h4>Yayında olan aktif bir ilan bulunmamaktadır</h4>
+				<c:if test="${active}">
+					<h4>Aktif ilanınız bulunmamaktadır</h4>
+
+				</c:if>
+				<c:if test="${!active}">
+					<h4>Pasif ilanınız bulunmamaktadır</h4>
+
+				</c:if>
 			</div>
 		</div>
 	</div>

@@ -15,12 +15,12 @@ public class AdvertViewsService {
     AdvertViewsRepository advertViewsRepository;
 
     public List<AdvertViews> findAdvertViewsFromAdvert(String advertId) {
-        return advertViewsRepository.findAdvertViewsFromAdvert(advertId);
+        return advertViewsRepository.findAdvertViewsByAdvertId(advertId);
     }
 
     public int totalCountViewsFromAdvert(String advertId) {
         int totalcountViews = 0;
-        List<AdvertViews> advertViews = advertViewsRepository.findAdvertViewsFromAdvert(advertId);
+        List<AdvertViews> advertViews = advertViewsRepository.findAdvertViewsByAdvertId(advertId);
 
         for (AdvertViews views : advertViews) {
             totalcountViews += views.getHowManyViewedAt();

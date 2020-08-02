@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
@@ -18,13 +17,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -58,8 +55,8 @@ public class UserAdvertController implements ServletContextAware {
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Authentication authentication, ModelMap modelMap) {
 
-		modelMap.put("adverts", advertService.userAdverts(authentication.getName()));
-		return "user.advert.index";
+		modelMap.put("adverts", advertService.getAllLatestAdvertByAccount(authentication.getName()));
+		return "user.panel.ilanlar";
 	}
 
 	/*
@@ -198,9 +195,6 @@ public class UserAdvertController implements ServletContextAware {
 		currentAccount.getLikedAdverts().add(currentAdvert);
 		accountService.save(currentAccount);
 
-		// currentAdvert.getLikes().add(currentAccount);
-		// advertService.save(currentAdvert);
-
 		redirectAttributes.addFlashAttribute("advert", advertService.findById(advert.getId()));
 		redirectAttributes.addFlashAttribute("category", advertService.findById(advert.getId()).getCategory());
 
@@ -216,9 +210,6 @@ public class UserAdvertController implements ServletContextAware {
 
 		currentAccount.getLikedAdverts().remove(currentAdvert);
 		accountService.save(currentAccount);
-
-		// currentAdvert.getLikes().remove(currentAccount);
-		// advertService.save(currentAdvert);
 
 		redirectAttributes.addFlashAttribute("advert", advertService.findById(advert.getId()));
 		redirectAttributes.addFlashAttribute("category", advertService.findById(advert.getId()).getCategory());

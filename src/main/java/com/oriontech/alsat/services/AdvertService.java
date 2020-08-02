@@ -2,7 +2,6 @@ package com.oriontech.alsat.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,27 +39,45 @@ public class AdvertService {
 	}
 
 	public void deleteById(String id) {
-		advertRepository.deleteById(id);
+		advertRepository.findById(id).get().setStatus(false);
 	}
 
-	public List<Advert> latestAdverts() {
-		return advertRepository.latestAdverts(true, 10);
+	// All Adverts By Status with Limit
+	public List<Advert> getAllLatestAdvertsByStatusWithLimit(boolean status, int n) {
+		return advertRepository.findAllLatestAdvertsByStatusWithLimit(status, n);
 	}
 
-	public List<Advert> userAdverts(String username) {
-		return advertRepository.userAdverts(accountService.findByUsername(username).getId());
+	// All Adverts By Status
+	public List<Advert> getAllLatestAdvertsByStatus(boolean status) {
+		return advertRepository.findAllLatestAdvertsByStatus(status);
 	}
 
-	public List<Advert> categoryAdverts(Long categoryId) {
-		// return advertRepository.categoryAdverts(categoryId);
-		return categoryService.findById(categoryId).getAdverts();
+	// All User's Adverts
+	public List<Advert> getAllLatestAdvertByAccount(String username) {
+		return advertRepository.findAllLatestAdvertByAccount(accountService.findByUsername(username).getId());
 	}
 
-	public List<Advert> categoryAndChildsAdverts(Long categoryId) {
+	// All User's Active Adverts
+	public List<Advert> getAllLatestActiveAdvertByAccount(String username) {
+		return advertRepository.findAllLatestActiveAdvertByAccount(accountService.findByUsername(username).getId());
+	}
+
+	// All User's Deactive Adverts
+	public List<Advert> getAllLatestDeactiveAdvertByAccount(String username) {
+		return advertRepository.findAllLatestDeactiveAdvertByAccount(accountService.findByUsername(username).getId());
+	}
+
+	// All Categories's Active Adverts
+	public List<Advert> getAllLatestActiveAdvertByCategory(Long categoryId) {
+		return advertRepository.findAllLatestActiveAdvertByCategory(categoryId);
+	}
+
+	// All adverts by Category's and child categories'
+	public List<Advert> getAllAdvertsByCategoryAndChildCategories(Long categoryId) {
 		List<Advert> allAdverts = new ArrayList<>();
 
 		allAdverts.addAll(categoryService.findById(categoryId).getAdverts());
-		if (categoryService.findById(categoryId).getSubCategories().size() > 0) {
+		if (!categoryService.findById(categoryId).getSubCategories().isEmpty()) {
 			for (Category category : categoryService.findById(categoryId).getSubCategories()) {
 				allAdverts.addAll(category.getAdverts());
 			}
@@ -69,9 +86,10 @@ public class AdvertService {
 		return allAdverts;
 	}
 
-	public List<Advert> tipsOfAdverts(long tipId) {
+	// All active adverts by Tip
+	public List<Advert> getAllAdvertsByTips(long tipId) {
 		List<Advert> adverts = new ArrayList<>();
-		for (Advert advert : advertRepository.findAll()) {
+		for (Advert advert : advertRepository.findAllLatestAdvertsByStatus(true)) {
 			for (AdvertDetail advertDetail : advert.getAdvertDetails()) {
 				if (advertDetail.getTip().getId() == tipId) {
 					adverts.add(advert);
@@ -79,6 +97,11 @@ public class AdvertService {
 			}
 		}
 		return adverts;
+	}
+
+	// Latest created Advert
+	public Advert getLatestAdvertByAccountId(Long accountId) {
+		return advertRepository.findAllLatestAdvertByAccount(accountId).stream().findFirst().get();
 	}
 
 }

@@ -80,8 +80,7 @@ $(document).ready(
 			url: '/api/adverts/user',
 			success: function (result) {
 				var res = $.parseJSON(JSON.stringify(result));
-				lastAdvert = res[res.length - 1];
-				views = lastAdvert.views;
+				views = res.views;
 				for (let index = 0; index < views.length; index++) {
 					labels.push(views[index].viewedAt.substring(0, views[index].viewedAt.length - 5));
 					viewdAts.push(views[index].howManyViewedAt);

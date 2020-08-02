@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("user/panel")
@@ -28,30 +27,65 @@ public class UserPanelController {
 	@Autowired
 	private AdvertViewsService advertViewsService;
 
-	@GetMapping()
-	public String index(Authentication authentication, ModelMap model) {
-		List<Advert> userAdverts = advertService.userAdverts(authentication.getName());
-
+	@GetMapping(value = { "", "/ozet" })
+	public String ozet(Authentication authentication, ModelMap model) {
+		List<Advert> userAdverts = advertService.getAllLatestAdvertByAccount(authentication.getName());
+		Account account = accountService.findByUsername(authentication.getName());
+		Advert lastAdvert = advertService.getLatestAdvertByAccountId(account.getId());
 		int totalMessageCount = 0;
 
-		for (Advert advert : userAdverts) {
-			totalMessageCount += advert.getMessages().size();
-		}
+		model.put("user_adverts", userAdverts);
+		model.put("user", account);
 
-		if (userAdverts.size() > 0) {
+		if (!userAdverts.isEmpty()) {
+			for (Advert advert : userAdverts) {
+				totalMessageCount += advert.getMessages().size();
+			}
 			model.put("totalMessageCount", totalMessageCount);
-			model.put("totalViewCount",
-					advertViewsService.totalCountViewsFromAdvert(advertService.userAdverts(authentication.getName())
-							.get(advertService.userAdverts(authentication.getName()).size() - 1).getId()));
-			model.put("user_adverts", userAdverts);
+			model.put("totalViewCount", advertViewsService.totalCountViewsFromAdvert(lastAdvert.getId()));
 
-			model.put("last_advert", advertService.userAdverts(authentication.getName())
-					.get(advertService.userAdverts(authentication.getName()).size() - 1));
-
+			model.put("last_advert", lastAdvert);
 		}
-		model.put("adverts_length", userAdverts.size());
-		model.put("user", accountService.findByUsername(authentication.getName()));
+
 		return "user.panel.ozet";
+	}
+
+	/** Yayında olan kullanıcı ilanları */
+	@GetMapping(value = "/ilanlar")
+	public String userAdverts(Authentication authentication, ModelMap model) {
+		List<Advert> userAdverts = advertService.getAllLatestActiveAdvertByAccount(authentication.getName());
+		Account account = accountService.findByUsername(authentication.getName());
+		// userAdverts.get(0).getViews().get(0).getHowManyViewedAt();
+		model.put("active", true);
+		model.put("user_adverts", userAdverts);
+		model.put("user", account);
+
+		return "user.panel.ilanlar";
+	}
+
+	/** Yayında olmayan kullanıcı ilanları */
+	@GetMapping(value = "/ilanlar/pasif")
+	public String userPassiveAdverts(Authentication authentication, ModelMap model) {
+		List<Advert> userPassiveAdverts = advertService.getAllLatestDeactiveAdvertByAccount(authentication.getName());
+		Account account = accountService.findByUsername(authentication.getName());
+		// userAdverts.get(0).getViews().get(0).getHowManyViewedAt();
+		model.put("active", false);
+		model.put("user_adverts", userPassiveAdverts);
+		model.put("user", account);
+
+		return "user.panel.ilanlar";
+	}
+
+	/** kullanıcı favori ilanları */
+	@GetMapping(value = "/ilanlar/favori")
+	public String userFavoriteAdverts(Authentication authentication, ModelMap model) {
+		Account account = accountService.findByUsername(authentication.getName());
+		List<Advert> userPassiveAdverts = account.getLikedAdverts();
+
+		model.put("user_adverts", userPassiveAdverts);
+		model.put("user", account);
+
+		return "user.panel.favori_ilanlar";
 	}
 
 }

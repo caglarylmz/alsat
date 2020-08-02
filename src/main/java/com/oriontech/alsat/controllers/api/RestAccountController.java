@@ -66,9 +66,5 @@ public class RestAccountController {
 		return accountService.save(currentAccount);
 	}
 
-	@DeleteMapping("{id}")
-	public void deleteAccount(@PathVariable Long id) {
-
-	}
 
 }

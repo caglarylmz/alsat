@@ -15,7 +15,15 @@
         <definition name="user.panel.ozet" extends="user_template">
                 <put-attribute name="content" value="/WEB-INF/views/user/panel/ozet.jsp"></put-attribute>
         </definition>
-        
+        <!-- İlanlar-->
+        <definition name="user.panel.ilanlar" extends="user_template">
+                <put-attribute name="content" value="/WEB-INF/views/user/panel/ilanlar.jsp"></put-attribute>
+        </definition>
+        <!-- Kullanıcı Favori İlanlar-->
+        <definition name="user.panel.favori_ilanlar" extends="user_template">
+                <put-attribute name="content" value="/WEB-INF/views/user/panel/favori_ilanlar.jsp"></put-attribute>
+        </definition>
+
         <!-- BASE DEFINITION -->
 
 </tiles-definitions>

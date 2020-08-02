@@ -52,7 +52,8 @@ public class Account {
 	private Role role;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "account", cascade = CascadeType.ALL)
-	private List<Advert> adverts = new ArrayList<Advert>();
+	@OrderBy("updatedAt DESC")
+	private List<Advert> adverts = new ArrayList<>();
 
 	@ManyToMany
 	@JoinTable(name = "advert_like", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "advert_id"))
@@ -63,9 +64,7 @@ public class Account {
 	@JsonIgnore
 	private List<AdvertMessage> messages = new ArrayList<>();
 
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date createdAt;
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date updatedAt;
 
 	@PrePersist
@@ -73,7 +72,7 @@ public class Account {
 		if (this.createdAt == null)
 			createdAt = new Date();
 		if (this.updatedAt == null)
-			updatedAt = new Date();
+			updatedAt = createdAt;
 		if (this.profilePhoto == null)
 			profilePhoto = "avatar.jpg";
 

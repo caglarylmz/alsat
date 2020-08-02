@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
@@ -123,7 +122,6 @@ public class AdvertController implements ServletContextAware {
 		addAdvert.setAciklama(advert.getAciklama());
 
 		addAdvert.setAccount(accountService.findByUsername(principal.getName()));
-		System.out.println(principal.getName());
 		addAdvert.setStatus(true);
 
 		advertService.save(addAdvert);

@@ -104,7 +104,7 @@ public class Advert {
 		if (this.createdAt == null)
 			createdAt = new Date();
 		if (this.updatedAt == null)
-			updatedAt = new Date();
+			updatedAt = createdAt;
 
 	}
 

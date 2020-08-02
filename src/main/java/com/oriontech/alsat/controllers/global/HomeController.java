@@ -23,26 +23,26 @@ public class HomeController {
 	private TipRepository tipRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
-	String index(ModelMap modelMap) {
+	public String index(ModelMap modelMap) {
 		modelMap.put("isMain", true);
 		modelMap.put("parentCategories", categoryService.findParentCategoriesWithStatus(true));
-		modelMap.put("latestAdverts", advertService.latestAdverts());
+		modelMap.put("latestAdverts", advertService.getAllLatestAdvertsByStatus(true));
 
 		return "main.index";
 	}
 
-	@GetMapping(value = "category/{id}/adverts")
-	public String categoryAdverts(@PathVariable("id") long id, ModelMap modelMap) {
+	@GetMapping(value = "category/{categoryId}/adverts")
+	public String categoryAdverts(@PathVariable("categoryId") long categoryId, ModelMap modelMap) {
 
-		if (categoryService.findById(id).getSubCategories() != null
-				&& categoryService.findById(id).getSubCategories().size() > 0) {
+		if (categoryService.findById(categoryId).getSubCategories() != null
+				&& !categoryService.findById(categoryId).getSubCategories().isEmpty()) {
 			modelMap.put("isHaveSub", true);
-			modelMap.put("categories", categoryService.findSubcategoriesById(id));
-			modelMap.put("latestAdverts", advertService.categoryAndChildsAdverts(id));
+			modelMap.put("categories", categoryService.findSubcategoriesById(categoryId));
+			modelMap.put("latestAdverts", advertService.getAllAdvertsByCategoryAndChildCategories(categoryId));
 		} else {
 			modelMap.put("isSub", true);
-			modelMap.put("category", categoryService.findById(id));
-			modelMap.put("latestAdverts", advertService.categoryAdverts(id));
+			modelMap.put("category", categoryService.findById(categoryId));
+			modelMap.put("latestAdverts", advertService.getAllLatestActiveAdvertByCategory(categoryId));
 
 		}
 
@@ -55,7 +55,7 @@ public class HomeController {
 		modelMap.put("isTip", true);
 		modelMap.put("category", tipRepository.findById(id).get().getCategory());
 		modelMap.put("tip", tipRepository.findById(id).get());
-		modelMap.put("latestAdverts", advertService.tipsOfAdverts(id));
+		modelMap.put("latestAdverts", advertService.getAllAdvertsByTips(id));
 
 		return "main.index";
 	}

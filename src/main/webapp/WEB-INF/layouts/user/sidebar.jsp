@@ -30,14 +30,14 @@
 							</p>
 						</a>
 
-						<ul class="nav nav-treeview">
+						<ul class="nav nav-treeview" style="display: block;">
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="${pageContext.request.contextPath}/user/panel/ilanlar" class="nav-link">
 									<p>Aktif İlanlar</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="${pageContext.request.contextPath}/user/panel/ilanlar/pasif" class="nav-link">
 									<p>Pasif İlanlar</p>
 								</a>
 							</li>
@@ -56,7 +56,7 @@
 				</a>
 				<ul class="nav nav-treeview" style="display: block;">
 					<li class="nav-item">
-						<a href="../../index.html" class="nav-link">
+						<a href="${pageContext.request.contextPath}/user/panel/ilanlar/favori" class="nav-link">
 							<p>Favori İlanlar</p>
 						</a>
 					</li>

@@ -27,11 +27,11 @@ public class RestAdvertController {
 
     @GetMapping("/user")
     @ResponseBody
-    public List<Advert> getUserAdverts() {
+    public Advert getUserLastAdverts() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return advertService.userAdverts(authentication.getName());
-    }
 
-    
+        return advertService
+                .getLatestAdvertByAccountId(accountService.findByUsername(authentication.getName()).getId());
+    }
 
 }

@@ -13,10 +13,12 @@ import com.oriontech.alsat.models.AdvertViews;
 public interface AdvertViewsRepository extends CrudRepository<AdvertViews, Long> {
 
 	@Query(value = "SELECT * from advert_views WHERE advert_id =:advertId and viewed_at =:viewedAt", nativeQuery = true)
-	public List<AdvertViews> findSameViewedAtAdvertViews(@Param("advertId") String advertId,
+	public List<AdvertViews> findSameViewedAtAdvertViewsByAdvertId(@Param("advertId") String advertId,
 			@Param("viewedAt") String viewedAt);
 
-	@Query(value = "SELECT * from advert_views WHERE advert_id =:advertId" , nativeQuery = true)
-	public List<AdvertViews> findAdvertViewsFromAdvert(@Param("advertId") String advertId);
+	
+
+	@Query(value = "SELECT * from advert_views WHERE advert_id =:advertId", nativeQuery = true)
+	public List<AdvertViews> findAdvertViewsByAdvertId(@Param("advertId") String advertId);
 
 }

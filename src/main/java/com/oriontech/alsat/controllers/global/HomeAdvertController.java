@@ -6,10 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -52,10 +49,8 @@ public class HomeAdvertController {
 			model.put("isLiked", false);
 		}
 
-		/** İlanın aynı gün içinde kaç defa görünmtülendiğini tutuyoruz */
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 		LocalDate date = LocalDate.now();
-		String now = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+		String now = date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
 
 		Advert advert = advertService.findById(id);
 
@@ -89,19 +84,6 @@ public class HomeAdvertController {
 		return "main.advert.details";
 	}
 
-	/*
-	 * @RequestMapping(value = "details/{id}", method = RequestMethod.POST)
-	 * 
-	 * @PreAuthorize("isAuthenticated()") public String
-	 * addOrRemoveLikedAdvert(@PathVariable("id") long
-	 * id, @ModelAttribute("isLiked") String isLiked) { Authentication
-	 * authentication = SecurityContextHolder.getContext().getAuthentication(); if
-	 * (isLiked.equals("true")) {
-	 * advertService.findById(id).getLikes().add(accountService.findByUsername(
-	 * authentication.getName())); } else {
-	 * advertService.findById(id).getLikes().remove(accountService.findByUsername(
-	 * authentication.getName())); } return "redirect:/advert/details/" + id; }
-	 */
 	List<Category> getParentCategoryFromAdvert(Category category) {
 		List<Category> advertsParentsCategories = new ArrayList<>();
 		advertsParentsCategories.add(category);
@@ -114,22 +96,13 @@ public class HomeAdvertController {
 	}
 
 	boolean isLikedAdvert(Advert currentAdvert, Account currentAccount) {
-
 		for (Advert ad : currentAccount.getLikedAdverts()) {
-			if(ad.getId().equals(currentAdvert.getId())){
+			if (ad.getId().equals(currentAdvert.getId())) {
 				return true;
 			}
 		}
 		return false;
 
-		/*Iterator<Account> iterator = currentAdvert.getLikes().iterator();
-		while (iterator.hasNext()) {
-			Account account = iterator.next();
-			if (account.equals(currentAccount)) {
-				return true;
-			}
-		}
-		return false;*/
 	}
 
 }

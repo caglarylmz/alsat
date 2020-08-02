@@ -13,9 +13,9 @@
 		<!-- small box -->
 		<div class="small-box bg-info">
 			<div class="inner">
-				<h3>${adverts_length}</h3>
+				<h3>${user_adverts.size()}</h3>
 
-				<p>Aktif İlan Sayısı</p>
+				<p>İlan Sayısı</p>
 			</div>
 			<div class="icon">
 				<i class="fas fa-ad"></i>
@@ -57,7 +57,7 @@
 </div>
 <!--CARDS-->
 <!--LATEST ADVERT-->
-<c:if test="${adverts_length>0}">
+<c:if test="${!user_adverts.isEmpty()}">
 	<div class="row">
 		<div class="card">
 			<div class="card-header">
@@ -172,7 +172,7 @@
 		</div>
 	</div>
 </c:if>
-<c:if test="${adverts_length==0}">
+<c:if test="${user_adverts.isEmpty()}">
 	<div class="row">
 		<div class="card">
 			<div class="card-header">

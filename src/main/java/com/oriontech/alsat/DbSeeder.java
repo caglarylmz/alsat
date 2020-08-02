@@ -494,21 +494,7 @@ public class DbSeeder implements CommandLineRunner {
 		AdvertViews views3 = new AdvertViews(adv2, d2Adv3);
 		views3.setHowManyViewedAt(13);
 		adv2.getViews().add(views3);
-		/*
-		 * /* Heroku error java.text.ParseException: Unparseable date: "20-Temmuz-2020"
-		 */
-		// görüntülenme sayısı
-		// SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-		// Date date1 = simpleDateFormat.parse("20-Temmuz-2020");
-		// Date date2 = simpleDateFormat.parse("25-Temmuz-2020");
-		// String d1Adv2 = simpleDateFormat.format(date1);
-		// String d2Adv2 = simpleDateFormat.format(date2);
-		// AdvertViews views1 = new AdvertViews(adv2, d1Adv2);
-		// views1.setHowManyViewedAt(10);
-		// AdvertViews views2 = new AdvertViews(adv2, d2Adv2);
-		// adv2.getViews().add(views1);
-		// adv2.getViews().add(views2);
-		//
+	
 
 		Advert adv3 = new Advert("Advert-3", "Advert Açıklaması 3");
 		adv3.setTopluSatis(true);
