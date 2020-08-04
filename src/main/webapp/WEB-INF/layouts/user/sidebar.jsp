@@ -8,6 +8,14 @@
 		<ul class="nav nav-pills nav-sidebar flex-column  nav-compact nav-child-indent" data-widget="treeview"
 			role="menu" data-accordion="false">
 			<li class="nav-item has-treeview menu-open">
+				<a href="${pageContext.request.contextPath}/user/panel" class="nav-link bg-primary">
+					<i class="nav-icon  fas fa-tachometer-alt"></i>
+					<p>
+						Kullanıcı Paneli
+					</p>
+				</a>
+			</li>
+			<li class="nav-item has-treeview menu-open">
 				<a href="#" class="nav-link bg-info">
 					<i class="nav-icon fas fa-ad"></i>
 					<p>
@@ -15,34 +23,16 @@
 						<i class="right fas fa-angle-left"></i>
 					</p>
 				</a>
-				<ul class="nav nav-treeview" style="display: block;">
+				<ul class="nav nav-treeview">
 					<li class="nav-item">
-						<a href="${pageContext.request.contextPath}/user/panel" class="nav-link">
-							<p>Özet</p>
+						<a href="${pageContext.request.contextPath}/user/panel/ilanlar" class="nav-link">
+							<p>Aktif İlanlar</p>
 						</a>
 					</li>
-					<li class="nav-item has-treeview">
-						<a href="#" class="nav-link">
-							<p>
-								<i class="right fas fa-angle-left"></i>
-
-								<p>İlanlarım</p>
-							</p>
+					<li class="nav-item">
+						<a href="${pageContext.request.contextPath}/user/panel/ilanlar/pasif" class="nav-link">
+							<p>Pasif İlanlar</p>
 						</a>
-
-						<ul class="nav nav-treeview" style="display: block;">
-							<li class="nav-item">
-								<a href="${pageContext.request.contextPath}/user/panel/ilanlar" class="nav-link">
-									<p>Aktif İlanlar</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="${pageContext.request.contextPath}/user/panel/ilanlar/pasif" class="nav-link">
-									<p>Pasif İlanlar</p>
-								</a>
-							</li>
-
-						</ul>
 					</li>
 				</ul>
 			</li>

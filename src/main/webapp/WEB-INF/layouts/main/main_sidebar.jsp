@@ -63,111 +63,75 @@
 		</div>
 	</sec:authorize>
 	<!-- Sidebar Menu -->
-	<nav class="mt-2">
-		<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-			<!--ANA KATEGORİ-->
-			<c:if test="${isMain}">
-				<c:forEach var="c" items="${parentCategories}">
-					<li class="nav-item has-treeview menu-open">
-						<a href="#" class="nav-link">
-							<span><img src="${pageContext.request.contextPath}/resources/main/img/category/${c.icon}"
-									class="nav-icon" style="width: 30px;"></span>
-							<p>
-								${c.name}
-								<i class="right fas fa-angle-left"></i>
-							</p>
-						</a>
-						<ul class="nav nav-treeview">
+	<!--ANA KATEGORİ-->
+	<c:if test="${isMain}">
+		<div class="menu mt-1">
+			<c:forEach var="c" items="${parentCategories}">
+				<c:if test="${c.subCategories != null}">
+					<li class="item">
+						<a href='${pageContext.request.contextPath}/category/${c.id}/adverts' class="btn"><span><img
+									src="${pageContext.request.contextPath}/resources/main/img/category/${c.icon}"
+									class="category-icon" style="width: 30px;"></span>${c.name}</a>
+						<div class="smenu">
 							<c:forEach var="c_sub1" items="${c.subCategories}">
-								<li class="nav-item">
-									<a href='${pageContext.request.contextPath}/category/${c_sub1.id}/adverts'
-										class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>${c_sub1.name}</p>
-										<span
-											class="badge badge-secondary text-white float-right">${c_sub1.adverts.size()}</span>
-									</a>
-								</li>
+								<a class=""
+									href='${pageContext.request.contextPath}/category/${c_sub1.id}/adverts'>${c_sub1.name}<span
+										class="badge badge-secondary text-white float-right">${c_sub1.adverts.size()}</span></a>
 							</c:forEach>
-						</ul>
+						</div>
 					</li>
+				</c:if>
+			</c:forEach>
+		</div>
+	</c:if>
+
+	<!--ALT KATEGORİ(Alt kategoriye sahip)-->
+	<c:if test="${isHaveSub}">
+		<div class="menu mt-1">
+			<li class="item">
+				<a href="#" class="btn"><i class="fas fa-home"></i>${categories[0].parentCategory.name}</a>
+				<c:forEach var="c" items="${categories}">
+					<div class="smenu">
+						<a class="" href='${pageContext.request.contextPath}/category/${c.id}/adverts'>${c.name}<span
+								class="badge badge-secondary text-white float-right">${c.adverts.size()}</span></a>
+					</div>
 				</c:forEach>
-			</c:if>
-			<!--ANA KATEGORİ-->
-			<!--ALT KATEGORİ(Alt kategoriye sahip)-->
-			<c:if test="${isHaveSub}">
-				<li class="nav-item has-treeview menu-open">
-					<a href="#" class="nav-link">
-						<p>
-							${categories[0].parentCategory.name}
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview ">
-						<c:forEach var="c" items="${categories}">
-							<li class="nav-item">
-								<a href='${pageContext.request.contextPath}/category/${c.id}/adverts' class="nav-link">
-									<i class="far fa-circle nav-icon"></i>
-									<p>${c.name}</p>
-									<span
-										class="badge badge-secondary text-white float-right">${c.adverts.size()}</span>
-								</a>
-							</li>
-						</c:forEach>
-					</ul>
-				</li>
-			</c:if>
-			<!--ALT KATEGORİ(Alt kategoriye sahip)-->
-			<!--EN ALT KATEGORİ-->
-			<c:if test="${isSub}">
-				<li class="nav-item has-treeview menu-open">
-					<a href="#" class="nav-link">
-						<p>
-							${category.name}
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<c:forEach var="t" items="${category.tips}">
-							<c:if test="${t.id == tip.id}">
-								<li class="nav-item">
-									<a href='${pageContext.request.contextPath}/tip/${t.id}/adverts'
-										class="nav-link active" style="background-color:#20c997;">
-										<i class="far fa-circle nav-icon"></i>
-										<p>${c.name}${t.name}</p>
-									</a>
-								</li>
-							</c:if>
-							<c:if test="${t.id != tip.id}">
-								<li class="nav-item">
-									<a href='${pageContext.request.contextPath}/tip/${t.id}/adverts' class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>${c.name}${t.name}</p>
-									</a>
-								</li>
-							</c:if>
+			</li>
+		</div>
+	</c:if>
 
-						</c:forEach>
-					</ul>
-				</li>
-			</c:if>
-			<!--EN ALT KATEGORİ-->
-			<!--TIP
-			<c:if test="${isTip}">
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-tachometer-alt"></i>
-						<p>
-							${tip.name}
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-				</li>
-			</c:if>
-			TIP-->
+	<!--EN ALT KATEGORİ-->
+	<c:if test="${isSub}">
+		<div class="menu mt-1">
+			<li class="item">
+				<a href='${pageContext.request.contextPath}/category/${category.id}/adverts'
+					class="btn">${category.name}</a>
+				<c:forEach var="t" items="${category.tips}">
+					<c:if test="${t.id == tip.id}">
+						<div class="smenu">
+							<a class="active"
+								href='${pageContext.request.contextPath}/tip/${t.id}/adverts'>${c.name}${t.name}</a>
+						</div>
+					</c:if>
+					<c:if test="${t.id != tip.id}">
+						<div class="smenu">
+							<a class=""
+								href='${pageContext.request.contextPath}/tip/${t.id}/adverts'>${c.name}${t.name}</a>
+						</div>
+					</c:if>
+				</c:forEach>
+			</li>
+		</div>
+	</c:if>
 
-
-		</ul>
-	</nav>
+	<!--TIP
+<c:if test="${isTip}">
+	<div class="menu mt-1">
+		<li class="item">
+			<a class="btn"><i class="fas fa-home"></i>${tip.name}</a>
+		</li>
+	</div>
+</c:if>
+-->
 	<!-- /.sidebar-menu -->
 </div>

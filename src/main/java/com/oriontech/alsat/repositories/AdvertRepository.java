@@ -1,6 +1,7 @@
 package com.oriontech.alsat.repositories;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.Query;
@@ -30,5 +31,8 @@ public interface AdvertRepository extends CrudRepository<Advert, String> {
 
 	@Query(value = "SELECT * from advert WHERE category_id = :categoryId and status=true", nativeQuery = true)
 	public List<Advert> findAllLatestActiveAdvertByCategory(@Param("categoryId") Long categoryId);
+
+	@Query(value = "SELECT * from advert  WHERE LOWER(baslik) LIKE LOWER(concat('%', :query,'%')) or LOWER(aciklama) LIKE LOWER(concat('%', :query,'%'))", nativeQuery = true)
+	public List<Advert> searchAdverts(@Param("query") String query);
 
 }

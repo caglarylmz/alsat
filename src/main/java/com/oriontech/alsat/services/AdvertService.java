@@ -104,4 +104,8 @@ public class AdvertService {
 		return advertRepository.findAllLatestAdvertByAccount(accountId).stream().findFirst().get();
 	}
 
+	public List<Advert> getAllActiveAdvertsBySearchAdverts(String query) {
+		return advertRepository.searchAdverts(query);
+	}
+
 }

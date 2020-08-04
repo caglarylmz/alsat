@@ -517,7 +517,7 @@ public class DbSeeder implements CommandLineRunner {
 		adv6.setAccount(owner);
 		adv6.setToplamAdet(1);
 		adv6.setToplamFiyat(16000);
-		Advert adv7 = new Advert("Advert-7", "Advert Açıklaması 7");
+		Advert adv7 = new Advert("Advert-7", "Harika Advert 7 açıklama");
 		adv7.setCategory(fabrikaYemi);
 		adv7.setAccount(owner);
 		adv7.setToplamAdet(2000);

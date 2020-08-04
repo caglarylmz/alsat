@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="container-fluid">
 	<!--	<div class="row">
@@ -19,11 +20,17 @@
 		</a>
 
 		<div class="col-6 align-items-center">
-			<form class="my-0">
+			<form class="my-0" action="${pageContext.request.contextPath}" method="POST">
 				<div class="input-group align-self-center">
-					<input type="text" class="form-control" placeholder="İlan ara..." />
+					<c:if test="${query.isEmpty()}">
+						<input type="text" class="form-control" name="query" placeholder="İlan ara..." />
+					</c:if>
+					<c:if test="${!query.isEmpty()}">
+						<input type="text" class="form-control" name="query" placeholder="İlan ara..." value="${query}" />
+					</c:if>
 					<div class="input-group-prepend">
-						<button class="btn rounded-right" style="background-color: #4fbfa8; color: white;">
+						<button type="submit" class="btn rounded-right"
+							style="background-color: #4fbfa8; color: white;">
 							<i class="fas fa-search"></i>
 						</button>
 					</div>

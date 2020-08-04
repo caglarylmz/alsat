@@ -56,55 +56,68 @@
 				</div>
 			</div>
 		</div>
-		<div class="card-body pb-0">
-			<div class="row d-flex align-items-stretch">
-				<c:forEach var="advert" items="${latestAdverts}">
-					<c:set var="photo"
-						value="${advert.getPhotos().stream().filter(p->p.isMainPhoto()).findFirst().orElse(null)}">
-					</c:set>
-					<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-						<div class="card bg-light">
-							<div class="card-body">
-								<div class="row">
-									<div class="col-12 text-center">
+		<c:if test="${!latestAdverts.isEmpty()}">
+
+			<div class="card-body pb-0">
+				<div class="row d-flex align-items-stretch">
+					<c:forEach var="advert" items="${latestAdverts}">
+						<c:set var="photo"
+							value="${advert.getPhotos().stream().filter(p->p.isMainPhoto()).findFirst().orElse(null)}">
+						</c:set>
+						<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+							<div class="card bg-light">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-12 text-center">
+											<a href="${pageContext.request.contextPath}/advert/details/${advert.id}"
+												class="text-center">
+												<c:if test="${photo.name eq null}">
+													<img src="${pageContext.request.contextPath}/uploads/no_image.jpg"
+														alt="" id="advert-image" class="img-fluid">
+												</c:if>
+												<c:if test="${photo.name eq 'no_image.jpg'}">
+													<img src="${pageContext.request.contextPath}/uploads/${photo.name}"
+														alt="" id="advert-image" class="img-fluid">
+												</c:if>
+												<c:if test="${photo.name ne 'no_image.jpg' and photo.name ne null}">
+													<img src="${pageContext.request.contextPath}/uploads/advert_images/${photo.name}"
+														alt="" id="advert-image" class="img-fluid">
+												</c:if>
+											</a>
+										</div>
+										<div class="col-12 text-muted">
+											${advert.baslik}
+										</div>
+
+									</div>
+								</div>
+								<div class="card-footer">
+									<div class="text-right">
+										<a href="#" class="btn btn-sm bg-red">
+											<i class="fas fa-heart"></i>
+										</a>
 										<a href="${pageContext.request.contextPath}/advert/details/${advert.id}"
-											class="text-center">
-											<c:if test="${photo.name eq null}">
-												<img src="${pageContext.request.contextPath}/uploads/no_image.jpg"
-													alt="" id="advert-image" class="img-fluid">
-											</c:if>
-											<c:if test="${photo.name eq 'no_image.jpg'}">
-												<img src="${pageContext.request.contextPath}/uploads/${photo.name}"
-													alt="" id="advert-image" class="img-fluid">
-											</c:if>
-											<c:if test="${photo.name ne 'no_image.jpg' and photo.name ne null}">
-												<img src="${pageContext.request.contextPath}/uploads/advert_images/${photo.name}"
-													alt="" id="advert-image" class="img-fluid">
-											</c:if>
+											class="btn btn-sm btn-primary">
+											<i class="fas fa-advert"></i> İlanı İncele
 										</a>
 									</div>
-									<div class="col-12 text-muted">
-										${advert.baslik}
-									</div>
-
-								</div>
-							</div>
-							<div class="card-footer">
-								<div class="text-right">
-									<a href="#" class="btn btn-sm bg-red">
-										<i class="fas fa-heart"></i>
-									</a>
-									<a href="${pageContext.request.contextPath}/advert/details/${advert.id}"
-										class="btn btn-sm btn-primary">
-										<i class="fas fa-advert"></i> İlanı İncele
-									</a>
 								</div>
 							</div>
 						</div>
-					</div>
-				</c:forEach>
+					</c:forEach>
+				</div>
 			</div>
-		</div>
+		</c:if>
+
+		<c:if test="${latestAdverts.isEmpty()}">
+			<div class="card-body pb-0">
+				<div class="row">
+					<div class="col text-center">
+						<span class="text-center">"${query}" araması için her hangi bir kayıt bulunamadı!</span>
+					</div>
+				</div>
+			</div>
+		</c:if>
 		<!-- /.card-body -->
 		<div class="card-footer">
 			<nav aria-label="Contacts Page Navigation">

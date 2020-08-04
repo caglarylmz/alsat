@@ -67,31 +67,37 @@
 		<ul class="nav nav-pills nav-sidebar flex-column  nav-compact nav-child-indent" data-widget="treeview"
 			role="menu" data-accordion="false">
 			<li class="nav-item has-treeview menu-open">
-				<a href="#" class="nav-link">
-					<i class="nav-icon fas fa-tachometer-alt"></i>
+				<a href="${pageContext.request.contextPath}/user/panel" class="nav-link bg-">
+					<i class="nav-icon  fas fa-tachometer-alt"></i>
+					<p>
+						Kullanıcı Paneli
+					</p>
+				</a>
+			</li>
+			<li class="nav-item has-treeview menu-open">
+				<a href="#" class="nav-link bg-info">
+					<i class="nav-icon fas fa-ad"></i>
 					<p>
 						İlan Yönetimi
 						<i class="right fas fa-angle-left"></i>
 					</p>
 				</a>
-				<ul class="nav nav-treeview" style="display: block;">
+				<ul class="nav nav-treeview">
 					<li class="nav-item">
-						<a href="${pageContext.request.contextPath}/user/panel" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
-							<p>Özet</p>
+						<a href="${pageContext.request.contextPath}/user/panel/ilanlar" class="nav-link">
+							<p>Aktif İlanlar</p>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="../../index2.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
-							<p>İlanlarım</p>
+						<a href="${pageContext.request.contextPath}/user/panel/ilanlar/pasif" class="nav-link">
+							<p>Pasif İlanlar</p>
 						</a>
 					</li>
 				</ul>
 			</li>
 			<li class="nav-item has-treeview menu-open">
-				<a href="#" class="nav-link">
-					<i class="nav-icon fas fa-tachometer-alt"></i>
+				<a href="#" class="nav-link bg-danger">
+					<i class="nav-icon fas fa-heart"></i>
 					<p>
 						Favoriler
 						<i class="right fas fa-angle-left"></i>
@@ -99,22 +105,20 @@
 				</a>
 				<ul class="nav nav-treeview" style="display: block;">
 					<li class="nav-item">
-						<a href="../../index.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
+						<a href="${pageContext.request.contextPath}/user/panel/ilanlar/favori" class="nav-link">
 							<p>Favori İlanlar</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="../../index2.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
 							<p>Favori Satıcılar</p>
 						</a>
 					</li>
 				</ul>
 			</li>
 			<li class="nav-item has-treeview menu-open">
-				<a href="#" class="nav-link">
-					<i class="nav-icon fas fa-tachometer-alt"></i>
+				<a href="#" class="nav-link bg-secondary">
+					<i class="nav-icon fas fa-envelope"></i>
 					<p>
 						Mesajlar
 						<i class="right fas fa-angle-left"></i>
@@ -123,21 +127,19 @@
 				<ul class="nav nav-treeview" style="display: block;">
 					<li class="nav-item">
 						<a href="../../index.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
 							<p>İlan Mesajlarım</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="../../index2.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
 							<p>Bilgilendirmeler</p>
 						</a>
 					</li>
 				</ul>
 			</li>
 			<li class="nav-item has-treeview menu-open">
-				<a href="#" class="nav-link">
-					<i class="nav-icon fas fa-tachometer-alt"></i>
+				<a href="#" class="nav-link bg-warning">
+					<i class="nav-icon fas fa-atom"></i>
 					<p>
 						İşlemler
 						<i class="right fas fa-angle-left"></i>
@@ -146,19 +148,16 @@
 				<ul class="nav nav-treeview" style="display: block;">
 					<li class="nav-item">
 						<a href="../../index.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
 							<p>Hesap Hareketlerim</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="../../index2.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
 							<p>Kayıtlı Kredi Kartlarım</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="../../index2.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
 							<p>Engellediklerim</p>
 						</a>
 					</li>
@@ -166,7 +165,7 @@
 			</li>
 			<li class="nav-item has-treeview menu-open">
 				<a href="#" class="nav-link">
-					<i class="nav-icon fas fa-tachometer-alt"></i>
+					<i class="nav-icon fas fa-user"></i>
 					<p>
 						Üyelik
 						<i class="right fas fa-angle-left"></i>
@@ -175,31 +174,26 @@
 				<ul class="nav nav-treeview" style="display: block;">
 					<li class="nav-item">
 						<a href="../../index.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
 							<p>Kişisel Bilgiler</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="../../index2.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
 							<p>Eposta</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="../../index2.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
 							<p>Cep Telefonu</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="../../index2.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
 							<p>Şifre</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="../../index2.html" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
 							<p>Üyelik İptali</p>
 						</a>
 					</li>

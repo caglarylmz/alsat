@@ -6,11 +6,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oriontech.alsat.repositories.TipRepository;
 import com.oriontech.alsat.services.AdvertService;
 import com.oriontech.alsat.services.CategoryService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 @RequestMapping({ "home", "" })
@@ -21,9 +23,11 @@ public class HomeController {
 	private AdvertService advertService;
 	@Autowired
 	private TipRepository tipRepository;
+	private String query = "";
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
+		modelMap.put("query", query);
 		modelMap.put("isMain", true);
 		modelMap.put("parentCategories", categoryService.findParentCategoriesWithStatus(true));
 		modelMap.put("latestAdverts", advertService.getAllLatestAdvertsByStatus(true));
@@ -58,5 +62,16 @@ public class HomeController {
 		modelMap.put("latestAdverts", advertService.getAllAdvertsByTips(id));
 
 		return "main.index";
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public String searchAdverts(@ModelAttribute("query") String query, ModelMap modelMap) {
+
+		modelMap.put("isMain", true);
+		modelMap.put("parentCategories", categoryService.findParentCategoriesWithStatus(true));
+		modelMap.put("latestAdverts", advertService.getAllActiveAdvertsBySearchAdverts(query));
+
+		return "main.index";
+
 	}
 }
