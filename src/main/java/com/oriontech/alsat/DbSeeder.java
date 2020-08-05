@@ -15,20 +15,24 @@ import org.springframework.stereotype.Component;
 
 import com.oriontech.alsat.models.Account;
 import com.oriontech.alsat.models.Advert;
+import com.oriontech.alsat.models.AdvertAdress;
 import com.oriontech.alsat.models.AdvertDetail;
 import com.oriontech.alsat.models.AdvertMessage;
 import com.oriontech.alsat.models.AdvertViews;
 import com.oriontech.alsat.models.Category;
 import com.oriontech.alsat.models.Irk;
+import com.oriontech.alsat.models.Photo;
 import com.oriontech.alsat.models.Role;
 import com.oriontech.alsat.models.Tip;
 import com.oriontech.alsat.models.Yas;
 import com.oriontech.alsat.repositories.AccountRepository;
+import com.oriontech.alsat.repositories.AdvertAdressRepository;
 import com.oriontech.alsat.repositories.AdvertDetailRepository;
 import com.oriontech.alsat.repositories.AdvertMessageRespository;
 import com.oriontech.alsat.repositories.AdvertRepository;
 import com.oriontech.alsat.repositories.CategoryRepository;
 import com.oriontech.alsat.repositories.IrkRepository;
+import com.oriontech.alsat.repositories.PhotoRepository;
 import com.oriontech.alsat.repositories.RoleRepository;
 import com.oriontech.alsat.repositories.TipRepository;
 import com.oriontech.alsat.repositories.YasRepository;
@@ -44,6 +48,8 @@ public class DbSeeder implements CommandLineRunner {
 	private final CategoryRepository categoryRepository;
 	private final AdvertDetailRepository advertDetailRepository;
 	private final AdvertRepository advertRepository;
+	private final PhotoRepository photoRepository;
+	private final AdvertAdressRepository adressRepository;
 	private final TipRepository tipRepository;
 	private final IrkRepository irkRepository;
 	private final YasRepository yasRepository;
@@ -73,9 +79,18 @@ public class DbSeeder implements CommandLineRunner {
 		owner.setRole(ownerRole);
 		owner.setFullName("Owner");
 
+		Account caglar = new Account("caglarylmz", encoder.encode("csylmz"), "caglar.ylmz@outlook.com");
+		caglar.setRole(userRole);
+		caglar.setFullName("Çağlar YILMAZ");
+		caglar.setAdressDetail("Aydoğdu Mh. Evak-1");
+		caglar.setCity("İZMİR");
+		caglar.setTown("Buca");
+		caglar.setPhone("05558317824");
+
 		accountRepository.save(admin);
 		accountRepository.save(owner);
 		accountRepository.save(user);
+		accountRepository.save(caglar);
 
 		// Irk İnek
 		Irk simental = new Irk("Simental");
@@ -477,6 +492,7 @@ public class DbSeeder implements CommandLineRunner {
 		adv2.setAccount(user);
 		// adv2.setLikes(likedAccounts);
 
+		/** İlan için görülme ekliyoruz */
 		LocalDate date1 = LocalDate.of(2020, Month.JULY, 20);
 		String d1Adv2 = date1.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
 		AdvertViews views1 = new AdvertViews(adv2, d1Adv2);
@@ -494,7 +510,7 @@ public class DbSeeder implements CommandLineRunner {
 		AdvertViews views3 = new AdvertViews(adv2, d2Adv3);
 		views3.setHowManyViewedAt(13);
 		adv2.getViews().add(views3);
-	
+		/** İlan için görülme ekliyoruz */
 
 		Advert adv3 = new Advert("Advert-3", "Advert Açıklaması 3");
 		adv3.setTopluSatis(true);
@@ -552,18 +568,68 @@ public class DbSeeder implements CommandLineRunner {
 		advertDetailRepository.save(dtl8);
 		advertDetailRepository.save(dtl9);
 
+		/* Beğenilen ilan ekliyoruz */
 		user.getLikedAdverts().add(adv1);
 		user.getLikedAdverts().add(adv2);
 		user.getLikedAdverts().add(adv3);
 
 		accountRepository.save(user);
-
+		/* Beğenilen ilan ekliyoruz */
+		/** İlan için mesaj ekliyıruz */
 		AdvertMessage message = new AdvertMessage();
 		message.setAccount(admin);
 		message.setMessage("message");
 		message.setAccount(admin);
 		message.setAdvert(adv1);
 		advertMessageRespository.save(message);
+		/** İlan için mesaj ekliyıruz */
+
+		/** Resimli Örnek ilan */
+		Advert advOrnek = new Advert("TARLA ALMA SEBEBİYLE ÜRETİCİDEN SÜT İNEKLERİ SATILIK KÖYLÜ DEN",
+				"ARKADAŞLAR ÖNCE ŞUNU BELİRTMEK İSTİYORUM AZ PARAYA ÇOK SÜT VEREN İNEK YOK İNEKLERİMİN SÜT ORTALAMASİ"
+						+ "EN AZ 24 EN ÇOK SÜT VEREN İNEGİM 32 KİLODUR ABARTMAYA GEREK YOK NEYSE O AMA İYİ İNEK YERİNDE BELLİ OLUR "
+						+ "KİMSE TELEFONDA YOĞURDUM EKŞİ DEMEZ O YÜZDEN GELİN BURDA GÖRUN SAĞİMLARİNA KATİLİP SÜTLERİNİ TEYİD EDEBİLİRSİNİZ"
+						+ " KENDİ ARACİM VAR EVİNİZE KADAR TESLİM EDERİM NOT BİZ SATİSİMİZDA GAYET CİDDİYİZ LUTFEN CİDDİ VE GERCEK ALİCİLAR ARASİN"
+						+ " KOMUSYONCU DEĞİL KENDİ ÇİFTLIMIZDIR ARAÇ TAKASİ YAPILIR TARLA SEBEBİYLE SÜT İNEKLERIM SATILIK");
+		advOrnek.setCategory(sigir);
+		advOrnek.setAccount(caglar);
+		advOrnek.setToplamAdet(20);
+		advOrnek.setToplamFiyat(145000);
+		advOrnek.setKimden("Sahibinden");
+		advOrnek.setFeatured(true);
+		advOrnek.setShowcase(true);
+		advOrnek.setTopluSatis(true);
+		advOrnek.setToptanFiyat(125000);
+		advertRepository.save(advOrnek);
+
+		AdvertAdress adressadvOrnek = new AdvertAdress();
+		adressadvOrnek.setMahalle("Bakırköy Mh.");
+		adressadvOrnek.setIlce("Karacabey");
+		adressadvOrnek.setIl("Bursa");
+		adressadvOrnek.setAdvert(advOrnek);
+		adressRepository.save(adressadvOrnek);
+		advOrnek.setAdvertAdress(adressadvOrnek);
+
+		AdvertDetail dtlbuzagi = new AdvertDetail(buzağı, yerli, y2, 5, 5000, advOrnek);
+		AdvertDetail dtlinek = new AdvertDetail(inek, simental, y3, 5, 6000, advOrnek);
+		AdvertDetail dtlHdüve = new AdvertDetail(hdüve, simental, y3, 10, 9000, advOrnek);
+		advertDetailRepository.save(dtlbuzagi);
+		advertDetailRepository.save(dtlinek);
+		advertDetailRepository.save(dtlHdüve);
+		advertRepository.save(advOrnek);
+
+		Photo p1 = new Photo("0_050820-102602.jpg", true, advOrnek);
+		Photo p2 = new Photo("1_050820-102602.jpg", false, advOrnek);
+		Photo p3 = new Photo("2_050820-102602.jpg", false, advOrnek);
+		Photo p4 = new Photo("3_050820-102602.jpg", false, advOrnek);
+		photoRepository.save(p1);
+		photoRepository.save(p2);
+		photoRepository.save(p3);
+		photoRepository.save(p4);
+		advertRepository.save(advOrnek);
+
+		/** Resimli Örnek ilan */
+
 	}
 
 }

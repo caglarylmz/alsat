@@ -60,14 +60,9 @@
 		<div class="row">
 			<!--CAROUSEL-->
 			<div class="col-12 col-lg-5">
-				<div class="view-product">
-					<c:if test="${advert.photos eq null or advert.photos.size()==0 }">
-						<ul id="imageGallery">
-							<li data-thumb="${pageContext.request.contextPath}/uploads/no_image.jpg"
-								data-src="${pageContext.request.contextPath}/uploads/no_image.jpg">
-								<img src="${pageContext.request.contextPath}/uploads/no_image.jpg">
-							</li>
-						</ul>
+				<div class="view-product text-center">
+					<c:if test="${advert.photos eq null or advert.photos.isEmpty()}">
+						<img src="${pageContext.request.contextPath}/uploads/no_image.jpg" style="width: fit-content;">
 					</c:if>
 					<ul id="imageGallery">
 						<c:forEach var="photo" items="${advert.photos}">
@@ -101,8 +96,8 @@
 					<!--DETAIL-->
 					<div class="col-12 col-sm-7">
 						<div class="bg-gray py-2 px-3">
-							<h2 class="mb-0">
-								${toplamFiyat}</h2>
+							<h4 class="mb-0">
+								${toplamFiyat}</h4>
 						</div>
 						<ul class="list-group list-group-unbordered mb-3">
 							<li class="list-group-item">
@@ -115,7 +110,7 @@
 								</a>
 							</li>
 							<li class="list-group-item">
-								<b class="text-dark ml-3">İlan Kategori</b> <a
+								<b class="text-dark ml-3">Kategori</b> <a
 									class="text-dark float-right mr-3">${advert.category.name}</a>
 							</li>
 							<li class="list-group-item">
@@ -133,17 +128,28 @@
 					<!--User Card-->
 					<div class="col-5 d-none d-sm-block" id="advert-user-card">
 						<div class="widget-user-header bg-gray ">
-							<h2 class="widget-user-username py-2 px-3">${advert.account.fullName}</h3>
+							<h4 class="widget-user-username py-2 px-3">${advert.account.fullName}</h4>
 
 						</div>
 						<div class="info-box">
-							<span class="info-box-icon bg-info text-center"><i class="fas fa-phone"></i></span>
+							<span class="info-box-icon bg-info text-center"><i class="fas fa-envelope"></i></span>
 
 							<div class="info-box-content">
-								<span class="info-box-number">555-831-78-24</span>
+								<span class="info-box-number">${advert.account.email}</span>
 							</div>
 							<!-- /.info-box-content -->
 						</div>
+
+						<c:if test="${advert.account.phone!=null}">
+							<div class="info-box">
+								<span class="info-box-icon bg-info text-center"><i class="fas fa-phone"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-number">${advert.account.phone}</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+						</c:if>
 						<div class="card-body p-0">
 							<ul class="nav flex-column">
 								<li class="nav-item">
@@ -175,9 +181,9 @@
 
 							</ul>
 						</div>
-						<div class="card-footer p-0">
+						<div class="card-footer p-0 my-1">
 							<div class="row">
-								<div class="col-12">
+								<div class="col-12 mb-1">
 									<button type="button" class="btn btn-block btn-sm btn-outline-danger" id="btn-user">
 										<i class="far fa-heart"></i> Favori Satıcılara ekle
 									</button>
@@ -211,58 +217,69 @@
 						role="tab" aria-controls="product-rating" aria-selected="false">Rating</a>
 				</div>
 			</nav>
-			<div class="tab-content p-3" id="nav-tabContent">
+			<div class="tab-content p-3 w-100" id="nav-tabContent">
+
 				<div class="tab-pane fade active show" id="product-desc" role="tabpanel"
 					aria-labelledby="product-desc-tab">
-					<table class="table table-striped">
-						<thead>
+					<div class="row w-100">
+						<div class="col-md-6 float-left">
+							<p>
+							<address> ${advert.aciklama}</address>
+							</p>
+						</div>
+						<div class="col-md-6  float-right">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th style="width: 100%">
+											Tip
+										</th>
+										<th style="width: 50%">
+											Adet
+										</th>
+										<th style="width: 50%">
+											Yaş
+										</th>
+										<th>
+											Adet Fiyatı
+										</th>
 
-							<tr>
-								<th style="width: 100%">
-									Tip
-								</th>
-								<th style="width: 50%">
-									Adet
-								</th>
-								<th>
-									Fiyat
-								</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="detail" items="${advert.advertDetails}">
+										<tr>
+											<td>
+												<a>
+													${detail.tip.name}
+												</a>
 
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="detail" items="${advert.advertDetails}">
-								<tr>
-									<td>
-										<a>
-											${detail.tip.name}
-										</a>
-										<br>
+											</td>
+											<td>
+												<a>
+													${detail.adet}
+												</a>
 
-									</td>
+											</td>
+											<td>
+												<a>
+													${detail.yas.name}
+												</a>
+											</td>
+											<td>
+												<a>
+													<fmt:formatNumber maxFractionDigits="0" type="currency"
+														value="${detail.fiyat}" />
+												</a>
+											</td>
+										</tr>
+									</c:forEach>
 
-									<td>
-										<a>
-											${detail.adet}
-										</a>
-										<br>
+								</tbody>
+							</table>
 
-									</td>
-									<td>
-										<a>
-											<fmt:formatNumber maxFractionDigits="0" type="currency"
-												value="${detail.fiyat}" />
-
-										</a>
-										<br>
-
-									</td>
-								</tr>
-							</c:forEach>
-
-						</tbody>
-					</table>
-
+						</div>
+					</div>
 				</div>
 				<div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab">
 					Vivamus rhoncus nisl sed venenatis luctus. Sed condimentum risus ut tortor feugiat laoreet.

@@ -72,16 +72,17 @@
 										<div class="col-12 text-center">
 											<a href="${pageContext.request.contextPath}/advert/details/${a.id}"
 												class="text-center btn-block">
-												<c:if test="${photo.name eq null}">
+												<c:if test="${mainPhoto.name eq null}">
 													<img src="${pageContext.request.contextPath}/uploads/no_image.jpg"
 														alt="" id="advert-image" class="img-fluid">
 												</c:if>
-												<c:if test="${photo.name eq 'no_image.jpg'}">
-													<img src="${pageContext.request.contextPath}/uploads/${photo.name}"
+												<c:if test="${mainPhoto.name eq 'no_image.jpg'}">
+													<img src="${pageContext.request.contextPath}/uploads/${mainPhoto.name}"
 														alt="" id="advert-image" class="img-fluid">
 												</c:if>
-												<c:if test="${photo.name ne 'no_image.jpg' and photo.name ne null}">
-													<img src="${pageContext.request.contextPath}/uploads/advert_images/${photo.name}"
+												<c:if
+													test="${mainPhoto.name ne 'no_image.jpg' and mainPhoto.name ne null}">
+													<img src="${pageContext.request.contextPath}/uploads/advert_images/${mainPhoto.name}"
 														alt="" id="advert-image" class="img-fluid">
 												</c:if>
 
@@ -93,8 +94,7 @@
 								<!-- /.col -->
 								<div class="col-md-5 col-sm-6 invoice-col">
 									<address class="address">
-										${a.category.name}<i
-											class="fas fa-caret-right mx-1"></i><br><br>
+										${a.category.name}<i class="fas fa-caret-right mx-1"></i><br><br>
 										Yayınlanma Tarihi :
 										<fmt:formatDate type="both" dateStyle="short" timeStyle="short"
 											value="${a.createdAt}" /><br>

@@ -24,15 +24,20 @@ public class Photo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name="no_image.jpg";
+	private String name = "no_image.jpg";
 	private boolean status;
 	private boolean mainPhoto;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "advert_id")
 	@JsonIgnore
 	private Advert advert;
-	
-	
-}
 
+	public Photo(String name, boolean mainPhoto, Advert advert) {
+		this.name = name;
+		this.mainPhoto = mainPhoto;
+		this.advert = advert;
+		this.status = true;
+	}
+
+}
