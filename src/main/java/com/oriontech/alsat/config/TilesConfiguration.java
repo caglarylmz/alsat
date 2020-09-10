@@ -1,6 +1,5 @@
 package com.oriontech.alsat.config;
 
-import com.oriontech.alsat.helpers.CustomLocaleDefinitionsFactory;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

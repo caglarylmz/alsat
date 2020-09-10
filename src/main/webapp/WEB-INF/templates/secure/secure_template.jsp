@@ -3,6 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <html lang=tr>
 

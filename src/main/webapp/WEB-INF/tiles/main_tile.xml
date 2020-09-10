@@ -2,27 +2,31 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-        <!-- BASE DEFINITION -->
+        <!-- BASE TEMPLATE DEFINITION -->
         <definition name="main_template" template="/WEB-INF/templates/main/main_template.jsp">
                 <put-attribute name="header" value="/WEB-INF/layouts/main/navbar.jsp" />
                 <put-attribute name="topbar" value="/WEB-INF/layouts/main/topbar.jsp" />
                 <put-attribute name="sidebar" value="/WEB-INF/layouts/main/sidebar.jsp" />
                 <put-attribute name="main-sidebar" value="/WEB-INF/layouts/main/main_sidebar.jsp" />
-                <put-attribute name="footer" value="/WEB-INF/layouts/main/footer.jsp" />
+                <put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+                <put-attribute name="styles" value="/WEB-INF/layouts/styles.jsp" />
+                <put-attribute name="scripts" value="/WEB-INF/layouts/scripts.jsp" />
                 <put-attribute name="content" value="" />
         </definition>
         <!-- Index -->
         <definition name="main.index" extends="main_template">
                 <put-attribute name="content" value="/WEB-INF/views/main/index.jsp"></put-attribute>
         </definition>
-        
-        <!-- BASE DEFINITION -->
 
-        <!-- EMPTY DEFINITION-->
+        <!-- BASE TEMPLATE DEFINITION -->
+
+        <!-- EMPTY TEMPLATE DEFINITION-->
         <definition name="main_empty_template" template="/WEB-INF/templates/main/main_empty_template.jsp">
                 <put-attribute name="header" value="/WEB-INF/layouts/main/navbar.jsp" />
                 <put-attribute name="main-sidebar" value="/WEB-INF/layouts/main/main_sidebar.jsp" />
-                <put-attribute name="footer" value="/WEB-INF/layouts/main/footer.jsp" />
+                <put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+                <put-attribute name="styles" value="/WEB-INF/layouts/styles.jsp" />
+                <put-attribute name="scripts" value="/WEB-INF/layouts/scripts.jsp" />
                 <put-attribute name="content" value="" />
         </definition>
         <!-- Login-->
@@ -33,11 +37,11 @@
         <definition name="main.secure.register" extends="main_empty_template">
                 <put-attribute name="content" value="/WEB-INF/views/main/secure/register.jsp" />
         </definition>
-         <!-- Advert Detail -->
-         <definition name="main.advert.details" extends="main_empty_template">
+        <!-- Advert Detail -->
+        <definition name="main.advert.details" extends="main_empty_template">
                 <put-attribute name="content" value="/WEB-INF/views/main/advert/details.jsp"></put-attribute>
         </definition>
-        <!-- EMPTY DEFINITION-->
+        <!-- EMPTY TEMPLATE DEFINITION-->
 
 
 </tiles-definitions>

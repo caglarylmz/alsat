@@ -4,7 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="container-fluid">
-	<!--	<div class="row">
+	<!--	
+		<div class="row">
 		<div class="col-lg-6 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">Günün reklamı</a><a href="#"
 				class="ml-1">Reklam!</a></div>
 		<div class="col-lg-6 text-center text-lg-right">
@@ -16,17 +17,18 @@
 	-->
 	<nav class="navbar border-bottom navbar-light">
 		<a href="/" class="nav-link">
-			<img src="${contextRoot}/resources/assets/images/logo.png" height="40px" />
+			<img src="${contextRoot}/resources/assets/images/logo.png" height="40px" alt="" />
 		</a>
 
 		<div class="col-6 align-items-center">
-			<form class="my-0" action="${pageContext.request.contextPath}" method="POST">
+			<form class="my-0" action="${pageContext.request.contextPath}/" method="POST">
 				<div class="input-group align-self-center">
 					<c:if test="${query.isEmpty()}">
 						<input type="text" class="form-control" name="query" placeholder="İlan ara..." />
 					</c:if>
 					<c:if test="${!query.isEmpty()}">
-						<input type="text" class="form-control" name="query" placeholder="İlan ara..." value="${query}" />
+						<input type="text" class="form-control" name="query" placeholder="İlan ara..."
+							value="${query}" />
 					</c:if>
 					<div class="input-group-prepend">
 						<button type="submit" class="btn rounded-right"
@@ -78,9 +80,15 @@
 				</li>
 			</sec:authorize>
 			<li class="list-inline-item">
-				<a href="${pageContext.request.contextPath}/admin/advert/add"><i
+				<a href="${pageContext.request.contextPath}/user/advert/add"><i
 						class="btn btn-primary btn-sm btn-round">
 						<span>İlan Ver</span>
+					</i></a>
+			</li>
+			<li class="list-inline-item">
+				<a href="${pageContext.request.contextPath}/advert"><i
+						class="btn btn-primary btn-sm btn-round">
+						<span>flow register</span>
 					</i></a>
 			</li>
 		</ul>

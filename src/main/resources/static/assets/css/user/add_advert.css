@@ -1,0 +1,48 @@
+.card-footer {
+    background-color: white;
+}
+
+/*Step Form*/
+#step-2,
+#step-3,
+#step-4,
+#step-5,
+#header-breadcrumb {
+    display: none;
+}
+
+/*Category Step*/
+#sub1,
+#sub2,
+#sub3,
+#sub4,
+#sub5,
+#category {
+    display: none;
+}
+
+/*Category Select-Element*/
+.custom-select {
+    font-size: 18px;
+}
+
+.advert-category-select{
+    border-style: ridge;
+    padding: 5px;
+    width: 100%;
+}
+
+.btn-group-vertical{
+    justify-content: start;
+    width: 150px;
+    height: 180px;
+}
+
+.category-table-button{
+    background-color: white;    
+    border: 0px;
+    width: 100%; 
+    min-width: 100%;
+    padding: 0px;
+}
+/* Style the active class (and buttons on mouse-over) */

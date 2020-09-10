@@ -43,7 +43,6 @@ public class UserPanelController {
 			}
 			model.put("totalMessageCount", totalMessageCount);
 			model.put("totalViewCount", advertViewsService.totalCountViewsFromAdvert(lastAdvert.getId()));
-
 			model.put("last_advert", lastAdvert);
 		}
 

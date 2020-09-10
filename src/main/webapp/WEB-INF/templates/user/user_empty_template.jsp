@@ -9,6 +9,7 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
+
 <html lang="tr">
 
 <head>
@@ -18,69 +19,54 @@
 	<meta name="description" content="AlSat - Kurbanlık, Süt, Tavuk Alım Satım">
 	<meta name="keywords" content="alsat,kurbanlık,süt,inek,kuzu,tavuk,düve,yumurta,süt">
 	<meta name="author" content="caglarylmz">
-
+	<!-- Title -->
 	<title>AlSat |
 		${pageContext.request.userPrincipal.name} - ${title}
 	</title>
-
 	<tiles:insertAttribute name="styles"></tiles:insertAttribute>
-	<!-- Custom style -->
-	<link rel="stylesheet" href="${contextRoot}/resources/main/css/custom.css">
-	<link rel="stylesheet" href="${contextRoot}/resources/adminlte/css/custom.css" rel="stylesheet">
+	<link rel="stylesheet" href="${contextRoot}/resources/assets/css/user/add_advert.css">
+	</link>
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">
 	<div class="wrapper">
 		<!-- Navbar -->
-		<tiles:insertAttribute name="header"></tiles:insertAttribute>
+		<tiles:insertAttribute name="header" />
 		<!-- /.navbar -->
-
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-light-primary elevation-4">
-
-			<!-- Sidebar -->
-			<tiles:insertAttribute name="user-sidebar"></tiles:insertAttribute>
-			<!-- /.sidebar -->
-		</aside>
 		<!-- Main Sidebar Container -->
-
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Main content -->
 			<div class="container">
 				<div class="row">
-					<!-- *** SIDEBAR *** -->
-					<div class="col-lg-3 d-none d-lg-block">
-						<tiles:insertAttribute name="sidebar"></tiles:insertAttribute>
+					<div class="col-12">
+						<tiles:insertAttribute name="content" />
 					</div>
-					<!-- *** SIDEBAR *** -->
-
-					<!-- *** CONTAIN *** -->
-					<div class="col-lg-9 col-12">
-						<!-- *** VIEW *** -->
-						<tiles:insertAttribute name="content"></tiles:insertAttribute>
-						<!-- *** VIEW *** -->
-
-					</div>
-					<!-- *** CONTAIN *** -->
 				</div>
-				<!-- /.row -->
-			</div><!-- /.container-fluid -->
-		</div>
-		<!-- /.content -->
-	</div>
-	<!-- /.content-wrapper -->
 
-	<!-- Main Footer -->
-	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+			</div>
+
+
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>
 	<!-- ./wrapper -->
+
+
 	<!-- REQUIRED SCRIPTS -->
 	<tiles:insertAttribute name="scripts"></tiles:insertAttribute>
 	<script src="${contextRoot}/resources/user/dist/js/user.js"></script>
-	<script src="${contextRoot}/resources/adminlte/js/custom.js"></script>
+	<script src="${contextRoot}/resources/assets/js/user/add_advert.js"></script>
+
+
 
 </body>
 

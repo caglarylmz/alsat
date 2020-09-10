@@ -54,7 +54,6 @@ public class UserAdvertController implements ServletContextAware {
 	// show adverts
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Authentication authentication, ModelMap modelMap) {
-
 		modelMap.put("adverts", advertService.getAllLatestAdvertByAccount(authentication.getName()));
 		return "user.panel.ilanlar";
 	}

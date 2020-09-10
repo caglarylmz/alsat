@@ -11,7 +11,7 @@
 			<c:if test="${c.subCategories != null}">
 				<li class="item">
 					<a href='${pageContext.request.contextPath}/category/${c.id}/adverts' class="btn"><span><img
-								src="${pageContext.request.contextPath}/resources/main/img/category/${c.icon}"
+								src="${pageContext.request.contextPath}/resources/main/img/category/${c.icon}" alt=""
 								class="category-icon" style="width: 30px;"></span>${c.name}</a>
 					<div class="smenu">
 						<c:forEach var="c_sub1" items="${c.subCategories}">

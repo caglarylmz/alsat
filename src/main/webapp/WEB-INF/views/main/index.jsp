@@ -45,9 +45,17 @@
 		<div class="card-header py-0">
 			<div class="row">
 				<div class="col-8">
-					<a class="nav-link text-left">
-						Ana Sayfa - Vitrin
-					</a>
+					<c:if test="${isSearch}">
+						<a class="nav-link text-left">
+							Arama Sonucu : ${latestAdverts.size()} adet ilan bulundu.
+						</a>
+					</c:if>
+					<c:if test="${!isSearch}">
+
+						<a class="nav-link text-left">
+							Ana Sayfa - Vitrin
+						</a>
+					</c:if>
 				</div>
 				<div class="col-4 float-right">
 					<a class="nav-link text-right">

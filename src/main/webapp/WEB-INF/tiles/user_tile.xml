@@ -2,13 +2,15 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-        <!-- BASE DEFINITION -->
+        <!-- BASE TEMPLATE DEFINITION -->
         <definition name="user_template" template="/WEB-INF/templates/user/user_template.jsp">
                 <put-attribute name="header" value="/WEB-INF/layouts/main/navbar.jsp" />
                 <put-attribute name="topbar" value="/WEB-INF/layouts/main/topbar.jsp" />
                 <put-attribute name="sidebar" value="/WEB-INF/layouts/user/sidebar.jsp" />
                 <put-attribute name="user-sidebar" value="/WEB-INF/layouts/user/user_sidebar.jsp" />
-                <put-attribute name="footer" value="/WEB-INF/layouts/main/footer.jsp" />
+                <put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+                <put-attribute name="styles" value="/WEB-INF/layouts/styles.jsp" />
+                <put-attribute name="scripts" value="/WEB-INF/layouts/scripts.jsp" />
                 <put-attribute name="content" value="" />
         </definition>
         <!-- Özet -->
@@ -24,6 +26,25 @@
                 <put-attribute name="content" value="/WEB-INF/views/user/panel/favori_ilanlar.jsp"></put-attribute>
         </definition>
 
-        <!-- BASE DEFINITION -->
+        <!-- BASE TEMPLATE DEFINITION -->
+
+        <!-- Empty TEMPLATE DEFINITION -->
+        <definition name="user_empty_template" template="/WEB-INF/templates/user/user_empty_template.jsp">
+                <put-attribute name="header" value="/WEB-INF/layouts/main/navbar.jsp" />
+                <put-attribute name="topbar" value="/WEB-INF/layouts/main/topbar.jsp" />
+                <put-attribute name="sidebar" value="/WEB-INF/layouts/user/sidebar.jsp" />
+                <put-attribute name="user-sidebar" value="/WEB-INF/layouts/user/user_sidebar.jsp" />
+                <put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+                <put-attribute name="styles" value="/WEB-INF/layouts/styles.jsp" />
+                <put-attribute name="scripts" value="/WEB-INF/layouts/scripts.jsp" />
+                <put-attribute name="content" value="" />
+        </definition>
+        <!-- Add Advert -->
+        <definition name="user.advert.add" extends="user_empty_template">
+                <put-attribute name="content" value="/WEB-INF/views/user/advert/add.jsp"></put-attribute>
+        </definition>
+
+        <!-- Empty TEMPLATE DEFINITION -->
+
 
 </tiles-definitions>

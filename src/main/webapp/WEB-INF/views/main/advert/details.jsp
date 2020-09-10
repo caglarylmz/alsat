@@ -21,7 +21,7 @@
 			</li>
 		</ol>
 	</nav>
-	<div class="card-header py-0">
+	<div class="card-header">
 		<div class="row">
 			<div class="col-8">
 				<a class="nav-link">
@@ -224,7 +224,7 @@
 					<div class="row w-100">
 						<div class="col-md-6 float-left">
 							<p>
-							<address> ${advert.aciklama}</address>
+								<address> ${advert.aciklama}</address>
 							</p>
 						</div>
 						<div class="col-md-6  float-right">

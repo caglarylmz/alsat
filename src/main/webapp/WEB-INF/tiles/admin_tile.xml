@@ -2,7 +2,7 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-        <!-- Base Definition -->
+        <!-- Base TEMPLATE Definition -->
         <definition name="admin_template" template="/WEB-INF/templates/admin/admin_template.jsp">
                 <put-attribute name="navbar" value="/WEB-INF/layouts/admin/navbar.jsp" />
                 <put-attribute name="sidebar" value="/WEB-INF/layouts/admin/sidebar.jsp"></put-attribute>
@@ -73,7 +73,7 @@
         <definition name="admin.tip.edit" extends="admin_template">
                 <put-attribute name="content" value="/WEB-INF/views/admin/tip/edit.jsp" />
         </definition>
-        <!-- Base Definition -->
+        <!-- Base TEMPLATE Definition -->
 
         <!-- Empty Definition <definition name="admin_empty_template" template="/WEB-INF/views/templates/admin_empty_template.jsp">
         <put-attribute name="content" value="" /> </definition> <definition name="admin.login.index"

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+	<var name="advert" class="com.oriontech.alsat.models.Advert" />
+	<var name="category" class="com.oriontech.alsat.models.Category" />
+
+	<!--returning and adding inside flow registerModel instance -->
+	<on-start>
+		<evaluate expression="addAdvertHandler.init()" result="flowScope.addAdvertModel" />
+	</on-start>
+
+	<!-- is the start state - Select Category-->
+	<view-state id="category" view="advert-category.jsp" model="advert">
+		<transition on="tip" to="tip" />
+		<on-exit>
+			<evaluate expression="addAdvertHandler.selectCategory(flowScope.addAdvertModel, advert)" />
+		</on-exit>
+	</view-state>
+	<!-- is the 2. state - Select Tip,Adet,Fiyat,Yas-->
+	<view-state id="tip" view="advert-tip.jsp">
+		<transition on="tip" to="tip" />
+		<transition on="details" to="details" />
+	</view-state>
+	<!-- is the 3. state - detail for advert baslik, acıklama-->
+	<view-state id="details" view="advert-details.jsp">
+		<transition on="tip" to="tip" />
+		<transition on="details" to="details" />
+		<transition on="photos" to="photos" />
+	</view-state>
+	<!-- is the 4. state - add photos, Select advert properties(bitrin, kalın yazı-->
+	<view-state id="photos" view="advert-photos.jsp">
+		<transition on="tip" to="tip" />
+		<transition on="details" to="details" />
+		<transition on="photos" to="photos" />
+		<transition on="confirm" to="confirm" />
+	</view-state>
+	<!-- is the last state - show advert-->
+	<view-state id="confirm" view="advert-confirm.jsp">
+		<transition on="tip" to="tip" />
+		<transition on="details" to="details" />
+		<transition on="photos" to="photos" />
+		<transition on="confirm" to="confirm" />
+		<transition on="success" to="success" />
+
+	</view-state>
+
+	<!-- end state -->
+	<end-state id="success" view="advert-success" />
+	<!--redirect home page-->
+	<end-state id="home" view="externalRedirect:contextRelative:/" />
+
+	<!-- Global Transition -->
+	<global-transitions>
+		<transition on="home" to="home" />
+	</global-transitions>
+
+</flow>

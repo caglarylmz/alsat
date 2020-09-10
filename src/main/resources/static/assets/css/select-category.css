@@ -1,0 +1,45 @@
+/*Step Form*/
+#step-2,
+#step-3,
+#step-4,
+#step-5 {
+    display: none;
+}
+
+/*Category Step*/
+#sub1,
+#sub2,
+#sub3,
+#sub4,
+#sub5,
+#category {
+    display: none;
+}
+
+/*Category Select-Element*/
+.custom-select {
+    font-size: 18px;
+
+}
+
+#categoryCat {
+    font-size: 20px;
+}
+
+.custom-select {
+    box-sizing: content-box;
+    padding: .6em 1.4em .5em .8em;
+    border: 1px solid #aaa;
+    border-radius: .5em;
+    overflow: hidden;
+
+
+
+}
+
+.custom-select:focus option:checked {}
+
+.form-right {
+    display: block;
+    text-align: right;
+}

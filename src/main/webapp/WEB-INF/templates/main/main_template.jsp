@@ -4,31 +4,25 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="br" uri="http://localhost:8080/alsat/tags/breadcrumb"%>
 <%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html lang="tr">
 
 <head>
 	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="description" content="AlSat - Kurbanlık, Süt, Tavuk Alım Satım">
+	<meta name="keywords" content="alsat,kurbanlık,süt,inek,kuzu,tavuk,düve,yumurta,süt">
+	<meta name="author" content="caglarylmz">
 
-	<title>AlSat | Ana Sayfa</title>
+	<title>AlSat | ${title}</title>
 
-	<!-- Font Awesome -->
-	<link rel="stylesheet"
-		href="${pageContext.request.contextPath}/resources/admin/plugins/fontawesome-free/css/all.min.css">
-	<!-- Theme style -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/dist/css/adminlte.min.css">
-	<!-- Carousel -->
-	<link href="${pageContext.request.contextPath}/resources/eshopper/plugins/lightslider/dist/css/lightslider.min.css"
-		rel="stylesheet">
-	<!-- Custom style -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/style.default.css">
+	<tiles:insertAttribute name="styles"></tiles:insertAttribute>	
 	<!-- Custom style -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/css/custom.css">
 	<!-- Google Font: Source Sans Pro -->
@@ -84,15 +78,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<!-- ./wrapper -->
 
 	<!-- REQUIRED SCRIPTS -->
-
-	<script src="${pageContext.request.contextPath}/resources/admin/plugins/jquery/jquery.min.js"></script>
-	<!-- Bootstrap 4 -->
-	<script src="${pageContext.request.contextPath}/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js">
-	</script>
-	<script
-		src="${pageContext.request.contextPath}/resources/eshopper/plugins/lightslider/dist/js/lightslider.min.js"></script>
-	<!-- AdminLTE App -->
-	<script src="${pageContext.request.contextPath}/resources/admin/dist/js/adminlte.min.js"></script>
+	<tiles:insertAttribute name="scripts"></tiles:insertAttribute>
+	<!--CUSTOM SCRIPTS-->
 	<script src="${pageContext.request.contextPath}/resources/main/js/custom.js"></script>
 
 </body>
