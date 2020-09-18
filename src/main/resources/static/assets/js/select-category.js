@@ -1,7 +1,7 @@
 $(document).ready(
     function () {
         //Initialize Select2 Elements
-        $('.tips').select2()
+        $('.tips').select2();
 
         /*Step-1 - Kategori Seçimi*/
         var s1 = '';
@@ -90,7 +90,7 @@ $(document).ready(
             $('#category-error').html('');
             s1 = '';
 
-            catCrumb += ' > '
+            catCrumb += ' > ';
             catCrumb += $('#sub1 option').filter(':selected').text();
             $("#cat-crumb").html(catCrumb);
 
@@ -141,7 +141,7 @@ $(document).ready(
             $('#category-error').html('');
             s1 = '';
 
-            catCrumb += ' > '
+            catCrumb += ' > ';
             catCrumb += $('#sub2 option').filter(':selected').text();
             $("#cat-crumb").html(catCrumb);
 
@@ -325,7 +325,7 @@ $(document).ready(
            // e.preventDefault();
             //for validation
             if ($('#categoryCat').val() == null) {
-                $('#category-error').html('* Kategori seçimi zorunudur. Lütfen bir kategori seçiniz!')
+                $('#category-error').html('* Kategori seçimi zorunudur. Lütfen bir kategori seçiniz!');
                 return false;
             } else {
                 $('#step-1').hide();

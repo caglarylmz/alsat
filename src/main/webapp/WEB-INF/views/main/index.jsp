@@ -40,6 +40,14 @@
 		</c:if>
 	</c:if>
 	<!--Breadcrumb-->
+	<!--REKLAM-->
+	<div class="card card-solid" style="min-height: 10rem;">
+		<div class="card-body text-center">
+			<h1 class="my-5">REKLAM ALANI</h1>
+		</div>
+	</div>
+	<!--REKLAM-->
+
 	<!--Adverts-->
 	<div class="card card-solid">
 		<div class="card-header py-0">
@@ -72,7 +80,7 @@
 						<c:set var="photo"
 							value="${advert.getPhotos().stream().filter(p->p.isMainPhoto()).findFirst().orElse(null)}">
 						</c:set>
-						<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+						<div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
 							<div class="card bg-light">
 								<div class="card-body">
 									<div class="row">

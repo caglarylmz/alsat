@@ -43,7 +43,10 @@
         <definition name="user.advert.add" extends="user_empty_template">
                 <put-attribute name="content" value="/WEB-INF/views/user/advert/add.jsp"></put-attribute>
         </definition>
-
+        <!-- Add Advert -->
+        <definition name="user.advert.add_" extends="user_empty_template">
+                <put-attribute name="content" value="/WEB-INF/views/user/advert/add_.jsp"></put-attribute>
+        </definition>
         <!-- Empty TEMPLATE DEFINITION -->
 
 

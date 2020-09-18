@@ -64,6 +64,13 @@ public class UserAdvertController implements ServletContextAware {
 	 */
 	private Advert addAdvert;
 
+	@RequestMapping(value = "add_", method = RequestMethod.GET)
+	public String add_(ModelMap modelMap) {
+		// init advert
+
+		return "user.advert.add_";
+	}
+
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(ModelMap modelMap) {
 		// init advert

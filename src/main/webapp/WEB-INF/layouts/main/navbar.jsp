@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="container-fluid">
+<div class="container">
 	<!--	
 		<div class="row">
 		<div class="col-lg-6 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">Günün reklamı</a><a href="#"
@@ -52,6 +52,19 @@
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<li class="list-inline-item">
+					<a href="${pageContext.request.contextPath}/user/panel/ilanlar/mesaj" data-toggle="tooltip"
+						data-placement="right" title="İlan Mesajlarım" class="btn btn-outline-primary btn-sm btn-round">
+						<i class="fas fa-envelope"></i>
+					</a>
+				</li>
+				<li class="list-inline-item">
+					<a href="${pageContext.request.contextPath}/user/panel/ilanlar/favori" data-toggle="tooltip"
+						data-placement="right" title="Favori İlanlarım"
+						class="btn btn-outline-primary btn-sm btn-round">
+						<i class="fas fa-star"></i>
+					</a>
+				</li>
+				<li class="list-inline-item">
 					<div class="dropdown">
 						<button class="btn btn-outline-primary btn-sm btn-circle" type="button" id="dropdownMenu"
 							data-toggle="dropdown" aria-expanded="false">
@@ -86,9 +99,8 @@
 					</i></a>
 			</li>
 			<li class="list-inline-item">
-				<a href="${pageContext.request.contextPath}/advert"><i
-						class="btn btn-primary btn-sm btn-round">
-						<span>flow register</span>
+				<a href="${pageContext.request.contextPath}/advert"><i class="btn btn-primary btn-sm btn-round">
+						<span>flow</span>
 					</i></a>
 			</li>
 		</ul>

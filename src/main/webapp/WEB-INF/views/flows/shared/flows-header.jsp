@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="${contextRoot}/resources/adminlte/plugins/select2/css/select2.min.css">
     <link rel="stylesheet"
         href="${contextRoot}/resources/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet"
+        href="${contextRoot}/resources/adminlte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="${contextRoot}/resources/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Carousel -->

@@ -25,9 +25,6 @@
 	</title>
 	<tiles:insertAttribute name="styles"></tiles:insertAttribute>
 	<link rel="stylesheet" href="${contextRoot}/resources/assets/css/user/add_advert.css">
-	</link>
-	<!-- Google Font: Source Sans Pro -->
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 </head>
 
@@ -65,6 +62,8 @@
 	<tiles:insertAttribute name="scripts"></tiles:insertAttribute>
 	<script src="${contextRoot}/resources/user/dist/js/user.js"></script>
 	<script src="${contextRoot}/resources/assets/js/user/add_advert.js"></script>
+
+
 
 
 
