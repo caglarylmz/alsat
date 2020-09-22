@@ -83,78 +83,95 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="container-fluid">
-                                            <ol class="breadcrumb category-breadcrumb">
-                                                <li class="breadcrumb-item active" aria-current="page">Home</li>
-                                            </ol>
+                                    <transition name="fade">
+                                        <div v-if="isCategorySelected" class="row">
+
+                                            <div class="container-fluid">
+                                                Kategori <span><a @click=returnCategorySelection
+                                                        class="btn btn-outline-secondary btn-xs"
+                                                        class="cat">Değiştir</a></span>
+                                                <ol class="breadcrumb ">
+                                                    <li class="breadcrumb-item" v-for="value in breadcrumb">
+                                                        <span>{{value}}</span>
+                                                    </li>
+                                                </ol>
+                                            </div>
+
                                         </div>
-                                    </div>
+                                    </transition>
 
                                     <!-- form start -->
                                     <s:form method="post" modelAttribute="advert" id="addAdvertForm">
                                         <b class="form-text text-center text-danger" id="category-error"></b>
-                                        <span v-if="isCategorySelected">{{selectedCategory.name}}</span>,
-                                        <span v-if="isCategorySelected"><a @click=returnCategorySelection type="button"
-                                                class="cat">Değiştir</a></span>
-                                        {{selectedCategory.name}}
-                                        {{deneme.name}}
-                                        <div v-if="!isCategorySelected" class="row mb-5">
-                                            <div class="card-group">
-                                                <div class="card">
-                                                    <div class="menu">
-                                                        <li class="item">
-                                                            <div class="smenu"
-                                                                v-for=" (item, index) in parentCategories">
-                                                                <a @click=selectSubCategory1($event,item.id)
-                                                                    type="button" class="cat">{{item.name}} </a>
-                                                            </div>
-                                                        </li>
+                                        <transition name="fade">
+                                            <div v-if="!isCategorySelected" class="row mb-5">
+                                                <div class="card-group">
+                                                    <div class="card">
+                                                        <div class="menu">
+                                                            <li class="item">
+                                                                <div class="smenu"
+                                                                    v-for="(item, index) in parentCategories">
+                                                                    <a @click=selectSubCategory1($event,item.id)
+                                                                        type="button" class="cat">{{item.name}} </a>
+                                                                </div>
+                                                            </li>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div v-if='subCategory1.length > 0' class="card">
-                                                    <div class="menu">
-                                                        <li class="item">
-                                                            <div class="smenu" v-for=" (item, index) in subCategory1">
-                                                                <a @click=selectSubCategory2($event,item.id)
-                                                                    type="button" class="cat">{{item.name}} </a>
+                                                    <transition name="fade">
+                                                        <div v-if='subCategory1.length > 0' class="card">
+                                                            <div class="menu">
+                                                                <li class="item">
+                                                                    <div class="smenu"
+                                                                        v-for=" (item, index) in subCategory1">
+                                                                        <a @click=selectSubCategory2($event,item.id)
+                                                                            type="button" class="cat">{{item.name}} </a>
+                                                                    </div>
+                                                                </li>
                                                             </div>
-                                                        </li>
-                                                    </div>
-                                                </div>
-                                                <div v-if='subCategory2.length > 0' class="card">
-                                                    <div class="menu">
-                                                        <li class="item">
-                                                            <div class="smenu" v-for=" (item, index) in subCategory2">
-                                                                <a @click=selectSubCategory3($event,item.id)
-                                                                    type="button" class="cat">{{item.name}} </a>
+                                                        </div>
+                                                    </transition>
+                                                    <transition name="fade">
+                                                        <div v-if='subCategory2.length > 0' class="card">
+                                                            <div class="menu">
+                                                                <li class="item">
+                                                                    <div class="smenu"
+                                                                        v-for=" (item, index) in subCategory2">
+                                                                        <a @click=selectSubCategory3($event,item.id)
+                                                                            type="button" class="cat">{{item.name}} </a>
+                                                                    </div>
+                                                                </li>
                                                             </div>
-                                                        </li>
-                                                    </div>
-                                                </div>
-                                                <div v-if='subCategory3.length > 0' class="card">
-                                                    <div class="menu">
-                                                        <li class="item">
-                                                            <div class="smenu" v-for=" (item, index) in subCategory3">
-                                                                <a @click=selectSubCategory4($event,item.id)
-                                                                    type="button" class="cat">{{item.name}} </a>
+                                                        </div>
+                                                    </transition>
+                                                    <transition name="fade">
+                                                        <div v-if='subCategory3.length > 0' class="card">
+                                                            <div class="menu">
+                                                                <li class="item">
+                                                                    <div class="smenu"
+                                                                        v-for=" (item, index) in subCategory3">
+                                                                        <a @click=selectSubCategory4($event,item.id)
+                                                                            type="button" class="cat">{{item.name}} </a>
+                                                                    </div>
+                                                                </li>
                                                             </div>
-                                                        </li>
-                                                    </div>
-                                                </div>
-                                                <div v-if='subCategory4.length > 0' class="card">
-                                                    <div class="menu">
-                                                        <li class="item">
-                                                            <div class="smenu" v-for=" (item, index) in subCategory4">
-                                                                <a @click=selectSubCategory5($event,item.id)
-                                                                    type="button" class="cat">{{item.name}} </a>
+                                                        </div>
+                                                    </transition>
+                                                    <transition name="fade">
+                                                        <div v-if='subCategory4.length > 0' class="card">
+                                                            <div class="menu">
+                                                                <li class="item">
+                                                                    <div class="smenu"
+                                                                        v-for=" (item, index) in subCategory4">
+                                                                        <a @click=selectSubCategory5($event,item.id)
+                                                                            type="button" class="cat">{{item.name}} </a>
+                                                                    </div>
+                                                                </li>
                                                             </div>
-                                                        </li>
-                                                    </div>
+                                                        </div>
+                                                    </transition>
                                                 </div>
                                             </div>
-                                        </div>
-
+                                        </transition>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group" id="category">
@@ -275,23 +292,27 @@
                 subCategory3: [],
                 subCategory4: [],
                 selectedCategory: [],
+                breadcrumb: [],
                 isCategorySelected: false,
                 isActive: false,
-                deneme:[]
+                category: []
             },
             methods: {
                 selectSubCategory1(event, id) {
                     //event.target.className = "active";
-                    this.selectedCategory = "";
+                    this.selectedCategory = [];
                     this.subCategory2 = [];
                     this.subCategory3 = [];
                     this.subCategory4 = [];
+                    this.breadcrumb = [];
 
                     let selectedSub = this.parentCategories.filter((s) => s.id === id);
+                    this.breadcrumb.push(selectedSub[0].name);
+                    console.log(this.breadcrumb);
                     if (selectedSub[0].subCategories.length > 0) this.isCategorySelected = false; else this.isCategorySelected = true;
                     if (this.isCategorySelected) {
-                        this.selectedCategory = selectedSub[0];
-                        localStorage.category = this.selectedCategory;
+                        this.selectedCategory.push(selectedSub);
+                        sessionStorage.setItem("category", "AHMET");
                     }
                     else
                         this.subCategory1 = selectedSub[0].subCategories;
@@ -299,29 +320,33 @@
                 },
                 selectSubCategory2(event, id) {
                     //event.target.className = "active";
-                    this.selectedCategory = "";
+                    this.selectedCategory = [];
                     this.subCategory3 = [];
                     this.subCategory4 = [];
 
                     let selectedSub = this.subCategory1.filter((s) => s.id === id);
+                    this.breadcrumb.push(selectedSub[0].name);
+                    console.log(this.breadcrumb);
                     if (selectedSub[0].subCategories.length > 0) this.isCategorySelected = false; else this.isCategorySelected = true;
                     if (this.isCategorySelected) {
                         this.selectedCategory = selectedSub[0];
-                        localStorage.category = this.selectedCategory;
+                        sessionStorage.setItem("category", this.selectedCategory);
                     }
                     else
                         this.subCategory2 = selectedSub[0].subCategories;
                 },
                 selectSubCategory3(event, id) {
                     //event.target.className = "active";
-                    this.selectedCategory = "";
+                    this.selectedCategory = [];
                     this.subCategory4 = [];
 
                     let selectedSub = this.subCategory2.filter((s) => s.id === id);
+                    this.breadcrumb.push(selectedSub[0].name);
+                    console.log(this.breadcrumb);
                     if (selectedSub[0].subCategories.length > 0) this.isCategorySelected = false; else this.isCategorySelected = true;
                     if (this.isCategorySelected) {
                         this.selectedCategory = selectedSub[0];
-                        localStorage.category = this.selectedCategory;
+                        sessionStorage.setItem("category", this.selectedCategory);
                     }
                     else
                         this.subCategory3 = selectedSub[0].subCategories;
@@ -329,13 +354,15 @@
                 },
                 selectSubCategory4(event, id) {
                     //event.target.className = "active";
-                    this.selectedCategory = "";
+                    this.selectedCategory = [];
 
                     let selectedSub = this.subCategory3.filter((s) => s.id === id);
+                    this.breadcrumb.push(selectedSub[0].name);
+                    console.log(this.breadcrumb);
                     if (selectedSub[0].subCategories.length > 0) this.isCategorySelected = false; else this.isCategorySelected = true;
                     if (this.isCategorySelected) {
                         this.selectedCategory = selectedSub[0];
-                        localStorage.category = this.selectedCategory;
+                        sessionStorage.setItem("category", this.selectedCategory);
                     }
                     else
                         this.subCategory4 = selectedSub[0].subCategories;
@@ -343,7 +370,7 @@
                 },
                 returnCategorySelection() {
                     this.isCategorySelected = false;
-                }
+                },
 
 
             },
@@ -353,8 +380,10 @@
                 }
             },
             watch: {
-                deneme(selectedCategory) {
-                   deneme=localStorage.category
+                category(selectedCategory) {
+                    category = sessionStorage.getItem("category");
+
+
                 }
             },
             created() {
@@ -373,6 +402,7 @@
 
 
         });
+
 
 
     </script>
@@ -511,8 +541,22 @@
             margin-left: 5px;
         }
 
-
         /*SIDEBAR*/
+        /*FADE ANIMATION*/
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 1s;
+        }
+
+        .fade-enter,
+        .fade-leave-to
+
+        /* .fade-leave-active below version 2.1.8 */
+            {
+            opacity: 0;
+        }
+
+        /*FADE ANIMATION*/
     </style>
 
 
