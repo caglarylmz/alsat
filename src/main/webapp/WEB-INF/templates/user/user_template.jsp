@@ -31,7 +31,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body class="hold-transition sidebar-collapse layout-top-nav">
+<body class="hold-transition sidebar-collapse layout-top-nav" style="height: auto;">
 	<div class="wrapper">
 		<!-- Navbar -->
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>

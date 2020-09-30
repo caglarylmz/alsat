@@ -23,6 +23,8 @@
 	<title>AlSat |
 		${pageContext.request.userPrincipal.name} - ${title}
 	</title>
+	<script src="${contextRoot}/resources/assets/js/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<tiles:insertAttribute name="styles"></tiles:insertAttribute>
 	<link rel="stylesheet" href="${contextRoot}/resources/assets/css/user/add_advert.css">
 

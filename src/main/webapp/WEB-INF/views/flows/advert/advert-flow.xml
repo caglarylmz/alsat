@@ -18,9 +18,12 @@
 		</on-exit>
 	</view-state>
 	<!-- is the 2. state - Select Tip,Adet,Fiyat,Yas-->
-	<view-state id="tip" view="advert-tip.jsp">
+	<view-state id="tip" view="advert-tip.jsp" model="advertDetail">
 		<transition on="tip" to="tip" />
 		<transition on="details" to="details" />
+		<on-exit>
+			<evaluate expression="addAdvertHandler.selectTip(flowScope.addAdvertModel, advertDetail)" />
+		</on-exit>
 	</view-state>
 	<!-- is the 3. state - detail for advert baslik, acıklama-->
 	<view-state id="details" view="advert-details.jsp">

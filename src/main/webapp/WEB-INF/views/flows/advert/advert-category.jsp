@@ -83,22 +83,21 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <transition name="fade">
-                                        <div v-if="isCategorySelected" class="row">
+                                    <div v-if="isCategorySelected" class="row">
 
-                                            <div class="container-fluid">
-                                                Kategori <span><a @click=returnCategorySelection
-                                                        class="btn btn-outline-secondary btn-xs"
-                                                        class="cat">Değiştir</a></span>
-                                                <ol class="breadcrumb ">
-                                                    <li class="breadcrumb-item" v-for="value in breadcrumb">
-                                                        <span>{{value}}</span>
-                                                    </li>
-                                                </ol>
-                                            </div>
+                                        <div class="container-fluid">
+                                            Kategori
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item" v-for="value in breadcrumb">
+                                                    <span>{{value}}</span>
+                                                </li>
 
+                                            </ol>
+                                            <span class="float-left"><a @click=returnCategorySelection
+                                                    class="btn btn-outline-secondary ">Değiştir</a></span>
                                         </div>
-                                    </transition>
+
+                                    </div>
 
                                     <!-- form start -->
                                     <s:form method="post" modelAttribute="advert" id="addAdvertForm">

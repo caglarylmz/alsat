@@ -93,7 +93,7 @@
 				</li>
 			</sec:authorize>
 			<li class="list-inline-item">
-				<a href="${pageContext.request.contextPath}/user/advert/add"><i
+				<a href="${pageContext.request.contextPath}/user/advert/add_"><i
 						class="btn btn-primary btn-sm btn-round">
 						<span>İlan Ver</span>
 					</i></a>

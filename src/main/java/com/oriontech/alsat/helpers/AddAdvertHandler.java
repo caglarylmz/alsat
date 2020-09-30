@@ -3,6 +3,7 @@ package com.oriontech.alsat.helpers;
 import java.util.List;
 
 import com.oriontech.alsat.models.Advert;
+import com.oriontech.alsat.models.AdvertDetail;
 import com.oriontech.alsat.models.Category;
 import com.oriontech.alsat.models.Tip;
 
@@ -15,11 +16,16 @@ public class AddAdvertHandler {
         return new AddAdvertModel();
     }
 
-    public List<Tip> getTip(Category category){
+    public List<Tip> getTip(Category category) {
         return category.getTips();
     }
 
     public void selectCategory(AddAdvertModel addAdvertModel, Advert advert) {
         addAdvertModel.setAdvert(advert);
+    }
+
+    public void selectTip(AddAdvertModel addAdvertModel, AdvertDetail advertDetail) {
+        addAdvertModel.setAdvertDetail(advertDetail);
+
     }
 }

@@ -93,4 +93,7 @@ $(document).ready(
 			}
 		});
 
+		//Bootstrap Duallistbox
+		$('.duallistbox').bootstrapDualListbox();
+
 	});

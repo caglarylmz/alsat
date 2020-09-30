@@ -38,7 +38,7 @@
 <!-- Select2 -->
 <script src="${contextRoot}/resources/adminlte/plugins/select2/js/select2.full.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
-<script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<script src="${contextRoot}/resources/adminlte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="${contextRoot}/resources/adminlte/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Summernote -->
