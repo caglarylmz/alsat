@@ -49,7 +49,7 @@
 		</div>
 		<div class="user-panel mt-2">
 			<a class="btn-block p-0 btn btn-round  btn-primary"
-				href="${pageContext.request.contextPath}/admin/advert/add">İlan ver</a>
+				href="${pageContext.request.contextPath}/user/advert/add_">İlan ver</a>
 		</div>
 	</sec:authorize>
 	<sec:authorize access="!isAuthenticated()">
