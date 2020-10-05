@@ -282,6 +282,8 @@
                                         <h4>İlan Detayı Gir</h4>
                                     </span>
                                 </div>
+                                <div id="summernote"></div>
+
                             </div>
                             <!--ADD ADVERT'S DETAILS-->
 
@@ -814,6 +816,7 @@
         </div>  
         `
     });
+
 
 </script>
 

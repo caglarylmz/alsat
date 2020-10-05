@@ -28,6 +28,8 @@
 	<tiles:insertAttribute name="styles"></tiles:insertAttribute>
 	<link rel="stylesheet" href="${contextRoot}/resources/assets/css/user/add_advert.css">
 
+
+
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">

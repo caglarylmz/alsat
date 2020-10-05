@@ -1,5 +1,14 @@
 $(document).ready(
 	function () {
+		//Bootstrap Duallistbox
+		$('.duallistbox').bootstrapDualListbox();
+		// Summernote
+		$('#summernote').summernote({
+			placeholder: 'İlan detayı giriniz',
+			tabsize: 2,
+			height: 300,
+			lang: 'tr-TR'
+		});
 
 		/**Popover */
 		$('[data-toggle="popover"]').popover({
@@ -93,7 +102,6 @@ $(document).ready(
 			}
 		});
 
-		//Bootstrap Duallistbox
-		$('.duallistbox').bootstrapDualListbox();
+
 
 	});
