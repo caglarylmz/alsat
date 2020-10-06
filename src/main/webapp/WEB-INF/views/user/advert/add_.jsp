@@ -121,8 +121,20 @@
                             </div>
                             <!-- CATEGORY SELECT-->
 
+
+
                             <!--Select TIP-->
                             <div class="row row justify-content-md-center" v-show="showTipSelect">
+                                <div class="card-body table-responsive p-0">
+                                    <div class="list-group" v-for="(item, index) in leftItems">
+                                        <button type="button" @click=selectTip($event,item.id)
+                                            class="list-group-item list-group-item-action">
+                                            {{item.name}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="row row justify-content-md-center" v-show="showTipSelect">
                                 <div class="col-12 text-left mb-1">
                                     <span>
                                         <h4>Tip Seç</h4>
@@ -178,7 +190,7 @@
                                 </div>
 
 
-                            </div>
+                            </div>-->
                             <!--Select TIP-->
 
                             <!--Basic Advert's Data-->
@@ -372,6 +384,8 @@
             images: [],
             showPhotoUploader: false,
             isPhotosSelected: false,
+            tips: [],
+
 
 
 
@@ -394,7 +408,7 @@
 
                 //Tip Seçimi
                 if (this.showTipSelect) {
-                    if (this.rightItems.length > 0) {
+                    if (this.tips.length > 0) {
                         this.isTipSelected = true;
                         this.showBasic = true;
 
@@ -532,7 +546,30 @@
             },
             //SELECT PHOTO
             //SELECT TIPS
-            selectTips(event, id) {
+            selectTip(event, id) {
+                let filteredTips = []
+                if (event.target.className === "list-group-item list-group-item-action") {
+                    event.target.className = "list-group-item list-group-item-action active";
+                    this.leftItems.forEach(e => {
+                        if (e.id == id) {
+                            this.tips.push(e);
+                            return;
+                        }
+                    });
+                } else {
+                    event.target.className = "list-group-item list-group-item-action";
+                    this.tips.forEach(e => {
+                        if (e.id == id) {
+                            return;
+                        }
+                        filteredTips.push(e);
+                    })
+                    this.tips = filteredTips;
+                }
+                console.log(this.tips);
+
+            },
+            /*selectTips(event, id) {
                 let array = [];
                 this.leftItems.forEach(e => {
                     if (e.id == id) {
@@ -553,7 +590,7 @@
                     array.push(e);
                 });
                 this.rightItems = array;
-            },
+            },*/
             //SELECT TIPS            
             //SELECT CATEGORY
             selectSubCategory1(event, id) {
@@ -656,7 +693,7 @@
                 if (this.isTipSelected) {
                     this.progressText = "İlan Bilgileri";
                     this.progress = "width: 45%;"
-                    this.selectedTips = this.rightItems;
+                    this.selectedTips = this.tips;
                     this.showTipSelect = false;
                 }
 
