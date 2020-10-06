@@ -122,7 +122,7 @@
                             <!-- CATEGORY SELECT-->
 
                             <!--Select TIP-->
-                            <div class="row row justify-content-md-center" v-if="showTipSelect">
+                            <div class="row row justify-content-md-center" v-show="showTipSelect">
                                 <div class="col-12 text-left mb-1">
                                     <span>
                                         <h4>Tip Seç</h4>
@@ -182,21 +182,23 @@
                             <!--Select TIP-->
 
                             <!--Basic Advert's Data-->
-                            <div class="card-body table-responsive p-0" v-if="showBasic">
-                                <div class="col-12 text-left mb-1">
-                                    <span>
-                                        <h4>Temel Bilgileri Gir</h4>
-                                    </span>
-                                </div>
+                            <div class="card-body table-responsive p-0" v-show="showBasic">
                                 <table class="table table-hover table-borderless text-nowrap">
                                     <tbody>
                                         <tr>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">İlan Başlığı</label>
+                                                <label for="exampleInputEmail1">Başlık</label>
                                                 <input type="email" class="form-control" v-model="advert.baslik"
                                                     aria-describedby="emailHelp">
                                                 <small id="emailHelp" class="form-text text-muted">İlan'ı tanımlayacak
                                                     bir başlık giriniz</small>
+                                            </div>
+                                        </tr>
+
+                                        <tr>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Açıklama</label>
+                                                <div id="summernote"></div>
                                             </div>
                                         </tr>
                                         <tr>
@@ -232,7 +234,7 @@
                             </div>
                             <!--Basic Advert's Data-->
                             <!--ADD PHOTOS-->
-                            <div class="card-body table-responsive p-0" v-if="showPhotoUploader">
+                            <div class="card-body table-responsive p-0" v-show="showPhotoUploader">
                                 <div class="col-12 text-left mb-1">
                                     <span>
                                         <h4>Fotoğraf Ekle</h4>
@@ -275,17 +277,24 @@
                             </div>
                             <!--ADD PHOTOS-->
 
-                            <!--ADD ADVERT'S DETAILS-->
-                            <div class="card-body table-responsive p-0">
-                                <div class="col-12 text-left mb-1">
-                                    <span>
-                                        <h4>İlan Detayı Gir</h4>
-                                    </span>
+                            <!--ÖNİZLE-->
+                            <div class="card-body">
+                                <div class="row">
+                                    <!--CAROUSEL-->
+                                    <div class="col-12 col-lg-5">
+                                        <div class="view-product text-center">
+                                            <ul id="imageGallery" v-for="(image, index) in images" :key="index">
+                                                <li :data-thumb="image">
+                                                    <img :src="image">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div id="summernote"></div>
-
                             </div>
-                            <!--ADD ADVERT'S DETAILS-->
+
+                            <!--CAROUSEL-->
+                            <!--ÖNİZLE-->
 
 
 
@@ -317,16 +326,19 @@
     <!-- /.content -->
 
 </div>
-
 <script>
-    new Vue({
+
+    var vue = new Vue({
         el: '#app',
+        components: {
+
+        },
         data: {
             advert: {
                 baslik: '',
                 aciklama: '',
                 toplamAdet: 0,
-                toplamfiyat: 0,
+                toplamFiyat: 0,
                 advertDetails: [],
                 category: []
             },
@@ -339,7 +351,7 @@
             subCategory2: [],
             subCategory3: [],
             subCategory4: [],
-            selectedCategory: "",
+            selectedCategory: {},
             breadcrumb: "",
             showCategorySelect: true,
             isCategorySelected: false,
@@ -359,7 +371,9 @@
             files: [],
             images: [],
             showPhotoUploader: false,
-            isPhotosSelected: false
+            isPhotosSelected: false,
+
+
 
         },
         methods: {
@@ -393,7 +407,7 @@
                 }
                 //temel bilgiler
                 if (this.showBasic) {
-                    if (this.advert.baslik !== '' && this.advert.toplamAdet != 0 && this.advert.toplamFiyat != 0) {
+                    if (this.advert.baslik !== '' && this.advert.toplamAdet != 0 && this.advert.toplamFiyat != 0 && this.advert.aciklama !== '') {
                         this.isEnterBasic = true;
                         this.error = "";
                         this.showPhotoUploader = true;
@@ -410,13 +424,16 @@
                 if (this.showPhotoUploader) {
                     if (this.files.length > 0 || this.images.length > 0) {
                         this.isPhotosSelected = true;
+                        this.error = "";
+                        this.showEnterDetail = true;
                     } else {
-                        this.error = "* Lütfen alanları doldurunuz!"
+                        this.error = "* Lütfen fotoğraf ekleyiniz!"
                         setTimeout(() => {
                             this.error = '';
                         }, 3000);
                     }
                 }
+
             },
             back() {
                 if (this.isTipSelected) {
@@ -628,7 +645,8 @@
                 }
             },
             selectedCategory: function () {
-                if (Array.isArray(this.selectedCategory.tips)) {
+                if (this.isCategorySelected) {
+                    this.advert.category = this.selectedCategory;
                     this.showTipSelect = true;
                     this.leftItems = this.selectedCategory.tips;
                 }
@@ -675,7 +693,8 @@
                     this.progress = "width: 80%;"
                     this.showPhotoUploader = false;
                 }
-            }
+            },
+
 
         },
         created() {
@@ -695,127 +714,6 @@
 
     });
 
-    Vue.component('categoeries-box', {
-        props: ['item', 'index'],
-        data: function () {
-            return {
-                category,
-                selected,
-            }
-        },
-        methods: {
-            shout(v) {
-                this.$emit('selectCategory', { value: this.selected });
-            }
-        },
-        template: '<li v-on:click="shout(index)" v-bind:class="item.color">{{index+1}}. {{item.name}}</li>'
-    });
-
-    Vue.component('image-uploader', {
-        name: 'image-uploader',
-        data: () => ({
-            isDragging: false,
-            dragCount: 0,
-            files: [],
-            images: []
-        }),
-        methods: {
-            OnDragEnter(e) {
-                e.preventDefault();
-
-                this.dragCount++;
-                this.isDragging = true;
-                return false;
-            },
-            OnDragLeave(e) {
-                e.preventDefault();
-                this.dragCount--;
-                if (this.dragCount <= 0)
-                    this.isDragging = false;
-            },
-            onInputChange(e) {
-                const files = e.target.files;
-                Array.from(files).forEach(file => this.addImage(file));
-            },
-            onDrop(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                this.isDragging = false;
-                const files = e.dataTransfer.files;
-                Array.from(files).forEach(file => this.addImage(file));
-            },
-            addImage(file) {
-
-                this.files.push(file);
-                const img = new Image(),
-                    reader = new FileReader();
-                reader.onload = (e) => this.images.push(e.target.result);
-                reader.readAsDataURL(file);
-
-            },
-            getFileSize(size) {
-                if (size > 900000)
-                    return (size / (1024 * 1024)).toFixed(1).toString() + ' MB';
-                else
-                    return (size / (1024)).toFixed(1).toString() + ' KB';
-            },
-            upload() {
-                const formData = new FormData();
-
-                this.files.forEach(file => {
-                    formData.append('images[]', file, file.name);
-                });
-                localStorage.photos(formData);
-
-            }
-        },
-        watch: {
-            files: function () {
-                const formData = new FormData();
-                if (this.files.length > 0) {
-                    this.files.forEach(file => {
-                        formData.append('images[]', file, file.name);
-                    });
-                    localStorage.photos(formData);
-                }
-
-            }
-        },
-        template:
-            `
-        <div class="uploader"
-            @dragenter="OnDragEnter"
-            @dragleave="OnDragLeave"
-            @dragover.prevent
-            @drop="onDrop"
-            :class="{ dragging: isDragging }">     
-
-            <div class="upload-control" v-show="images.length">
-                <label class="iuLabel" for="file">Fotoğraf Ekle</label>
-            </div>
-            
-            <div v-show="!images.length">
-                <i class="fa fa-cloud-upload"></i>
-                <p>Fotoğraflarınızı bu alana taşıyın</p>
-                <div>YA DA</div>
-                <div class="file-input">
-                    <label class="iuLabel" for="file">Fotoğrafları seçin</label>
-                    <input class="pickfile" type="file" id="file" @change="onInputChange" accept=".jpg, .jpeg, .png" multiple>
-                </div>
-            </div>
-
-            <div class="images-preview" v-show="images.length">
-                <div class="img-wrapper" v-for="(image, index) in images" :key="index">
-                    <img :src="image">
-                    <div class="details">
-                        <span class="name" v-text="files[index].name"></span>
-                        <span class="size" v-text="getFileSize(files[index].size)"></span>
-                    </div>
-                </div>
-            </div>
-        </div>  
-        `
-    });
 
 
 </script>
@@ -1252,4 +1150,17 @@
     .vertical .content.fade.dstepper-none {
         visibility: hidden;
     }
+
+    /*CAROUSEL*/
+    .view-product {
+        position: relative;
+    }
+
+    .view-product img {
+        border: 1px solid #F7F7F0;
+        height: auto;
+        width: 100%;
+    }
+
+    /*CAROUSEL*/
 </style>

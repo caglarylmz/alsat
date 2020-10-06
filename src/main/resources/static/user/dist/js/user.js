@@ -2,13 +2,39 @@ $(document).ready(
 	function () {
 		//Bootstrap Duallistbox
 		$('.duallistbox').bootstrapDualListbox();
+
 		// Summernote
 		$('#summernote').summernote({
 			placeholder: 'İlan detayı giriniz',
-			tabsize: 2,
 			height: 300,
-			lang: 'tr-TR'
+			lang: 'tr-TR',
+			toolbar: [
+				['style', ['style']],
+				['font', ['fontname']],
+				['fontstyle', ['bold', 'italic', 'underline', 'color', 'clear']],
+				['fontsize', ['fontsize', 'height']],
+				['para', ['ul', 'ol', 'paragraph']],
+				['insert', ['link', 'picture', 'video']]
+			],
+			callbacks: {
+				onChange: function (contents, $editable) {
+
+					vue.$data.advert.aciklama = contents;
+				}
+			}
 		});
+
+		$('#lightSlider').lightSlider({
+			gallery: true,
+			item: 1,
+			loop: true,
+			thumbItem: 6,
+			slideMargin: 0,
+			enableDrag: true,
+			currentPagerPosition: 'left',
+
+		});
+
 
 		/**Popover */
 		$('[data-toggle="popover"]').popover({
