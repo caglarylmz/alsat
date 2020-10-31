@@ -59,6 +59,42 @@
                                 <h5>{{error}}</h5>
                             </div>
                             <!-- CATEGORY SELECT-->
+                            <div v-if="showCategorySelect" class="row mb-5">
+                                        <div class="card-body">
+                                            <div class="list-group" v-for="(item, index) in parentCategories">
+                                                <button type="button" @click=selectSubCategory1($event,item.id)
+                                                    class="list-group-item list-group-item-action">
+                                                    {{item.name}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    
+
+                                    <div v-if='subCategory1.length > 0' class="card">
+                                        <div class="card-body table-responsive p-0">
+                                            <div class="list-group" v-for=" (item, index) in subCategory1">
+                                                <button type="button" @click=selectSubCategory2($event,item.id)
+                                                    class="list-group-item list-group-item-action">
+                                                    {{item.name}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div v-if='subCategory2.length > 0' class="card">
+                                        <div class="card-body table-responsive p-0">
+                                            <div class="list-group deactive" v-for=" (item, index) in subCategory2">
+                                                <button type="button" @click=selectSubCategory3($event,item.id)
+                                                    class="list-group-item list-group-item-action">
+                                                    {{item.name}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+
+
+                            <!---->
                             <div v-if="showCategorySelect" class="row mb-5 ">
                                 <div class="col-12 text-left mb-1">
                                     <span>
@@ -117,7 +153,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <!-- CATEGORY SELECT-->
 
@@ -202,7 +237,8 @@
                                                 <label for="exampleInputEmail1">Başlık</label>
                                                 <input type="email" class="form-control" v-model="advert.baslik"
                                                     aria-describedby="emailHelp">
-                                                <small id="emailHelp" class="form-text text-muted">İlan'ı tanımlayacak
+                                                <small id="emailHelp" class="form-text text-muted">İlan'ı
+                                                    tanımlayacak
                                                     bir başlık giriniz</small>
                                             </div>
                                         </tr>
@@ -216,7 +252,8 @@
                                         <tr>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon1">Toplam Adet </span>
+                                                    <span class="input-group-text" id="basic-addon1">Toplam Adet
+                                                    </span>
                                                 </div>
                                                 <input type="number" step="1" class="form-control" placeholder="0"
                                                     v-model="advert.toplamAdet" aria-label="Toplam Adet"
@@ -339,7 +376,6 @@
 
 </div>
 <script>
-
     var vue = new Vue({
         el: '#app',
         components: {
@@ -421,7 +457,9 @@
                 }
                 //temel bilgiler
                 if (this.showBasic) {
-                    if (this.advert.baslik !== '' && this.advert.toplamAdet != 0 && this.advert.toplamFiyat != 0 && this.advert.aciklama !== '') {
+                    if (this.advert.baslik !== '' && this.advert.toplamAdet != 0 && this.advert
+                        .toplamFiyat !=
+                        0 && this.advert.aciklama !== '') {
                         this.isEnterBasic = true;
                         this.error = "";
                         this.showPhotoUploader = true;
@@ -604,12 +642,12 @@
                 let selectedSub = this.parentCategories.filter((s) => s.id === id);
                 this.breadcrumb.push(selectedSub[0].name);
                 //console.log(this.breadcrumb);
-                selectedSub[0].subCategories.length > 0 ? this.isCategorySelected = false : this.isCategorySelected = true;
+                selectedSub[0].subCategories.length > 0 ? this.isCategorySelected = false : this
+                    .isCategorySelected = true;
                 if (this.isCategorySelected) {
                     this.selectedCategory.push(selectedSub);
 
-                }
-                else
+                } else
                     this.subCategory1 = selectedSub[0].subCategories;
 
             },
@@ -622,12 +660,12 @@
                 let selectedSub = this.subCategory1.filter((s) => s.id === id);
                 this.breadcrumb.push(selectedSub[0].name);
                 //console.log(this.breadcrumb);
-                selectedSub[0].subCategories.length > 0 ? this.isCategorySelected = false : this.isCategorySelected = true;
+                selectedSub[0].subCategories.length > 0 ? this.isCategorySelected = false : this
+                    .isCategorySelected = true;
                 if (this.isCategorySelected) {
                     this.selectedCategory = selectedSub[0];
                     window.sessionStorage.setItem("category", this.selectedCategory);
-                }
-                else
+                } else
                     this.subCategory2 = selectedSub[0].subCategories;
             },
             selectSubCategory3(event, id) {
@@ -638,12 +676,12 @@
                 let selectedSub = this.subCategory2.filter((s) => s.id === id);
                 this.breadcrumb.push(selectedSub[0].name);
                 //console.log(this.breadcrumb);
-                selectedSub[0].subCategories.length > 0 ? this.isCategorySelected = false : this.isCategorySelected = true;
+                selectedSub[0].subCategories.length > 0 ? this.isCategorySelected = false : this
+                    .isCategorySelected = true;
                 if (this.isCategorySelected) {
                     this.selectedCategory = selectedSub[0];
                     window.sessionStorage.setItem("category", this.selectedCategory);
-                }
-                else
+                } else
                     this.subCategory3 = selectedSub[0].subCategories;
 
             },
@@ -654,12 +692,12 @@
                 let selectedSub = this.subCategory3.filter((s) => s.id === id);
                 this.breadcrumb.push(selectedSub[0].name);
                 //console.log(this.breadcrumb);
-                selectedSub[0].subCategories.length > 0 ? this.isCategorySelected = false : this.isCategorySelected = true;
+                selectedSub[0].subCategories.length > 0 ? this.isCategorySelected = false : this
+                    .isCategorySelected = true;
                 if (this.isCategorySelected) {
                     this.selectedCategory = selectedSub[0];
                     window.sessionStorage.setItem("category", this.selectedCategory);
-                }
-                else
+                } else
                     this.subCategory4 = selectedSub[0].subCategories;
 
             },
@@ -750,9 +788,6 @@
 
 
     });
-
-
-
 </script>
 
 <style scoped>

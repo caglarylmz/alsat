@@ -4,8 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="container">
-	<!--	
-		<div class="row">
+
+	<div class="row">
 		<div class="col-lg-6 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">Günün reklamı</a><a href="#"
 				class="ml-1">Reklam!</a></div>
 		<div class="col-lg-6 text-center text-lg-right">
@@ -14,7 +14,7 @@
 			</ul>
 		</div>
 	</div>
-	-->
+
 	<nav class="navbar border-bottom navbar-light">
 		<a href="/" class="nav-link">
 			<img src="${contextRoot}/resources/assets/images/logo.png" height="40px" alt="" />

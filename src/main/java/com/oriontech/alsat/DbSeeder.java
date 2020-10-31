@@ -483,6 +483,7 @@ public class DbSeeder implements CommandLineRunner {
 		adv1.setAccount(user);
 		adv1.setToplamAdet(20);
 		adv1.setToplamFiyat(8000);
+		adv1.setShowcase(true);
 		// adv1.setLikes(likedAccounts);
 
 		Advert adv2 = new Advert("Advert-2", "Advert Açıklaması 2");
@@ -490,6 +491,7 @@ public class DbSeeder implements CommandLineRunner {
 		adv2.setToplamFiyat(5000);
 		adv2.setCategory(sigir);
 		adv2.setAccount(user);
+		adv2.setShowcase(true);
 		// adv2.setLikes(likedAccounts);
 
 		/** İlan için görülme ekliyoruz */
@@ -538,6 +540,8 @@ public class DbSeeder implements CommandLineRunner {
 		adv7.setAccount(owner);
 		adv7.setToplamAdet(2000);
 		adv7.setToplamFiyat(2000);
+		adv7.setShowcase(true);
+
 		// adv7.setLikes(likedAccounts);
 
 		advertRepository.save(adv1);

@@ -1,8 +1,6 @@
 package com.oriontech.alsat.repositories;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -19,6 +17,9 @@ public interface AdvertRepository extends CrudRepository<Advert, String> {
 
 	@Query(value = "SELECT * from advert WHERE status = :status ORDER BY created_at DESC", nativeQuery = true)
 	public List<Advert> findAllLatestAdvertsByStatus(@Param("status") boolean status);
+
+	@Query(value = "SELECT * from advert WHERE status = true AND showcase = true ORDER BY created_at DESC", nativeQuery = true)
+	public List<Advert> findShowcaseLatestAdvertsByStatus();
 
 	@Query(value = "SELECT * from advert WHERE account_id = :accountId ORDER BY created_at DESC", nativeQuery = true)
 	public List<Advert> findAllLatestAdvertByAccount(@Param("accountId") Long accountId);

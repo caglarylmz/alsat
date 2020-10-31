@@ -34,4 +34,10 @@ public class RestAdvertController {
                 .getLatestAdvertByAccountId(accountService.findByUsername(authentication.getName()).getId());
     }
 
+    @GetMapping("/vitrin")
+    @ResponseBody
+    public List<Advert> getVitrinAdverts() {
+        return advertService.findShowcaseLatestAdvertsByStatus();
+    }
+
 }

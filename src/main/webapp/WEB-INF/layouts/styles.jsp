@@ -36,4 +36,3 @@
 <link rel="stylesheet" href="${contextRoot}/resources/adminlte/plugins/summernote/summernote-bs4.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="${contextRoot}/resources/adminlte/css/adminlte.min.css">
-<link rel="stylesheet" href="${contextRoot}/resources/main/css/style.default.css">
