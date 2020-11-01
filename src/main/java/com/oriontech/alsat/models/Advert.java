@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.oriontech.alsat.config.DateFormatIdGenerator;
 import com.oriontech.alsat.config.IdGenerator;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 

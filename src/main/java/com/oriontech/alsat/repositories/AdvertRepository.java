@@ -18,8 +18,13 @@ public interface AdvertRepository extends CrudRepository<Advert, String> {
 	@Query(value = "SELECT * from advert WHERE status = :status ORDER BY created_at DESC", nativeQuery = true)
 	public List<Advert> findAllLatestAdvertsByStatus(@Param("status") boolean status);
 
-	@Query(value = "SELECT * from advert WHERE status = true AND showcase = true ORDER BY created_at DESC", nativeQuery = true)
+	// Vitrin İlanlar
+	@Query(value = "SELECT * from advert WHERE status = true AND showcase = true ORDER BY created_at DESC LIMIT 20", nativeQuery = true)
 	public List<Advert> findShowcaseLatestAdvertsByStatus();
+
+	// Vitrinde olmayan ilanlar
+	@Query(value = "SELECT * from advert WHERE status = true AND showcase = false ORDER BY created_at DESC LIMIT 30", nativeQuery = true)
+	public List<Advert> findNotShowcaseLatestAdverts();
 
 	@Query(value = "SELECT * from advert WHERE account_id = :accountId ORDER BY created_at DESC", nativeQuery = true)
 	public List<Advert> findAllLatestAdvertByAccount(@Param("accountId") Long accountId);

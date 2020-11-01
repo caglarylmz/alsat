@@ -108,8 +108,13 @@ public class AdvertService {
 		return advertRepository.searchAdverts(query);
 	}
 
-	public List<Advert> findShowcaseLatestAdvertsByStatus() {
+	public List<Advert> getShowcaseLatestAdvertsByStatus() {
 		return advertRepository.findShowcaseLatestAdvertsByStatus();
 	}
+
+	public List<Advert> getNotShowcaseLatestAdvertsByStatus() {
+		return advertRepository.findNotShowcaseLatestAdverts();
+	}
+
 
 }

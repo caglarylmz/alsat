@@ -21,4 +21,5 @@ public interface AdvertViewsRepository extends CrudRepository<AdvertViews, Long>
 	@Query(value = "SELECT * from advert_views WHERE advert_id =:advertId", nativeQuery = true)
 	public List<AdvertViews> findAdvertViewsByAdvertId(@Param("advertId") String advertId);
 
+
 }

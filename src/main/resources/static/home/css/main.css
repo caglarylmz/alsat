@@ -1,0 +1,612 @@
+html,
+body {
+    overflow-x: hidden;
+    font-family: "Work Sans", sans-serif;
+}
+
+a {
+    color: #003399;
+}
+
+a.aktif {
+    background: #ff4d4d !important;
+    color: white;
+    transition: .3s !important;
+}
+
+select.aktif :hover {
+    border: #ff4d4d !important;
+    border-color: #ff4d4d !important;
+}
+
+.custom-select-sm {
+    font-size: .750rem !important;
+}
+
+.pabsolute {
+    position: absolute;
+}
+
+.prelative {
+    position: relative;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.gri {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.btn-danger {
+    background: #ff4d4d !important;
+    transition: .3s !important;
+}
+
+.btn-danger:hover {
+    background: #e53935 !important;
+}
+
+.btn-grey {
+    color: #777;
+}
+
+.btn-grey:hover {
+    color: #4398f4;
+}
+
+.btn-default {
+    background: #eee !important;
+    transition: .3s;
+    border: 0;
+    color: #777;
+}
+
+.btn-default:hover {
+    background: #ccc !important;
+    color: #555;
+}
+
+.btn-success {
+    background: #00C853 !important;
+    transition: .3s;
+    border: 0;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background: #00a847 !important;
+    color: #fff;
+}
+
+.fw500 {
+    font-weight: 500;
+}
+
+.fw600 {
+    font-weight: 600;
+}
+
+.fw700 {
+    font-weight: 700;
+}
+
+.btn {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border: 0;
+}
+
+.btn-sm {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 10px;
+}
+
+.btn-xs {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 3px 7px;
+}
+
+.btn-primary.btn-sm {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    padding: 4px 10px !important;
+}
+
+.btn-primary.btn-xs {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    padding: 3px 7px !important;
+}
+
+.gradient {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.07+100 */
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.07) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.07) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.07) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#12000000', GradientType=0);
+    /* IE6-9 */
+}
+
+.beyaz-shadow {
+    -webkit-box-shadow: 0px 0px 47px -9px rgba(255, 255, 255, 0.67);
+    -moz-box-shadow: 0px 0px 47px -9px rgba(255, 255, 255, 0.67);
+    box-shadow: 0px 0px 47px -9px rgba(255, 255, 255, 0.67);
+}
+
+.carousel-item img {
+    height: 200px;
+}
+
+/*HEADER*/
+header {
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.6);
+}
+
+header input {
+    border: 0 !important;
+
+}
+
+header .uyelik a {
+    box-shadow: none !important;
+    color: #eaeaea !important;
+    font-size: 12px;
+    padding-left: 7px;
+    padding-right: 7px;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.40);
+}
+
+header .uyelik a:hover {
+    text-decoration: underline;
+}
+
+header .uyelik a:focus {}
+
+header .uyelik>a.btn-header {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fafafa !important;
+    border: 0;
+    padding: 8px 15px !important;
+    text-decoration: none !important;
+}
+
+header .uyelik>a span.badge {
+    color: #fff;
+}
+
+/*HEADER*/
+
+/*KATEGORI INNER SIDEBAR*/
+ul.dropdown-menu {
+    border: 0;
+    margin-top: 5px;
+}
+
+ul.dropdown-menu li {}
+
+ul.dropdown-menu li a {
+    color: #333 !important;
+    text-shadow: none;
+    text-decoration: none !important;
+    font-size: 14px;
+}
+
+ul.dropdown-menu li a i:before {
+    width: 16px !important;
+    text-align: center;
+}
+
+ul.ana_menu {
+    padding: 0 0 0 35px;
+    margin: 0;
+    list-style: none;
+    padding-right: 10px;
+}
+
+ul.ana_menu li.cizgi {
+    margin-bottom: 7px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+ul.ana_menu li a {
+    line-height: 28px;
+    position: relative;
+}
+
+ul.ana_menu li a {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+ul.ana_menu li>a {
+    line-height: 27px;
+}
+
+ul.ana_menu li.dropdown a {
+    font-weight: 600;
+}
+
+ul.ana_menu ul li a {
+    font-size: 13px;
+    line-height: 21px;
+    font-weight: 400 !important;
+}
+
+ul.ana_menu ul {
+    margin-bottom: 7px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+ul.ana_menu li a i {
+    position: absolute;
+    left: -40px;
+    top: -4px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 15px;
+    text-align: center;
+    background: #666;
+    color: #fff;
+    border-radius: 100%;
+}
+
+ul.ana_menu li span.toplam {
+    color: #999;
+    font-size: 11px;
+    line-height: 11px;
+    margin-left: 5px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+ul.ana_menu li.kategori_more {
+    font-size: 12px;
+    margin: 7px 0;
+    color: #999;
+    position: relative;
+    font-weight: 500;
+}
+
+ul.ana_menu li.kategori_more:hover {
+    color: #777;
+}
+
+ul.ana_menu li.kategori_more:before {
+    font-family: "Ionicons";
+    content: "\f35f";
+    padding: 0 6px 0 0;
+    color: #aaa;
+}
+
+
+.dropdown ul {
+    list-style-type: none;
+}
+
+.dropdown ul li {
+    margin-left: -30px;
+}
+
+/*KATEGORI INEER SIDEBAR*/
+
+/*SIDEBAR*/
+.mm-panel::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .20) !important;
+}
+
+.panel-body::-webkit-scrollbar,
+.mm-panel::-webkit-scrollbar {
+    height: 10px;
+}
+
+#mm_panel ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mm::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+.mm::-webkit-scrollbar-thumb {
+    background: #cacaca;
+}
+
+.mm#mm_panel {
+    background: #eaeaea;
+    padding: 0 0 0 25px;
+}
+
+#mm_panel ul.ana_menu {
+    padding: 5px 5px 5px 5px;
+    margin: 0;
+    list-style: none;
+    padding-right: 0;
+}
+
+#mm_panel ul.ana_menu li.cizgi {
+    margin-bottom: 7px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+#mm_panel ul.ana_menu li {
+    border-bottom: 1px solid #ddd !important;
+    position: relative;
+}
+
+#mm_panel ul.ana_menu li a {
+    line-height: 20px;
+    display: block;
+    padding: 10px !important;
+    text-decoration: none;
+}
+
+#mm_panel ul.ana_menu li a {
+    font-weight: 600;
+}
+
+#mm_panel ul.ana_menu li a i {
+    position: absolute;
+    left: -25px;
+    top: 8px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 15px;
+    text-align: center;
+    background: #666;
+    color: #fff;
+    border-radius: 100%;
+}
+
+#mm_panel ul.ana_menu li span.toplam {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    color: #999;
+    font-size: 11px;
+    line-height: 11px;
+    margin-left: 5px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.mm#filtre_panel {
+    background: #eaeaea;
+    padding: 10px;
+}
+
+.mm#mmu_panel {
+    background: #3f475f !important;
+}
+
+.mm#mmu_panel {}
+
+.mm#mmu_panel ul {
+    padding: 0;
+    margin: 5px;
+    list-style: none;
+    height: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mm#mmu_panel ul li {}
+
+.mm#mmu_panel ul li a {
+    position: relative;
+    color: #fff;
+    padding: 10px 20px 10px 30px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: #3f475f;
+    display: block;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.mm#mmu_panel ul li a:hover,
+.mm#mmu_panel ul li a.active {
+    background: #394157;
+}
+
+.mm#mmu_panel ul li:first-child a {
+    border-top: 0;
+}
+
+.mm#mmu_panel ul li i {
+    position: absolute;
+    left: 10px;
+}
+
+/*SIDEBAR*/
+
+/*ANA LİSTE GRID*/
+
+/*Card altında ki text'in ... şeklinde bitmesi için*/
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    padding: 2px;
+    padding-left: 10px;
+    font-size: small;
+}
+
+/* Normal durumda her bir row'da 5*20=100'den 5 sütun olacak şekilde ayarlıyoruz */
+.column {
+    flex: 20%;
+    max-width: 20%;
+    padding: 0 4px;
+    overflow-x: hidden;
+
+}
+
+.column a {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+}
+
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 991px) {
+    .column {
+        flex: 25%;
+        max-width: 25%;
+        overflow-x: hidden;
+
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 768px) {
+    .column {
+        flex: 50%;
+        max-width: 50%;
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width: 368px) {
+    .column {
+        flex: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .truncate {
+        font-size: small;
+        white-space: normal;
+    }
+
+}
+
+/*ANA LİSTE GRID*/
+
+/*FOOTER*/
+footer {
+    background: #f9f9f9;
+    padding: 30px 0;
+    border-top: 1px solid #eaeaea;
+    margin-top: 14px;
+}
+
+footer p:not(.yazilim) {
+    font-size: 11px;
+    line-height: 16px;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    background: #fff;
+    border: 1px dashed #ddd;
+    color: #999;
+}
+
+footer p.yazilim {
+    font-size: 11px;
+    line-height: 16px;
+    padding: 10px;
+    margin: 0;
+    color: #999;
+}
+
+footer p.yazilim a {
+    color: #999 !important;
+    text-decoration: none !important;
+}
+
+footer p.yazilim a.limontasarim {
+    width: 147px;
+    height: 38px;
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+footer .baslik {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 7px;
+    color: #555;
+}
+
+footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 28px;
+}
+
+footer ul li a {
+    color: #777 !important;
+    font-size: 13px;
+    line-height: 23px;
+}
+
+footer .iletisim {
+    padding: 15px 0;
+    border-top: 1px dashed #ddd;
+}
+
+footer .iletisim .buton {
+    color: #777;
+    margin-bottom: 15px;
+    float: left;
+    margin-right: 30px;
+    padding: 5px 10px 5px 0;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+}
+
+footer .iletisim .sosyal .buton {
+    margin-right: 0;
+    margin-left: 10px;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+}
+
+footer .iletisim .sosyal .buton i {
+    width: 15px;
+    margin-right: 0;
+}
+
+footer .iletisim .buton.facebook {
+    background: #4267b2;
+}
+
+footer .iletisim .buton.twitter {
+    background: #00aced;
+}
+
+footer .iletisim .buton.google {
+    background: #d13617;
+}
+
+footer .iletisim .buton.instagram {
+    background: #e13d61;
+}
+
+/*FOOTER*/

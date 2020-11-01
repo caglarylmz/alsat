@@ -1,6 +1,5 @@
 package com.oriontech.alsat.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -22,9 +21,7 @@ public class TilesConfiguration implements WebMvcConfigurer {
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
 		tilesConfigurer.setDefinitions(new String[] { "/WEB-INF/tiles/admin_tile.xml", "/WEB-INF/tiles/user_tile.xml",
-				"/WEB-INF/tiles/main_tile.xml",
-
-		});
+				"/WEB-INF/tiles/main_tile.xml", "/WEB-INF/tiles/home_tile.xml" });
 		tilesConfigurer.setCheckRefresh(true);
 		// tilesConfigurer.setDefinitionsFactoryClass(CustomLocaleDefinitionsFactory.class);
 
