@@ -2,7 +2,10 @@ package com.oriontech.alsat.services;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import com.oriontech.alsat.models.Advert;
 import com.oriontech.alsat.models.AdvertViews;
 import com.oriontech.alsat.repositories.AdvertViewsRepository;
 
@@ -27,7 +30,12 @@ public class AdvertViewsService {
         }
 
         return totalcountViews;
-
     }
+
+    // Aynı nesneleri filtrelemek için kullanıyoruz
+    // return
+    // advertViewsRepository.findAdvertsByViewedAtCount().stream().distinct().collect(Collectors.toList());
+
+    
 
 }

@@ -8,7 +8,8 @@
         <put-attribute name="navbar_desktop" value="/WEB-INF/templates/home/layouts/header/navbar_desktop.jsp" />
         <put-attribute name="navbar_mobile" value="/WEB-INF/templates/home/layouts/header/navbar_mobile.jsp" />
         <put-attribute name="sidebar" value="/WEB-INF/templates/home/layouts/sidebar/sidebar.jsp" />
-        <put-attribute name="left_menu" value="/WEB-INF/templates/home/layouts/menu/left_menu.jsp" />
+        <put-attribute name="main_left_menu" value="/WEB-INF/templates/home/layouts/menu/main_left_menu.jsp" />
+        <put-attribute name="category_left_menu" value="/WEB-INF/templates/home/layouts/menu/category_left_menu.jsp" />
         <put-attribute name="scripts" value="/WEB-INF/templates/home/layouts/scripts.jsp" />
         <put-attribute name="styles" value="/WEB-INF/templates/home/layouts/styles.jsp" />
         <!--Statics-->
@@ -16,13 +17,31 @@
         <put-attribute name="content" value="" />
         <!-- Dynamics-->
     </definition>
+    <!-- ***************************************************************************************-->
+    <!-- CONTENT-->
+    <!-- ***************************************************************************************-->
     <!-- Main Content -->
     <definition name="home.main.main" extends="home_template">
         <put-attribute name="content" value="/WEB-INF/views/home/main/main.jsp"></put-attribute>
     </definition>
     <!-- Main Content -->
+    <!-- Category Content -->
+    <!-- Parent-->
+    <definition name="home.category.parent" extends="home_template">
+        <put-attribute name="content" value="/WEB-INF/views/home/category/parent.jsp"></put-attribute>
+    </definition>
+    <!-- Parent-->
+    <!-- Category Adverts-->
+    <definition name="home.category.category-adverts" extends="home_template">
+        <put-attribute name="content" value="/WEB-INF/views/home/category/category-adverts.jsp"></put-attribute>
+    </definition>
+    <!-- Category Adverts-->
+    <!-- Category Content -->
+    <!-- ***************************************************************************************-->
+    <!-- CONTENT-->
+    <!-- ***************************************************************************************-->
     <!-- BASE TEMPLATE DEFINITION -->
-    <!--****************************************************************************************************************-->
+    <!--****************************************************************************************-->
 
 
 </tiles-definitions>

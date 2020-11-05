@@ -123,6 +123,7 @@ public class DbSeeder implements CommandLineRunner {
 		sigir.setName("Sığır");
 		sigir.setStatus(true);
 		sigir.setParentCategory(parentBuyukBas);
+		sigir.setRootCategory(parentBuyukBas);
 		categoryRepository.save(sigir);
 
 		Tip inek = new Tip("İnek", sigir, irks);
@@ -160,6 +161,7 @@ public class DbSeeder implements CommandLineRunner {
 		manda.setName("Manda");
 		manda.setStatus(true);
 		manda.setParentCategory(parentBuyukBas);
+		manda.setRootCategory(parentBuyukBas);
 		categoryRepository.save(manda);
 
 		Tip tManda = new Tip("Manda", manda, irks);
@@ -176,6 +178,7 @@ public class DbSeeder implements CommandLineRunner {
 		koyun.setName("Koyun");
 		koyun.setStatus(true);
 		koyun.setParentCategory(parentKüçükBas);
+		koyun.setRootCategory(parentKüçükBas);
 		categoryRepository.save(koyun);
 
 		Tip akoyun = new Tip("Anaç Koyun", koyun, irks);
@@ -194,6 +197,7 @@ public class DbSeeder implements CommandLineRunner {
 		keci.setName("Keçi");
 		keci.setStatus(true);
 		keci.setParentCategory(parentKüçükBas);
+		keci.setRootCategory(parentKüçükBas);
 		categoryRepository.save(keci);
 
 		Tip akeci = new Tip("Anaç Keçi", keci, irks);
@@ -216,30 +220,63 @@ public class DbSeeder implements CommandLineRunner {
 		buyukbas.setName("Büyükbaş");
 		buyukbas.setStatus(true);
 		buyukbas.setParentCategory(parentKurbanlik);
+		buyukbas.setRootCategory(parentKurbanlik);
 		categoryRepository.save(buyukbas);
 
-		Tip kurbanlikInek = new Tip("İnek", buyukbas, irks);
+		Category kurbanlikSigir = new Category();
+		kurbanlikSigir.setName("Sığır");
+		kurbanlikSigir.setStatus(true);
+		kurbanlikSigir.setParentCategory(buyukbas);
+		kurbanlikSigir.setRootCategory(parentKurbanlik);
+		categoryRepository.save(kurbanlikSigir);
+
+		Category kurbanlikManda = new Category();
+		kurbanlikManda.setName("Manda");
+		kurbanlikManda.setStatus(true);
+		kurbanlikManda.setParentCategory(buyukbas);
+		kurbanlikManda.setRootCategory(parentKurbanlik);
+		categoryRepository.save(kurbanlikManda);
+
+		Tip kurbanlikInek = new Tip("İnek", kurbanlikSigir, irks);
 		tipRepository.save(kurbanlikInek);
 
-		Tip kurbanlikduve = new Tip("Düve", buyukbas, irks);
+		Tip kurbanlikduve = new Tip("Düve", kurbanlikSigir, irks);
 		tipRepository.save(kurbanlikduve);
 
-		Tip kurbanlikErkek = new Tip("Erkek", buyukbas, irks);
+		Tip kurbanlikErkek = new Tip("Erkek", kurbanlikSigir, irks);
 		tipRepository.save(kurbanlikErkek);
+
+		Tip kurbanlikMandaTip = new Tip("Erkek", kurbanlikManda, irks);
+		tipRepository.save(kurbanlikMandaTip);
 
 		Category kucukbas = new Category();
 		kucukbas.setName("Küçükbaş");
 		kucukbas.setStatus(true);
 		kucukbas.setParentCategory(parentKurbanlik);
+		kucukbas.setRootCategory(parentKurbanlik);
 		categoryRepository.save(kucukbas);
 
-		Tip eKurbanlikKoyun = new Tip("Erkek Koyun", kucukbas, irks);
+		Category kurbanlikKoyun = new Category();
+		kurbanlikKoyun.setName("Koyun");
+		kurbanlikKoyun.setStatus(true);
+		kurbanlikKoyun.setParentCategory(kucukbas);
+		kurbanlikKoyun.setRootCategory(parentKurbanlik);
+		categoryRepository.save(kurbanlikKoyun);
+
+		Category kurbanlikKeci = new Category();
+		kurbanlikKeci.setName("Keçi");
+		kurbanlikKeci.setStatus(true);
+		kurbanlikKeci.setParentCategory(kucukbas);
+		kurbanlikKeci.setRootCategory(parentKurbanlik);
+		categoryRepository.save(kurbanlikKeci);
+
+		Tip eKurbanlikKoyun = new Tip("Erkek Koyun", kurbanlikKoyun, irks);
 		tipRepository.save(eKurbanlikKoyun);
-		Tip dKurbanlikKoyun = new Tip("Dişi Koyun", kucukbas, irks);
+		Tip dKurbanlikKoyun = new Tip("Dişi Koyun", kurbanlikKoyun, irks);
 		tipRepository.save(dKurbanlikKoyun);
-		Tip eKurbanlikKeçi = new Tip("Erkek Keçi", kucukbas, irks);
+		Tip eKurbanlikKeçi = new Tip("Erkek Keçi", kurbanlikKeci, irks);
 		tipRepository.save(eKurbanlikKeçi);
-		Tip dKurbanlikKeçi = new Tip("Dişi Keçi", kucukbas, irks);
+		Tip dKurbanlikKeçi = new Tip("Dişi Keçi", kurbanlikKeci, irks);
 		tipRepository.save(dKurbanlikKeçi);
 
 		//
@@ -253,6 +290,7 @@ public class DbSeeder implements CommandLineRunner {
 		hindi.setName("Hindi");
 		hindi.setStatus(true);
 		hindi.setParentCategory(parentKanatli);
+		hindi.setRootCategory(parentKanatli);
 		categoryRepository.save(hindi);
 		Tip tHindi = new Tip("Hindi", hindi);
 		tipRepository.save(tHindi);
@@ -261,6 +299,7 @@ public class DbSeeder implements CommandLineRunner {
 		kaz.setName("Kaz");
 		kaz.setStatus(true);
 		kaz.setParentCategory(parentKanatli);
+		kaz.setRootCategory(parentKanatli);
 		categoryRepository.save(kaz);
 		Tip tKaz = new Tip("Kaz", kaz);
 		tipRepository.save(tKaz);
@@ -269,6 +308,7 @@ public class DbSeeder implements CommandLineRunner {
 		ordek.setName("Ördek");
 		ordek.setStatus(true);
 		ordek.setParentCategory(parentKanatli);
+		ordek.setRootCategory(parentKanatli);
 		categoryRepository.save(ordek);
 		Tip tOrdek = new Tip("Ördek", ordek);
 		tipRepository.save(tOrdek);
@@ -277,6 +317,7 @@ public class DbSeeder implements CommandLineRunner {
 		digerKanatli.setName("Diğer Kanatlı Hayvanlar");
 		digerKanatli.setStatus(true);
 		digerKanatli.setParentCategory(parentKanatli);
+		digerKanatli.setRootCategory(parentKanatli);
 		categoryRepository.save(digerKanatli);
 		Tip tDiger = new Tip("Diğer", digerKanatli);
 		tipRepository.save(tDiger);
@@ -285,6 +326,7 @@ public class DbSeeder implements CommandLineRunner {
 		tavuk.setName("Tavuk");
 		tavuk.setStatus(true);
 		tavuk.setParentCategory(parentKanatli);
+		tavuk.setRootCategory(parentKanatli);
 		categoryRepository.save(tavuk);
 
 		Tip etlik = new Tip("Etlik Tavuk", tavuk);
@@ -307,24 +349,28 @@ public class DbSeeder implements CommandLineRunner {
 		at.setName("At");
 		at.setStatus(true);
 		at.setParentCategory(digerHayvan);
+		at.setRootCategory(digerHayvan);
 		categoryRepository.save(at);
 
 		Category esek = new Category();
 		esek.setName("Eşek");
 		esek.setStatus(true);
 		esek.setParentCategory(digerHayvan);
+		esek.setRootCategory(digerHayvan);
 		categoryRepository.save(esek);
 
 		Category katir = new Category();
 		katir.setName("Katır");
 		katir.setStatus(true);
 		katir.setParentCategory(digerHayvan);
+		katir.setRootCategory(digerHayvan);
 		categoryRepository.save(katir);
 
 		Category digerDiger = new Category();
 		digerDiger.setName("Diğer");
 		digerDiger.setStatus(true);
 		digerDiger.setParentCategory(digerHayvan);
+		digerDiger.setRootCategory(digerHayvan);
 		categoryRepository.save(digerDiger);
 
 		//
@@ -338,60 +384,70 @@ public class DbSeeder implements CommandLineRunner {
 		satilikTesis.setName("Satılık Tesisler");
 		satilikTesis.setStatus(true);
 		satilikTesis.setParentCategory(tesisler);
+		satilikTesis.setRootCategory(tesisler);
 		categoryRepository.save(satilikTesis);
 
 		Category satilikBuyukbas = new Category();
 		satilikBuyukbas.setName("Büyükbaş Tesis");
 		satilikBuyukbas.setStatus(true);
 		satilikBuyukbas.setParentCategory(satilikTesis);
+		satilikBuyukbas.setRootCategory(tesisler);
 		categoryRepository.save(satilikBuyukbas);
 
 		Category satilikKucukbas = new Category();
 		satilikKucukbas.setName("Küçükbaş Tesis");
 		satilikKucukbas.setStatus(true);
 		satilikKucukbas.setParentCategory(satilikTesis);
+		satilikKucukbas.setRootCategory(tesisler);
 		categoryRepository.save(satilikKucukbas);
 
 		Category satilikKumes = new Category();
 		satilikKumes.setName("Kümes");
 		satilikKumes.setStatus(true);
 		satilikKumes.setParentCategory(satilikTesis);
+		satilikKumes.setRootCategory(tesisler);
 		categoryRepository.save(satilikKumes);
 
 		Category satilikDiger = new Category();
 		satilikDiger.setName("Diğer");
 		satilikDiger.setStatus(true);
 		satilikDiger.setParentCategory(satilikTesis);
+		satilikDiger.setRootCategory(tesisler);
 		categoryRepository.save(satilikDiger);
 
 		Category kiralikTesis = new Category();
 		kiralikTesis.setName("Kiralık Tesisler");
 		kiralikTesis.setStatus(true);
 		kiralikTesis.setParentCategory(tesisler);
+		kiralikTesis.setRootCategory(tesisler);
 		categoryRepository.save(kiralikTesis);
 
 		Category kiralikBuyukbas = new Category();
 		kiralikBuyukbas.setName("Büyükbaş Tesis");
 		kiralikBuyukbas.setStatus(true);
 		kiralikBuyukbas.setParentCategory(kiralikTesis);
+		kiralikBuyukbas.setRootCategory(tesisler);
 		categoryRepository.save(kiralikBuyukbas);
 
 		Category kiralikKucukbas = new Category();
 		kiralikKucukbas.setName("Küçükbaş Tesis");
 		kiralikKucukbas.setStatus(true);
 		kiralikKucukbas.setParentCategory(kiralikTesis);
+		kiralikKucukbas.setRootCategory(tesisler);
 		categoryRepository.save(kiralikKucukbas);
 
 		Category kiralikKumes = new Category();
 		kiralikKumes.setName("Kümes");
 		kiralikKumes.setStatus(true);
 		kiralikKumes.setParentCategory(kiralikTesis);
+		kiralikKumes.setRootCategory(tesisler);
 		categoryRepository.save(kiralikKumes);
 
 		Category kiralikDiger = new Category();
 		kiralikDiger.setName("diğer");
 		kiralikDiger.setStatus(true);
 		kiralikDiger.setParentCategory(kiralikTesis);
+		kiralikDiger.setRootCategory(tesisler);
 		categoryRepository.save(kiralikDiger);
 
 		//
@@ -405,42 +461,49 @@ public class DbSeeder implements CommandLineRunner {
 		yonca.setName("Yonca");
 		yonca.setStatus(true);
 		yonca.setParentCategory(parentYem);
+		yonca.setRootCategory(parentYem);
 		categoryRepository.save(yonca);
 
 		Category saman = new Category();
 		saman.setName("Saman");
 		saman.setStatus(true);
 		saman.setParentCategory(parentYem);
+		saman.setRootCategory(parentYem);
 		categoryRepository.save(saman);
 
 		Category fabrikaYemi = new Category();
 		fabrikaYemi.setName("Fabrika Yemi");
 		fabrikaYemi.setStatus(true);
 		fabrikaYemi.setParentCategory(parentYem);
+		fabrikaYemi.setRootCategory(parentYem);
 		categoryRepository.save(fabrikaYemi);
 
 		Category arpa = new Category();
 		arpa.setName("Arpa");
 		arpa.setStatus(true);
 		arpa.setParentCategory(parentYem);
+		arpa.setRootCategory(parentYem);
 		categoryRepository.save(arpa);
 
 		Category bugday = new Category();
 		bugday.setName("Buğday");
 		bugday.setStatus(true);
 		bugday.setParentCategory(parentYem);
+		bugday.setRootCategory(parentYem);
 		categoryRepository.save(bugday);
 
 		Category silaj = new Category();
 		silaj.setName("Silaj");
 		silaj.setStatus(true);
 		silaj.setParentCategory(parentYem);
+		silaj.setRootCategory(parentYem);
 		categoryRepository.save(silaj);
 
 		Category digerYem = new Category();
 		digerYem.setName("Diğer");
 		digerYem.setStatus(true);
 		digerYem.setParentCategory(parentYem);
+		digerYem.setRootCategory(parentYem);
 		categoryRepository.save(digerYem);
 		//
 
@@ -512,6 +575,7 @@ public class DbSeeder implements CommandLineRunner {
 		AdvertViews views3 = new AdvertViews(adv2, d2Adv3);
 		views3.setHowManyViewedAt(13);
 		adv2.getViews().add(views3);
+
 		/** İlan için görülme ekliyoruz */
 
 		Advert adv3 = new Advert("Advert-3", "Advert Açıklaması 3");
@@ -520,6 +584,11 @@ public class DbSeeder implements CommandLineRunner {
 		adv3.setToplamFiyat(6000);
 		adv3.setCategory(arpa);
 		adv3.setAccount(owner);
+		LocalDate date1a3 = LocalDate.of(2020, Month.JULY, 12);
+		String d1Adv3 = date1a3.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+		AdvertViews a3views3 = new AdvertViews(adv3, d1Adv3);
+		a3views3.setHowManyViewedAt(25);
+		adv3.getViews().add(a3views3);
 		Advert adv4 = new Advert("Advert-4", "Advert Açıklaması 4");
 		adv4.setCategory(keci);
 		adv4.setAccount(owner);

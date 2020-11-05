@@ -1,7 +1,10 @@
 package com.oriontech.alsat.services;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,58 +28,68 @@ public class AdvertService {
 	AdvertDetailRepository advertDetailRepository;
 	@Autowired
 	TipRepository tipRepository;
+	@Autowired
+	AdvertViewsService advertViewsService;
 
+	// Tüm ilanlar
 	public Iterable<Advert> findAll() {
 		return advertRepository.findAll();
 	}
 
+	// ID'si girilen ilan
 	public Advert findById(String id) {
 		return advertRepository.findById(id).get();
 	}
 
+	// save
 	public Advert save(Advert advert) {
 		return advertRepository.save(advert);
 	}
 
+	// delete
 	public void deleteById(String id) {
 		advertRepository.findById(id).get().setStatus(false);
 	}
 
-	// All Adverts By Status with Limit
+	// Limit ve statusa göre sondan başa sıralı ilanlar
 	public List<Advert> getAllLatestAdvertsByStatusWithLimit(boolean status, int n) {
 		return advertRepository.findAllLatestAdvertsByStatusWithLimit(status, n);
 	}
 
-	// All Adverts By Status
+	// Status'a göre sondan başa sıralı ilanlar
 	public List<Advert> getAllLatestAdvertsByStatus(boolean status) {
 		return advertRepository.findAllLatestAdvertsByStatus(status);
 	}
 
-	// All User's Adverts
+	// Kullanıca ait ilanlar
 	public List<Advert> getAllLatestAdvertByAccount(String username) {
 		return advertRepository.findAllLatestAdvertByAccount(accountService.findByUsername(username).getId());
 	}
 
-	// All User's Active Adverts
+	// Kullanıcıya ait aktif ilanlar
 	public List<Advert> getAllLatestActiveAdvertByAccount(String username) {
 		return advertRepository.findAllLatestActiveAdvertByAccount(accountService.findByUsername(username).getId());
 	}
 
-	// All User's Deactive Adverts
+	// Kullanıcıya ait pasif ilanlar
 	public List<Advert> getAllLatestDeactiveAdvertByAccount(String username) {
 		return advertRepository.findAllLatestDeactiveAdvertByAccount(accountService.findByUsername(username).getId());
 	}
 
-	// All Categories's Active Adverts
+	// Girilen kategoriye ait aktif ilanlar
 	public List<Advert> getAllLatestActiveAdvertByCategory(Long categoryId) {
 		return advertRepository.findAllLatestActiveAdvertByCategory(categoryId);
 	}
 
-	// All adverts by Category's and child categories'
+	// Girilen Kategori ve Alt Kategorilerine ait aktif ilanları döner
 	public List<Advert> getAllAdvertsByCategoryAndChildCategories(Long categoryId) {
 		List<Advert> allAdverts = new ArrayList<>();
 
+		// Girilen kategoride ki tüm ilanları ekliyoruz
 		allAdverts.addAll(categoryService.findById(categoryId).getAdverts());
+
+		// Eğer girilen kategorinin alt kateforisi varsa her bir alt kategoriye ait alt
+		// kategoriyi çekiyoruz
 		if (!categoryService.findById(categoryId).getSubCategories().isEmpty()) {
 			for (Category category : categoryService.findById(categoryId).getSubCategories()) {
 				allAdverts.addAll(category.getAdverts());
@@ -86,7 +99,7 @@ public class AdvertService {
 		return allAdverts;
 	}
 
-	// All active adverts by Tip
+	// Tip'e göre aktif ilanlar
 	public List<Advert> getAllAdvertsByTips(long tipId) {
 		List<Advert> adverts = new ArrayList<>();
 		for (Advert advert : advertRepository.findAllLatestAdvertsByStatus(true)) {
@@ -116,5 +129,9 @@ public class AdvertService {
 		return advertRepository.findNotShowcaseLatestAdverts();
 	}
 
+	public List<Advert> getAdvertsByViewedAtSum() {
+		// gelen listedeyi 20 ile sınırlıyoruz
+		return advertRepository.findAdvertsByViewedAtSum().stream().limit(20).collect(Collectors.toList());
+	}
 
 }

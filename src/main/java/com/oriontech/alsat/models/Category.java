@@ -34,6 +34,12 @@ public class Category implements Serializable {
     private String name;
     private boolean status;
     private String icon;
+    private String categoryUrl;
+
+    @ManyToOne()
+    @JoinColumn(name = "root_id")
+    @JsonIgnore
+    private Category rootCategory;
 
     @ManyToOne()
     @JoinColumn(name = "parent_id")

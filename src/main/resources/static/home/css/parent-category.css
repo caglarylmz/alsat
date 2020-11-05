@@ -381,7 +381,7 @@
 
 .arsiv .panel.beyaz.sonuc .panel-body span.kategori a:not(:last-child):after {
     position: absolute;
-    top: 4px;
+    top: 5px;
     right: -14px;
     font-size: 10px;
     font-family: Ionicons;
@@ -588,18 +588,3 @@
 @media (max-width: 1199.98px) {}
 
 /*TABLE COLUMN RESPOSIVE*/
-
-/*ADVERTS-LIST-STYLE-TABS-HEADER*/
-#tumuFiltre.aktif,
-#sahibindenFiltre.aktif,
-#firmadanFiltre.aktif {
-    display: flex;
-}
-
-#tumuFiltre.pasif,
-#sahibindenFiltre.pasif,
-#firmadanFiltre.pasif {
-    display: none;
-}
-
-/*ADVERTS-LIST-STYLE-TABS-HEADER*/

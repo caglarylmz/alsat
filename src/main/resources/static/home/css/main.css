@@ -537,6 +537,7 @@ footer p.yazilim a {
 }
 
 footer p.yazilim a.limontasarim {
+    background: url("https://www.limontasarim.com/img/footer_logo/1.png");
     width: 147px;
     height: 38px;
     display: block;

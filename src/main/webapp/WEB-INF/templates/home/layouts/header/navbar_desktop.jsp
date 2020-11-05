@@ -8,7 +8,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <div class="container">
             <div class="col-2">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/h">
                     <img src="${contextRoot}/resources/assets/images/logo.png" width="100" height="30" alt="" loading="lazy">
                 </a>
             </div>

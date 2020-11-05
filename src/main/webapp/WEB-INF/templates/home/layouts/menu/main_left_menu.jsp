@@ -22,23 +22,25 @@
         <li class="cizgi"></li>
 
         <!--KATEGORİ-->
+        
 
         <c:forEach var="c" items="${parentCategories}">
             <c:if test="${c.subCategories != null}">
-                <li class="dropdown"><a href='${pageContext.request.contextPath}/category/${c.id}/adverts'><i>
-                            <img
-                                src="${pageContext.request.contextPath}/resources/main/img/category/${c.icon}"></i>${c.name}</a>
-                    <ul>
-                        <c:forEach var="c_sub1" items="${c.subCategories}">
-                            <li><a href="">${c_sub1.name}</a><span class="toplam">(${c_sub1.adverts.size()})</span>
-                            </li>
-                        </c:forEach>
+                <li class="dropdown"><a href='${pageContext.request.contextPath}/h/kategori/${c.id}'><i>
+                            <img src="${pageContext.request.contextPath}/resources/main/img/category/${c.icon}"
+                                alt=""></i>${c.name}
+                        <ul>
+                            <c:forEach var="c_sub1" items="${c.subCategories}">
+                                <li><a
+                                        href="${pageContext.request.contextPath}/h/kategori/${c_sub1.id}">${c_sub1.name}</a><span
+                                        class="toplam">(${c_sub1.adverts.size()})</span>
+                                </li>
+                            </c:forEach>
 
-                    </ul>
+                        </ul>
                 </li>
             </c:if>
         </c:forEach>
-
 
     </ul>
     <!--KATEGORİ-->
