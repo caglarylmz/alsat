@@ -101,7 +101,7 @@ public class DbSeeder implements CommandLineRunner {
 		Irk kırma = new Irk("Kırma");
 		Irk yerli = new Irk("Yerli");
 		Irk diger = new Irk("Diğer");
-		List<Irk> irks = new ArrayList<Irk>();
+		List<Irk> irks = new ArrayList<>();
 		irks.add(simental);
 		irks.add(holstein);
 		irks.add(montofon);
@@ -126,27 +126,27 @@ public class DbSeeder implements CommandLineRunner {
 		sigir.setRootCategory(parentBuyukBas);
 		categoryRepository.save(sigir);
 
-		Tip inek = new Tip("İnek", sigir, irks);
+		Tip inek = new Tip("İnek", sigir);
 		tipRepository.save(inek);
 
-		Tip hdüve = new Tip("Ham Düve", sigir, irks);
+		Tip hdüve = new Tip("Ham Düve", sigir);
 		tipRepository.save(hdüve);
 
-		Tip gdüve = new Tip("Gebe Düve", sigir, irks);
+		Tip gdüve = new Tip("Gebe Düve", sigir);
 		tipRepository.save(gdüve);
 
-		Tip edana = new Tip("Erkek Dana(Besilik)", sigir, irks);
+		Tip edana = new Tip("Erkek Dana(Besilik)", sigir);
 		tipRepository.save(edana);
 
-		Tip ddana = new Tip("Dişi Dana", sigir, irks);
+		Tip ddana = new Tip("Dişi Dana", sigir);
 		tipRepository.save(ddana);
 
-		Tip buzağı = new Tip("Buzağı", sigir, irks);
+		Tip buzağı = new Tip("Buzağı", sigir);
 		tipRepository.save(buzağı);
 
-		Tip boga = new Tip("Boğa", sigir, irks);
+		Tip boga = new Tip("Boğa", sigir);
 		tipRepository.save(boga);
-		List<Tip> tipsSigir = new ArrayList<Tip>();
+		List<Tip> tipsSigir = new ArrayList<>();
 		tipsSigir.add(inek);
 		tipsSigir.add(hdüve);
 		tipsSigir.add(gdüve);
@@ -164,7 +164,7 @@ public class DbSeeder implements CommandLineRunner {
 		manda.setRootCategory(parentBuyukBas);
 		categoryRepository.save(manda);
 
-		Tip tManda = new Tip("Manda", manda, irks);
+		Tip tManda = new Tip("Manda", manda);
 		tipRepository.save(tManda);
 
 		//
@@ -181,16 +181,16 @@ public class DbSeeder implements CommandLineRunner {
 		koyun.setRootCategory(parentKüçükBas);
 		categoryRepository.save(koyun);
 
-		Tip akoyun = new Tip("Anaç Koyun", koyun, irks);
+		Tip akoyun = new Tip("Anaç Koyun", koyun);
 		tipRepository.save(akoyun);
 
-		Tip toklu = new Tip("Toklu", koyun, irks);
+		Tip toklu = new Tip("Toklu", koyun);
 		tipRepository.save(toklu);
 
-		Tip koç = new Tip("Koç", koyun, irks);
+		Tip koç = new Tip("Koç", koyun);
 		tipRepository.save(koç);
 
-		Tip kuzu = new Tip("Kuzu", koyun, irks);
+		Tip kuzu = new Tip("Kuzu", koyun);
 		tipRepository.save(kuzu);
 
 		Category keci = new Category();
@@ -200,13 +200,13 @@ public class DbSeeder implements CommandLineRunner {
 		keci.setRootCategory(parentKüçükBas);
 		categoryRepository.save(keci);
 
-		Tip akeci = new Tip("Anaç Keçi", keci, irks);
+		Tip akeci = new Tip("Anaç Keçi", keci);
 		tipRepository.save(akeci);
 
-		Tip oglak = new Tip("Oğlak", keci, irks);
+		Tip oglak = new Tip("Oğlak", keci);
 		tipRepository.save(oglak);
 
-		Tip teke = new Tip("Teke", keci, irks);
+		Tip teke = new Tip("Teke", keci);
 		tipRepository.save(teke);
 
 		//
@@ -237,16 +237,16 @@ public class DbSeeder implements CommandLineRunner {
 		kurbanlikManda.setRootCategory(parentKurbanlik);
 		categoryRepository.save(kurbanlikManda);
 
-		Tip kurbanlikInek = new Tip("İnek", kurbanlikSigir, irks);
+		Tip kurbanlikInek = new Tip("İnek", kurbanlikSigir);
 		tipRepository.save(kurbanlikInek);
 
-		Tip kurbanlikduve = new Tip("Düve", kurbanlikSigir, irks);
+		Tip kurbanlikduve = new Tip("Düve", kurbanlikSigir);
 		tipRepository.save(kurbanlikduve);
 
-		Tip kurbanlikErkek = new Tip("Erkek", kurbanlikSigir, irks);
+		Tip kurbanlikErkek = new Tip("Erkek", kurbanlikSigir);
 		tipRepository.save(kurbanlikErkek);
 
-		Tip kurbanlikMandaTip = new Tip("Erkek", kurbanlikManda, irks);
+		Tip kurbanlikMandaTip = new Tip("Erkek", kurbanlikManda);
 		tipRepository.save(kurbanlikMandaTip);
 
 		Category kucukbas = new Category();
@@ -270,13 +270,13 @@ public class DbSeeder implements CommandLineRunner {
 		kurbanlikKeci.setRootCategory(parentKurbanlik);
 		categoryRepository.save(kurbanlikKeci);
 
-		Tip eKurbanlikKoyun = new Tip("Erkek Koyun", kurbanlikKoyun, irks);
+		Tip eKurbanlikKoyun = new Tip("Erkek Koyun", kurbanlikKoyun);
 		tipRepository.save(eKurbanlikKoyun);
-		Tip dKurbanlikKoyun = new Tip("Dişi Koyun", kurbanlikKoyun, irks);
+		Tip dKurbanlikKoyun = new Tip("Dişi Koyun", kurbanlikKoyun);
 		tipRepository.save(dKurbanlikKoyun);
-		Tip eKurbanlikKeçi = new Tip("Erkek Keçi", kurbanlikKeci, irks);
+		Tip eKurbanlikKeçi = new Tip("Erkek Keçi", kurbanlikKeci);
 		tipRepository.save(eKurbanlikKeçi);
-		Tip dKurbanlikKeçi = new Tip("Dişi Keçi", kurbanlikKeci, irks);
+		Tip dKurbanlikKeçi = new Tip("Dişi Keçi", kurbanlikKeci);
 		tipRepository.save(dKurbanlikKeçi);
 
 		//
@@ -509,30 +509,18 @@ public class DbSeeder implements CommandLineRunner {
 
 		Yas bilinmiyor = new Yas("Bilinmiyor");
 		yasRepository.save(bilinmiyor);
-		Yas y03 = new Yas("0-3 aylık");
+		Yas y03 = new Yas("0-3 Aylık");
 		yasRepository.save(y03);
 		Yas y36 = new Yas("3-6 Aylık");
 		yasRepository.save(y36);
 		Yas y612 = new Yas("6-12 Aylık");
 		yasRepository.save(y612);
-		Yas y1 = new Yas("1");
-		yasRepository.save(y1);
-		Yas y2 = new Yas("2");
-		yasRepository.save(y2);
-		Yas y3 = new Yas("3");
-		yasRepository.save(y3);
-		Yas y4 = new Yas("4");
-		yasRepository.save(y4);
-		Yas y5 = new Yas("5");
-		yasRepository.save(y5);
-		Yas y6 = new Yas("6");
-		yasRepository.save(y6);
-		Yas y7 = new Yas("7");
-		yasRepository.save(y7);
-		Yas y8 = new Yas("8");
-		yasRepository.save(y8);
-		Yas y9 = new Yas("9");
-		yasRepository.save(y9);
+		Yas y1y2 = new Yas("1-2");
+		yasRepository.save(y1y2);
+		Yas y3y5 = new Yas("3-5");
+		yasRepository.save(y3y5);
+		Yas y6y9 = new Yas("6-9");
+		yasRepository.save(y6y9);
 		Yas y10 = new Yas("10 ve Üzeri");
 		yasRepository.save(y10);
 
@@ -621,13 +609,13 @@ public class DbSeeder implements CommandLineRunner {
 		advertRepository.save(adv6);
 		advertRepository.save(adv7);
 
-		AdvertDetail dtl1 = new AdvertDetail(boga, yerli, y4, 5, 6080.50, adv1);
+		AdvertDetail dtl1 = new AdvertDetail(boga, yerli, y3y5, 5, 6080.50, adv1);
 		AdvertDetail dtl2 = new AdvertDetail(edana, yerli, y03, 10, 2580, adv1);
 		AdvertDetail dtl3 = new AdvertDetail(hdüve, yerli, y612, 2, 1680.50, adv1);
 		AdvertDetail dtl4 = new AdvertDetail(horoz, diger, bilinmiyor, 20, 50, adv2);
 		AdvertDetail dtl5 = new AdvertDetail(yumurtaci, diger, y612, 100, 35., adv2);
 		AdvertDetail dtl6 = new AdvertDetail(akeci, yerli, y612, 3, 250, adv4);
-		AdvertDetail dtl7 = new AdvertDetail(teke, diger, y1, 5, 300, adv4);
+		AdvertDetail dtl7 = new AdvertDetail(teke, diger, y1y2, 5, 300, adv4);
 		AdvertDetail dtl8 = new AdvertDetail(tDiger, diger, y612, 100, 45, adv5);
 		AdvertDetail dtl9 = new AdvertDetail(yumurtaci, diger, y03, 100, 35, adv5);
 
@@ -683,9 +671,9 @@ public class DbSeeder implements CommandLineRunner {
 		adressRepository.save(adressadvOrnek);
 		advOrnek.setAdvertAdress(adressadvOrnek);
 
-		AdvertDetail dtlbuzagi = new AdvertDetail(buzağı, yerli, y2, 5, 5000, advOrnek);
-		AdvertDetail dtlinek = new AdvertDetail(inek, simental, y3, 5, 6000, advOrnek);
-		AdvertDetail dtlHdüve = new AdvertDetail(hdüve, simental, y3, 10, 9000, advOrnek);
+		AdvertDetail dtlbuzagi = new AdvertDetail(buzağı, yerli, y1y2, 5, 5000, advOrnek);
+		AdvertDetail dtlinek = new AdvertDetail(inek, simental, y3y5, 5, 6000, advOrnek);
+		AdvertDetail dtlHdüve = new AdvertDetail(hdüve, simental, y3y5, 10, 9000, advOrnek);
 		advertDetailRepository.save(dtlbuzagi);
 		advertDetailRepository.save(dtlinek);
 		advertDetailRepository.save(dtlHdüve);

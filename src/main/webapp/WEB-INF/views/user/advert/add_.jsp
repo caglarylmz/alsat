@@ -60,37 +60,37 @@
                             </div>
                             <!-- CATEGORY SELECT-->
                             <div v-if="showCategorySelect" class="row mb-5">
-                                        <div class="card-body">
-                                            <div class="list-group" v-for="(item, index) in parentCategories">
-                                                <button type="button" @click=selectSubCategory1($event,item.id)
-                                                    class="list-group-item list-group-item-action">
-                                                    {{item.name}}
-                                                </button>
-                                            </div>
-                                        </div>
-                                    
+                                <div class="card-body">
+                                    <div class="list-group" v-for="(item, index) in parentCategories">
+                                        <button type="button" @click=selectSubCategory1($event,item.id)
+                                            class="list-group-item list-group-item-action">
+                                            {{item.name}}
+                                        </button>
+                                    </div>
+                                </div>
 
-                                    <div v-if='subCategory1.length > 0' class="card">
-                                        <div class="card-body table-responsive p-0">
-                                            <div class="list-group" v-for=" (item, index) in subCategory1">
-                                                <button type="button" @click=selectSubCategory2($event,item.id)
-                                                    class="list-group-item list-group-item-action">
-                                                    {{item.name}}
-                                                </button>
-                                            </div>
+
+                                <div v-if='subCategory1.length > 0' class="card">
+                                    <div class="card-body table-responsive p-0">
+                                        <div class="list-group" v-for=" (item, index) in subCategory1">
+                                            <button type="button" @click=selectSubCategory2($event,item.id)
+                                                class="list-group-item list-group-item-action">
+                                                {{item.name}}
+                                            </button>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div v-if='subCategory2.length > 0' class="card">
-                                        <div class="card-body table-responsive p-0">
-                                            <div class="list-group deactive" v-for=" (item, index) in subCategory2">
-                                                <button type="button" @click=selectSubCategory3($event,item.id)
-                                                    class="list-group-item list-group-item-action">
-                                                    {{item.name}}
-                                                </button>
-                                            </div>
+                                <div v-if='subCategory2.length > 0' class="card">
+                                    <div class="card-body table-responsive p-0">
+                                        <div class="list-group deactive" v-for=" (item, index) in subCategory2">
+                                            <button type="button" @click=selectSubCategory3($event,item.id)
+                                                class="list-group-item list-group-item-action">
+                                                {{item.name}}
+                                            </button>
                                         </div>
                                     </div>
+                                </div>
                             </div>
 
 

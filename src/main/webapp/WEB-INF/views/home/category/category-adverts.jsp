@@ -5,6 +5,8 @@
 
 
 <div class="liste">
-ff
+	<c:forEach var="advert" items="${categoryAdverts}">
+		<h3>${advert.baslik}</h3>
+	</c:forEach>
 
 </div>

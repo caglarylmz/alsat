@@ -3,6 +3,9 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://localhost:8080/alsat/tags/breadcrumb" prefix="br" %>
+<%@ taglib uri="http://localhost:8080/alsat/tags/breadcrumb-alternative" prefix="bra" %>
+
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
@@ -18,6 +21,7 @@
 	<!-- Title -->
 	<title>Alsat | Admin</title>
 	<tiles:insertAttribute name="styles"></tiles:insertAttribute>
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 	<link rel="stylesheet" href="${contextRoot}/resources/home/css/main.css" />
 	<link rel="stylesheet" href="${contextRoot}/resources/home/css/parent-category.css" />
 
@@ -36,6 +40,15 @@
 	<!--****************************************************************************************************************-->
 	<!--****************************************************************************************************************-->
 	<!--MAIN PAGE-->
+	<c:if test="${isCategory}">
+		<div class='container-fluid bg-dark m-0 d-none d-md-block'>
+			<br:breadcrumb category="${category}" />
+			<!--<bra:breadcrumb-alternative category="${category}" />-->
+
+		</div>
+
+
+	</c:if>
 
 	<!--isMain-->
 	<c:if test="${isMain}">
@@ -109,6 +122,23 @@
 	</c:if>
 	<!--isCategory-->
 
+	<!--isAddAdvert-->
+	<c:if test="${isAddAdvert}">
+		<div class="container mt20 arsiv">
+			<div class="row">
+				<!--****************************************************************************************************************-->
+				<!--CONTENT-->
+				<div class="col-lg-12">
+					<tiles:insertAttribute name="content"></tiles:insertAttribute>
+				</div>
+				<!--CONTENT-->
+				<!--****************************************************************************************************************-->
+			</div>
+		</div>
+		<!--MAIN PAGE-->
+	</c:if>
+	<!--isAddAdvert-->
+
 	<!--****************************************************************************************************************-->
 	<!--****************************************************************************************************************-->
 	<!-- Footer -->
@@ -121,7 +151,19 @@
 
 
 	<tiles:insertAttribute name="scripts"></tiles:insertAttribute>
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script src="//unpkg.com/element-ui/lib/umd/locale/en.js"></script>
+	<script>
+		ELEMENT.locale(ELEMENT.lang.en)
+	</script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" src="${contextRoot}/resources/home/js/main.js"></script>
+	<c:if test="${isCategory}">
+		<script type="text/javascript" src="${contextRoot}/resources/home/js/category-left.js"></script>
+	</c:if>
+	<c:if test="${isAddAdvert}">
+		<script type="text/javascript" src="${contextRoot}/resources/home/js/add-advert.js"></script>
+	</c:if>
 
 </body>
 

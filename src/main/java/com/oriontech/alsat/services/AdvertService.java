@@ -1,6 +1,7 @@
 package com.oriontech.alsat.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -94,6 +95,7 @@ public class AdvertService {
 			for (Category category : categoryService.findById(categoryId).getSubCategories()) {
 				allAdverts.addAll(category.getAdverts());
 			}
+
 		}
 
 		return allAdverts;

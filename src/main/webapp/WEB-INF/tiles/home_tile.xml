@@ -31,11 +31,16 @@
         <put-attribute name="content" value="/WEB-INF/views/home/category/parent.jsp"></put-attribute>
     </definition>
     <!-- Parent-->
-    <!-- Category Adverts-->
+    <!-- Category of Adverts-->
     <definition name="home.category.category-adverts" extends="home_template">
         <put-attribute name="content" value="/WEB-INF/views/home/category/category-adverts.jsp"></put-attribute>
     </definition>
-    <!-- Category Adverts-->
+    <!-- Category of Adverts-->
+    <!-- Add Advert-->
+    <definition name="home.advert.add-advert" extends="home_template">
+        <put-attribute name="content" value="/WEB-INF/views/home/advert/add-advert.jsp"></put-attribute>
+    </definition>
+    <!-- Add Advert-->
     <!-- Category Content -->
     <!-- ***************************************************************************************-->
     <!-- CONTENT-->

@@ -47,11 +47,11 @@ import lombok.Setter;
 public class Advert implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "advert_seq")
 	@GenericGenerator(name = "advert_seq", strategy = "com.oriontech.alsat.config.IdGenerator", parameters = {
-			//@Parameter(name = IdGenerator.INCREMENT_PARAM, value = "100"),
+			// @Parameter(name = IdGenerator.INCREMENT_PARAM, value = "100"),
 			@Parameter(name = IdGenerator.VALUE_PREFIX_PARAMETER, value = "ADV"),
 			@Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
 	// @GenericGenerator(name = "advert_seq", strategy =
@@ -75,6 +75,7 @@ public class Advert implements Serializable {
 
 	private Date createdAt;
 	private Date updatedAt;
+	private boolean isDraft;
 
 	@OneToOne
 	@JoinColumn(name = "adress_id")
@@ -114,6 +115,7 @@ public class Advert implements Serializable {
 			createdAt = new Date();
 		if (this.updatedAt == null)
 			updatedAt = createdAt;
+		this.isDraft = true;
 
 	}
 

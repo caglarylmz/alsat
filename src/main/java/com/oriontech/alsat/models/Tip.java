@@ -37,8 +37,6 @@ public class Tip implements Serializable {
     private String name;
     private boolean status;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "tip")
-    private List<Irk> irks = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
@@ -51,10 +49,4 @@ public class Tip implements Serializable {
         this.status = true;
     }
 
-    public Tip(String name, Category category, List<Irk> irks) {
-        this.name = name;
-        this.category = category;
-        this.setIrks(irks);
-        this.status = true;
-    }
 }

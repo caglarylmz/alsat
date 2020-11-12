@@ -30,11 +30,6 @@ public class Irk {
 	private String name;
 	private boolean status;		
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "tip_id")
-	@JsonIgnore
-	private Tip tip;
-	
 	public Irk(String name) {
 		this.name=name;
 		this.status=true;

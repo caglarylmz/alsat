@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.oriontech.alsat.models.Advert;
 import com.oriontech.alsat.models.Category;
+import com.oriontech.alsat.models.adress.Il;
+import com.oriontech.alsat.repositories.IrkRepository;
 import com.oriontech.alsat.repositories.TipRepository;
+import com.oriontech.alsat.repositories.YasRepository;
+import com.oriontech.alsat.services.AddressService;
 import com.oriontech.alsat.services.AdvertService;
 import com.oriontech.alsat.services.CategoryService;
 
@@ -14,7 +19,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("h")
@@ -24,7 +31,11 @@ public class hController {
     @Autowired
     private AdvertService advertService;
     @Autowired
-    private TipRepository tipRepository;
+    private IrkRepository irkRepository;
+    @Autowired
+    private YasRepository yasRepository;
+    @Autowired
+    AddressService addressService;
     private String query = "";
 
     /* ANA SAYFA */
@@ -47,12 +58,43 @@ public class hController {
     @GetMapping(value = "kategori/{categoryId}")
     public String parent(@PathVariable("categoryId") long categoryId, ModelMap modelMap) {
         modelMap.put("title", "İlanlar");
-        modelMap.put("query", query);
         modelMap.put("isCategory", true);
+        modelMap.put("query", query);
         modelMap.put("category", categoryService.findById(categoryId));
+        modelMap.put("tipsOfCategory", categoryService.getAllTipsByCategoryAndChildCategories(categoryId));
         modelMap.put("categoryAdverts", advertService.getAllAdvertsByCategoryAndChildCategories(categoryId));
+        modelMap.put("irks", irkRepository.findAll());
+        modelMap.put("yaslar", yasRepository.findAll());
         return "home.category.category-adverts";
     }
     /* KATEGORİ */
+
+    /* ADVERT */
+
+    /* Add-Advert */
+    @GetMapping(value = "ilan-ekle")
+    public String AddAdvert(ModelMap modelMap) {
+        modelMap.put("title", "Ücretisi İlan Ekle");
+        modelMap.put("isAddAdvert", true);
+
+        return "home.advert.add-advert";
+    }
+
+    /* Add-Advert */
+    /* ADVERT */
+
+    /** API */
+
+    @GetMapping("/data/iller")
+    @ResponseBody
+    public List<Il> getIlList() {
+        return addressService.getAllIlList();
+    }
+
+    @GetMapping("/data/category")
+    @ResponseBody
+    public List<Category> getParentCategories() {
+        return categoryService.findParentCategoriesWithStatus(true);
+    }
 
 }

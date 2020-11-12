@@ -6,7 +6,7 @@
 
 
 <!--PANEL-->
-<div class="panel panel-default beyaz">
+<div class="panel panel-default beyaz" id="category">
     <!--PANEL - BODY-->
     <div class="panel-body border">
         <!--Kategori Liste-->
@@ -25,13 +25,37 @@
                         <div class="panel panel-default beyaz filtre">
                             <div class="panel-heading">Adres</div>
                             <div class="panel-body">
-
-                                <div id="il_sec" style="margin-bottom:10px;"><select name='no_flash' id='no_flash'
-                                        class='form-control'>
-                                        <option value='İl Seçiniz'>İl Seçiniz</option>
-                                    </select></div>
-                                <div id="ilce_sec" style="margin-bottom:10px;"></div>
-                                <div id="mahalle_sec"></div>
+                                <div id="il_sec" style="margin-bottom:10px;">
+                                    <select class='form-control' name='no_flash' id='no_flash' v-model="selectIl"
+                                        @change="getIlceList($event)">
+                                        <option value=0>İl</option>
+                                        <option v-for="(il, index) in iller" v-bind:value="il.id">{{il.il}}</option>
+                                    </select>
+                                </div>
+                                <div id="ilce_sec" style="margin-bottom:10px;">
+                                    <select class='form-control' name='no_flash' id='no_flash' v-model="selectIlce"
+                                        @change="getSemtList($event)">
+                                        <option value=0>İlçe</option>
+                                        <option v-for="(ilce, index) in ilceler" v-bind:value="ilce.id">{{ilce.ilce}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div id="semt_sec" style="margin-bottom:10px;">
+                                    <select class='form-control' name='no_flash' id='no_flash' v-model="selectSemt"
+                                        @change="getMahalleList($event)">
+                                        <option value=0>Semt</option>
+                                        <option v-for="(semt, index) in semtler" v-bind:value="semt.id">{{semt.semt}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div id="mahalle_sec">
+                                    <select class='form-control' name='no_flash' id='no_flash' v-model="selectMahalle">
+                                        <option value=0>Mahalle / Köy</option>
+                                        <option v-for="(mahalle, index) in mahalleler" v-bind:value="mahalle.id">
+                                            {{mahalle.mahalle}}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="panel panel-default beyaz filtre">
@@ -53,18 +77,42 @@
                         </div>
                         <div class="panel panel-default beyaz filtre">
                             <div class="panel-heading">
-                                <a type="button btn-block" uk-toggle="target: #toggle-tur; ">Tür<span
+                                <a type="button btn-block" uk-toggle="target: #toggle-tip; ">Tip<span
+                                        class="float-right" uk-icon="plus" style="color: darkgray;"></span>
+                                </a>
+                            </div>
+
+                            <div class="panel-body" id="toggle-tip" hidden>
+                                <c:forEach var="tip" items="${tipsOfCategory}">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="${tip.id}"
+                                            id="tip-${tip.id}">
+                                        <label class="form-check-label text-primary" for="tip-${tip.id}">
+                                            ${tip.name}
+                                        </label>
+                                    </div>
+                                </c:forEach>
+
+                            </div>
+                        </div>
+                        <div class="panel panel-default beyaz filtre">
+                            <div class="panel-heading">
+                                <a type="button btn-block" uk-toggle="target: #toggle-tur; ">Irk<span
                                         class="float-right" uk-icon="plus" style="color: darkgray;"></span>
                                 </a>
                             </div>
 
                             <div class="panel-body" id="toggle-tur" hidden>
                                 <div class="form-group">
-                                    <select class="form-control " id="tur" name="tur" placeholder="Tur">
-                                        <option value="">Seçiniz</option>
-                                        <option value='Dişi'>Dişi</option>
-                                        <option value='Erkek'>Erkek</option>
-                                    </select>
+                                    <c:forEach var="irk" items="${irks}">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="${irk.id}"
+                                                id="irk-${irk.id}">
+                                            <label class="form-check-label text-primary" for="irk-${irk.id}">
+                                                ${irk.name}
+                                            </label>
+                                        </div>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
@@ -77,30 +125,20 @@
 
                             <div class="panel-body" id="toggle-yas" hidden>
                                 <div class="form-group">
-                                    <select class="form-control " id="yas" name="yas" placeholder="Yaş">
-                                        <option value="">Seçiniz</option>
-                                        <option value='Dişi'>Dişi</option>
-                                        <option value='Erkek'>Erkek</option>
-                                    </select>
+                                    <c:forEach var="yas" items="${yaslar}">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="${yas.id}"
+                                                id="yas-${yas.id}">
+                                            <label class="form-check-label text-primary" for="yas-${yas.id}">
+                                                ${yas.name}
+                                            </label>
+                                        </div>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-default beyaz filtre">
-                            <div class="panel-heading">
-                                <a type="button btn-block" uk-toggle="target: #toggle-cinsiyet; ">Cinsiyet<span
-                                        class="float-right" uk-icon="plus" style="color: darkgray;"></span>
-                                </a>
-                            </div>
-                            <div class="panel-body" id="toggle-cinsiyet" hidden>
-                                <div class="form-group">
-                                    <select class="form-control " id="cinsiyet" name="cinsiyet" placeholder="Cinsiyet">
-                                        <option value="">Seçiniz</option>
-                                        <option value='Dişi'>Dişi</option>
-                                        <option value='Erkek'>Erkek</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+
+
                         <input type='hidden' name='kategori_filtreleri' value='yas|Yaş|select
                 cinsiyet|Cinsiyet|select tur|Tur|select
                 ' />
@@ -120,20 +158,44 @@
                 <div class="filtre_mobil_scroll scroll">
                     <div class="panel panel-default beyaz filtre">
                         <div class="panel-heading">Adres</div>
-                        <div class="panel-body">
-
-                            <div id="il_sec" style="margin-bottom:10px;"><select name='no_flash' id='no_flash'
-                                    class='form-control'>
-                                    <option value='İl Seçiniz'>İl Seçiniz</option>
-                                </select></div>
-                            <div id="ilce_sec" style="margin-bottom:10px;"></div>
-                            <div id="mahalle_sec"></div>
-                        </div>
                     </div>
-
                 </div>
+
                 <div class="panel panel-default beyaz filtre">
                     <div class="panel-heading">Fiyat</div>
+                    <div class="panel-body">
+                        <div id="il_sec" style="margin-bottom:10px;">
+                            <select class='form-control' name='no_flash' id='no_flash' v-model="selectIl"
+                                @change="getIlceList($event)">
+                                <option value=0>İl</option>
+                                <option v-for="(il, index) in iller" v-bind:value="il.id">{{il.il}}</option>
+                            </select>
+                        </div>
+                        <div id="ilce_sec" style="margin-bottom:10px;">
+                            <select class='form-control' name='no_flash' id='no_flash' v-model="selectIlce"
+                                @change="getSemtList($event)">
+                                <option value=0>İlçe</option>
+                                <option v-for="(ilce, index) in ilceler" v-bind:value="ilce.id">{{ilce.ilce}}
+                                </option>
+                            </select>
+                        </div>
+                        <div id="semt_sec" style="margin-bottom:10px;">
+                            <select class='form-control' name='no_flash' id='no_flash' v-model="selectSemt"
+                                @change="getMahalleList($event)">
+                                <option value=0>Semt</option>
+                                <option v-for="(semt, index) in semtler" v-bind:value="semt.id">{{semt.semt}}
+                                </option>
+                            </select>
+                        </div>
+                        <div id="mahalle_sec">
+                            <select class='form-control' name='no_flash' id='no_flash' v-model="selectMahalle">
+                                <option value=0>Mahalle / Köy</option>
+                                <option v-for="(mahalle, index) in mahalleler" v-bind:value="mahalle.id">
+                                    {{mahalle.mahalle}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-6">
@@ -149,18 +211,41 @@
                 </div>
                 <div class="panel panel-default beyaz filtre">
                     <div class="panel-heading">
-                        <a type="button btn-block" uk-toggle="target: #toggle-tur; ">Tür<span class="float-right"
+                        <a type="button btn-block" uk-toggle="target: #toggle-tip; ">Tip<span class="float-right"
+                                uk-icon="plus" style="color: darkgray;"></span>
+                        </a>
+                    </div>
+
+                    <div class="panel-body" id="toggle-tip" hidden>
+                        <c:forEach var="tip" items="${tipsOfCategory}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="${tip.id}" id="tip-${tip.id}">
+                                <label class="form-check-label text-primary" for="tip-${tip.id}">
+                                    ${tip.name}
+                                </label>
+                            </div>
+                        </c:forEach>
+
+                    </div>
+                </div>
+                <div class="panel panel-default beyaz filtre">
+                    <div class="panel-heading">
+                        <a type="button btn-block" uk-toggle="target: #toggle-tur; ">Irk<span class="float-right"
                                 uk-icon="plus" style="color: darkgray;"></span>
                         </a>
                     </div>
 
                     <div class="panel-body" id="toggle-tur" hidden>
                         <div class="form-group">
-                            <select class="form-control " id="tur" name="tur" placeholder="Tur">
-                                <option value="">Seçiniz</option>
-                                <option value='Dişi'>Dişi</option>
-                                <option value='Erkek'>Erkek</option>
-                            </select>
+                            <c:forEach var="irk" items="${irks}">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="${irk.id}"
+                                        id="irk-${irk.id}">
+                                    <label class="form-check-label text-primary" for="irk-${irk.id}">
+                                        ${irk.name}
+                                    </label>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -173,30 +258,19 @@
 
                     <div class="panel-body" id="toggle-yas" hidden>
                         <div class="form-group">
-                            <select class="form-control " id="yas" name="yas" placeholder="Yaş">
-                                <option value="">Seçiniz</option>
-                                <option value='Dişi'>Dişi</option>
-                                <option value='Erkek'>Erkek</option>
-                            </select>
+                            <c:forEach var="yas" items="${yaslar}">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="${yas.id}"
+                                        id="yas-${yas.id}">
+                                    <label class="form-check-label text-primary" for="yas-${yas.id}">
+                                        ${yas.name}
+                                    </label>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default beyaz filtre">
-                    <div class="panel-heading">
-                        <a type="button btn-block" uk-toggle="target: #toggle-cinsiyet; ">Cinsiyet<span
-                                class="float-right" uk-icon="plus" style="color: darkgray;"></span>
-                        </a>
-                    </div>
-                    <div class="panel-body" id="toggle-cinsiyet" hidden>
-                        <div class="form-group">
-                            <select class="form-control " id="cinsiyet" name="cinsiyet" placeholder="Cinsiyet">
-                                <option value="">Seçiniz</option>
-                                <option value='Dişi'>Dişi</option>
-                                <option value='Erkek'>Erkek</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+
                 <input type='hidden' name='kategori_filtreleri' value='yas|Yaş|select
         cinsiyet|Cinsiyet|select tur|Tur|select
         ' />

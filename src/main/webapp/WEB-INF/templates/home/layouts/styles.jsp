@@ -5,6 +5,7 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <link rel="stylesheet" href="${contextRoot}/resources/home/plugins/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${contextRoot}/resources/home/plugins/semantic/semantic.css" />
 <link rel="stylesheet" href="${contextRoot}/resources/home/plugins/uikit/css/uikit.min.css" />
 <link rel="stylesheet" href="${contextRoot}/resources/home/plugins/fontawesome/css/all.min.css" />
 <!-- Ionicons -->
