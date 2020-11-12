@@ -29,7 +29,7 @@ public class AddressService {
     }
 
     public List<Mahalle> getAllMahalleListByIlIlceSemtId(int ilId, int ilceId, int semtId) {
-        return adressRepository.findById(ilId).get().getIlceler().get(ilceId).getSemtler().get(semtId).getMahaleler();
+        return adressRepository.findById(ilId).get().getIlceler().get(ilceId).getSemtler().get(semtId).getMahalleler();
     }
 
 }
