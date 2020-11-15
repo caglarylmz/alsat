@@ -21,6 +21,7 @@
 	<!-- Title -->
 	<title>Alsat | Admin</title>
 	<tiles:insertAttribute name="styles"></tiles:insertAttribute>
+	<link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">
 	<link rel="stylesheet" href="${contextRoot}/resources/home/css/main.css" />
 	<link rel="stylesheet" href="${contextRoot}/resources/home/css/parent-category.css" />
 
@@ -150,8 +151,8 @@
 
 
 	<tiles:insertAttribute name="scripts"></tiles:insertAttribute>
-
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.js"></script>
 	<script type="text/javascript" src="${contextRoot}/resources/home/js/main.js"></script>
 	<c:if test="${isCategory}">
 		<script type="text/javascript" src="${contextRoot}/resources/home/js/category-left.js"></script>
