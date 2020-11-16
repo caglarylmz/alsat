@@ -14,3 +14,7 @@
 <script type="text/javascript" src="${contextRoot}/resources/home/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- SIDR -->
 <script type="text/javascript" src="${contextRoot}/resources/home/plugins/sidr/jquery.sidr.min.js"></script>
+<!--TRUMBOWYG-->
+<script type="text/javascript" src="${contextRoot}/resources/home/plugins/trumbowyg/trumbowyg.min.js"></script>
+<script type="text/javascript" src="${contextRoot}/resources/home/plugins/trumbowyg/langs/tr.min.js"></script>
+<script type="text/javascript" src="${contextRoot}/resources/home/plugins/tinymce/tinymce.min.js"></script>
