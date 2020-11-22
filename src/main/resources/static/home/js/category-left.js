@@ -75,16 +75,17 @@ new Vue({
     watch: {
 
     },
-    created() {
-        this.getIlList();
+    async created() {
+        try {
+            await this.getIlList();
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    mounted() {
         this.ilceler = null;
         this.semtler = null;
         this.mahalleler = null;
-
-    },
-    mounted() {
-
-
     },
 
 });

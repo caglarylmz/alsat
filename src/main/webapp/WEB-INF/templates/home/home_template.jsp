@@ -152,7 +152,10 @@
 
 	<tiles:insertAttribute name="scripts"></tiles:insertAttribute>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript"
+		src="${contextRoot}/resources/home/plugins/jquery-validation/jquery.validate.min.js"></script>
 	<script src="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.js"></script>
+
 	<script type="text/javascript" src="${contextRoot}/resources/home/js/main.js"></script>
 	<c:if test="${isCategory}">
 		<script type="text/javascript" src="${contextRoot}/resources/home/js/category-left.js"></script>

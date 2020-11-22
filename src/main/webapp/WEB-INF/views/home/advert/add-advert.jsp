@@ -45,7 +45,7 @@
                         <div class="uk-text-lead">
                             Seçilen Kategori
                         </div>
-                        <span class="uk-label uk-label-warning">{{selectedCategory.name}}</span>
+                        <span class="uk-label uk-label-success">{{selectedCategory.name}}</span>
                     </div>
                 </div>
                 <!--BODY-->
@@ -60,9 +60,8 @@
             </div>
         </tab-content>
         <!--KATEGORI-->
-
+        <!--TİP-->
         <tab-content title="Tip" icon="fas fa-angle-double-down" :before-change="beforeTabSwitchTip">
-            <!--TİP-->
             <div class="uk-card uk-card-default uk-width-1">
                 <!--HEADER-->
                 <div class="uk-card-header">
@@ -76,8 +75,10 @@
                     <div class="uk-grid-small uk-flex-middle" uk-grid>
                         <div class="uk-width-auto" v-if="selectedCategory!=null">
                             <dl class="uk-description-list">
-                                <dt>Seçili kategori</dt>
-                                <dd> <span class="uk-label">{{selectedCategory.name}}</span></dd>
+                                <dt>
+                                    <legend class="uk-legend">Seçili kategori</legend>
+                                </dt>
+                                <dd> <span class="uk-label uk-label-success">{{selectedCategory.name}}</span></dd>
 
                             </dl>
                         </div>
@@ -101,7 +102,8 @@
                         <div class="uk-text-lead">
                             Seçilen Tipler
                         </div>
-                        <span class="uk-label uk-label-warning" v-for="item in selectedTips">{{item.name}}</span>
+                        <span class="uk-label uk-label-success p-2 m-2"
+                            v-for="item in selectedTips">{{item.name}}</span>
                     </div>
                 </div>
                 <!--BODY-->
@@ -113,69 +115,106 @@
                 </div>
                 <!--FOOTER-->
             </div>
-            <!--TİP-->
         </tab-content>
-        <tab-content title="Temel Bilgiler" icon="fas fa-align-justify">
-            <!--TEMEL BİLGİLER-->
-            <fieldset class="uk-fieldset uk-grid-small" uk-grid>
-
+        <!--TİP-->
+        <!--TEMEL BİLGİLER-->
+        <tab-content title="Temel Bilgiler" icon="fas fa-align-justify" :before-change="beforeTabSwitchTemel">
+            <!--Error Message-->
+            <div class="uk-alert-danger" uk-alert v-if="errorMessage !=''">
+                <a class="uk-alert-close" uk-close></a>
+                {{errorMessage}}
+            </div>
+            <!--Error Message-->
+            <fieldset class="uk-fieldset uk-grid-small" id="temel" uk-grid>
                 <legend class="uk-legend">Temel Bilgiler</legend>
-                <div class="uk-margin uk-width-1-1">
+                <!--Başlık-->
+                <div class="uk-width-1-1 uk-margin-small">
                     <label class="uk-form-label" for="baslik">İlan Başlığı</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="baslik" type="text" placeholder="İlan başlığı giriniz...">
+                        <input class="uk-input" id="baslik" type="text" name="baslik"
+                            @input="checkSuccessOfKeyPressForBaslik"
+                            :class="ve.baslik.empty.status ? ve.baslik.className :''"
+                            placeholder="İlan başlığı giriniz..." v-model="advert.baslik">
                     </div>
+                    <div class="uk-text-danger">{{ve.baslik.empty.msg}}</div>
                 </div>
-
-                <div class="uk-width-1-1">
+                <!--Başlık-->
+                <!--Açıklama-->
+                <div class="uk-width-1-1 uk-margin-small">
                     <label class="uk-form-label" for="aciklama">İlan Açıklaması</label>
                     <div class="uk-form-controls">
-                        <textarea id="editor"></textarea>
+                        <textarea :class="ve.aciklama.empty.status ? ve.aciklama.className :''" id="editor"></textarea>
                     </div>
-
+                    <div class="uk-text-danger">{{ve.aciklama.empty.msg}}</div>
                 </div>
+                <!--Açıklama-->
+                <!--Toplam Adet & Fiyat-->
                 <div class="uk-width-1-2@s">
                     <label class="uk-form-label" for="toplamAdet">Toplam Adet</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="toplamAdet" type="number">
+                        <div class="uk-inline">
+                            <span class="uk-form-icon uk-form-icon-flip">Adet</span>
+                            <input class="uk-input" id="toplamAdet" type="number" v-model="advert.toplamAdet"
+                                :class="ve.toplamAdet.noselect.status ? ve.toplamAdet.className :''"
+                                @input="checkSuccessOfKeyPressForToplamAdet">
+                        </div>
                     </div>
-
+                    <div class="uk-text-danger">{{ve.toplamAdet.noselect.msg}}</div>
                 </div>
                 <div class="uk-width-1-2@s">
                     <label class="uk-form-label" for="toplamFiyat">Toplam Fiyat</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="toplamFiyat" type="number">
+                        <div class="uk-inline">
+                            <span class="uk-form-icon uk-form-icon-flip">₺</span>
+                            <input class="uk-input" id="toplamFiyat" type="number" v-model="advert.toplamFiyat"
+                                :class="ve.toplamFiyat.noselect.status ? ve.toplamFiyat.className :''"
+                                @input="checkSuccessOfKeyPressForToplamFiyat">
+                        </div>
                     </div>
-
+                    <div class="uk-text-danger">{{ve.toplamFiyat.noselect.msg}}</div>
                 </div>
-
-                <div class="uk-width-1-3@s">
-                    <label class="uk-form-label" for="il">İl</label>
-                    <select class="uk-select" id="il">
-                        <option></option>
-                        <option></option>
+                <!--Toplam Adet & Fiyat-->
+                <!--Adres-->
+                <div class="uk-width-1-4@s uk-margin-small">
+                    <select class="form-control" id="il" v-model="selectIl" @change="getIlceList($event)"
+                        :class="ve.adress.noselect.status ? ve.adress.className :''">
+                        <option value=0>İl</option>
+                        <option v-for="(il, index) in iller" v-bind:value="il.id">{{il.il}}</option>
                     </select>
                 </div>
-
-                <div class="uk-width-1-3@s">
-                    <label class="uk-form-label" for="ilce">İlçe</label>
-                    <select class="uk-select" id="ilce">
-                        <option></option>
-                        <option></option>
+                <div class="uk-width-1-4@s uk-margin-small">
+                    <select class="form-control" id="ilce" v-model="selectIlce" @change="getSemtList($event)"
+                        :class="ve.adress.noselect.status ? ve.adress.className :''">
+                        <option value=0>İlçe</option>
+                        <option v-for="(ilce, index) in ilceler" v-bind:value="ilce.id">{{ilce.ilce}}
+                        </option>
                     </select>
                 </div>
-                <div class="uk-width-1-3@s">
-                    <label class="uk-form-label" for="mh_koy">Mahalle / Köy</label>
-                    <select class="uk-select" id="mh_koy">
-                        <option></option>
-                        <option></option>
+                <div class="uk-width-1-4@s uk-margin-small">
+                    <select class="form-control" id="mh_koy" v-model="selectSemt" @change="getMahalleList($event)"
+                        :class="ve.adress.noselect.status ? ve.adress.className :''">
+                        <option value=0>Semt</option>
+                        <option v-for="(semt, index) in semtler" v-bind:value="semt.id">{{semt.semt}}
+                        </option>
                     </select>
                 </div>
+                <div class="uk-width-1-4@s uk-margin-small">
+                    <select class="form-control" id="mh_koy" v-model="selectMahalle" @change="selectAdress($event)"
+                        :class="ve.adress.noselect.status ? ve.adress.className :''">
+                        <option value=0>Mahalle / Köy</option>
+                        <option v-for="(mahalle, index) in mahalleler" v-bind:value="mahalle.id">
+                            {{mahalle.mahalle}}
+                        </option>
+                    </select>
+                </div>
+                <div class="uk-text-danger">{{ve.adress.noselect.msg}}</div>
+                <!--Adres-->
             </fieldset>
             <hr>
-            <!--TEMEL BİLGİLER-->
         </tab-content>
-        <tab-content title="Last step" icon="ti-check">
+        <!--TEMEL BİLGİLER-->
+        <!--PHOTO EKLE-->
+        <tab-content title="Fotoğraf Ekle" icon="fas fa-camera-retro" :before-change="beforeTabSwitchPhoto">
             Yuhuuu! This seems pretty damn simple
         </tab-content>
         <tab-content title="Last step" icon="ti-check">
