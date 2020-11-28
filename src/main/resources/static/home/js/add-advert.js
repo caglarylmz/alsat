@@ -62,6 +62,15 @@ var vue = new Vue({
                 },
             },
         },
+        /*Photo */
+        //photo componente variable
+        isDragging: false,
+        dragCount: 0,
+        files: [],
+        images: [],
+        showPhotoUploader: false,
+        isPhotosSelected: false,
+
         /**Address Data*/
         iller: null,
         ilceler: null,
@@ -91,7 +100,64 @@ var vue = new Vue({
             alert('Yay. Done!');
         },
         /*Photo Ekle Step */
-        beforeTabSwitchPhoto: function () { },
+        beforeTabSwitchPhoto: function () {
+            console.log(fileUpload);
+
+        },
+        //SELECT PHOTO
+        OnDragEnter(e) {
+            e.preventDefault();
+
+            this.dragCount++;
+            this.isDragging = true;
+            return false;
+        },
+        OnDragLeave(e) {
+            e.preventDefault();
+            this.dragCount--;
+            if (this.dragCount <= 0)
+                this.isDragging = false;
+        },
+        onInputChange(e) {
+            const files = e.target.files;
+            Array.from(files).forEach(file => this.addImage(file));
+        },
+        onDrop(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.isDragging = false;
+            const files = e.dataTransfer.files;
+            Array.from(files).forEach(file => this.addImage(file));
+        },
+        addImage(file) {
+
+            this.files.push(file);
+            const img = new Image(),
+                reader = new FileReader();
+            reader.onload = (e) => this.images.push(e.target.result);
+            reader.readAsDataURL(file);
+
+        },
+        clarAllImage() {
+            this.files = [];
+            this.images = [];
+        },
+        getFileSize(size) {
+            if (size > 900000)
+                return (size / (1024 * 1024)).toFixed(1).toString() + ' MB';
+            else
+                return (size / (1024)).toFixed(1).toString() + ' KB';
+        },
+        upload() {
+            const formData = new FormData();
+
+            this.files.forEach(file => {
+                formData.append('images[]', file, file.name);
+            });
+            localStorage.photos(formData);
+
+        },
+       
         /*Photo Ekle Step */
         /**Temel Bilgiler Step */
         beforeTabSwitchTemel: function () {
@@ -372,7 +438,14 @@ var vue = new Vue({
             if (this.advert.aciklama !== "") {
                 this.ve.aciklama.empty.msg = "";
             }
-        }
+        },
+        isPhotosSelected: function () {
+            if (this.isPhotosSelected) {
+                this.progressText = "Detay";
+                this.progress = "width: 80%;"
+                this.showPhotoUploader = false;
+            }
+        },
     },
     async created() {
         try {
@@ -402,6 +475,7 @@ var vue = new Vue({
 /*TinyMCE Editor */
 tinymce.init({
     selector: '#editor',
+    themes: 'silver',
     twoWay: true,
     height: 300,
     menubar: false,
@@ -422,14 +496,6 @@ tinymce.init({
         // set val and trigger event
         $(this.el).val(newVal).trigger('keyup');
     },
-    plugins: [
-        'advlist autolink lists link image charmap print preview anchor',
-        'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table paste code help wordcount'
-    ],
-    toolbar: 'undo redo | formatselect | ' +
-        'bold italic backcolor | alignleft aligncenter ' +
-        'alignright alignjustify | bullist numlist outdent indent | ' +
-        'removeformat | help',
-    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+
 });
+

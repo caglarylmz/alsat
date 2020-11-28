@@ -320,7 +320,7 @@
 }
 
 .arsiv .sidebar button.btn-primary {
-    background: #4398f4 !important;
+    background: orange !important;
     color: #fff !important;
     border: 0 !important;
     padding: 7px 10px;
@@ -330,7 +330,7 @@
 }
 
 .arsiv .sidebar button.btn-primary:hover {
-    background: #3768e8 !important;
+    background: orangered !important;
 }
 
 .arsiv .filtre.kapali .panel-heading {

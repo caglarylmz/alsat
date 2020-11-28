@@ -535,6 +535,17 @@ public class DbSeeder implements CommandLineRunner {
 		adv1.setToplamAdet(20);
 		adv1.setToplamFiyat(8000);
 		adv1.setShowcase(true);
+		adv1.setKimden("sahibinden");
+		advertRepository.save(adv1);
+		AdvertAdress adressadv1 = new AdvertAdress();
+		adressadv1.setMahalle("Aydoğdu Mh.");
+		adressadv1.setIlce("Buca");
+		adressadv1.setIl("İzmir");
+		adressadv1.setAdvert(adv1);
+		adressRepository.save(adressadv1);
+		adv1.setAdvertAdress(adressadv1);
+		advertRepository.save(adv1);
+
 		// adv1.setLikes(likedAccounts);
 
 		Advert adv2 = new Advert("Advert-2", "Advert Açıklaması 2");
@@ -543,6 +554,7 @@ public class DbSeeder implements CommandLineRunner {
 		adv2.setCategory(sigir);
 		adv2.setAccount(user);
 		adv2.setShowcase(true);
+		adv2.setKimden("firmadan");
 		// adv2.setLikes(likedAccounts);
 
 		/** İlan için görülme ekliyoruz */
@@ -572,6 +584,7 @@ public class DbSeeder implements CommandLineRunner {
 		adv3.setToplamFiyat(6000);
 		adv3.setCategory(arpa);
 		adv3.setAccount(owner);
+		adv3.setKimden("sahibinden");
 		LocalDate date1a3 = LocalDate.of(2020, Month.JULY, 12);
 		String d1Adv3 = date1a3.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
 		AdvertViews a3views3 = new AdvertViews(adv3, d1Adv3);
@@ -582,26 +595,30 @@ public class DbSeeder implements CommandLineRunner {
 		adv4.setAccount(owner);
 		adv4.setToplamAdet(5);
 		adv4.setToplamFiyat(3000);
+		adv4.setKimden("firmadan");
 		Advert adv5 = new Advert("Advert-5", "Advert Açıklaması 5");
 		adv5.setCategory(tavuk);
 		adv5.setAccount(owner);
 		adv5.setToplamAdet(100);
 		adv5.setToplamFiyat(8000);
+		adv5.setKimden("firmadan");
 		Advert adv6 = new Advert("Advert-6", "Advert Açıklaması 6");
 		adv6.setCategory(satilikBuyukbas);
 		adv6.setAccount(owner);
 		adv6.setToplamAdet(1);
 		adv6.setToplamFiyat(16000);
+		adv6.setKimden("sahibinden");
+
 		Advert adv7 = new Advert("Advert-7", "Harika Advert 7 açıklama");
 		adv7.setCategory(fabrikaYemi);
 		adv7.setAccount(owner);
 		adv7.setToplamAdet(2000);
 		adv7.setToplamFiyat(2000);
 		adv7.setShowcase(true);
+		adv6.setKimden("sahibinden");
 
 		// adv7.setLikes(likedAccounts);
 
-		advertRepository.save(adv1);
 		advertRepository.save(adv2);
 		advertRepository.save(adv3);
 		advertRepository.save(adv4);
@@ -656,7 +673,7 @@ public class DbSeeder implements CommandLineRunner {
 		advOrnek.setAccount(caglar);
 		advOrnek.setToplamAdet(20);
 		advOrnek.setToplamFiyat(145000);
-		advOrnek.setKimden("Sahibinden");
+		advOrnek.setKimden("sahibinden");
 		advOrnek.setFeatured(true);
 		advOrnek.setShowcase(true);
 		advOrnek.setTopluSatis(true);

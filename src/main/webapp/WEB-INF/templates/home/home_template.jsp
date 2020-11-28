@@ -24,6 +24,8 @@
 	<link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">
 	<link rel="stylesheet" href="${contextRoot}/resources/home/css/main.css" />
 	<link rel="stylesheet" href="${contextRoot}/resources/home/css/parent-category.css" />
+	<!-- FileInput -->
+	<link rel="stylesheet" href="${contextRoot}/resources/adminlte/plugins/fileinput/css/fileinput.min.css" media="all">
 
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -103,7 +105,7 @@
 			<div class="row">
 				<!--****************************************************************************************************************-->
 				<!--LEFT MENU-->
-				<div class="col-lg-3 sidebar">
+				<div class="col-lg-3 sidebar mb-3">
 					<tiles:insertAttribute name="category_left_menu"></tiles:insertAttribute>
 
 				</div>
@@ -163,7 +165,13 @@
 	<c:if test="${isAddAdvert}">
 		<script type="text/javascript" src="${contextRoot}/resources/home/js/add-advert.js"></script>
 	</c:if>
-
+	<!-- fileinput -->
+	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/js/plugins/piexif.min.js"></script>
+	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/js/plugins/sortable.min.js"></script>
+	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/js/plugins/purify.min.js"></script>
+	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/js/fileinput.min.js"></script>
+	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/themes/fas/theme.min.js"></script>
+	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/js/locales/tr.js"></script>
 </body>
 
 </html>

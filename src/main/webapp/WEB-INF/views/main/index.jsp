@@ -80,6 +80,9 @@
 						<c:set var="photo"
 							value="${advert.getPhotos().stream().filter(p->p.isMainPhoto()).findFirst().orElse(null)}">
 						</c:set>
+						<fmt:formatNumber var="toplamFiyat" maxFractionDigits="0" type="currency"
+							value="${advert.toplamFiyat}" />
+
 						<div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
 							<div class="card bg-light">
 								<div class="card-body">
