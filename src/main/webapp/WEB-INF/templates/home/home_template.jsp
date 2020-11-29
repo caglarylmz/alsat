@@ -19,13 +19,11 @@
 	<meta name="keywords" content="alsat,hayvan,büyükbaş,buyukbas,inek,damızlık,boğa,kurban,kurbanlık">
 	<meta name="author" content="caglarylmz">
 	<!-- Title -->
-	<title>Alsat | Admin</title>
+	<title>Alsat | ${title}</title>
 	<tiles:insertAttribute name="styles"></tiles:insertAttribute>
-	<link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">
 	<link rel="stylesheet" href="${contextRoot}/resources/home/css/main.css" />
 	<link rel="stylesheet" href="${contextRoot}/resources/home/css/parent-category.css" />
-	<!-- FileInput -->
-	<link rel="stylesheet" href="${contextRoot}/resources/adminlte/plugins/fileinput/css/fileinput.min.css" media="all">
+
 
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -42,7 +40,7 @@
 	<!--****************************************************************************************************************-->
 	<!--****************************************************************************************************************-->
 	<!--MAIN PAGE-->
-	<c:if test="${isCategory}">
+	<c:if test="${isCategory || isAdvert}">
 		<div class='container-fluid bg-dark m-0 d-none d-md-block'>
 			<br:breadcrumb category="${category}" />
 			<!--<bra:breadcrumb-alternative category="${category}" />-->
@@ -125,7 +123,7 @@
 	<!--isCategory-->
 
 	<!--isAddAdvert-->
-	<c:if test="${isAddAdvert}">
+	<c:if test="${isAddAdvert || isAdvert}">
 		<div class="container mt20 arsiv">
 			<div class="row">
 				<!--****************************************************************************************************************-->
@@ -153,10 +151,6 @@
 
 
 	<tiles:insertAttribute name="scripts"></tiles:insertAttribute>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script type="text/javascript"
-		src="${contextRoot}/resources/home/plugins/jquery-validation/jquery.validate.min.js"></script>
-	<script src="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.js"></script>
 
 	<script type="text/javascript" src="${contextRoot}/resources/home/js/main.js"></script>
 	<c:if test="${isCategory}">
@@ -165,13 +159,8 @@
 	<c:if test="${isAddAdvert}">
 		<script type="text/javascript" src="${contextRoot}/resources/home/js/add-advert.js"></script>
 	</c:if>
-	<!-- fileinput -->
-	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/js/plugins/piexif.min.js"></script>
-	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/js/plugins/sortable.min.js"></script>
-	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/js/plugins/purify.min.js"></script>
-	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/js/fileinput.min.js"></script>
-	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/themes/fas/theme.min.js"></script>
-	<script src="${contextRoot}/resources/adminlte/plugins/fileinput/js/locales/tr.js"></script>
+
+
 </body>
 
 </html>

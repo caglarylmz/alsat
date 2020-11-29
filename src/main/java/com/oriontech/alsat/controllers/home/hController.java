@@ -42,7 +42,7 @@ public class hController {
     @GetMapping()
     public String main(ModelMap modelMap) {
 
-        modelMap.put("title", "İlanlar");
+        modelMap.put("title", "Türkiyenin en iyi ilan sitesi. Türkiyenin her yerinden ilanlar");
         modelMap.put("query", query);
         modelMap.put("isMain", true);
         modelMap.put("parentCategories", categoryService.findParentCategoriesWithStatus(true));
@@ -57,7 +57,8 @@ public class hController {
     /* KATEGORİ */
     @GetMapping(value = "kategori/{categoryId}")
     public String parent(@PathVariable("categoryId") long categoryId, ModelMap modelMap) {
-        modelMap.put("title", "İlanlar");
+        Category category = categoryService.findById(categoryId);
+        modelMap.put("title", category.getName() + " kategorisene ait ilanlar...");
         modelMap.put("isCategory", true);
         modelMap.put("query", query);
         modelMap.put("category", categoryService.findById(categoryId));
@@ -70,11 +71,21 @@ public class hController {
     /* KATEGORİ */
 
     /* ADVERT */
+    @GetMapping(value = "advert/{advertId}")
+    public String advert(@PathVariable("advertId") String advertId, ModelMap modelMap) {
+        Advert advert = advertService.findById(advertId);
+        modelMap.put("isAdvert", true);
+        modelMap.put("advert", advert);
+        modelMap.put("category", advert.getCategory());
+
+        return "home.advert.advert";
+    }
+    /* ADVERT */
 
     /* Add-Advert */
     @GetMapping(value = "ilan-ekle")
-    public String AddAdvert(ModelMap modelMap) {
-        modelMap.put("title", "Ücretisi İlan Ekle");
+    public String addAdvert(ModelMap modelMap) {
+        modelMap.put("title", "Yeni ilan ekle");
         modelMap.put("isAddAdvert", true);
 
         return "home.advert.add-advert";

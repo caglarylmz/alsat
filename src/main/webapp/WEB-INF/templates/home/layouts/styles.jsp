@@ -12,4 +12,5 @@
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- SIDR -->
 <link rel="stylesheet" href="${contextRoot}/resources/home/plugins/sidr/stylesheets/jquery.sidr.light.min.css" />
-<link rel="stylesheet" href="${contextRoot}/resources/home/plugins/trumbowyg/ui/trumbowyg.min.css" />
+<!-- vue-form-wizard -->
+<link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">

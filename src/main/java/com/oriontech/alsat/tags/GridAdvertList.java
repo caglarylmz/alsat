@@ -32,7 +32,8 @@ public class GridAdvertList extends RequestContextAwareTag {
 			Photo photo = advert.getPhotos().stream().filter(p -> p.isMainPhoto()).findFirst().orElse(null);
 
 			writer.write("<div class='column'>");
-			writer.write("<a class='btn'>");
+			writer.write("<a class='btn' href='" + getRequestContext().getContextPath() + "/h/advert/" + advert.getId()
+					+ "'>");
 			writer.write("<div class='card bg-dark text-white h-100'>");
 			if (photo == null || photo.getName().equals("no_image")) {
 				writer.write("<img src='" + getRequestContext().getContextPath()

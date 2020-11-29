@@ -36,9 +36,14 @@
         <put-attribute name="content" value="/WEB-INF/views/home/category/category-adverts.jsp"></put-attribute>
     </definition>
     <!-- Category of Adverts-->
-    <!-- Add Advert-->
+    <!-- Advert Details-->
     <definition name="home.advert.add-advert" extends="home_template">
         <put-attribute name="content" value="/WEB-INF/views/home/advert/add-advert.jsp"></put-attribute>
+    </definition>
+    <!-- Advert Details-->
+    <!-- Advert Details-->
+    <definition name="home.advert.advert" extends="home_template">
+        <put-attribute name="content" value="/WEB-INF/views/home/advert/advert.jsp"></put-attribute>
     </definition>
     <!-- Add Advert-->
     <!-- Category Content -->

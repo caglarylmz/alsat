@@ -51,140 +51,55 @@
 						<div class="text-left p-1">
 							<label class="label">${advert.baslik}</label>
 						</div>
-						<div class="uk-card-body p-1">
-							<div class="advert-container">
-								<div class="advert-image">
-									<c:if test="${photo.name eq null}">
-										<img src="${pageContext.request.contextPath}/uploads/no_image.jpg" alt=""
-											uk-image>
-
-									</c:if>
-									<c:if test="${photo.name eq 'no_image.jpg'}">
-										<img src="${pageContext.request.contextPath}/uploads/${photo.name}" alt=""
-											uk-image>
-
-									</c:if>
-									<c:if test="${photo.name ne 'no_image.jpg' and photo.name ne null}">
-										<img src="${pageContext.request.contextPath}/uploads/advert_images/${photo.name}"
-											alt="" uk-image>
-									</c:if>
-								</div>
-								<div class="advert-details p-1">
-									<label class="uk-text-muted uk-text-small label"
-										style="font-weight: normal;">#${advert.id}</label>
-									<label class="uk-text-danger label mb-3">${toplamFiyat}</label>
-									<div class="item">
-										<div class="tit uk-text-truncate">İlan Tarihi</div>
-										<div class="val">
-											<fmt:formatDate type="date" value="${advert.createdAt}" />
-										</div>
-									</div>
-
-									<div class="item">
-										<div class="tit uk-text-truncate">İl</div>
-										<div class="val">
-											${advert.advertAdress.il}
-										</div>
-									</div>
-									<div class="item">
-										<div class="tit uk-text-truncate">İlçe</div>
-										<div class="val">
-											${advert.advertAdress.ilce}
-										</div>
-									</div>
-
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-
-				<!--
-				<li data-color="white">
-					<div class="uk-text-center" uk-grid>
-						<div class="uk-width-expand">
-							<div class="uk-card uk-card-default uk-card-body">
-								<div class="uk-flex uk-flex-top uk-flex-center uk-hidden@s">
-									<c:if test="${photo.name eq null}">
-										<img src="${pageContext.request.contextPath}/uploads/no_image.jpg" width="120"
-											alt="" uk-image>
-
-									</c:if>
-									<c:if test="${photo.name eq 'no_image.jpg'}">
-										<img src="${pageContext.request.contextPath}/uploads/${photo.name}" width="120"
-											alt="" uk-image>
-
-									</c:if>
-									<c:if test="${photo.name ne 'no_image.jpg' and photo.name ne null}">
-										<img src="${pageContext.request.contextPath}/uploads/advert_images/${photo.name}"
-											width="120" alt="" uk-image>
-									</c:if>
-								</div>
-								<div class="uk-flex uk-flex-top uk-flex-left"><label
-										class="uk-text">${advert.baslik}</label></div>
-								<div class="uk-flex uk-child-width-1-2" uk-grid>
-									<div class="uk-flex uk-flex-left uk-width-auto uk-visible@s">
+						<a href="${pageContext.request.contextPath}/h/advert/${advert.id}">
+							<div class="uk-card-body p-1">
+								<div class="advert-container">
+									<div class="advert-image">
 										<c:if test="${photo.name eq null}">
-											<img src="${pageContext.request.contextPath}/uploads/no_image.jpg"
-												width="130" alt="" uk-image>
+											<img src="${pageContext.request.contextPath}/uploads/no_image.jpg" alt=""
+												uk-image>
 
 										</c:if>
 										<c:if test="${photo.name eq 'no_image.jpg'}">
-											<img src="${pageContext.request.contextPath}/uploads/${photo.name}"
-												width="130" alt="" uk-image>
+											<img src="${pageContext.request.contextPath}/uploads/${photo.name}" alt=""
+												uk-image>
 
 										</c:if>
 										<c:if test="${photo.name ne 'no_image.jpg' and photo.name ne null}">
 											<img src="${pageContext.request.contextPath}/uploads/advert_images/${photo.name}"
-												width="130" alt="" uk-image>
+												alt="" uk-image>
 										</c:if>
 									</div>
-									<div class="uk-flex uk-width-expand uk-card-body uk-flex-center p-1">
-										<div class="uk-flex uk-child-width-1-1">
-
-											<div class="uk-width-expand">
-												<h5 class="uk-comment-title uk-margin-remove">${toplamFiyat}</h5>
-												<ul
-													class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
-													<li class="uk-text-bold fontkucuk" style="width: 95px;">İlan No</li>
-													<li class="fontkucuk">
-														${advert.id}
-													</li>
-												</ul>
-												<ul
-													class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
-													<li class="uk-text-bold fontkucuk uk-text-truncate"
-														style="width: 95px;">İlan Tarihi</li>
-													<li class="fontkucuk">
-														<fmt:formatDate type="date" value="${advert.createdAt}" />
-													</li>
-												</ul>
-												<ul
-													class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
-													<li class="uk-text-bold fontkucuk uk-text-truncate"
-														style="width: 95px;">İlan Tarihi</li>
-													<li class="fontkucuk">
-														<fmt:formatDate type="date" value="${advert.createdAt}" />
-													</li>
-												</ul>
+									<div class="advert-details p-1">
+										<label class="uk-text-muted uk-text-small label"
+											style="font-weight: normal;">#${advert.id}</label>
+										<label class="uk-text-danger label mb-3">${toplamFiyat}</label>
+										<div class="item">
+											<div class="tit uk-text-truncate">İlan Tarihi</div>
+											<div class="val">
+												<fmt:formatDate type="date" value="${advert.createdAt}" />
 											</div>
-
-
 										</div>
 
-
-
-
+										<div class="item">
+											<div class="tit uk-text-truncate">İl</div>
+											<div class="val">
+												${advert.advertAdress.il}
+											</div>
+										</div>
+										<div class="item">
+											<div class="tit uk-text-truncate">İlçe</div>
+											<div class="val">
+												${advert.advertAdress.ilce}
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</a>
 					</div>
 				</li>
-				-->
 			</c:forEach>
-
 			<!--ITEM-->
 
 

@@ -36,7 +36,7 @@ public class SliderAdvertList extends RequestContextAwareTag {
 		for (Advert advert : adverts) {
 			Photo photo = advert.getPhotos().stream().filter(p -> p.isMainPhoto()).findFirst().orElse(null);
 
-			writer.write("<li><a>");
+			writer.write("<li><a href='" + getRequestContext().getContextPath() + "/h/advert/" + advert.getId() + "'>");
 			writer.write("<div class='uk-card uk-card-default uk-card-hover'>");
 			writer.write("<div class='uk-card-media-top'>");
 			if (photo == null || photo.getName().equals("no_image")) {
