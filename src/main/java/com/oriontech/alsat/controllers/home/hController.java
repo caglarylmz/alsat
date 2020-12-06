@@ -58,6 +58,7 @@ public class hController {
     @GetMapping(value = "kategori/{categoryId}")
     public String parent(@PathVariable("categoryId") long categoryId, ModelMap modelMap) {
         Category category = categoryService.findById(categoryId);
+        
         modelMap.put("title", category.getName() + " kategorisene ait ilanlar...");
         modelMap.put("isCategory", true);
         modelMap.put("query", query);

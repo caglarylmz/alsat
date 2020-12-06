@@ -6,7 +6,7 @@
 <!--HEADER-MOBILE-->
 <header class="d-block d-lg-none">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary uk-navbar" data-uk-sticky>
             <div class="col">
                 <div class="row justify-content-start uyelik">
                     <button type="button" id="mm_buton" href="#mm_panel"><i class="ion-navicon-round mr0"></i></button>

@@ -5,7 +5,7 @@
 
  <!--HEADER-DESKTOP-->
  <header class="d-none d-lg-block">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary uk-navbar" data-uk-sticky>
         <div class="container">
             <div class="col-2">
                 <a class="navbar-brand" href="/h">
@@ -29,7 +29,7 @@
                 <div class="row justify-content-end uyelik">
                     <a href="#" class="btn-header">Giriş Yap</a>
                     <a href="#" class="btn-header">Kayıt Ol</a>
-                    <a href="#" class="btn btn-danger btn-header" style="text-decoration: none;">Ücretsiz İlan
+                    <a href="/h/ilan-ekle" class="btn btn-danger btn-header" style="text-decoration: none;">Ücretsiz İlan
                         Ver</a>
                 </div>
             </div>
