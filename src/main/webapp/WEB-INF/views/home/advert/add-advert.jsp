@@ -220,6 +220,12 @@
         <!--TEMEL BİLGİLER-->
         <!--PHOTO EKLE-->
         <tab-content title="Fotoğraf Ekle" icon="fas fa-camera-retro" :before-change="beforeTabSwitchPhoto">
+            <!--Error Message-->
+            <div class="uk-alert-danger" uk-alert v-if="errorMessage !=''">
+                <a class="uk-alert-close" uk-close></a>
+                {{errorMessage}}
+            </div>
+            <!--Error Message-->
             <!-- <image-uploader></image-uploader>-->
             <div class="uploader" @dragenter="OnDragEnter" @dragleave="OnDragLeave" @dragover.prevent @drop="onDrop"
                 :class="{ dragging: isDragging }">
@@ -258,9 +264,169 @@
             <hr>
         </tab-content>
         <!--PHOTO EKLE-->
+        <!--TODO::: PHOTO ÖNİZLEME YAPILACAK-->
         <!--Önİzle-->
         <tab-content title="Last step" icon="ti-check">
-            Yuhuuu! This seems pretty damn simple
+            <div class="ui placeholder segment">
+                <div class="container">
+                    <!--Adverd- Header-->
+                    <div class="row align-items-center d-flex">
+                        <!--TITLE-->
+                        <div class="col-9"><span class="uk-text-lead uk-text-small">{{advert.baslik}}</span></div>
+                        <!--TITLE-->
+                        <!--ICONS-->
+                        <div class="col-3">
+                            <div class="row align-items-center  justify-content-end">
+                                <a href="" type="submit" class="uk-icon-button mr-1" uk-icon="star"
+                                    uk-tooltip="title:Favori İlanlara Ekle; pos:bottom" style="color: red;"></a>
+                                <a href="" type="button" class="uk-icon-button mr-1" uk-icon="social"
+                                    uk-tooltip="title:İlanı Paylaş; pos:bottom"></a>
+                            </div>
+                        </div>
+                        <!--ICONS-->
+                    </div>
+                    <!--Adverd- Header-->
+                    <hr class="uk-divider-icon mb-1 mt-0">
+                    <!--BODY-->
+                    <div class="row d-flex justify-content-between">
+                        <!--IMAGE SLIDER-->
+                        <div class="col-sm-12 col-lg-5">
+                            <div class="uk-position-relative" uk-slideshow="animation: fade">
+                                <ul class="uk-slideshow-items">
+                                    <li >
+                                        <img :src="images[0]" alt="" uk-cover>
+                                    </li>
+
+                                </ul>                               
+                            </div>
+                        </div>
+                        <!--IMAGE SLIDER-->
+                        <!--ADVERT DETAILS-->
+                        <div class="col-sm-12 col-lg-4">
+                            <span class="uk-text-lead text-left uk-text-bold">${toplamFiyat}</span>
+                            <ul class="uk-breadcrumb my-1">
+                                <li><a href="">${advert.advertAdress.il}</a></li>
+                                <li><a href="">${advert.advertAdress.ilce}</a></li>
+                                <li><a href="">${advert.advertAdress.mahalle}</a></li>
+                            </ul>
+
+                            <table class="uk-table uk-table-small uk-table-divider my-1">
+                                <tbody>
+                                    <tr>
+                                        <td class="uk-text-bold	">İlan No</td>
+                                        <td>${advert.id}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="uk-text-bold	">Kategori</td>
+                                        <td class="uk-text-capitalize">
+                                            ${advert.category.name}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="uk-text-bold	">İlan Tarihi</td>
+                                        <td>
+                                            <fmt:formatDate type="date" value="${advert.createdAt}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="uk-text-bold	">Toplam Hayvan Adedi</td>
+                                        <td>
+                                            ${advert.toplamAdet}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="uk-text-bold	">Toplumu Satış mı?</td>
+                                        <td class="uk-text-capitalize">
+                                            <c:if test="${advert.topluSatis}">
+                                                Evet
+                                            </c:if>
+                                            <c:if test="${!advert.topluSatis}">
+                                                Hayır
+                                            </c:if>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="uk-text-bold	">İlan Türü</td>
+                                        <td class="uk-text-capitalize" style="color: red;">
+                                            ${advert.kimden}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--ADVERT DETAILS-->
+                        <!--USER DETAILS-->
+                        <div class="col-sm-12 col-lg-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title text-center">${advert.account.fullName}</h4>
+                                    <div class="uk-grid-small uk-flex-between" uk-grid>
+                                        <h6 class="card-subtitle text-muted">Üyelik Tarihi</h6>
+                                        <h6 class="card-subtitle text-muted">
+                                            <fmt:formatDate type="date" value="${advert.account.createdAt}" />
+                                        </h6>
+
+                                    </div>
+                                    <div class="uk-grid-small  uk-flex-between" uk-grid>
+                                        <a class="uk-link-muted">
+                                            Tüm İlanlar
+                                        </a>
+                                        <h6 class="card-subtitle text-muted">
+                                            ${advert.account.adverts.size()}
+                                        </h6>
+                                    </div>
+                                    <dl class="uk-description-list">
+                                        <dt><span class="mb-1" uk-icon="icon: mail"></span></dt>
+                                        <dd>
+                                            <h6 class="card-subtitle text-muted">
+                                                ${advert.account.email}
+                                            </h6>
+                                        </dd>
+                                    </dl>
+                                    <dl class="uk-description-list">
+                                        <dt><span class="mb-1" uk-icon="icon: receiver"></span></dt>
+                                        <dd>
+                                            <h6 class="card-subtitle text-muted">
+                                                ${advert.account.phone}
+                                            </h6>
+                                        </dd>
+                                    </dl>
+                                    <div class="row align-items-center  justify-content-around">
+                                        <c:if test="${!isFavouriteSeller}">
+                                            <s:form method="post" modelAttribute="advert"
+                                                action="${pageContext.request.contextPath}/user/advert/addFavourites">
+                                                <a href="" type="submit" class="uk-icon-button mr-1" uk-icon="heart"
+                                                    uk-tooltip="title:Favori Satıcılarıma Ekle; pos:bottom"
+                                                    style="color: red;"></a>
+                                                <s:hidden path="id" />
+                                            </s:form>
+
+                                        </c:if>
+                                        <c:if test="${isLiked}">
+                                            <s:form method="post" modelAttribute="advert"
+                                                action="${pageContext.request.contextPath}/user/advert/removeFavourites">
+                                                <a href="" type="submit" class="uk-icon-button mr-1" uk-icon="star"
+                                                    uk-tooltip="title:Favori Satıcılarımdan Çıkar; pos:bottom"
+                                                    style="color: white; background-color: red;"></a>
+                                                <s:hidden path="id" />
+                                            </s:form>
+                                        </c:if>
+                                        <a href="" type="submit" class="uk-icon-button mr-1" uk-icon="comment"
+                                            uk-tooltip="title:Satıcıya Mesaj Gönder; pos:bottom"
+                                            style="color:#00aced;"></a>
+                                        <a href="" type="submit" class="uk-icon-button mr-1" uk-icon="whatsapp"
+                                            uk-tooltip="title:Whatsapp Mesaj Gönder; pos:bottom"
+                                            style="color:#0dc143;"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--USER DETAILS-->
+                        </div>
+                        <!--BODY-->
+                    </div>
+                </div>
+                <!--ContaINER-->
+            </div>
         </tab-content>
         <!--Önİzle-->
 

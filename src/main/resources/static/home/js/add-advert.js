@@ -14,10 +14,19 @@ var vue = new Vue({
         advert: {
             baslik: "",
             aciklama: "",
-            toplamAdet: 0,
-            toplamFiyat: 0,
+            toplamAdet: "",
+            toplamFiyat: "",
             kimden: "",
             showcase: false,
+            photoFiles: [],
+            advertAddress: [
+                {
+                    il: 0,
+                    ilce: 0,
+                    mahalle: 0
+                }
+            ],
+            tips: [],
 
         },
         ve: {
@@ -68,8 +77,6 @@ var vue = new Vue({
         dragCount: 0,
         files: [],
         images: [],
-        showPhotoUploader: false,
-        isPhotosSelected: false,
 
         /**Address Data*/
         iller: null,
@@ -97,11 +104,38 @@ var vue = new Vue({
 
     methods: {
         onComplete: function () {
-            alert('Yay. Done!');
+
         },
+        /*Kaydet*/
+        taslakKaydet() {
+            this.advert.tips = this.selectedTips;
+            this.advert.adress.il = this.selectIl;
+            this.advert.adress.ilce = this.selectIlce;
+            this.advert.adress.mahalle = this.selectMahalle;
+            this.advert.filse = this.files;
+
+            axios
+                .post("/api/v1/roles", {
+                    "id": this.role_id,
+                    "name": this.role_name,
+                })
+                .then(savedRole => {
+                    this.getRoles();
+                    this.role_name = '';
+                    this.role_id = '';
+                })
+        },
+
         /*Photo Ekle Step */
         beforeTabSwitchPhoto: function () {
-            console.log(fileUpload);
+            if (this.images.length == 0) {
+                this.errorMessage = "* İlanınza resim eklemelisiniz!"
+                setTimeout(() => this.errorMessage = '', 3000)
+                return false;
+            } else {
+                return true;
+            }
+
 
         },
         //SELECT PHOTO
@@ -157,7 +191,7 @@ var vue = new Vue({
             localStorage.photos(formData);
 
         },
-       
+
         /*Photo Ekle Step */
         /**Temel Bilgiler Step */
         beforeTabSwitchTemel: function () {
@@ -189,7 +223,7 @@ var vue = new Vue({
         },
         /*toplamFiyat */
         validateForToplamFiyat: function () {
-            if (this.advert.toplamFiyat == 0) {
+            if (this.advert.toplamFiyat === "" || this.advert.toplamFiyat == 0) {
                 this.ve.toplamFiyat.className = "uk-form-danger";
                 this.ve.toplamFiyat.noselect.status = true;
                 this.ve.toplamFiyat.noselect.msg = "Toplam fiyat 0 ₺ olamaz"
@@ -202,7 +236,7 @@ var vue = new Vue({
             }
         },
         checkSuccessOfKeyPressForToplamFiyat() {
-            if (this.advert.toplamFiyat != 0) {
+            if (this.advert.toplamFiyat != 0 || this.advert.toplamFiyat !== "") {
                 this.ve.toplamFiyat.className = "uk-form-success";
                 this.ve.toplamFiyat.noselect.msg = "";
 
@@ -212,7 +246,7 @@ var vue = new Vue({
         },
         /*toplamAdet */
         validateForToplamAdet: function () {
-            if (this.advert.toplamAdet == 0) {
+            if (this.advert.toplamAdet == 0 || this.advert.toplamAdet === "") {
                 this.ve.toplamAdet.className = "uk-form-danger";
                 this.ve.toplamAdet.noselect.status = true;
                 this.ve.toplamAdet.noselect.msg = "Toplam adet sayısı 0 olamaz"
@@ -225,7 +259,7 @@ var vue = new Vue({
             }
         },
         checkSuccessOfKeyPressForToplamAdet() {
-            if (this.advert.toplamAdet != 0) {
+            if (this.advert.toplamAdet != 0 || this.advert.toplamAdet !== "") {
                 this.ve.toplamAdet.className = "uk-form-success";
                 this.ve.toplamAdet.noselect.msg = "";
 
@@ -439,13 +473,7 @@ var vue = new Vue({
                 this.ve.aciklama.empty.msg = "";
             }
         },
-        isPhotosSelected: function () {
-            if (this.isPhotosSelected) {
-                this.progressText = "Detay";
-                this.progress = "width: 80%;"
-                this.showPhotoUploader = false;
-            }
-        },
+
     },
     async created() {
         try {
