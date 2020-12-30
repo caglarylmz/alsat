@@ -7,6 +7,8 @@ import java.util.List;
 import com.oriontech.alsat.models.Advert;
 import com.oriontech.alsat.models.Category;
 import com.oriontech.alsat.models.adress.Il;
+import com.oriontech.alsat.models.drafts.AdvertPlain;
+import com.oriontech.alsat.repositories.AdvertPlainRepository;
 import com.oriontech.alsat.repositories.IrkRepository;
 import com.oriontech.alsat.repositories.TipRepository;
 import com.oriontech.alsat.repositories.YasRepository;
@@ -18,8 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("h")
 public class hController {
@@ -27,6 +30,8 @@ public class hController {
     private CategoryService categoryService;
     @Autowired
     private AdvertService advertService;
+    @Autowired
+    private AdvertPlainRepository advertPlainRepository;
     @Autowired
     private IrkRepository irkRepository;
     @Autowired
@@ -55,7 +60,7 @@ public class hController {
     @GetMapping(value = "kategori/{categoryId}")
     public String parent(@PathVariable("categoryId") long categoryId, ModelMap modelMap) {
         Category category = categoryService.findById(categoryId);
-        
+
         modelMap.put("title", category.getName() + " kategorisene ait ilanlar...");
         modelMap.put("isCategory", true);
         modelMap.put("query", query);
@@ -81,14 +86,24 @@ public class hController {
     /* ADVERT */
 
     /* Add-Advert */
+    AdvertPlain advPlain = new AdvertPlain();
+
     @GetMapping(value = "ilan-ekle")
     public String addAdvert(ModelMap modelMap) {
         modelMap.put("title", "Yeni ilan ekle");
         modelMap.put("isAddAdvert", true);
-
+        modelMap.put("advert-plain", advPlain);
         return "home.advert.add-advert";
     }
 
+    @GetMapping(value = "ilan-taslak-kaydet")
+    public String addPlainAdvert(ModelMap modelMap) {
+        modelMap.put("title", "Yeni ilan ekle");
+        modelMap.put("isAddAdvert", true);
+        modelMap.put("advertPlain", advPlain);
+
+        return "home.advert.add-advert-plain";
+    }
     /* Add-Advert */
     /* ADVERT */
 
@@ -106,6 +121,6 @@ public class hController {
         return categoryService.findParentCategoriesWithStatus(true);
     }
 
- 
+    /** Adverts */
 
 }

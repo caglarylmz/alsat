@@ -1,6 +1,5 @@
 Vue.use(VueFormWizard);
 
-
 var vue = new Vue({
     el: '#add-advert',
     components: {
@@ -11,23 +10,14 @@ var vue = new Vue({
         errorMessage: '',
         subtitle: 'Kategori Seçimi',
         contentEditor: '',
-        advert: {
+        advertp: null,
+        advertPlain: {
             baslik: "",
             aciklama: "",
             toplamAdet: "",
             toplamFiyat: "",
-            kimden: "",
-            showcase: false,
-            photoFiles: [],
-            advertAddress: [
-                {
-                    il: 0,
-                    ilce: 0,
-                    mahalle: 0
-                }
-            ],
-            tips: [],
-
+            isTopluSatis: false,
+            images: [],
         },
         ve: {
             baslik: {
@@ -104,27 +94,17 @@ var vue = new Vue({
 
     methods: {
         onComplete: function () {
+        },
+
+        saveAdvertPlain: function () {
+            this.upload();
+            axios.post("/api/data/addAdvertPlain", this.advertPlain)
+                .then(response => this.advertPlain = response.data)
+                .catch(err => console.log(err)
+                );
 
         },
         /*Kaydet*/
-        taslakKaydet() {
-            this.advert.tips = this.selectedTips;
-            this.advert.adress.il = this.selectIl;
-            this.advert.adress.ilce = this.selectIlce;
-            this.advert.adress.mahalle = this.selectMahalle;
-            this.advert.filse = this.files;
-
-            axios
-                .post("/api/v1/roles", {
-                    "id": this.role_id,
-                    "name": this.role_name,
-                })
-                .then(savedRole => {
-                    this.getRoles();
-                    this.role_name = '';
-                    this.role_id = '';
-                })
-        },
 
         /*Photo Ekle Step */
         beforeTabSwitchPhoto: function () {
@@ -133,6 +113,7 @@ var vue = new Vue({
                 setTimeout(() => this.errorMessage = '', 3000)
                 return false;
             } else {
+                //this.saveAdvertPlain();
                 return true;
             }
 
@@ -186,10 +167,13 @@ var vue = new Vue({
             const formData = new FormData();
 
             this.files.forEach(file => {
-                formData.append('images[]', file, file.name);
+                formData.append('file', file);
             });
-            localStorage.photos(formData);
 
+            axios.post("/api/data/addAdvertPlainImages", formData, { headers: { "Content-Type": "multipart/form-data" } })
+                .then(response => console.log(response))
+                .catch(err => console.log(err));
+            // axios.post("/api/data/addAdvertPlainImages", formData);
         },
 
         /*Photo Ekle Step */
@@ -223,7 +207,7 @@ var vue = new Vue({
         },
         /*toplamFiyat */
         validateForToplamFiyat: function () {
-            if (this.advert.toplamFiyat === "" || this.advert.toplamFiyat == 0) {
+            if (this.advertPlain.toplamFiyat === "" || this.advertPlain.toplamFiyat == 0) {
                 this.ve.toplamFiyat.className = "uk-form-danger";
                 this.ve.toplamFiyat.noselect.status = true;
                 this.ve.toplamFiyat.noselect.msg = "Toplam fiyat 0 ₺ olamaz"
@@ -236,7 +220,7 @@ var vue = new Vue({
             }
         },
         checkSuccessOfKeyPressForToplamFiyat() {
-            if (this.advert.toplamFiyat != 0 || this.advert.toplamFiyat !== "") {
+            if (this.advertPlain.toplamFiyat != 0 || this.advertPlain.toplamFiyat !== "") {
                 this.ve.toplamFiyat.className = "uk-form-success";
                 this.ve.toplamFiyat.noselect.msg = "";
 
@@ -246,7 +230,7 @@ var vue = new Vue({
         },
         /*toplamAdet */
         validateForToplamAdet: function () {
-            if (this.advert.toplamAdet == 0 || this.advert.toplamAdet === "") {
+            if (this.advertPlain.toplamAdet == 0 || this.advertPlain.toplamAdet === "") {
                 this.ve.toplamAdet.className = "uk-form-danger";
                 this.ve.toplamAdet.noselect.status = true;
                 this.ve.toplamAdet.noselect.msg = "Toplam adet sayısı 0 olamaz"
@@ -259,7 +243,7 @@ var vue = new Vue({
             }
         },
         checkSuccessOfKeyPressForToplamAdet() {
-            if (this.advert.toplamAdet != 0 || this.advert.toplamAdet !== "") {
+            if (this.advertPlain.toplamAdet != 0 || this.advertPlain.toplamAdet !== "") {
                 this.ve.toplamAdet.className = "uk-form-success";
                 this.ve.toplamAdet.noselect.msg = "";
 
@@ -269,7 +253,7 @@ var vue = new Vue({
         },
         //aciklama alanı validitation
         validateEmptyforAciklama: function () {
-            if (this.advert.aciklama === "") {
+            if (this.advertPlain.aciklama === "") {
                 //status ile classBinding yapıyoruz. Status durumuna göre checkSuccessOfKeyPressForBaslik fonkisyonu aktif olur.
                 this.ve.aciklama.className = "uk-form-danger";
                 this.ve.aciklama.empty.status = true;
@@ -301,7 +285,7 @@ var vue = new Vue({
         },
         /**Başlık alanını data girildiğin yeşil, boşken kırmızı yapar */
         checkSuccessOfKeyPressForBaslik() {
-            if (this.advert.baslik.length > 0) {
+            if (this.advertPlain.baslik.length > 0) {
                 this.ve.baslik.className = "uk-form-success";
                 this.ve.baslik.empty.msg = "";
 
@@ -375,6 +359,7 @@ var vue = new Vue({
             this.getParentCategories();
             this.selectedCategories = [];
             this.selectedCategory = null;
+            this.changeTips();
         },
         /*Category Step */
         /*Get Category */
@@ -468,8 +453,8 @@ var vue = new Vue({
     watch: {
         contentEditor(val) {
             this.contentEditor = val
-            this.advert.aciklama = this.contentEditor;
-            if (this.advert.aciklama !== "") {
+            this.advertPlain.aciklama = this.contentEditor;
+            if (this.advertPlain.aciklama !== "") {
                 this.ve.aciklama.empty.msg = "";
             }
         },
@@ -504,6 +489,8 @@ var vue = new Vue({
 tinymce.init({
     selector: '#editor',
     themes: 'silver',
+    encoding: "xml",
+    forced_root_block: false,
     twoWay: true,
     height: 300,
     menubar: false,
