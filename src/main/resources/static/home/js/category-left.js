@@ -17,7 +17,7 @@ new Vue({
     methods: {
         getIlList() {
             this.loading = true;
-            axios.get('/h/data/iller')
+            axios.get('/data/iller')
                 .then(res => {
                     this.iller = res.data;
                     this.loading = false;
@@ -39,8 +39,6 @@ new Vue({
             this.selectSemt = 0;
             this.selectMahalle = 0;
 
-
-
         },
         getSemtList(event) {
             if (this.selectIlce == 0)
@@ -60,9 +58,6 @@ new Vue({
             }
             if (this.selectSemt != 0)
                 this.mahalleler = this.semtler.find(m => m.id == event.target.value).mahalleler;
-
-            console.log(this.mahalleler)
-
             this.selectMahalle = 0;
         }
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <!-- BASE TEMPLATE DEFINITION -->
+    <definition name="global_template" template="/WEB-INF/templates/global/global_template.jsp">
+        <!--Statics-->
+        <put-attribute name="navbar_desktop" value="/WEB-INF/templates/global/layouts/header/navbar_desktop.jsp" />
+        <put-attribute name="navbar_mobile" value="/WEB-INF/templates/global/layouts/header/navbar_mobile.jsp" />
+        <put-attribute name="sidebar" value="/WEB-INF/templates/global/layouts/sidebar/sidebar.jsp" />
+        <put-attribute name="main_left_menu" value="/WEB-INF/templates/global/layouts/menu/main_left_menu.jsp" />
+        <put-attribute name="category_left_menu" value="/WEB-INF/templates/global/layouts/menu/category_left_menu.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/templates/global/layouts/footer/footer.jsp" />
+        <put-attribute name="scripts" value="/WEB-INF/templates/global/layouts/scripts.jsp" />
+        <put-attribute name="styles" value="/WEB-INF/templates/global/layouts/styles.jsp" />
+        <!--Statics-->
+        <!-- Dynamics-->
+        <put-attribute name="content" value="" />
+        <!-- Dynamics-->
+    </definition>
+    <!-- ***************************************************************************************-->
+    <!-- CONTENT-->
+    <!-- ***************************************************************************************-->
+    <!-- INDEX -->
+    <definition name="global.home.index" extends="global_template">
+        <put-attribute name="content" value="/WEB-INF/views/global/home/index.jsp"></put-attribute>
+    </definition>
+    <!-- INDEX -->
+    <!-- Category of Adverts-->
+    <definition name="global.home.category-adverts.index" extends="global_template">
+        <put-attribute name="content" value="/WEB-INF/views/global/home/category-adverts/index.jsp"></put-attribute>
+    </definition>
+    <!-- Category of Adverts-->
+    <!-- Search -->
+    <definition name="global.search.index" extends="global_template">
+        <put-attribute name="content" value="/WEB-INF/views/global/search/index.jsp"></put-attribute>
+    </definition>
+    <!-- Search -->
+    <!-- Advert Details-->
+    <definition name="global.advert.index" extends="global_template">
+        <put-attribute name="content" value="/WEB-INF/views/global/advert/index.jsp"></put-attribute>
+    </definition>
+    <!-- Advert Details-->
+    <!-- Add Advert-->
+    <definition name="global.advert.add-advert" extends="global_template">
+        <put-attribute name="content" value="/WEB-INF/views/global/advert/add-advert.jsp"></put-attribute>
+    </definition>
+    <definition name="global.advert.add-advert.step-1" extends="global_template">
+        <put-attribute name="content" value="/WEB-INF/views/global/advert/add-advert/step-1.jsp"></put-attribute>
+    </definition>
+    <definition name="global.advert.add-advert-plain" extends="global_template">
+        <put-attribute name="content" value="/WEB-INF/views/global/advert/add-advert-plain.jsp"></put-attribute>
+    </definition>
+    <!-- Add Advert-->
+
+    <!-- Category Content -->
+    <!-- ***************************************************************************************-->
+    <!-- CONTENT-->
+    <!-- ***************************************************************************************-->
+    <!-- BASE TEMPLATE DEFINITION -->
+    <!--****************************************************************************************-->
+
+
+</tiles-definitions>

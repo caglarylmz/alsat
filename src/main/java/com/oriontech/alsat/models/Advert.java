@@ -49,14 +49,16 @@ public class Advert implements Serializable {
 	private String kimden;
 	private boolean topluSatis;
 	private double toptanFiyat;
-	private boolean status;
 	private boolean featured;
 	private boolean showcase;
 	private boolean different;
 
 	private Date createdAt;
 	private Date updatedAt;
-	private boolean isDraft;
+	private boolean draft;
+	private boolean active;
+	private boolean status;
+
 
 	@OneToOne
 	@JoinColumn(name = "adress_id")
@@ -96,7 +98,7 @@ public class Advert implements Serializable {
 			createdAt = new Date();
 		if (this.updatedAt == null)
 			updatedAt = createdAt;
-		this.isDraft = true;
+		this.draft = true;
 
 	}
 

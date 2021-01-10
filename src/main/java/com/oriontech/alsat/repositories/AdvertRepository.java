@@ -2,12 +2,15 @@ package com.oriontech.alsat.repositories;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.oriontech.alsat.models.Advert;
+import com.oriontech.alsat.models.Category;
 
 @Repository
 public interface AdvertRepository extends CrudRepository<Advert, String> {
@@ -52,5 +55,7 @@ public interface AdvertRepository extends CrudRepository<Advert, String> {
 	// En çok görülen ilanları büyükten küçüğe sıralıyoruz
 	@Query(value = "SELECT a FROM AdvertViews av INNER JOIN Advert a  on av.advert=a GROUP BY av.advert ORDER BY SUM(av.howManyViewedAt) DESC ")
 	List<Advert> findAdvertsByViewedAtSum();
+
+	//Page<Advert> findByCategoryContainingIgnoreCase(Category category, Pageable p);
 
 }

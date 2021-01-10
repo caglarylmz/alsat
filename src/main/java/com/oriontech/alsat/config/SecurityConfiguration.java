@@ -53,8 +53,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable();
 
 		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-				.antMatchers("/user/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')").antMatchers("/advert")
-				.access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')").antMatchers("/h2-console/**").permitAll()
+				.antMatchers("/user/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+				.antMatchers("/ilan-ekle/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+				.antMatchers("/h2-console/**").permitAll()
 				.antMatchers("/").permitAll().and().formLogin().loginPage("/uye")
 				.loginProcessingUrl("/uye/process-login").defaultSuccessUrl("/uye/welcome")
 				.failureUrl("/uye/login?error").usernameParameter("username").passwordParameter("password").and()

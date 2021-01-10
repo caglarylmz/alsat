@@ -28,14 +28,26 @@ import com.oriontech.alsat.services.AdvertViewsService;
 
 // TODO : add remoce favorite advert from account
 @Controller
-@RequestMapping("/advert")
-public class HomeAdvertController {
+@RequestMapping("/ilan")
+public class AdvertController {
 	@Autowired
 	private AdvertService advertService;
 	@Autowired
 	private AccountService accountService;
 	@Autowired
 	private AdvertViewsService advertViewsService;
+
+	/* SHOW ADVERT */
+	@GetMapping(value = "/{advertId}")
+	public String advert(@PathVariable("advertId") String advertId, ModelMap modelMap) {
+		Advert advert = advertService.findById(advertId);
+		modelMap.put("isAdvert", true);
+		modelMap.put("advert", advert);
+		modelMap.put("category", advert.getCategory());
+
+		return "global.advert.index";
+	}
+	/* SHOW ADVERT */
 
 	@GetMapping(value = "details/{id}")
 	public String details(@PathVariable("id") String id, ModelMap model) {

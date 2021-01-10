@@ -62,15 +62,15 @@ public class CategoryLeftMenu extends RequestContextAwareTag {
 		try {
 			if (category.getParentCategory() == null) {
 				writer.write("<ul class='ana_menu scroll'>");
-				writer.write("<li><a href='" + getRequestContext().getContextPath() + "/h/kategori/" + category.getId()
+				writer.write("<li><a href='" + getRequestContext().getContextPath() + "/kategori/" + category.getId()
 						+ "'>" + category.getName() + "</a><span class='toplam'>("
 						+ advertService.getAllAdvertsByCategoryAndChildCategories(category.getId()).size()
 						+ ")</span>");
 				writer.write("<ul>");
 				for (Category cat : category.getSubCategories()) {
 					writer.write("<li>");
-					writer.write("<a href=' " + getRequestContext().getContextPath() + "/h/kategori/" + cat.getId()
-							+ "'>" + cat.getName() + "</a><span class='toplam'>("
+					writer.write("<a href=' " + getRequestContext().getContextPath() + "/kategori/" + cat.getId() + "'>"
+							+ cat.getName() + "</a><span class='toplam'>("
 							+ advertService.getAllAdvertsByCategoryAndChildCategories(cat.getId()).size() + ")</span>");
 					writer.write("</li>");
 				}
@@ -80,13 +80,13 @@ public class CategoryLeftMenu extends RequestContextAwareTag {
 			}
 			if (category.getParentCategory() != null) {
 				writer.write("<ul class='ana_menu scroll'>");
-				writer.write("<li><a href='" + getRequestContext().getContextPath() + "/h/kategori/"
+				writer.write("<li><a href='" + getRequestContext().getContextPath() + "/kategori/"
 						+ category.getParentCategory().getId() + "'>" + category.getParentCategory().getName()
 						+ "</a><span class='toplam'>(" + advertService
 								.getAllAdvertsByCategoryAndChildCategories(category.getParentCategory().getId()).size()
 						+ ")</span>");
 				writer.write("<ul>");
-				writer.write("<li><a href='" + getRequestContext().getContextPath() + "/h/kategori/" + category.getId()
+				writer.write("<li><a href='" + getRequestContext().getContextPath() + "/kategori/" + category.getId()
 						+ "'>" + category.getName() + "</a><span class='toplam'>("
 						+ advertService.getAllAdvertsByCategoryAndChildCategories(category.getId()).size()
 						+ ")</span>");
@@ -94,7 +94,7 @@ public class CategoryLeftMenu extends RequestContextAwareTag {
 					writer.write("<ul>");
 					for (Category cat : category.getSubCategories()) {
 						writer.write("<li>");
-						writer.write("<a href='" + getRequestContext().getContextPath() + "/h/kategori/" + cat.getId()
+						writer.write("<a href='" + getRequestContext().getContextPath() + "/kategori/" + cat.getId()
 								+ "'>" + cat.getName() + "</a><span class='toplam'>("
 								+ advertService.getAllAdvertsByCategoryAndChildCategories(cat.getId()).size()
 								+ ")</span>");
@@ -103,7 +103,7 @@ public class CategoryLeftMenu extends RequestContextAwareTag {
 							for (Category c : cat.getSubCategories()) {
 								writer.write("<li>");
 								writer.write(
-										"<a href='" + getRequestContext().getContextPath() + "/h/kategori/" + c.getId()
+										"<a href='" + getRequestContext().getContextPath() + "/kategori/" + c.getId()
 												+ "'>" + c.getName() + "</a><span class='toplam'>(" + advertService
 														.getAllAdvertsByCategoryAndChildCategories(c.getId()).size()
 												+ ")</span>");
@@ -118,7 +118,7 @@ public class CategoryLeftMenu extends RequestContextAwareTag {
 					writer.write("<ul>");
 					for (Category c : category.getSubCategories()) {
 						writer.write("<li>");
-						writer.write("<a href='" + getRequestContext().getContextPath() + "/h/kategori/" + c.getId()
+						writer.write("<a href='" + getRequestContext().getContextPath() + "/kategori/" + c.getId()
 								+ "'>" + c.getName() + "</a><span class='toplam'>("
 								+ advertService.getAllAdvertsByCategoryAndChildCategories(c.getId()).size()
 								+ ")</span>");
@@ -130,7 +130,7 @@ public class CategoryLeftMenu extends RequestContextAwareTag {
 				for (Category cat : category.getParentCategory().getSubCategories()) {
 					if (!category.getId().equals(cat.getId())) {
 						writer.write("<li>");
-						writer.write("<a href='" + getRequestContext().getContextPath() + "/h/kategori/" + cat.getId()
+						writer.write("<a href='" + getRequestContext().getContextPath() + "/kategori/" + cat.getId()
 								+ "'>" + cat.getName() + "</a><span class='toplam'>("
 								+ advertService.getAllAdvertsByCategoryAndChildCategories(cat.getId()).size()
 								+ ")</span>");

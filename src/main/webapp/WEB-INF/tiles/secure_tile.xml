@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <!-- BASE TEMPLATE DEFINITION -->
+    <definition name="secure_template" template="/WEB-INF/templates/secure/secure_template.jsp">
+        <!--Statics-->
+        <put-attribute name="navbar_desktop" value="/WEB-INF/templates/secure/layouts/header/navbar_desktop.jsp" />
+        <put-attribute name="navbar_mobile" value="/WEB-INF/templates/secure/layouts/header/navbar_mobile.jsp" />
+        <put-attribute name="sidebar" value="/WEB-INF/templates/secure/layouts/sidebar/sidebar.jsp" />
+        <put-attribute name="main_left_menu" value="/WEB-INF/templates/secure/layouts/menu/main_left_menu.jsp" />
+        <put-attribute name="category_left_menu" value="/WEB-INF/templates/secure/layouts/menu/category_left_menu.jsp" />
+        <put-attribute name="scripts" value="/WEB-INF/templates/secure/layouts/scripts.jsp" />
+        <put-attribute name="styles" value="/WEB-INF/templates/secure/layouts/styles.jsp" />
+        <!--Statics-->
+        <!-- Dynamics-->
+        <put-attribute name="content" value="" />
+        <!-- Dynamics-->
+    </definition>
+    <!-- ***************************************************************************************-->
+    <!-- CONTENT-->
+    <!-- ***************************************************************************************-->
+    <!-- INDEX -->
+    <definition name="secure.index" extends="secure_template">
+        <put-attribute name="content" value="/WEB-INF/views/secure/index.jsp"></put-attribute>
+    </definition>
+    <!-- INDEX -->
+    <!-- Search -->
+    <definition name="secure.search.index" extends="secure_template">
+        <put-attribute name="content" value="/WEB-INF/views/secure/search/index.jsp"></put-attribute>
+    </definition>
+    <!-- Search -->
+    <!-- Category Content -->
+    <!-- Parent-->
+    <definition name="secure.category.parent" extends="secure_template">
+        <put-attribute name="content" value="/WEB-INF/views/secure/category/parent.jsp"></put-attribute>
+    </definition>
+    <!-- Parent-->
+    <!-- Category of Adverts-->
+    <definition name="secure.category.category-adverts" extends="secure_template">
+        <put-attribute name="content" value="/WEB-INF/views/secure/category/category-adverts.jsp"></put-attribute>
+    </definition>
+    <!-- Category of Adverts-->
+    <!-- Add Advert-->
+    <definition name="secure.advert.add-advert" extends="secure_template">
+        <put-attribute name="content" value="/WEB-INF/views/secure/advert/add-advert.jsp"></put-attribute>
+    </definition>
+    <definition name="secure.advert.add-advert.step-1" extends="secure_template">
+        <put-attribute name="content" value="/WEB-INF/views/secure/advert/add-advert/step-1.jsp"></put-attribute>
+    </definition>
+    <definition name="secure.advert.add-advert-plain" extends="secure_template">
+        <put-attribute name="content" value="/WEB-INF/views/secure/advert/add-advert-plain.jsp"></put-attribute>
+    </definition>
+    <!-- Add Advert-->
+    <!-- Advert Details-->
+    <definition name="secure.advert.advert" extends="secure_template">
+        <put-attribute name="content" value="/WEB-INF/views/secure/advert/advert.jsp"></put-attribute>
+    </definition>
+    <!-- Add Advert-->
+    <!-- Category Content -->
+    <!-- ***************************************************************************************-->
+    <!-- CONTENT-->
+    <!-- ***************************************************************************************-->
+    <!-- BASE TEMPLATE DEFINITION -->
+    <!--****************************************************************************************-->
+
+
+</tiles-definitions>

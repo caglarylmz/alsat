@@ -38,12 +38,12 @@ public class CategoryListTag extends RequestContextAwareTag {
 			List<Category> categories = categoryService.findParentCategoriesWithStatus(true);
 			if (categories != null) {
 				writer.write("<div class=\"left-sidebar\">");
-				writer.write("<h2>Category</h2>");
+				writer.write("<h2>Category<2>");
 				writer.write("<div class=\"panel-group category-products\" id=\"accordian\">");
 
 				for (Category parent : categoryService.findParentCategoriesWithStatus(true)) {
 					writer.write("<div class=\"panel panel-default\">");
-					writer.write("<h4 class=\"category-title\">" + parent.getName() + "</h4>");
+					writer.write("<h4 class=\"category-title\">" + parent.getName() + "<4>");
 					
 					if (parent.getSubCategories() != null) {						
 						for (Category sub1 : parent.getSubCategories()) {							
@@ -55,7 +55,7 @@ public class CategoryListTag extends RequestContextAwareTag {
 								writer.write("<a data-toggle=\"collapse\" data-parent=\"#accordian\" href=\"#"
 										+ sub1RepName + "\">");
 								writer.write("<span class=\"badge pull-right\"><i class=\"fa fa-plus\"></i></span>"
-										+ sub1.getName() + "</a></h4>");
+										+ sub1.getName() + "</a><4>");
 								writer.write("</div>");																		
 								writer.write("<div id=\"" + sub1RepName + "\"class=\"panel-collapse collapse\">");
 								writer.write("<div class=\"panel-body\"><ul>");							
@@ -67,7 +67,7 @@ public class CategoryListTag extends RequestContextAwareTag {
 							} else {
 								writer.write(
 										"<div class=\"panel panel-default\"> <div class=\"panel-heading\"> <h4 class=\"panel-title\"> <a href=\"#\">"
-												+ sub1.getName() + "</a></h4></div></div>");
+												+ sub1.getName() + "</a><4></div></div>");
 							}
 
 						}

@@ -1,82 +1,141 @@
 package com.oriontech.alsat.controllers.global;
 
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.oriontech.alsat.models.Advert;
+import com.oriontech.alsat.models.Category;
+import com.oriontech.alsat.models.adress.Il;
+import com.oriontech.alsat.models.drafts.AdvertPlain;
+import com.oriontech.alsat.repositories.IrkRepository;
+import com.oriontech.alsat.repositories.YasRepository;
+import com.oriontech.alsat.services.AddressService;
+import com.oriontech.alsat.services.AdvertService;
+import com.oriontech.alsat.services.CategoryService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.oriontech.alsat.repositories.TipRepository;
-import com.oriontech.alsat.services.AdvertService;
-import com.oriontech.alsat.services.CategoryService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
+@CrossOrigin(origins = "*")
 @Controller
-@RequestMapping({ "home", "" })
+@RequestMapping("")
 public class HomeController {
-	@Autowired
-	private CategoryService categoryService;
-	@Autowired
-	private AdvertService advertService;
-	@Autowired
-	private TipRepository tipRepository;
-	private String query = "";
+    Logger logger = LoggerFactory.getLogger(HomeController.class);
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private AdvertService advertService;
+    @Autowired
+    private IrkRepository irkRepository;
+    @Autowired
+    private YasRepository yasRepository;
+    @Autowired
+    AddressService addressService;
+    // private String query = "";
 
-	@GetMapping()
-	public String index(ModelMap modelMap) {
-		modelMap.put("title", "İlanlar");
-		modelMap.put("query", query);
-		modelMap.put("isMain", true);
-		modelMap.put("parentCategories", categoryService.findParentCategoriesWithStatus(true));
-		modelMap.put("latestAdverts", advertService.getAllLatestAdvertsByStatus(true));
-		return "main.index";
-	}
+    /* ANA SAYFA */
+    @GetMapping()
+    public String main(ModelMap modelMap) {
 
-	@PostMapping
-	public String searchAdverts(@ModelAttribute("query") String query, ModelMap modelMap) {
-		modelMap.put("title", "Arama Sonucu...");
-		modelMap.put("isMain", true);
-		modelMap.put("isSearch", true);
-		modelMap.put("parentCategories", categoryService.findParentCategoriesWithStatus(true));
-		modelMap.put("latestAdverts", advertService.getAllActiveAdvertsBySearchAdverts(query));
+        modelMap.put("title", "Türkiyenin en iyi ilan sitesi. Türkiyenin her yerinden ilanlar");
+        // modelMap.put("query", query);
+        modelMap.put("isMain", true);
+        modelMap.put("parentCategories", categoryService.findParentCategoriesWithStatus(true));
+        modelMap.put("latestAdverts", advertService.getAllLatestAdvertsByStatusWithLimit(true, 10));
+        modelMap.put("showcaseAdverts", advertService.getShowcaseLatestAdvertsByStatus());
+        modelMap.put("notShowcaseAdverts", advertService.getNotShowcaseLatestAdvertsByStatus());
+        modelMap.put("advertsByViewedAt", advertService.getAdvertsByViewedAtSum());
+        return "global.home.index";
+    }
 
-		return "main.index";
+    /* Search */
 
-	}
+    @GetMapping("/ara")
+    public String search(ModelMap modelMap) {
+        modelMap.put("title", "Arama Sonuçları...");
+        modelMap.put("isSearch", true);
+        // modelMap.put("query", query);
+        modelMap.put("parentCategories", categoryService.findParentCategoriesWithStatus(true));
 
-	@GetMapping(value = "category/{categoryId}/adverts")
-	public String categoryAdverts(@PathVariable("categoryId") long categoryId, ModelMap modelMap) {
-		modelMap.put("title", "İlanlar");
-		if (categoryService.findById(categoryId).getSubCategories() != null
-				&& !categoryService.findById(categoryId).getSubCategories().isEmpty()) {
-			modelMap.put("isHaveSub", true);
-			modelMap.put("categories", categoryService.findSubcategoriesById(categoryId));
-			modelMap.put("latestAdverts", advertService.getAllAdvertsByCategoryAndChildCategories(categoryId));
-		} else {
-			modelMap.put("isSub", true);
-			modelMap.put("category", categoryService.findById(categoryId));
-			modelMap.put("latestAdverts", advertService.getAllLatestActiveAdvertByCategory(categoryId));
+        return "global.search.index";
 
-		}
+    }
 
-		return "main.index";
-	}
+    @PostMapping()
+    public String search(@ModelAttribute("query") String query, RedirectAttributes redirectAttributes) {
+        // this.query = query;
+        redirectAttributes.addFlashAttribute("query", query);
+        redirectAttributes.addFlashAttribute("foundInAdverts", advertService.getAllActiveAdvertsBySearchAdverts(query));
+        logger.info("Search query {}", query);
 
-	@GetMapping(value = "tip/{id}/adverts")
-	public String tipAdverts(@PathVariable("id") long id, ModelMap modelMap) {
-		modelMap.put("title", "İlanlar");
-		modelMap.put("isSub", true);
-		modelMap.put("isTip", true);
-		modelMap.put("category", tipRepository.findById(id).get().getCategory());
-		modelMap.put("tip", tipRepository.findById(id).get());
-		modelMap.put("latestAdverts", advertService.getAllAdvertsByTips(id));
+        return "redirect:/ara";
 
-		return "main.index";
-	}
+    }
+
+    /* Search */
+
+    /* ANA SAYFA */
+
+    /* KATEGORİ */
+    @GetMapping(value = "kategori/{categoryId}")
+    public String parent(@PathVariable("categoryId") long categoryId, ModelMap modelMap) {
+        Category category = categoryService.findById(categoryId);
+
+        modelMap.put("title", category.getName() + " kategorisene ait ilanlar...");
+        modelMap.put("isCategory", true);
+        modelMap.put("category", categoryService.findById(categoryId));
+        modelMap.put("tipsOfCategory", categoryService.getAllTipsByCategoryAndChildCategories(categoryId));
+        modelMap.put("categoryAdverts", advertService.getAllAdvertsByCategoryAndChildCategories(categoryId));
+        modelMap.put("irks", irkRepository.findAll());
+        modelMap.put("yaslar", yasRepository.findAll());
+        return "global.home.category-adverts.index";
+    }
+    /* KATEGORİ */
+
+    /* Add-Advert */
+    AdvertPlain advPlain = new AdvertPlain();
+
+    @GetMapping(value = "ilan-ver/adim-1")
+    public String addAdvert(ModelMap modelMap) {
+        Advert advert = new Advert();
+        advertService.save(advert);
+        logger.info("Advert created. Advert Id : {}", advert.getId());
+
+        modelMap.put("title", "Yeni ilan ver!");
+        modelMap.put("isAddAdvert", true);
+        modelMap.put("advert", advertService.findById(advert.getId()));
+        return "home.advert.add-advert.step-1";
+    }
+
+    @GetMapping(value = "ilan-taslak-kaydet")
+    public String addPlainAdvert(ModelMap modelMap) {
+        modelMap.put("title", "Yeni ilan ekle");
+        modelMap.put("isAddAdvert", true);
+        modelMap.put("advertPlain", advPlain);
+
+        return "home.advert.add-advert-plain";
+    }
+    /* Add-Advert */
+    /* ADVERT */
+
+    /** API */
+
+    @GetMapping("/data/iller")
+    @ResponseBody
+    public List<Il> getIlList() {
+        return addressService.getAllIlList();
+    }
+
+    @GetMapping("/data/category")
+    @ResponseBody
+    public List<Category> getParentCategories() {
+        return categoryService.findParentCategoriesWithStatus(true);
+    }
+
+    /** Adverts */
 
 }

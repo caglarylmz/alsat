@@ -1,7 +1,5 @@
 package com.oriontech.alsat.tags;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.jsp.JspWriter;
@@ -9,7 +7,6 @@ import javax.servlet.jsp.JspWriter;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
 import com.oriontech.alsat.models.Advert;
-import com.oriontech.alsat.models.Category;
 import com.oriontech.alsat.models.Photo;
 
 import lombok.AllArgsConstructor;
@@ -36,7 +33,7 @@ public class SliderAdvertList extends RequestContextAwareTag {
 		for (Advert advert : adverts) {
 			Photo photo = advert.getPhotos().stream().filter(p -> p.isMainPhoto()).findFirst().orElse(null);
 
-			writer.write("<li><a href='" + getRequestContext().getContextPath() + "/h/advert/" + advert.getId() + "'>");
+			writer.write("<li><a href='" + getRequestContext().getContextPath() + "/ilan/" + advert.getId() + "'>");
 			writer.write("<div class='uk-card uk-card-default uk-card-hover'>");
 			writer.write("<div class='uk-card-media-top'>");
 			if (photo == null || photo.getName().equals("no_image")) {

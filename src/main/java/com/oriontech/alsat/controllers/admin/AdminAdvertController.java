@@ -40,7 +40,7 @@ import com.oriontech.alsat.services.PhotoService;
 
 @Controller
 @RequestMapping("admin/advert")
-public class AdvertController implements ServletContextAware {
+public class AdminAdvertController implements ServletContextAware {
 	@Autowired
 	private AdvertService advertService;
 	@Autowired

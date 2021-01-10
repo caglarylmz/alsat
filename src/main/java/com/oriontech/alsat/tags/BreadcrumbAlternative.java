@@ -44,14 +44,14 @@ public class BreadcrumbAlternative extends RequestContextAwareTag {
 		try {
 			writer.write("<div class='container'>");
 			writer.write("<ul class='breadcrumbs'>");
-			writer.write("<li class='first'><a href=" + getRequestContext().getContextPath() + "/h"
+			writer.write("<li class='first'><a href=" + getRequestContext().getContextPath() + ""
 					+ " class='icon-home'><i class='fas fa-home'></i></a></li>");
 			for (Category category : breadcrumbs) {
 				if (breadcrumbs.get(breadcrumbs.size() - 1).equals(category)) {
 					writer.write("<li class='last active'><a href=" + getRequestContext().getContextPath()
-							+ "/h/kategori/" + category.getId() + ">" + category.getName() + "</a></li>");
+							+ "/kategori/" + category.getId() + ">" + category.getName() + "</a></li>");
 				} else {
-					writer.write("<li><a href=" + getRequestContext().getContextPath() + "/h/kategori/"
+					writer.write("<li><a href=" + getRequestContext().getContextPath() + "/kategori/"
 							+ category.getId() + ">" + category.getName() + "</a></li>");
 				}
 

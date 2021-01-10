@@ -47,16 +47,17 @@ public class BreadcrumbTag extends RequestContextAwareTag {
 			writer.write("<ol class='breadcrumb__list r-list'>");
 			writer.write("<li class='breadcrumb__group'>");
 			writer.write("<a href='" + getRequestContext().getContextPath()
-					+ "/h' class='breadcrumb__point r-link'><span aria-hidden='true'><i class='fas fa-home mr-1'></i></span>Ana Sayfa </a>");
+					+ "/' class='breadcrumb__point r-link'><span aria-hidden='true'><i class='fas fa-home mr-1'></i></span>Ana Sayfa </a>");
 			writer.write("</li>");
 			for (Category category : breadcrumbs) {
 				writer.write("<li class='breadcrumb__group'>");
 				if (breadcrumbs.get(breadcrumbs.size() - 1).equals(category)) {
-					writer.write("<a class='breadcrumb__point r-link'><span aria-current='page'><i class='fas fa-caret-right mr-1 breadcrumb__divider'></i></span>"
+					writer.write("<a href='" + getRequestContext().getContextPath() + "/kategori/" + category.getId()
+							+ "'class='breadcrumb__point r-link'><span aria-current='page'><i class='fas fa-caret-right mr-1 breadcrumb__divider'></i></span>"
 							+ " <span class='breadcrumb__point' aria-current='page'>" + category.getName()
 							+ "</span></a>");
 				} else {
-					writer.write("<a href='" + getRequestContext().getContextPath() + "/h/kategori/" + category.getId()
+					writer.write("<a href='" + getRequestContext().getContextPath() + "/kategori/" + category.getId()
 							+ "' class='breadcrumb__point r-link'><span aria-hidden='true'><i class='fas fa-caret-right mr-1 breadcrumb__divider'></i></span>"
 							+ category.getName() + "</a>");
 				}

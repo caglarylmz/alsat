@@ -1,4 +1,3 @@
-
 html,
 body {
     overflow-x: hidden;
@@ -104,10 +103,29 @@ select.aktif :hover {
     border: 0;
 }
 
+.btn-circle.btn {
+    color: white;
+    width: 35px;
+    height: 35px;
+    padding: 1px;
+    border-radius: 25px;
+    font-size: 20px;
+    text-align: center;
+}
+
 .btn-sm {
     font-size: 14px;
     font-weight: 500;
     padding: 4px 10px;
+}
+
+.btn-circle.btn-sm {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    font-size: 15px;
+    text-align: center;
 }
 
 .btn-xs {
@@ -162,7 +180,7 @@ header input {
 
 }
 
-header .uyelik a {
+header .uyelik .uye {
     box-shadow: none !important;
     color: #eaeaea !important;
     font-size: 12px;
