@@ -21,7 +21,7 @@ public class TilesConfiguration implements WebMvcConfigurer {
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
 		tilesConfigurer.setDefinitions(new String[] { "/WEB-INF/tiles/admin_tile.xml", "/WEB-INF/tiles/user_tile.xml",
-				"/WEB-INF/tiles/main_tile.xml", "/WEB-INF/tiles/home_tile.xml", "/WEB-INF/tiles/global_tile.xml" });
+				"/WEB-INF/tiles/main_tile.xml", "/WEB-INF/tiles/secure_tile.xml", "/WEB-INF/tiles/global_tile.xml" });
 		tilesConfigurer.setCheckRefresh(true);
 		// tilesConfigurer.setDefinitionsFactoryClass(CustomLocaleDefinitionsFactory.class);
 
