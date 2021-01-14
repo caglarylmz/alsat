@@ -80,7 +80,7 @@ public class HomeController {
 
     /* ANA SAYFA */
 
-    /* KATEGORİ */
+    /* Adverts Of Category */
     @GetMapping(value = "kategori/{categoryId}")
     public String parent(@PathVariable("categoryId") long categoryId, ModelMap modelMap) {
         Category category = categoryService.findById(categoryId);
@@ -94,7 +94,7 @@ public class HomeController {
         modelMap.put("yaslar", yasRepository.findAll());
         return "global.home.category-adverts.index";
     }
-    /* KATEGORİ */
+    /* Adverts Of Category */
 
     /* Add-Advert */
     AdvertPlain advPlain = new AdvertPlain();

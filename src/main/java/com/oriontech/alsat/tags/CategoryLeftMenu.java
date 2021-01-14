@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import com.oriontech.alsat.models.Category;
-import com.oriontech.alsat.models.Tip;
 import com.oriontech.alsat.services.AdvertService;
 import com.oriontech.alsat.services.CategoryService;
 
@@ -62,15 +61,15 @@ public class CategoryLeftMenu extends RequestContextAwareTag {
 		try {
 			if (category.getParentCategory() == null) {
 				writer.write("<ul class='ana_menu scroll'>");
-				writer.write("<li><a href='" + getRequestContext().getContextPath() + "/kategori/" + category.getId()
-						+ "'>" + category.getName() + "</a><span class='toplam'>("
+				writer.write("<li><a class='uk-link-heading uk-text-bold' href='" + getRequestContext().getContextPath()
+						+ "/kategori/" + category.getId() + "'>" + category.getName() + "</a><span class='toplam'>("
 						+ advertService.getAllAdvertsByCategoryAndChildCategories(category.getId()).size()
 						+ ")</span>");
 				writer.write("<ul>");
 				for (Category cat : category.getSubCategories()) {
 					writer.write("<li>");
-					writer.write("<a href=' " + getRequestContext().getContextPath() + "/kategori/" + cat.getId() + "'>"
-							+ cat.getName() + "</a><span class='toplam'>("
+					writer.write("<a class='uk-link-heading' href=' " + getRequestContext().getContextPath()
+							+ "/kategori/" + cat.getId() + "'>" + cat.getName() + "</a><span class='toplam'>("
 							+ advertService.getAllAdvertsByCategoryAndChildCategories(cat.getId()).size() + ")</span>");
 					writer.write("</li>");
 				}
@@ -80,33 +79,32 @@ public class CategoryLeftMenu extends RequestContextAwareTag {
 			}
 			if (category.getParentCategory() != null) {
 				writer.write("<ul class='ana_menu scroll'>");
-				writer.write("<li><a href='" + getRequestContext().getContextPath() + "/kategori/"
-						+ category.getParentCategory().getId() + "'>" + category.getParentCategory().getName()
-						+ "</a><span class='toplam'>(" + advertService
+				writer.write("<li><a class='uk-link-heading uk-text-bolder' href='"
+						+ getRequestContext().getContextPath() + "/kategori/" + category.getParentCategory().getId()
+						+ "'>" + category.getParentCategory().getName() + "</a><span class='toplam'>(" + advertService
 								.getAllAdvertsByCategoryAndChildCategories(category.getParentCategory().getId()).size()
 						+ ")</span>");
 				writer.write("<ul>");
-				writer.write("<li><a href='" + getRequestContext().getContextPath() + "/kategori/" + category.getId()
-						+ "'>" + category.getName() + "</a><span class='toplam'>("
+				writer.write("<li><a class='uk-link-heading uk-text-bold' href='" + getRequestContext().getContextPath()
+						+ "/kategori/" + category.getId() + "'>" + category.getName() + "</a><span class='toplam'>("
 						+ advertService.getAllAdvertsByCategoryAndChildCategories(category.getId()).size()
 						+ ")</span>");
 				if (!category.getSubCategories().isEmpty()) {
 					writer.write("<ul>");
 					for (Category cat : category.getSubCategories()) {
 						writer.write("<li>");
-						writer.write("<a href='" + getRequestContext().getContextPath() + "/kategori/" + cat.getId()
-								+ "'>" + cat.getName() + "</a><span class='toplam'>("
+						writer.write("<a class='uk-link-heading' href='" + getRequestContext().getContextPath()
+								+ "/kategori/" + cat.getId() + "'>" + cat.getName() + "</a><span class='toplam'>("
 								+ advertService.getAllAdvertsByCategoryAndChildCategories(cat.getId()).size()
 								+ ")</span>");
 						if (!cat.getSubCategories().isEmpty()) {
 							writer.write("<ul>");
 							for (Category c : cat.getSubCategories()) {
 								writer.write("<li>");
-								writer.write(
-										"<a href='" + getRequestContext().getContextPath() + "/kategori/" + c.getId()
-												+ "'>" + c.getName() + "</a><span class='toplam'>(" + advertService
-														.getAllAdvertsByCategoryAndChildCategories(c.getId()).size()
-												+ ")</span>");
+								writer.write("<a class='uk-link-heading ' href='" + getRequestContext().getContextPath()
+										+ "/kategori/" + c.getId() + "'>" + c.getName() + "</a><span class='toplam'>("
+										+ advertService.getAllAdvertsByCategoryAndChildCategories(c.getId()).size()
+										+ ")</span>");
 								writer.write("</li>");
 							}
 							writer.write("</ul>");
@@ -118,8 +116,8 @@ public class CategoryLeftMenu extends RequestContextAwareTag {
 					writer.write("<ul>");
 					for (Category c : category.getSubCategories()) {
 						writer.write("<li>");
-						writer.write("<a href='" + getRequestContext().getContextPath() + "/kategori/" + c.getId()
-								+ "'>" + c.getName() + "</a><span class='toplam'>("
+						writer.write("<a class='uk-link-heading' href='" + getRequestContext().getContextPath()
+								+ "/kategori/" + c.getId() + "'>" + c.getName() + "</a><span class='toplam'>("
 								+ advertService.getAllAdvertsByCategoryAndChildCategories(c.getId()).size()
 								+ ")</span>");
 						writer.write("</li>");
@@ -130,8 +128,9 @@ public class CategoryLeftMenu extends RequestContextAwareTag {
 				for (Category cat : category.getParentCategory().getSubCategories()) {
 					if (!category.getId().equals(cat.getId())) {
 						writer.write("<li>");
-						writer.write("<a href='" + getRequestContext().getContextPath() + "/kategori/" + cat.getId()
-								+ "'>" + cat.getName() + "</a><span class='toplam'>("
+						writer.write("<a class='uk-link-heading uk-text-bold' href='"
+								+ getRequestContext().getContextPath() + "/kategori/" + cat.getId() + "'>"
+								+ cat.getName() + "</a><span class='toplam'>("
 								+ advertService.getAllAdvertsByCategoryAndChildCategories(cat.getId()).size()
 								+ ")</span>");
 						writer.write("</li>");
