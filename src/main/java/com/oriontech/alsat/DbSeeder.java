@@ -1,11 +1,9 @@
 package com.oriontech.alsat;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -111,6 +109,120 @@ public class DbSeeder implements CommandLineRunner {
 		irks.add(yerli);
 		irks.add(diger);
 		irkRepository.saveAll(irks);
+
+		/* Category Çiftlikler */
+		Category rootCiftlikler = new Category();
+		rootCiftlikler.setName("Çiftlikler");
+		rootCiftlikler.setStatus(true);
+		rootCiftlikler.setIcon("buyukbas.png");
+		categoryRepository.save(rootCiftlikler);
+		// ciftlikler sub buyukbas//
+		Category ciflikBuyukbas = new Category();
+		ciflikBuyukbas.setName("Büyükbaş Çiftlikler");
+		ciflikBuyukbas.setStatus(true);
+		ciflikBuyukbas.setParentCategory(rootCiftlikler);
+		ciflikBuyukbas.setRootCategory(rootCiftlikler);
+		categoryRepository.save(ciflikBuyukbas);
+		// ciftlikler/buyukbas sub Sıgır
+		Category ciflikBuyukbasSigir = new Category();
+		ciflikBuyukbasSigir.setName("Sığır");
+		ciflikBuyukbasSigir.setStatus(true);
+		ciflikBuyukbasSigir.setParentCategory(ciflikBuyukbas);
+		ciflikBuyukbasSigir.setRootCategory(rootCiftlikler);
+		categoryRepository.save(ciflikBuyukbasSigir);
+		Tip sutSigiriCiftligi = new Tip("Süt Sığırı Çiftiliği", ciflikBuyukbasSigir);
+		tipRepository.save(sutSigiriCiftligi);
+		Tip besiIsletmesi = new Tip("Besi İşletmesi", ciflikBuyukbasSigir);
+		tipRepository.save(besiIsletmesi);
+		Tip damizlikDuveIsletmesi = new Tip("Damızlık Düve işletmesi", ciflikBuyukbasSigir);
+		tipRepository.save(damizlikDuveIsletmesi);
+		List<Tip> tipsCiftlikBuyukbasSigir = new ArrayList<>();
+		tipsCiftlikBuyukbasSigir.add(sutSigiriCiftligi);
+		tipsCiftlikBuyukbasSigir.add(besiIsletmesi);
+		tipsCiftlikBuyukbasSigir.add(damizlikDuveIsletmesi);
+		ciflikBuyukbasSigir.setTips(tipsCiftlikBuyukbasSigir);
+		categoryRepository.save(ciflikBuyukbasSigir);
+
+		// ciftlikler/buyukbas sub Manda
+		Category ciflikBuyukbasManda = new Category();
+		ciflikBuyukbasManda.setName("Manda");
+		ciflikBuyukbasManda.setStatus(true);
+		ciflikBuyukbasManda.setParentCategory(ciflikBuyukbas);
+		ciflikBuyukbasManda.setRootCategory(rootCiftlikler);
+		categoryRepository.save(ciflikBuyukbasManda);
+
+		Tip mandaIsletmesi = new Tip("Manda İşletmesi", ciflikBuyukbasSigir);
+		tipRepository.save(mandaIsletmesi);
+		List<Tip> tipsCiftlikBuyukbasManda = new ArrayList<>();
+		tipsCiftlikBuyukbasManda.add(mandaIsletmesi);
+		ciflikBuyukbasManda.setTips(tipsCiftlikBuyukbasManda);
+		categoryRepository.save(ciflikBuyukbasManda);
+
+		// ciftlikler/buyukbas sub Karma
+		Category ciflikBuyukbasKarma = new Category();
+		ciflikBuyukbasKarma.setName("Karma");
+		ciflikBuyukbasKarma.setStatus(true);
+		ciflikBuyukbasKarma.setParentCategory(ciflikBuyukbas);
+		ciflikBuyukbasKarma.setRootCategory(rootCiftlikler);
+		categoryRepository.save(ciflikBuyukbasKarma);
+
+		Tip buyukbasKarmaIsletmesi = new Tip("Büyükbaş Karma İşletme", ciflikBuyukbasKarma);
+		tipRepository.save(buyukbasKarmaIsletmesi);
+		List<Tip> tipsbuyukbasKarmaIsletmesi = new ArrayList<>();
+		tipsbuyukbasKarmaIsletmesi.add(buyukbasKarmaIsletmesi);
+		ciflikBuyukbasKarma.setTips(tipsCiftlikBuyukbasManda);
+		categoryRepository.save(ciflikBuyukbasKarma);
+
+		// ciftlikler sub kucukbas//
+		Category ciflikKucukbas = new Category();
+		ciflikKucukbas.setName("Küçükbaş Çiftlikler");
+		ciflikKucukbas.setStatus(true);
+		ciflikKucukbas.setParentCategory(rootCiftlikler);
+		ciflikKucukbas.setRootCategory(rootCiftlikler);
+		categoryRepository.save(ciflikKucukbas);
+		// ciftlikler/kucukbas sub Koyun
+		Category ciflikKucukbasKoyun = new Category();
+		ciflikKucukbasKoyun.setName("Koyun");
+		ciflikKucukbasKoyun.setStatus(true);
+		ciflikKucukbasKoyun.setParentCategory(ciflikKucukbas);
+		ciflikKucukbasKoyun.setRootCategory(rootCiftlikler);
+		categoryRepository.save(ciflikKucukbasKoyun);
+		// ciftlikler/kucukbas sub Keci
+		Category ciflikKucukbasKeci = new Category();
+		ciflikKucukbasKeci.setName("Keci");
+		ciflikKucukbasKeci.setStatus(true);
+		ciflikKucukbasKeci.setParentCategory(ciflikKucukbas);
+		ciflikKucukbasKeci.setRootCategory(rootCiftlikler);
+		categoryRepository.save(ciflikKucukbasKeci);
+		// ciftlikler sub kanatlı//
+		Category ciflikKanatli = new Category();
+		ciflikKanatli.setName("Kanatlı");
+		ciflikKanatli.setStatus(true);
+		ciflikKanatli.setParentCategory(rootCiftlikler);
+		ciflikKanatli.setRootCategory(rootCiftlikler);
+		categoryRepository.save(ciflikKanatli);
+		// ciftlikler/kanatlı sub tavuk
+		Category ciflikKanatliTavuk = new Category();
+		ciflikKanatliTavuk.setName("Tavuk");
+		ciflikKanatliTavuk.setStatus(true);
+		ciflikKanatliTavuk.setParentCategory(ciflikKanatli);
+		ciflikKanatliTavuk.setRootCategory(rootCiftlikler);
+		categoryRepository.save(ciflikKanatliTavuk);
+		// ciftlikler/kanatlı sub hindi
+		Category ciflikKanatliHindi = new Category();
+		ciflikKanatliHindi.setName("Hindi");
+		ciflikKanatliHindi.setStatus(true);
+		ciflikKanatliHindi.setParentCategory(ciflikKanatli);
+		ciflikKanatliHindi.setRootCategory(rootCiftlikler);
+		categoryRepository.save(ciflikKanatliHindi);
+		// ciftlikler sub at//
+		Category ciflikAt = new Category();
+		ciflikAt.setName("At");
+		ciflikAt.setStatus(true);
+		ciflikAt.setParentCategory(rootCiftlikler);
+		ciflikAt.setRootCategory(rootCiftlikler);
+		categoryRepository.save(ciflikAt);
+		// Category Çiftlikler
 
 		//
 		Category parentBuyukBas = new Category();
